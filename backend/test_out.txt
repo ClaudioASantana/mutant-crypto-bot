@@ -1,0 +1,9 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 8631.29it/s]
+/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/rag/vector.py:51: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  return Chroma(
+M1 Candles loaded: 1000
+Req 3: {'signals': 145, 'wins': 71, 'losses': 74, 'win_rate': 48.97}
+Req 5: {'signals': 37, 'wins': 21, 'losses': 16, 'win_rate': 56.76}
+Req 7: {'signals': 7, 'wins': 5, 'losses': 2, 'win_rate': 71.43}
+Req 9: {'signals': 1, 'wins': 0, 'losses': 1, 'win_rate': 0.0}

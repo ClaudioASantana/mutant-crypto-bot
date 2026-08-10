@@ -1,0 +1,61 @@
+======================================================================
+  RELATORIO DE DEEP BACKTEST -- BTCUSDT | ULTIMOS 30 DIAS
+  Gerado em: 10/08/2026 17:56:17
+  Gestao de Risco: Stake $100.0 x 10x | TP=3.0xATR | SL=1.5xATR
+======================================================================
+
+  TIMEFRAME: M1
+  Estrategia        Sinais   Wins   Losses   Win Rate    PnL (USD)
+  -----------------------------------------------------------------
+  EMA+MACD             202     67      135     33.17%       +$1.16
+  Bollinger            895    320      575     35.75%      +$51.00
+  VWAP                 260     93      167     35.77%      +$12.09
+  SMC                 1328    441      887     33.21%       +$9.12
+  Wyckoff_Bbands       294    106      188     36.05%      +$20.60
+  Wyckoff_SMC          547    166      381     30.35%      -$17.91
+
+  TIMEFRAME: M5
+  Estrategia        Sinais   Wins   Losses   Win Rate    PnL (USD)
+  -----------------------------------------------------------------
+  EMA+MACD             127     55       72     43.31%      +$57.39
+  Bollinger            346    132      214     38.15%      +$34.74
+  VWAP                 128     43       85     33.59%      -$11.64
+  SMC                  355    136      219     38.31%      +$61.94
+  Wyckoff_Bbands       141     52       89     36.88%       +$1.00
+  Wyckoff_SMC          143     55       88     38.46%      +$21.05
+
+  TIMEFRAME: M15
+  Estrategia        Sinais   Wins   Losses   Win Rate    PnL (USD)
+  -----------------------------------------------------------------
+  EMA+MACD              41     10       31     24.39%      -$56.21
+  Bollinger            116     43       73     37.07%      +$38.10
+  VWAP                  53     17       36     32.08%      -$31.52
+  SMC                  108     38       70     35.19%      +$11.09
+  Wyckoff_Bbands        55     22       33     40.00%      +$28.26
+  Wyckoff_SMC           30     11       19     36.67%      +$28.85
+
+======================================================================
+  RANKING GERAL (por PnL Liquido)
+  --------------------------------------------------
+  1.  SMC (M5): +$61.94  |  WR: 38.31%  |  Trades: 355
+  2.  EMA+MACD (M5): +$57.39  |  WR: 43.31%  |  Trades: 127
+  3.  Bollinger (M1): +$51.00  |  WR: 35.75%  |  Trades: 895
+  4.  Bollinger (M15): +$38.10  |  WR: 37.07%  |  Trades: 116
+  5.  Bollinger (M5): +$34.74  |  WR: 38.15%  |  Trades: 346
+  6.  Wyckoff_SMC (M15): +$28.85  |  WR: 36.67%  |  Trades: 30
+  7.  Wyckoff_Bbands (M15): +$28.26  |  WR: 40.0%  |  Trades: 55
+  8.  Wyckoff_SMC (M5): +$21.05  |  WR: 38.46%  |  Trades: 143
+  9.  Wyckoff_Bbands (M1): +$20.60  |  WR: 36.05%  |  Trades: 294
+  10.  VWAP (M1): +$12.09  |  WR: 35.77%  |  Trades: 260
+  11.  SMC (M15): +$11.09  |  WR: 35.19%  |  Trades: 108
+  12.  SMC (M1): +$9.12  |  WR: 33.21%  |  Trades: 1328
+  13.  EMA+MACD (M1): +$1.16  |  WR: 33.17%  |  Trades: 202
+  14.  Wyckoff_Bbands (M5): +$1.00  |  WR: 36.88%  |  Trades: 141
+  15.  VWAP (M5): -$11.64  |  WR: 33.59%  |  Trades: 128
+  16.  Wyckoff_SMC (M1): -$17.91  |  WR: 30.35%  |  Trades: 547
+  17.  VWAP (M15): -$31.52  |  WR: 32.08%  |  Trades: 53
+  18.  EMA+MACD (M15): -$56.21  |  WR: 24.39%  |  Trades: 41
+
+  ESTRATEGIA RECOMENDADA: SMC no M5
+  PnL: $61.94 | Win Rate: 38.31% | Trades: 355
+======================================================================

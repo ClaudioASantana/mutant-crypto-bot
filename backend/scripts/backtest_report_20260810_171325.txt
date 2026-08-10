@@ -1,0 +1,49 @@
+======================================================================
+  RELATORIO DE DEEP BACKTEST -- BTCUSDT | ULTIMOS 30 DIAS
+  Gerado em: 10/08/2026 17:13:25
+  Gestao de Risco: Stake $100.0 x 10x | TP=3.0xATR | SL=1.5xATR
+======================================================================
+
+  TIMEFRAME: M1
+  Estrategia        Sinais   Wins   Losses   Win Rate    PnL (USD)
+  -----------------------------------------------------------------
+  EMA+MACD            1718    599     1118     34.89%      +$17.92
+  Bollinger           4524   1697     2826     37.52%     +$169.97
+  VWAP                1004    365      639     36.35%      +$55.21
+  SMC                 6519   2382     4136     36.54%     +$108.26
+
+  TIMEFRAME: M5
+  Estrategia        Sinais   Wins   Losses   Win Rate    PnL (USD)
+  -----------------------------------------------------------------
+  EMA+MACD             363    123      240     33.88%      +$14.26
+  Bollinger            968    346      622     35.74%      +$22.89
+  VWAP                 479    176      303     36.74%      +$82.24
+  SMC                 1021    356      662     34.97%      +$41.92
+
+  TIMEFRAME: M15
+  Estrategia        Sinais   Wins   Losses   Win Rate    PnL (USD)
+  -----------------------------------------------------------------
+  EMA+MACD             119     33       86     27.73%      -$62.68
+  Bollinger            325    118      206     36.42%      +$88.31
+  VWAP                 265     95      170     35.85%      +$70.71
+  SMC                  302    107      192     35.79%      +$46.57
+
+======================================================================
+  RANKING GERAL (por PnL Liquido)
+  --------------------------------------------------
+  1.  Bollinger (M1): +$169.97  |  WR: 37.52%  |  Trades: 4523
+  2.  SMC (M1): +$108.26  |  WR: 36.54%  |  Trades: 6518
+  3.  Bollinger (M15): +$88.31  |  WR: 36.42%  |  Trades: 324
+  4.  VWAP (M5): +$82.24  |  WR: 36.74%  |  Trades: 479
+  5.  VWAP (M15): +$70.71  |  WR: 35.85%  |  Trades: 265
+  6.  VWAP (M1): +$55.21  |  WR: 36.35%  |  Trades: 1004
+  7.  SMC (M15): +$46.57  |  WR: 35.79%  |  Trades: 299
+  8.  SMC (M5): +$41.92  |  WR: 34.97%  |  Trades: 1018
+  9.  Bollinger (M5): +$22.89  |  WR: 35.74%  |  Trades: 968
+  10.  EMA+MACD (M1): +$17.92  |  WR: 34.89%  |  Trades: 1717
+  11.  EMA+MACD (M5): +$14.26  |  WR: 33.88%  |  Trades: 363
+  12.  EMA+MACD (M15): -$62.68  |  WR: 27.73%  |  Trades: 119
+
+  ESTRATEGIA RECOMENDADA: Bollinger no M1
+  PnL: $169.97 | Win Rate: 37.52% | Trades: 4523
+======================================================================
