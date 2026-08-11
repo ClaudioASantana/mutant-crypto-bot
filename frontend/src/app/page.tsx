@@ -35,9 +35,8 @@ export default function Home() {
 
   useEffect(() => {
     // Connect to WebSocket
-    const host = window.location.hostname;
-    const port = process.env.NEXT_PUBLIC_API_PORT || 8000;
-    ws.current = new WebSocket(`ws://${host}:${port}/ws`);
+    const wsUrl = process.env.NEXT_PUBLIC_BACKEND_WS_URL || `ws://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}/ws`;
+    ws.current = new WebSocket(wsUrl);
     
     ws.current.onopen = () => {
       console.log("Connected to backend WS");
@@ -86,9 +85,8 @@ export default function Home() {
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
-        const host = window.location.hostname;
-        const port = process.env.NEXT_PUBLIC_API_PORT || 8000;
-        const res = await fetch(`http://${host}:${port}/portfolio`);
+        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+        const res = await fetch(`${httpUrl}/portfolio`);
         const data = await res.json();
         setPortfolio(data);
       } catch (e) {}
@@ -243,9 +241,8 @@ export default function Home() {
     setIsBacktesting(true);
     setBacktestResults([]);
     try {
-      const host = window.location.hostname;
-      const port = process.env.NEXT_PUBLIC_API_PORT || 8000;
-      const res = await fetch(`http://${host}:${port}/api/optimize`, {
+      const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+      const res = await fetch(`${httpUrl}/api/optimize`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ symbol: activeSymbol })
@@ -267,9 +264,8 @@ export default function Home() {
       setAutoCalibrateProgress({ current: i + 1, total: symbols.length, message: `Baixando velas e otimizando ${sym}...` });
       
       try {
-        const host = window.location.hostname;
-        const port = process.env.NEXT_PUBLIC_API_PORT || 8000;
-        const res = await fetch(`http://${host}:${port}/api/optimize`, {
+        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+        const res = await fetch(`${httpUrl}/api/optimize`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ symbol: sym })
