@@ -233,7 +233,7 @@ class BotInstance:
                         risk_eval = evaluate_risk(signal, account_state)
                         
                         try:
-                            explanation = await asyncio.to_thread(explain_signal, signal, risk_eval.reason)
+                            explanation = await explain_signal(signal, risk_eval.reason)
                             await self.manager.broadcast({"event": "agent_message", "symbol": self.symbol, "data": explanation})
                             
                             if risk_eval.decision.value == "BLOCKED":

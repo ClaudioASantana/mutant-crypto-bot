@@ -20,7 +20,7 @@ def get_embeddings():
 def build_vector_store():
     # app/rag/vector.py -> app/rag -> app -> backend -> root
     base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    docs_dir = os.path.abspath(os.path.join(base_path, "..", "docs", "binary-options-operator"))
+    docs_dir = os.path.abspath(os.path.join(base_path, "..", "docs"))
     
     files = glob.glob(f"{docs_dir}/*.md")
     print(f"Encontrados {len(files)} arquivos markdown em {docs_dir}")
@@ -37,7 +37,8 @@ def build_vector_store():
     splits = text_splitter.split_documents(docs)
     print(f"Gerados {len(splits)} blocos de texto.")
     
-    persist_dir = os.path.join(base_path, "chroma_db")
+    db_dir = os.getenv("CHROMA_DB_DIR", "chroma_db")
+    persist_dir = os.path.join(base_path, db_dir)
     vectorstore = Chroma.from_documents(
         documents=splits, 
         embedding=get_embeddings(),
@@ -47,7 +48,14 @@ def build_vector_store():
 
 def get_vector_store():
     base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    persist_dir = os.path.join(base_path, "chroma_db")
+    db_dir = os.getenv("CHROMA_DB_DIR", "chroma_db")
+    persist_dir = os.path.join(base_path, db_dir)
+    
+    # Fallback: reconstrói o banco vetorial caso não exista ou esteja vazio
+    if not os.path.exists(persist_dir) or not os.listdir(persist_dir):
+        print("Banco de dados vetorial não encontrado ou vazio. Iniciando reconstrução automática...")
+        return build_vector_store()
+        
     return Chroma(
         persist_directory=persist_dir, 
         embedding_function=get_embeddings()

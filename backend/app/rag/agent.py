@@ -46,15 +46,15 @@ prompt = ChatPromptTemplate.from_messages([
 
 agent_chain = prompt | llm | StrOutputParser()
 
-def explain_signal(signal: Signal, risk_evaluation: str) -> str:
+async def explain_signal(signal: Signal, risk_evaluation: str) -> str:
     if signal.type == SignalType.NONE:
         return "Nenhum sinal."
         
     query = f"Regras para sinal {signal.type.value} e limites de risco"
-    docs = retriever.invoke(query)
+    docs = await retriever.ainvoke(query)
     context = "\n\n".join([doc.page_content for doc in docs])
     
-    response = agent_chain.invoke({
+    response = await agent_chain.ainvoke({
         "context": context,
         "signal_type": signal.type.value,
         "signal_reason": signal.reason,
