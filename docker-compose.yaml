@@ -9,7 +9,7 @@ services:
     environment:
       - CHROMA_DB_DIR=chroma_db
     restart: unless-stopped
-    expose:
+    ports:
       - "8000"
 
   frontend:
@@ -21,7 +21,7 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
-    expose:
+    ports:
       - "3000"
 
 volumes:
