@@ -466,8 +466,8 @@ export default function Home() {
                 </div>
                 {["EMA+MACD", "Bollinger", "VWAP", "SMC"].map(s => {
                   const cat = (catalog || []).find(x => x.timeframe === tf && x.strategy === s);
-                  const winRate = cat ? cat.stats.win_rate : 0;
-                  const pnl = cat ? cat.stats.pnl_usdt : 0;
+                  const winRate = cat?.stats?.win_rate ?? 0;
+                  const pnl = cat?.stats?.pnl_usdt ?? 0;
                   const isManualActive = activeConfig.timeframe === tf && activeConfig.strategy === s;
                   const isActive = autoOptimize ? (pnl > 0) : isManualActive;
                   return (

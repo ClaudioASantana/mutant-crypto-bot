@@ -13,7 +13,7 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
     a favor da direção do sinal.
     """
     if len(closed_candles) < 50:
-        return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0}
+        return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "pnl_usdt": 0.0}
 
     # Converter para df e aplicar todos os indicadores de uma vez
     df = candles_to_df(closed_candles)
