@@ -31,10 +31,13 @@ export default function Home() {
   const ws = useRef<WebSocket | null>(null);
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartSeriesRef = useRef<any>(null);
+  const priceLinesRef = useRef<any[]>([]);
 
   useEffect(() => {
     // Connect to WebSocket
-    ws.current = new WebSocket("ws://127.0.0.1:8000/ws");
+    const host = window.location.hostname;
+    const port = process.env.NEXT_PUBLIC_API_PORT || 8000;
+    ws.current = new WebSocket(`ws://${host}:${port}/ws`);
     
     ws.current.onopen = () => {
       console.log("Connected to backend WS");
@@ -83,7 +86,9 @@ export default function Home() {
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
-        const res = await fetch("http://localhost:8000/portfolio");
+        const host = window.location.hostname;
+        const port = process.env.NEXT_PUBLIC_API_PORT || 8000;
+        const res = await fetch(`http://${host}:${port}/portfolio`);
         const data = await res.json();
         setPortfolio(data);
       } catch (e) {}
@@ -158,6 +163,51 @@ export default function Home() {
     }
   }, [liveData.candle]);
 
+  useEffect(() => {
+    if (!chartSeriesRef.current) return;
+    
+    // Clear previous lines
+    priceLinesRef.current.forEach(line => chartSeriesRef.current.removePriceLine(line));
+    priceLinesRef.current = [];
+
+    if (tradePreview) {
+      const callTpLine = chartSeriesRef.current.createPriceLine({
+        price: tradePreview.call_tp,
+        color: '#10b981',
+        lineWidth: 1,
+        lineStyle: 3, // Dotted
+        axisLabelVisible: true,
+        title: 'C. TP',
+      });
+      const callSlLine = chartSeriesRef.current.createPriceLine({
+        price: tradePreview.call_sl,
+        color: '#ef4444',
+        lineWidth: 1,
+        lineStyle: 3,
+        axisLabelVisible: true,
+        title: 'C. SL',
+      });
+      const putTpLine = chartSeriesRef.current.createPriceLine({
+        price: tradePreview.put_tp,
+        color: '#10b981',
+        lineWidth: 1,
+        lineStyle: 3,
+        axisLabelVisible: true,
+        title: 'P. TP',
+      });
+      const putSlLine = chartSeriesRef.current.createPriceLine({
+        price: tradePreview.put_sl,
+        color: '#ef4444',
+        lineWidth: 1,
+        lineStyle: 3,
+        axisLabelVisible: true,
+        title: 'P. SL',
+      });
+      
+      priceLinesRef.current = [callTpLine, callSlLine, putTpLine, putSlLine];
+    }
+  }, [tradePreview]);
+
   // Modo Autônomo: Os métodos handleApprove e handleIgnore foram removidos.
   // O backend agora executa ordens e salva logs automaticamente.
 
@@ -193,7 +243,9 @@ export default function Home() {
     setIsBacktesting(true);
     setBacktestResults([]);
     try {
-      const res = await fetch("http://localhost:8000/api/optimize", {
+      const host = window.location.hostname;
+      const port = process.env.NEXT_PUBLIC_API_PORT || 8000;
+      const res = await fetch(`http://${host}:${port}/api/optimize`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ symbol: activeSymbol })
@@ -215,7 +267,9 @@ export default function Home() {
       setAutoCalibrateProgress({ current: i + 1, total: symbols.length, message: `Baixando velas e otimizando ${sym}...` });
       
       try {
-        const res = await fetch("http://localhost:8000/api/optimize", {
+        const host = window.location.hostname;
+        const port = process.env.NEXT_PUBLIC_API_PORT || 8000;
+        const res = await fetch(`http://${host}:${port}/api/optimize`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ symbol: sym })
@@ -484,38 +538,38 @@ export default function Home() {
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
               {/* CALL side */}
-              <div style={{ background: "rgba(0,200,120,0.08)", border: "1px solid rgba(0,200,120,0.25)", borderRadius: "10px", padding: "14px" }}>
-                <div style={{ color: "#00c878", fontWeight: 700, fontSize: "0.8rem", marginBottom: "10px", letterSpacing: "0.05em" }}>▲ CALL (COMPRA)</div>
+              <div className="animate-pulse-success" style={{ background: "rgba(16,185,129,0.08)", border: "1px solid rgba(16,185,129,0.25)", borderRadius: "10px", padding: "14px" }}>
+                <div style={{ color: "var(--success)", fontWeight: 700, fontSize: "0.8rem", marginBottom: "10px", letterSpacing: "0.05em" }}>▲ CALL (COMPRA)</div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Entrada</span>
-                    <span style={{ fontWeight: 600 }}>${tradePreview.current_price.toLocaleString()}</span>
+                    <span key={`call-entry-${tradePreview.current_price}`} className="animate-flash" style={{ fontWeight: 600 }}>${tradePreview.current_price.toLocaleString()}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Take Profit</span>
-                    <span style={{ color: "#00c878", fontWeight: 600 }}>${tradePreview.call_tp.toLocaleString()}</span>
+                    <span key={`call-tp-${tradePreview.call_tp}`} className="animate-flash" style={{ color: "var(--success)", fontWeight: 600 }}>${tradePreview.call_tp.toLocaleString()}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Stop Loss</span>
-                    <span style={{ color: "#ff4d4d", fontWeight: 600 }}>${tradePreview.call_sl.toLocaleString()}</span>
+                    <span key={`call-sl-${tradePreview.call_sl}`} className="animate-flash" style={{ color: "var(--danger)", fontWeight: 600 }}>${tradePreview.call_sl.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
               {/* PUT side */}
-              <div style={{ background: "rgba(255,77,77,0.08)", border: "1px solid rgba(255,77,77,0.25)", borderRadius: "10px", padding: "14px" }}>
-                <div style={{ color: "#ff4d4d", fontWeight: 700, fontSize: "0.8rem", marginBottom: "10px", letterSpacing: "0.05em" }}>▼ PUT (VENDA)</div>
+              <div className="animate-pulse-danger" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.25)", borderRadius: "10px", padding: "14px" }}>
+                <div style={{ color: "var(--danger)", fontWeight: 700, fontSize: "0.8rem", marginBottom: "10px", letterSpacing: "0.05em" }}>▼ PUT (VENDA)</div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Entrada</span>
-                    <span style={{ fontWeight: 600 }}>${tradePreview.current_price.toLocaleString()}</span>
+                    <span key={`put-entry-${tradePreview.current_price}`} className="animate-flash" style={{ fontWeight: 600 }}>${tradePreview.current_price.toLocaleString()}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Take Profit</span>
-                    <span style={{ color: "#00c878", fontWeight: 600 }}>${tradePreview.put_tp.toLocaleString()}</span>
+                    <span key={`put-tp-${tradePreview.put_tp}`} className="animate-flash" style={{ color: "var(--success)", fontWeight: 600 }}>${tradePreview.put_tp.toLocaleString()}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Stop Loss</span>
-                    <span style={{ color: "#ff4d4d", fontWeight: 600 }}>${tradePreview.put_sl.toLocaleString()}</span>
+                    <span key={`put-sl-${tradePreview.put_sl}`} className="animate-flash" style={{ color: "var(--danger)", fontWeight: 600 }}>${tradePreview.put_sl.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -600,11 +654,11 @@ export default function Home() {
                   <div key={t.id} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
                     <span>
                       {t.direction === "CALL" ? "🟩 LONG" : "🟥 SHORT"}
-                      <div style={{ fontSize: "0.75rem", opacity: 0.7 }}>Entry: {t.entry_price.toFixed(2)}</div>
+                      <div style={{ fontSize: "0.75rem", opacity: 0.7 }}>Entry: {t.entry_price?.toFixed(2) ?? "0.00"}</div>
                     </span>
-                    <span style={{ textAlign: "right", color: t.pnl >= 0 ? "var(--success)" : "var(--danger)", fontWeight: "bold" }}>
-                      {t.pnl >= 0 ? "+" : ""}${t.pnl.toFixed(2)}
-                      <div style={{ fontSize: "0.75rem", color: "white", opacity: 0.7, fontWeight: "normal" }}>Margem: ${t.margin.toFixed(2)}</div>
+                    <span style={{ textAlign: "right", color: (t.pnl ?? 0) >= 0 ? "var(--success)" : "var(--danger)", fontWeight: "bold" }}>
+                      {(t.pnl ?? 0) >= 0 ? "+" : ""}${(t.pnl ?? 0).toFixed(2)}
+                      <div style={{ fontSize: "0.75rem", color: "white", opacity: 0.7, fontWeight: "normal" }}>Margem: ${(t.margin ?? 0).toFixed(2)}</div>
                     </span>
                   </div>
                 ))}
@@ -624,7 +678,7 @@ export default function Home() {
                       {t.status === "WIN" ? "📈" : (t.status === "LOSS" ? "📉" : "⚖️")} {t.direction} <span style={{fontSize:'0.7rem', opacity:0.5}}>[{t.strategy_info || "N/A"}]</span>
                     </span>
                     <span style={{ fontWeight: "bold", color: t.status === "WIN" ? "var(--success)" : (t.status === "LOSS" ? "var(--danger)" : "white") }}>
-                      {t.profit >= 0 ? "+" : ""}${t.profit.toFixed(2)}
+                      {(t.profit ?? 0) >= 0 ? "+" : ""}${(t.profit ?? 0).toFixed(2)}
                     </span>
                   </div>
                 ))
@@ -726,8 +780,8 @@ export default function Home() {
                           {res.timeframe_label} | {res.candles} Velas | Gale {res.gale} | RSI {res.rsi_label}
                         </div>
                         <div style={{ display: "flex", gap: "16px", marginTop: "8px", opacity: 0.8, fontSize: "0.9rem" }}>
-                          <span>Win Rate: <strong style={{ color: res.win_rate >= 90 ? "var(--success)" : "white" }}>{res.win_rate.toFixed(1)}%</strong></span>
-                          <span>PnL: <strong style={{ color: "var(--success)" }}>${res.pnl.toFixed(2)}</strong></span>
+                          <span>Win Rate: <strong style={{ color: (res.win_rate ?? 0) >= 90 ? "var(--success)" : "white" }}>{(res.win_rate ?? 0).toFixed(1)}%</strong></span>
+                          <span>PnL: <strong style={{ color: "var(--success)" }}>${(res.pnl ?? 0).toFixed(2)}</strong></span>
                           <span>{res.wins} Wins / {res.losses} Losses</span>
                         </div>
                       </div>
