@@ -260,3 +260,21 @@ def eval_wyckoff_smc(df: pd.DataFrame) -> str:
         
     return "NONE"
 
+def eval_consecutive(df: pd.DataFrame, num_candles: int = 3) -> str:
+    """
+    3 Velas Consecutivas:
+    Entra a favor da tendência quando houver N velas seguidas da mesma cor.
+    """
+    if df.empty or len(df) < num_candles: return "NONE"
+    
+    last_n = df.iloc[-num_candles:]
+    is_all_bullish = all((row["close"] > row["open"]) for idx, row in last_n.iterrows())
+    is_all_bearish = all((row["close"] < row["open"]) for idx, row in last_n.iterrows())
+    
+    if is_all_bearish:
+        return "CALL"
+    if is_all_bullish:
+        return "PUT"
+        
+    return "NONE"
+

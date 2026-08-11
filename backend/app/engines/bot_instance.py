@@ -9,6 +9,7 @@ from app.engines.cataloger import calculate_win_rate
 from app.engines.technical_analysis import (
     candles_to_df, apply_indicators, 
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc,
+    eval_consecutive,
     check_signal_quality
 )
 from app.models.market import Tick, Signal, SignalType, AccountState, CandleDirection
@@ -36,7 +37,7 @@ class BotInstance:
         
         self.paper_trader = PaperTrader(symbol=self.symbol, initial_balance=200.0, leverage=10)
         
-        self.active_config = {"timeframe": 300, "strategy": "SMC", "gale": 3, "rsi_oversold": 30, "rsi_overbought": 70}
+        self.active_config = {"timeframe": 60, "strategy": "3 Velas", "gale": 2, "rsi_oversold": 25, "rsi_overbought": 75}
         self.auto_optimize = False
         self.global_catalog = []
         
@@ -71,7 +72,7 @@ class BotInstance:
     async def broadcast_catalog(self):
         catalog = []
         for timeframe, b in [(60, self.builder_m1), (300, self.builder_m5), (900, self.builder_m15)]:
-            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC"]:
+            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "3 Velas"]:
                 stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
                 catalog.append({
                     "timeframe": timeframe,
@@ -176,6 +177,8 @@ class BotInstance:
                         sig_val = eval_vwap(df)
                     elif req_strategy == "SMC":
                         sig_val = eval_smc(df)
+                    elif req_strategy == "3 Velas":
+                        sig_val = eval_consecutive(df, num_candles=3)
                         
                     signal = Signal(type=SignalType.NONE, reason="")
                     if sig_val == "CALL":

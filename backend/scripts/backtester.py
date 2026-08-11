@@ -1,12 +1,8 @@
 import os
 import sys
-import json
 import asyncio
-import urllib.request
-import urllib.parse
-import websockets
+import ccxt.async_support as ccxt
 from datetime import datetime
-from dotenv import load_dotenv
 
 # Ensure we can import app modules
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
@@ -14,14 +10,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from app.models.market import Candle, CandleDirection
 from app.engines.indicators import calculate_rsi
 
-load_dotenv()
-
-DERIV_APP_ID = "1089"
-DERIV_TOKEN = os.getenv("DERIV_API_TOKEN", "")
-
-SYMBOL = "R_50"
+SYMBOL = "BTC/USDT"
 GRANULARITY = 300 # M5
-COUNT = 5000
+COUNT = 5000 # 5000 candles
 
 # Strategy params
 CONSECUTIVE_CANDLES = 3
@@ -32,48 +23,46 @@ RSI_OVERBOUGHT = 65
 # Money Management
 INITIAL_BALANCE = 10000.0
 STAKE = 10.0
-PAYOUT_RATE = 0.95 # 95% payout
+PAYOUT_RATE = 0.95 # Payout simulated 95%
 MARTINGALE_MULTIPLIER = 2.0
 MAX_GALE = 2
 
-async def run_backtest():
-    url = f"wss://ws.binaryws.com/websockets/v3?app_id={DERIV_APP_ID}"
-    print(f"🔄 Conectando na Deriv para baixar histórico de {SYMBOL} ({COUNT} velas de M{GRANULARITY//60})...")
+async def download_history(symbol: str, timeframe_seconds: int, limit: int):
+    exchange = ccxt.binance()
+    tf_map = {60: '1m', 300: '5m', 900: '15m', 3600: '1h'}
+    tf = tf_map.get(timeframe_seconds, '1m')
     
-    async with websockets.connect(url) as ws:
-        # Request history
-        req = {
-            "ticks_history": SYMBOL,
-            "style": "candles",
-            "granularity": GRANULARITY,
-            "count": COUNT,
-            "end": "latest"
-        }
-        await ws.send(json.dumps(req))
-        
-        response = json.loads(await ws.recv())
-        if "error" in response:
-            print(f"❌ Erro da API: {response['error']}")
-            return
-            
-        candles_raw = response.get("candles", [])
-        print(f"✅ Download concluído! {len(candles_raw)} velas recebidas.")
-        
-        # Parse into Candle objects
+    print(f"🔄 Conectando na Binance para baixar histórico de {symbol} ({limit} velas de {tf})...")
+    
+    try:
+        ohlcv = await exchange.fetch_ohlcv(symbol, tf, limit=limit)
         history = []
-        for c in candles_raw:
-            direction = CandleDirection.BULLISH if c["close"] > c["open"] else CandleDirection.BEARISH
-            if c["close"] == c["open"]:
+        for c in ohlcv:
+            open_p, high_p, low_p, close_p = c[1], c[2], c[3], c[4]
+            direction = CandleDirection.BULLISH if close_p > open_p else CandleDirection.BEARISH
+            if close_p == open_p:
                 direction = CandleDirection.NEUTRAL
                 
             history.append(Candle(
-                epoch=c["epoch"],
-                open=c["open"],
-                high=c["high"],
-                low=c["low"],
-                close=c["close"],
+                epoch=int(c[0] / 1000),
+                open=open_p,
+                high=high_p,
+                low=low_p,
+                close=close_p,
                 direction=direction
             ))
+        print(f"✅ Download concluído! {len(history)} velas recebidas.")
+        await exchange.close()
+        return history
+    except Exception as e:
+        print(f"❌ Erro baixando histórico: {e}")
+        await exchange.close()
+        return []
+
+async def run_backtest():
+    history = await download_history(SYMBOL, GRANULARITY, COUNT)
+    if not history:
+        return
             
     # RUN BACKTEST
     balance = INITIAL_BALANCE
@@ -85,7 +74,7 @@ async def run_backtest():
     in_trade = False
     trade_direction = None
     
-    print("🚀 Iniciando Simulação Institucional...")
+    print("🚀 Iniciando Simulação Cripto...")
     print("-" * 50)
     
     for i in range(len(history)):
@@ -150,7 +139,7 @@ async def run_backtest():
                 
     print("-" * 50)
     print("📊 RELATÓRIO FINAL DO BACKTEST")
-    print(f"Ativo: {SYMBOL} | Velas: {COUNT} (M{GRANULARITY//60})")
+    print(f"Ativo: {SYMBOL} | Velas: {len(history)} (M{GRANULARITY//60})")
     print(f"Estratégia: {CONSECUTIVE_CANDLES} Velas Consecutivas")
     print(f"Filtro RSI: CALL < {RSI_OVERSOLD} | PUT > {RSI_OVERBOUGHT}")
     print(f"Gale Máximo: {MAX_GALE}")
