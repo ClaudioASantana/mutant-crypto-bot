@@ -51,7 +51,7 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 news_filter = NewsFilter()
-DERIV_TOKEN = os.getenv("DERIV_API_TOKEN", "").strip()
+
 
 # --- SWARM STATE ---
 bots: dict[str, BotInstance] = {}
@@ -64,7 +64,7 @@ async def lifespan(app: FastAPI):
     logger.info("Iniciando o ENXAME (Swarm)... Levantando 4 bots simultâneos!")
     
     for sym in active_symbols:
-        bot = BotInstance(symbol=sym, token=DERIV_TOKEN, news_filter=news_filter, manager=manager)
+        bot = BotInstance(symbol=sym, token="", news_filter=news_filter, manager=manager)
         bots[sym] = bot
         asyncio.create_task(bot.start())
     
