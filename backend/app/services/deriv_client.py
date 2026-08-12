@@ -102,7 +102,7 @@ class DerivClient:
                     "req_id": req_id
                 }))
 
-    async def buy_contract(self, direction: str, amount: float):
+    async def buy_contract(self, direction: str, amount: float, duration_unit: str = "m", duration: int = 5):
         if not self.connection:
             logger.error("Cannot buy: No WebSocket connection.")
             return
@@ -115,12 +115,12 @@ class DerivClient:
                 "basis": "stake",
                 "contract_type": contract_type,
                 "currency": "USD",
-                "duration": 5,
-                "duration_unit": "m",
+                "duration": duration,
+                "duration_unit": duration_unit,
                 "symbol": self.symbol
             }
         }
-        logger.info(f"🚀 Enviando Ordem Oficial para Deriv: {contract_type} | Stake: ${amount}")
+        logger.info(f"🚀 Enviando Ordem Oficial para Deriv: {contract_type} | Stake: ${amount} | Duração: {duration}{duration_unit}")
         await self.connection.send(json.dumps(req))
 
     def _handle_message(self, raw_message: str):
