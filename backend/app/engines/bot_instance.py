@@ -116,6 +116,7 @@ class BotInstance:
         for timeframe, b in [(60, self.builder_m1), (300, self.builder_m5), (900, self.builder_m15)]:
             for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "3 Velas", "Pin Bar"]:
                 stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+                stats.pop("df", None)
                 catalog.append({
                     "timeframe": timeframe,
                     "strategy": strategy_name,
@@ -311,7 +312,7 @@ class BotInstance:
                                     sl_price = tick.quote + (atr_val * sl_multiplier)
                                     tp_price = tick.quote - (atr_val * tp_multiplier)
                                     
-                                self.paper_trader.open_trade(signal.type.value, tf, tick.epoch, tick.quote, sl_price=sl_price, tp_price=tp_price)
+                                self.paper_trader.open_trade(signal.type.value, tf, tick.epoch, tick.quote, sl_price=sl_price, tp_price=tp_price, atr=atr_val)
                                 await self.manager.broadcast({"event": "simulator", "symbol": self.symbol, "data": self.paper_trader.get_state()})
                                 await self.manager.broadcast({"event": "trade_opened", "symbol": self.symbol, "data": {"direction": signal.type.value, "price": tick.quote}})
                         except Exception as e:

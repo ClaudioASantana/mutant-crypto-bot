@@ -146,12 +146,16 @@ async def websocket_endpoint(websocket: WebSocket):
                         b = bots[watching_symbol]
                         b.auto_optimize = not b.auto_optimize
                         logger.info(f"[{watching_symbol}] Auto-Optimize: {b.auto_optimize}")
+                        if b.auto_optimize:
+                            asyncio.create_task(b.broadcast_catalog())
                         await websocket.send_json({"event": "catalog", "symbol": watching_symbol, "data": {"catalog": b.global_catalog, "active_config": b.active_config, "auto_optimize": b.auto_optimize}})
                 elif cmd.get("command") == "TOGGLE_AUTO_OPTIMIZE_ALL":
                     is_active = cmd.get("active", True)
                     for sym, bot_inst in bots.items():
                         bot_inst.auto_optimize = is_active
                         logger.info(f"[{sym}] Auto-Optimize Global: {bot_inst.auto_optimize}")
+                        if is_active:
+                            asyncio.create_task(bot_inst.broadcast_catalog())
                     if watching_symbol in bots:
                         b = bots[watching_symbol]
                         await websocket.send_json({"event": "catalog", "symbol": watching_symbol, "data": {"catalog": b.global_catalog, "active_config": b.active_config, "auto_optimize": b.auto_optimize}})
@@ -187,6 +191,26 @@ def get_portfolio():
         "total_pnl": total_pnl,
         "bots_count": len(bots)
     }
+
+@app.get("/api/chart_history")
+def get_chart_history(symbol: str):
+    history_payload = []
+    if symbol in bots:
+        b = bots[symbol]
+        active_b = b.get_active_builder()
+        seen_times = set()
+        for c in sorted(active_b.closed_candles, key=lambda x: x.epoch):
+            if c.epoch not in seen_times:
+                history_payload.append({
+                    "time": c.epoch,
+                    "open": c.open,
+                    "high": c.high,
+                    "low": c.low,
+                    "close": c.close
+                })
+                seen_times.add(c.epoch)
+            
+    return {"data": history_payload[-200:]}
 
 from pydantic import BaseModel
 class OptimizeRequest(BaseModel):
@@ -257,25 +281,135 @@ async def api_backtest_advanced(req: AdvancedBacktestRequest):
     from app.engines.cataloger import calculate_win_rate
     
     logger.info(f"[{req.symbol}] Baixando histórico para backtest avançado...")
+    
+    # Executa o block sync (download + DB insert + calculo pandas) em uma thread separada!
+    def run_heavy_backtest():
+        # download_history is async, but wait, if it's async we can't just run it in a thread easily
+        # Actually, download_history is async, so we await it normally.
+        # But wait, download_history is async! We can await it.
+        # The blocking part is calculate_win_rate (pandas).
+        pass
+
     history = await download_history(req.symbol, req.timeframe, req.limit)
     if not history:
         return {"error": "Falha ao baixar o histórico"}
         
-    res = calculate_win_rate(history, req.strategy)
+    def _compute_win_rate():
+        if req.strategy == "Auto":
+            strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"]
+            best_res = None
+            best_pnl = -float('inf')
+            best_strategy = None
+            
+            for strat in strategies:
+                strat_res = calculate_win_rate(history, strat)
+                pnl = strat_res.get("pnl_usdt", 0)
+                if pnl > best_pnl:
+                    best_pnl = pnl
+                    best_res = strat_res
+                    best_strategy = strat
+                    
+            res = best_res
+            res["optimal_strategy"] = best_strategy
+            return res
+        else:
+            return calculate_win_rate(history, req.strategy)
+            
+    # Executa o cálculo pesado no pandas em outra thread (desbloqueia o Event Loop!)
+    res = await asyncio.to_thread(_compute_win_rate)
+    
+    import math
+    df = res.pop("df", None)
     
     # Mapear o histórico para o formato do lightweight-charts
     history_payload = []
     seen_times = set()
-    for c in history:
-        if c.epoch not in seen_times:
-            history_payload.append({
-                "time": c.epoch,
-                "open": c.open,
-                "high": c.high,
-                "low": c.low,
-                "close": c.close
-            })
-            seen_times.add(c.epoch)
+    
+    if df is not None and not df.empty:
+        if len(df) > 1000:
+            df = df.tail(1000)
+            
+        for timestamp, row in df.iterrows():
+            epoch = int(timestamp.timestamp())
+            if epoch not in seen_times:
+                payload = {
+                    "time": epoch,
+                    "open": float(row["open"]),
+                    "high": float(row["high"]),
+                    "low": float(row["low"]),
+                    "close": float(row["close"])
+                }
+                
+                # Volume
+                if "volume" in row and not math.isnan(row["volume"]):
+                    payload["volume"] = float(row["volume"])
+                    
+                # Bollinger Bands
+                bbu_col = next((col for col in row.index if col.startswith("BBU_")), None)
+                bbm_col = next((col for col in row.index if col.startswith("BBM_")), None)
+                bbl_col = next((col for col in row.index if col.startswith("BBL_")), None)
+                
+                if bbu_col and not math.isnan(row[bbu_col]):
+                    payload["bb_upper"] = float(row[bbu_col])
+                if bbm_col and not math.isnan(row[bbm_col]):
+                    payload["bb_middle"] = float(row[bbm_col])
+                if bbl_col and not math.isnan(row[bbl_col]):
+                    payload["bb_lower"] = float(row[bbl_col])
+                
+                # MACD
+                macd_line = next((col for col in row.index if col.startswith("MACD_")), None)
+                macd_hist = next((col for col in row.index if col.startswith("MACDh_")), None)
+                macd_signal = next((col for col in row.index if col.startswith("MACDs_")), None)
+                
+                if macd_line and not math.isnan(row[macd_line]):
+                    payload["macd_line"] = float(row[macd_line])
+                if macd_hist and not math.isnan(row[macd_hist]):
+                    payload["macd_hist"] = float(row[macd_hist])
+                if macd_signal and not math.isnan(row[macd_signal]):
+                    payload["macd_signal"] = float(row[macd_signal])
+                    
+                history_payload.append(payload)
+                seen_times.add(epoch)
+    else:
+        # Fallback if no df
+        for c in history:
+            if c.epoch not in seen_times:
+                history_payload.append({
+                    "time": c.epoch,
+                    "open": c.open,
+                    "high": c.high,
+                    "low": c.low,
+                    "close": c.close
+                })
+                seen_times.add(c.epoch)
             
     res["history"] = history_payload
     return res
+
+class RiskSettingsRequest(BaseModel):
+    stake_initial: float
+    max_gale: int
+    daily_stop_loss: float
+    daily_stop_gain: float
+
+@app.get("/api/risk_settings")
+def get_risk_settings():
+    from app.engines.simulator import PaperTrader
+    return PaperTrader._global_state.get("risk_settings", {
+        "stake_initial": 10.0,
+        "max_gale": 2,
+        "daily_stop_loss": 50.0,
+        "daily_stop_gain": 50.0
+    })
+
+@app.post("/api/risk_settings")
+def set_risk_settings(req: RiskSettingsRequest):
+    from app.engines.simulator import PaperTrader
+    PaperTrader._global_state["risk_settings"] = {
+        "stake_initial": req.stake_initial,
+        "max_gale": req.max_gale,
+        "daily_stop_loss": req.daily_stop_loss,
+        "daily_stop_gain": req.daily_stop_gain
+    }
+    PaperTrader.save_state_global()
+    return {"status": "ok", "settings": PaperTrader._global_state["risk_settings"]}

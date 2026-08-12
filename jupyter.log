@@ -1,0 +1,117 @@
+[I 2026-08-12 14:14:44.718 ServerApp] Extension package jupyter_ai_acp_client took 0.2995s to import
+[I 2026-08-12 14:14:45.214 ServerApp] Extension package jupyter_server_mcp took 0.4681s to import
+[I 2026-08-12 14:14:45.221 ServerApp] jupyter_ai_acp_client | extension was successfully linked.
+[I 2026-08-12 14:14:45.223 ServerApp] jupyter_ai_chat_commands | extension was successfully linked.
+[I 2026-08-12 14:14:45.225 ServerApp] jupyter_ai_persona_manager | extension was successfully linked.
+[I 2026-08-12 14:14:45.226 ServerApp] jupyter_ai_router | extension was successfully linked.
+[I 2026-08-12 14:14:45.227 ServerApp] jupyter_ai_tools | extension was successfully linked.
+[I 2026-08-12 14:14:45.227 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2026-08-12 14:14:45.229 ServerApp] jupyter_server_documents | extension was successfully linked.
+[I 2026-08-12 14:14:45.231 ServerApp] jupyter_server_fileid | extension was successfully linked.
+[I 2026-08-12 14:14:45.233 ServerApp] jupyter_server_mcp | extension was successfully linked.
+[I 2026-08-12 14:14:45.235 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2026-08-12 14:14:45.237 ServerApp] jupyterlab | extension was successfully linked.
+[I 2026-08-12 14:14:45.237 ServerApp] jupyterlab_chat | extension was successfully linked.
+[I 2026-08-12 14:14:45.237 ServerApp] jupyterlab_commands_toolkit | extension was successfully linked.
+[I 2026-08-12 14:14:45.355 ServerApp] notebook_shim | extension was successfully linked.
+[I 2026-08-12 14:14:45.370 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2026-08-12 14:14:45.371 JaiAcpClientExtension] Registered ACP event schema and listener with EventLogger.
+[I 2026-08-12 14:14:45.371 ServerApp] jupyter_ai_acp_client | extension was successfully loaded.
+[I 2026-08-12 14:14:45.371 ServerApp] jupyter_ai_chat_commands | extension was successfully loaded.
+[I 2026-08-12 14:14:45.371 PersonaManagerExtension] Registered jupyter_ai_persona_manager server extension
+[I 2026-08-12 14:14:45.371 PersonaManagerExtension] Initialized Persona Manager server extension in 0 ms.
+[I 2026-08-12 14:14:45.372 ServerApp] jupyter_ai_persona_manager | extension was successfully loaded.
+[I 2026-08-12 14:14:45.372 RouterExtension] Initialized RouterExtension in 0.00s
+[I 2026-08-12 14:14:45.372 ServerApp] jupyter_ai_router | extension was successfully loaded.
+[I 2026-08-12 14:14:45.372 ServerApp] ✅ jupyter_ai_tools extension loaded.
+[I 2026-08-12 14:14:45.372 ServerApp] jupyter_ai_tools | extension was successfully loaded.
+[I 2026-08-12 14:14:45.373 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2026-08-12 14:14:45.375 ServerApp] jupyter_server_documents | extension was successfully loaded.
+[I 2026-08-12 14:14:45.375 FileIdExtension] Configured File ID manager: ArbitraryFileIdManager
+[I 2026-08-12 14:14:45.375 FileIdExtension] ArbitraryFileIdManager : Configured root dir: /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot
+[I 2026-08-12 14:14:45.375 FileIdExtension] ArbitraryFileIdManager : Configured database path: /home/mcmoriam/.local/share/jupyter/file_id_manager.db
+[I 2026-08-12 14:14:45.376 FileIdExtension] ArbitraryFileIdManager : Successfully connected to database file.
+[I 2026-08-12 14:14:45.376 FileIdExtension] ArbitraryFileIdManager : Creating File ID tables and indices with journal_mode = DELETE
+[I 2026-08-12 14:14:45.376 FileIdExtension] Attached event listeners.
+[I 2026-08-12 14:14:45.376 ServerApp] jupyter_server_fileid | extension was successfully loaded.
+[I 2026-08-12 14:14:45.376 ServerApp] jupyter_server_mcp | extension was successfully loaded.
+[I 2026-08-12 14:14:45.377 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2026-08-12 14:14:45.381 LabApp] JupyterLab extension loaded from /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyterlab
+[I 2026-08-12 14:14:45.381 LabApp] JupyterLab application directory is /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/share/jupyter/lab
+[I 2026-08-12 14:14:45.382 LabApp] Extension Manager is 'pypi'.
+[I 2026-08-12 14:14:45.409 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2026-08-12 14:14:45.409 ServerApp] Registered jupyterlab_chat server extension
+[I 2026-08-12 14:14:45.409 ServerApp] jupyterlab_chat | extension was successfully loaded.
+[I 2026-08-12 14:14:45.410 ServerApp] jupyterlab_commands_toolkit extension loaded with bidirectional event communication.
+[I 2026-08-12 14:14:45.410 ServerApp] jupyterlab_commands_toolkit | extension was successfully loaded.
+[I 2026-08-12 14:14:45.410 ServerApp] Serving notebooks from local directory: /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot
+[I 2026-08-12 14:14:45.410 ServerApp] Jupyter Server 2.20.0 is running at:
+[I 2026-08-12 14:14:45.410 ServerApp] http://0.0.0.0:8888/lab?token=8bffef1bfc037a6f02786ea74b4d00c1c863fc7ccf30c234
+[I 2026-08-12 14:14:45.410 ServerApp]     http://127.0.0.1:8888/lab?token=8bffef1bfc037a6f02786ea74b4d00c1c863fc7ccf30c234
+[I 2026-08-12 14:14:45.410 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2026-08-12 14:14:45.412 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///home/mcmoriam/.local/share/jupyter/runtime/jpserver-2438316-open.html
+    Or copy and paste one of these URLs:
+        http://santacau:8888/lab?token=8bffef1bfc037a6f02786ea74b4d00c1c863fc7ccf30c234
+        http://127.0.0.1:8888/lab?token=8bffef1bfc037a6f02786ea74b4d00c1c863fc7ccf30c234
+    The server is listening on all interfaces, so any hostname or IP of this machine will work.
+[I 2026-08-12 14:14:45.412 RouterExtension] Registered new chat initialization callback
+[I 2026-08-12 14:14:45.412 PersonaManagerExtension] Waiting for the router to be ready
+[I 2026-08-12 14:14:45.412 PersonaManagerExtension] Router is ready, continuing with persona manager integration
+[I 2026-08-12 14:14:45.412 PersonaManagerExtension] Found jupyter-ai-router, registering persona manager callbacks
+[I 2026-08-12 14:14:45.412 RouterExtension] Registered new chat initialization callback
+[I 2026-08-12 14:14:45.412 RouterExtension] Registered chat stop callback
+[I 2026-08-12 14:14:45.414 MCPExtensionApp] Starting MCP server 'Jupyter MCP Server' on port 3001
+[I 2026-08-12 14:14:45.417 MCPExtensionApp] Initialized MCP server 'Jupyter MCP Server' on localhost:3001
+[I 2026-08-12 14:14:45.423 MCPExtensionApp] Registering tool: list_all_commands
+[I 2026-08-12 14:14:45.424 MCPExtensionApp] Registering tool: execute_command
+[I 2026-08-12 14:14:45.425 MCPExtensionApp] Registering tool: read_notebook
+[I 2026-08-12 14:14:45.427 MCPExtensionApp] Registering tool: read_notebook_cells
+[I 2026-08-12 14:14:45.428 MCPExtensionApp] Registering tool: read_cell
+[I 2026-08-12 14:14:45.429 MCPExtensionApp] Registering tool: add_cell
+[I 2026-08-12 14:14:45.430 MCPExtensionApp] Registering tool: insert_cell
+[I 2026-08-12 14:14:45.431 MCPExtensionApp] Registering tool: delete_cell
+[I 2026-08-12 14:14:45.431 MCPExtensionApp] Registering tool: edit_cell
+[I 2026-08-12 14:14:45.432 MCPExtensionApp] Registering tool: select_cell
+[I 2026-08-12 14:14:45.433 MCPExtensionApp] Registering tool: get_cell_id_from_index
+[I 2026-08-12 14:14:45.434 MCPExtensionApp] Registering tool: get_active_notebook
+[I 2026-08-12 14:14:45.435 MCPExtensionApp] Registering tool: get_active_cell_id
+[I 2026-08-12 14:14:45.436 MCPExtensionApp] Registering tool: get_open_documents
+[I 2026-08-12 14:14:45.437 MCPExtensionApp] Registering tool: create_notebook
+[I 2026-08-12 14:14:45.439 MCPExtensionApp] Registering tool: open_file
+[I 2026-08-12 14:14:45.440 MCPExtensionApp] Registering tool: run_cell
+[I 2026-08-12 14:14:45.442 MCPExtensionApp] Registering tool: run_all_cells
+[E 2026-08-12 14:14:45.444 MCPExtensionApp] Failed to start MCP server: Cannot start MCP server on localhost:3001: Address already in use. Configure another MCP port with c.MCPExtensionApp.mcp_port = <port> or --MCPExtensionApp.mcp_port=<port>.
+[W 2026-08-12 14:14:45.444 ServerApp] jupyter_server_mcp | extension failed starting with message: MCPServerPortError('Cannot start MCP server on localhost:3001: Address already in use. Configure another MCP port with c.MCPExtensionApp.mcp_port = <port> or --MCPExtensionApp.mcp_port=<port>.')
+    Traceback (most recent call last):
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server_mcp/mcp_server.py", line 65, in _ensure_port_available
+        sock.bind(sockaddr)
+    OSError: [Errno 98] Address already in use
+    
+    The above exception was the direct cause of the following exception:
+    
+    Traceback (most recent call last):
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server/extension/manager.py", line 418, in start_extension
+        await extension.start_all_points(self.serverapp)
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server/extension/manager.py", line 274, in start_all_points
+        await self.start_point(point_name, serverapp)
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server/extension/manager.py", line 260, in start_point
+        return await point.start(serverapp)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server/extension/manager.py", line 183, in start
+        return await starter(serverapp)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server_mcp/extension.py", line 274, in _start_jupyter_server_extension
+        await self.start_extension()
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server_mcp/extension.py", line 255, in start_extension
+        await self._confirm_mcp_server_started()
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server_mcp/extension.py", line 206, in _confirm_mcp_server_started
+        await task
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server_mcp/mcp_server.py", line 378, in start_server
+        _ensure_port_available(server_host, self.port)
+      File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/.venv/lib/python3.12/site-packages/jupyter_server_mcp/mcp_server.py", line 84, in _ensure_port_available
+        raise MCPServerPortError(msg) from exc
+    jupyter_server_mcp.mcp_server.MCPServerPortError: Cannot start MCP server on localhost:3001: Address already in use. Configure another MCP port with c.MCPExtensionApp.mcp_port = <port> or --MCPExtensionApp.mcp_port=<port>.
+[I 2026-08-12 14:14:45.514 ServerApp] Skipped non-installed server(s): basedpyright, bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyrefly, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server

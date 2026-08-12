@@ -17,6 +17,7 @@ services:
     volumes:
     - mutant-chromadb:/app/chroma_db
     - ./docs:/docs:ro
+    - ./backend/data:/app/data
   frontend:
     build:
       context: ./frontend

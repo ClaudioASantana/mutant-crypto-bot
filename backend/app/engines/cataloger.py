@@ -157,5 +157,6 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
         "losses": losses,
         "win_rate": win_rate,
         "pnl_usdt": round(pnl_usdt, 2),
-        "trades": trades
+        "trades": trades,
+        "df": df
     }

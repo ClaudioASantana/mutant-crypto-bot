@@ -1,8 +1,28 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import { createChart, ColorType, CandlestickSeries, HistogramSeries, LineSeries } from "lightweight-charts";
 
-import { useEffect, useState, useRef } from "react";
-import { createChart, ColorType, CandlestickSeries } from "lightweight-charts";
+class ErrorBoundary extends React.Component<any, { hasError: boolean, error: any }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: any) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    console.error("ErrorBoundary caught an error", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div style={{ color: "red", padding: "20px" }}><h1>Algo deu errado no React!</h1><pre>{String(this.state.error?.stack || this.state.error)}</pre></div>;
+    }
+    return this.props.children;
+  }
+}
 
 export default function Home() {
   const [liveData, setLiveData] = useState<any>({ quote: 0, candle: null });
@@ -21,8 +41,17 @@ export default function Home() {
   const [currentView, setCurrentView] = useState<"dashboard" | "backtest">("dashboard");
   const [backtestResults, setBacktestResults] = useState<any>(null);
   const [isBacktesting, setIsBacktesting] = useState(false);
-  const [backtestStrategy, setBacktestStrategy] = useState("Pin Bar");
+  const [backtestStrategy, setBacktestStrategy] = useState("Auto");
+  
+  // Risk Settings State
+  const [riskStake, setRiskStake] = useState<number>(10);
+  const [riskGale, setRiskGale] = useState<number>(2);
+  const [riskStopLoss, setRiskStopLoss] = useState<number>(50);
+  const [riskStopGain, setRiskStopGain] = useState<number>(50);
+  const [isSavingRisk, setIsSavingRisk] = useState<boolean>(false);
+
   const [backtestTimeframe, setBacktestTimeframe] = useState(300);
+  const [backtestLimit, setBacktestLimit] = useState(1000);
   
   const backtestChartContainerRef = useRef<HTMLDivElement>(null);
   const backtestChartRef = useRef<any>(null);
@@ -98,11 +127,26 @@ export default function Home() {
     };
     fetchPortfolio();
     const interval = setInterval(fetchPortfolio, 5000);
+    
+    // Fetch Risk Settings
+    const fetchRisk = async () => {
+      try {
+        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+        const res = await fetch(`${httpUrl}/api/risk_settings`);
+        const data = await res.json();
+        setRiskStake(data.stake_initial);
+        setRiskGale(data.max_gale);
+        setRiskStopLoss(data.daily_stop_loss);
+        setRiskStopGain(data.daily_stop_gain);
+      } catch (e) {}
+    };
+    fetchRisk();
+    
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    if (!chartContainerRef.current) return;
+    if (currentView !== 'dashboard' || !chartContainerRef.current) return;
     
     const chart = createChart(chartContainerRef.current, {
       layout: {
@@ -140,17 +184,38 @@ export default function Home() {
     return () => {
       window.removeEventListener('resize', handleResize);
       chart.remove();
+      chartSeriesRef.current = null;
+      priceLinesRef.current = [];
     };
-  }, []);
+  }, [currentView]);
+
 
   useEffect(() => {
     if (chartSeriesRef.current) {
+      // Limpa o gráfico imediatamente para evitar bug de escala ao trocar de ativo
       chartSeriesRef.current.setData([]);
+    }
+    
+    const fetchHistory = async () => {
+      try {
+        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+        const res = await fetch(`${httpUrl}/api/chart_history?symbol=${activeSymbol}&limit=200`);
+        const result = await res.json();
+        if (chartSeriesRef.current && result.data) {
+          chartSeriesRef.current.setData(result.data);
+        }
+      } catch (e) {
+        console.error("Failed to fetch chart history", e);
+      }
+    };
+    
+    if (activeSymbol) {
+      fetchHistory();
     }
   }, [activeSymbol]);
 
   useEffect(() => {
-    if (chartSeriesRef.current && liveData.candle) {
+    if (chartSeriesRef.current && currentView === 'dashboard' && liveData.candle) {
         const data = {
             time: liveData.candle.epoch,
             open: liveData.candle.open,
@@ -161,13 +226,13 @@ export default function Home() {
         try {
             chartSeriesRef.current.update(data);
         } catch (e) {
-            chartSeriesRef.current.setData([data]);
+            console.warn("Ignoring tick update error (possibly older timestamp)", e);
         }
     }
   }, [liveData.candle]);
 
   useEffect(() => {
-    if (!chartSeriesRef.current) return;
+    if (!chartSeriesRef.current || currentView !== 'dashboard') return;
     
     // Clear previous lines
     priceLinesRef.current.forEach(line => chartSeriesRef.current.removePriceLine(line));
@@ -265,76 +330,138 @@ export default function Home() {
         body: JSON.stringify({ 
           symbol: activeSymbol, 
           timeframe: backtestTimeframe, 
-          limit: 1000, 
+          limit: backtestLimit, 
           strategy: backtestStrategy 
         })
       });
       const data = await res.json();
       setBacktestResults(data);
-
-      if (backtestSeriesRef.current && data.history) {
-        backtestSeriesRef.current.setData(data.history);
-        
-        if (data.trades) {
-          const markers = data.trades.map((t: any) => ({
-            time: t.entry_time,
-            position: t.signal === 'CALL' ? 'belowBar' : 'aboveBar',
-            color: t.signal === 'CALL' ? '#26a69a' : '#ef5350',
-            shape: t.signal === 'CALL' ? 'arrowUp' : 'arrowDown',
-            text: `${t.signal} (${t.profit > 0 ? '+' : ''}${t.profit.toFixed(2)})`
-          }));
-          backtestSeriesRef.current.setMarkers(markers);
-        }
-      }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
     setIsBacktesting(false);
   };
 
+  const saveRiskSettings = async () => {
+    setIsSavingRisk(true);
+    try {
+      const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+      await fetch(`${httpUrl}/api/risk_settings`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          stake_initial: riskStake,
+          max_gale: riskGale,
+          daily_stop_loss: riskStopLoss,
+          daily_stop_gain: riskStopGain
+        })
+      });
+      // Optionally show a success toast here
+    } catch (e) {
+      console.error("Erro ao salvar configurações de risco.");
+    }
+    setIsSavingRisk(false);
+  };
+
+  // Efeito para desenhar linhas de TP/SL no gráfico
   useEffect(() => {
     if (currentView !== 'backtest' || !backtestChartContainerRef.current) return;
     
-    if (!backtestChartRef.current) {
-        const chart = createChart(backtestChartContainerRef.current, {
-          layout: {
-            background: { type: ColorType.Solid, color: 'transparent' },
-            textColor: '#d1d4dc',
-          },
-          grid: {
-            vertLines: { color: 'rgba(42, 46, 57, 0)' },
-            horzLines: { color: 'rgba(42, 46, 57, 0.2)' },
-          },
-          width: backtestChartContainerRef.current.clientWidth,
-          height: 400,
-          timeScale: {
-            timeVisible: true,
-            secondsVisible: false,
-          }
-        });
+    const chart = createChart(backtestChartContainerRef.current, {
+      layout: {
+        background: { type: ColorType.Solid, color: 'transparent' },
+        textColor: '#d1d4dc',
+      },
+      grid: {
+        vertLines: { color: 'rgba(42, 46, 57, 0)' },
+        horzLines: { color: 'rgba(42, 46, 57, 0.2)' },
+      },
+      width: backtestChartContainerRef.current.clientWidth,
+      height: 400,
+      timeScale: {
+        timeVisible: true,
+        secondsVisible: false,
+      }
+    });
 
-        const candlestickSeries = chart.addSeries(CandlestickSeries, {
-            upColor: '#26a69a',
-            downColor: '#ef5350',
-            borderVisible: false,
-            wickUpColor: '#26a69a',
-            wickDownColor: '#ef5350',
+    const candlestickSeries = chart.addSeries(CandlestickSeries, {
+        upColor: '#26a69a',
+        downColor: '#ef5350',
+        borderVisible: false,
+        wickUpColor: '#26a69a',
+        wickDownColor: '#ef5350',
+    });
+    
+    const volumeSeries = chart.addSeries(HistogramSeries, {
+      color: '#26a69a',
+      priceFormat: { type: 'volume' },
+      priceScaleId: '', // overlay
+    });
+    
+    chart.priceScale('').applyOptions({
+      scaleMargins: {
+        top: 0.8,
+        bottom: 0,
+      },
+    });
+
+    const bbUpperSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1 });
+    const bbMiddleSeries = chart.addSeries(LineSeries, { color: 'rgba(255, 152, 0, 0.4)', lineWidth: 1 });
+    const bbLowerSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1 });
+    
+    chart.priceScale('macd').applyOptions({
+      scaleMargins: {
+        top: 0.8,
+        bottom: 0,
+      },
+    });
+    
+    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd' });
+    const macdSignalSeries = chart.addSeries(LineSeries, { color: '#FF6D00', lineWidth: 1, priceScaleId: 'macd' });
+    const macdHistSeries = chart.addSeries(HistogramSeries, { priceScaleId: 'macd' });
+    
+    backtestChartRef.current = chart;
+    backtestSeriesRef.current = candlestickSeries;
+
+    const handleResize = () => {
+      if (backtestChartContainerRef.current) {
+        chart.applyOptions({ width: backtestChartContainerRef.current.clientWidth });
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    
+    if (backtestResults?.history) {
+      try {
+        candlestickSeries.setData(backtestResults.history);
+        
+        const volumeData: any[] = [];
+        const bbUpperData: any[] = [];
+        const bbMiddleData: any[] = [];
+        const bbLowerData: any[] = [];
+        const macdLineData: any[] = [];
+        const macdSignalData: any[] = [];
+        const macdHistData: any[] = [];
+        
+        backtestResults.history.forEach((item: any) => {
+          if (item.volume !== undefined) {
+            volumeData.push({ time: item.time, value: item.volume, color: item.close >= item.open ? 'rgba(38, 166, 154, 0.5)' : 'rgba(239, 83, 80, 0.5)' });
+          }
+          if (item.bb_upper !== undefined) bbUpperData.push({ time: item.time, value: item.bb_upper });
+          if (item.bb_middle !== undefined) bbMiddleData.push({ time: item.time, value: item.bb_middle });
+          if (item.bb_lower !== undefined) bbLowerData.push({ time: item.time, value: item.bb_lower });
+          
+          if (item.macd_line !== undefined) macdLineData.push({ time: item.time, value: item.macd_line });
+          if (item.macd_signal !== undefined) macdSignalData.push({ time: item.time, value: item.macd_signal });
+          if (item.macd_hist !== undefined) macdHistData.push({ time: item.time, value: item.macd_hist, color: item.macd_hist >= 0 ? '#26a69a' : '#ef5350' });
         });
         
-        backtestChartRef.current = chart;
-        backtestSeriesRef.current = candlestickSeries;
-
-        const handleResize = () => {
-          if (backtestChartContainerRef.current) {
-            chart.applyOptions({ width: backtestChartContainerRef.current.clientWidth });
-          }
-        };
-        window.addEventListener('resize', handleResize);
-    }
-    
-    // Render chart with existing data if we already ran it
-    if (backtestResults?.history && backtestSeriesRef.current) {
-        backtestSeriesRef.current.setData(backtestResults.history);
+        if (volumeData.length > 0) volumeSeries.setData(volumeData);
+        if (bbUpperData.length > 0) bbUpperSeries.setData(bbUpperData);
+        if (bbMiddleData.length > 0) bbMiddleSeries.setData(bbMiddleData);
+        if (bbLowerData.length > 0) bbLowerSeries.setData(bbLowerData);
+        if (macdLineData.length > 0) macdLineSeries.setData(macdLineData);
+        if (macdSignalData.length > 0) macdSignalSeries.setData(macdSignalData);
+        if (macdHistData.length > 0) macdHistSeries.setData(macdHistData);
         if (backtestResults.trades) {
           const markers = backtestResults.trades.map((t: any) => ({
             time: t.entry_time,
@@ -343,9 +470,32 @@ export default function Home() {
             shape: t.signal === 'CALL' ? 'arrowUp' : 'arrowDown',
             text: `${t.signal} (${t.profit > 0 ? '+' : ''}${t.profit.toFixed(2)})`
           }));
-          backtestSeriesRef.current.setMarkers(markers);
+          
+          // Lightweight-charts exige que os marcadores estejam ordenados por tempo e sem tempos duplicados exatos
+          const uniqueMarkers: any[] = [];
+          const seenTimes = new Set();
+          markers.sort((a: any, b: any) => a.time - b.time).forEach((m: any) => {
+            if (!seenTimes.has(m.time)) {
+              seenTimes.add(m.time);
+              uniqueMarkers.push(m);
+            }
+          });
+          
+          if (uniqueMarkers.length > 0) {
+            (candlestickSeries as any).setMarkers(uniqueMarkers);
+          }
         }
+      } catch (err) {
+        console.error("Erro ao definir dados/marcadores do backtest no gráfico:", err);
+      }
     }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      chart.remove();
+      backtestChartRef.current = null;
+      backtestSeriesRef.current = null;
+    };
   }, [currentView, backtestResults]);
 
   const handleChangeSymbol = (symbol: string) => {
@@ -361,6 +511,7 @@ export default function Home() {
   };
 
   return (
+    <ErrorBoundary>
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
       {/* Top Navbar */}
       <div style={{ padding: '16px 20px', background: 'rgba(0,0,0,0.4)', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', gap: '16px', alignItems: 'center' }}>
@@ -382,7 +533,7 @@ export default function Home() {
       {currentView === 'dashboard' ? (
         <div className="layout-container" style={{ flex: 1, overflow: 'auto' }}>
           {/* Esquerda: Agente RAG e Controles */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px", minWidth: 0 }}>
             
             <header>
               <h1>Cockpit de Decisão</h1>
@@ -418,6 +569,38 @@ export default function Home() {
               );
             })}
           </div>
+        </div>
+
+        {/* Gerenciamento de Risco Global */}
+        <div className="glass" style={{ padding: "16px", display: "flex", flexDirection: "column", gap: "12px" }}>
+          <h3 style={{ margin: 0, fontSize: "1rem", color: "var(--accent)" }}>🛡️ Gerenciamento de Risco (Global)</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stake Inicial ($)</label>
+              <input type="number" value={riskStake} onChange={e => setRiskStake(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Max Martingale</label>
+              <input type="number" value={riskGale} onChange={e => setRiskGale(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stop Loss ($)</label>
+              <input type="number" value={riskStopLoss} onChange={e => setRiskStopLoss(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stop Gain ($)</label>
+              <input type="number" value={riskStopGain} onChange={e => setRiskStopGain(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
+            </div>
+          </div>
+          <button 
+            onClick={saveRiskSettings} 
+            disabled={isSavingRisk}
+            style={{ 
+              marginTop: "8px", padding: "10px", background: "var(--accent)", color: "#000", border: "none", borderRadius: "6px", fontWeight: "bold", cursor: isSavingRisk ? "not-allowed" : "pointer", opacity: isSavingRisk ? 0.7 : 1
+            }}
+          >
+            {isSavingRisk ? "⏳ Salvando..." : "💾 Salvar Limites"}
+          </button>
         </div>
 
         <div className="glass" style={{ flex: 1, padding: "20px", display: "flex", flexDirection: "column" }}>
@@ -773,7 +956,7 @@ export default function Home() {
         <div style={{ flex: 1, overflow: 'auto', padding: '20px' }}>
           <div className="glass" style={{ padding: "30px", maxWidth: "1200px", margin: "0 auto" }}>
             <h2>Laboratório (Backtest Avançado) - {activeSymbol}</h2>
-            <p style={{ opacity: 0.7 }}>Simule estratégias com 1000 velas de histórico e veja os pontos de entrada no gráfico.</p>
+            <p style={{ opacity: 0.7 }}>Simule estratégias com a base histórica e veja os pontos de entrada (amostra de 1000 velas renderizadas no gráfico).</p>
             
             <div style={{ display: 'flex', gap: '16px', marginTop: '20px', alignItems: 'center' }}>
               <select 
@@ -781,6 +964,7 @@ export default function Home() {
                 onChange={(e) => setBacktestStrategy(e.target.value)}
                 style={{ padding: '10px', background: 'rgba(0,0,0,0.5)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '4px' }}
               >
+                <option value="Auto">✨ Auto-Otimização (I.A.)</option>
                 <option value="Pin Bar">Pin Bar (Elite)</option>
                 <option value="SMC">Smart Money Concepts</option>
                 <option value="Bollinger">Bollinger Bands</option>
@@ -798,6 +982,17 @@ export default function Home() {
                 <option value={900}>M15 (15 minutos)</option>
               </select>
 
+              <select 
+                value={backtestLimit} 
+                onChange={(e) => setBacktestLimit(Number(e.target.value))}
+                style={{ padding: '10px', background: 'rgba(0,0,0,0.5)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '4px' }}
+              >
+                <option value={1000}>1.000 Velas</option>
+                <option value={5000}>5.000 Velas</option>
+                <option value={10000}>10.000 Velas</option>
+                <option value={50000}>50.000 Velas (Deep Test)</option>
+              </select>
+
               <button 
                 onClick={runAdvancedBacktest} 
                 disabled={isBacktesting}
@@ -808,7 +1003,17 @@ export default function Home() {
             </div>
             
             {backtestResults && !backtestResults.error && (
-              <div style={{ marginTop: "20px", display: "flex", gap: "16px" }}>
+              <div style={{ marginTop: "20px" }}>
+                {backtestResults.optimal_strategy && (
+                  <div style={{ marginBottom: "16px", background: "linear-gradient(90deg, rgba(255,193,7,0.2) 0%, rgba(255,152,0,0.2) 100%)", border: "1px solid rgba(255,193,7,0.5)", padding: "12px 16px", borderRadius: "8px", display: "flex", alignItems: "center", gap: "12px" }}>
+                    <span style={{ fontSize: "1.5rem" }}>🏆</span>
+                    <div>
+                      <div style={{ fontWeight: "bold", color: "#FFC107" }}>Melhor Estratégia Encontrada</div>
+                      <div style={{ opacity: 0.9, fontSize: "0.9rem" }}>O motor de I.A. testou todas as estratégias e elegeu <strong>{backtestResults.optimal_strategy}</strong> para as condições atuais.</div>
+                    </div>
+                  </div>
+                )}
+                <div style={{ display: "flex", gap: "16px" }}>
                  <div style={{ flex: 1, background: "rgba(0,0,0,0.3)", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
                     <div style={{ opacity: 0.7, fontSize: "0.9rem" }}>Sinais Gerados</div>
                     <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>{backtestResults.signals}</div>
@@ -826,6 +1031,7 @@ export default function Home() {
                     <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>{backtestResults.wins} / {backtestResults.losses}</div>
                  </div>
               </div>
+              </div>
             )}
             {backtestResults && backtestResults.error && (
               <div style={{ marginTop: "20px", color: "var(--danger)" }}>
@@ -837,9 +1043,56 @@ export default function Home() {
               ref={backtestChartContainerRef} 
               style={{ width: "100%", height: "400px", marginTop: "24px", background: "rgba(0,0,0,0.2)", borderRadius: "8px" }} 
             />
+            
+            {backtestResults && backtestResults.trades && backtestResults.trades.length > 0 && (
+              <div style={{ marginTop: "24px" }}>
+                <h3 style={{ marginBottom: "16px" }}>📝 Histórico de Operações</h3>
+                <div style={{ background: "rgba(0,0,0,0.3)", borderRadius: "8px", overflow: "hidden" }}>
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
+                    <thead style={{ background: "rgba(255,255,255,0.05)", textAlign: "left" }}>
+                      <tr>
+                        <th style={{ padding: "12px", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>Sinal</th>
+                        <th style={{ padding: "12px", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>Entrada (Data/Hora)</th>
+                        <th style={{ padding: "12px", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>Saída (Data/Hora)</th>
+                        <th style={{ padding: "12px", borderBottom: "1px solid rgba(255,255,255,0.1)", textAlign: "right" }}>Preço Entrada</th>
+                        <th style={{ padding: "12px", borderBottom: "1px solid rgba(255,255,255,0.1)", textAlign: "right" }}>Preço Saída</th>
+                        <th style={{ padding: "12px", borderBottom: "1px solid rgba(255,255,255,0.1)", textAlign: "right" }}>Lucro (USDT)</th>
+                        <th style={{ padding: "12px", borderBottom: "1px solid rgba(255,255,255,0.1)", textAlign: "right" }}>Saldo Acumulado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {(() => {
+                        let acc = 0;
+                        return backtestResults.trades.map((t: any, i: number) => {
+                          acc += t.profit;
+                          return (
+                            <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                              <td style={{ padding: "12px", color: t.signal === 'CALL' ? 'var(--success)' : 'var(--danger)', fontWeight: 'bold' }}>
+                                {t.signal === 'CALL' ? '🔼 COMPRA' : '🔽 VENDA'}
+                              </td>
+                              <td style={{ padding: "12px" }}>{new Date(t.entry_time * 1000).toLocaleString()}</td>
+                              <td style={{ padding: "12px" }}>{new Date(t.exit_time * 1000).toLocaleString()}</td>
+                              <td style={{ padding: "12px", textAlign: "right" }}>${t.entry_price.toFixed(2)}</td>
+                              <td style={{ padding: "12px", textAlign: "right" }}>${t.exit_price.toFixed(2)}</td>
+                              <td style={{ padding: "12px", textAlign: "right", color: t.profit > 0 ? 'var(--success)' : 'var(--danger)', fontWeight: 'bold' }}>
+                                {t.profit > 0 ? '+' : ''}{t.profit.toFixed(2)}
+                              </td>
+                              <td style={{ padding: "12px", textAlign: "right", color: acc > 0 ? 'var(--success)' : 'var(--danger)', fontWeight: 'bold' }}>
+                                ${acc.toFixed(2)}
+                              </td>
+                            </tr>
+                          );
+                        });
+                      })()}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
     </div>
+    </ErrorBoundary>
   );
 }

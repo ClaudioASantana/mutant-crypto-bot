@@ -14,33 +14,116 @@ load_dotenv()
 
 SYMBOL = "BTC/USDT"
 
+import sqlite3
+import time
+
+def get_db_connection():
+    db_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'market_history.db')
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
+    conn = sqlite3.connect(db_path)
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS candles (
+            symbol TEXT,
+            timeframe INTEGER,
+            epoch INTEGER,
+            open REAL,
+            high REAL,
+            low REAL,
+            close REAL,
+            volume REAL,
+            PRIMARY KEY (symbol, timeframe, epoch)
+        )
+    ''')
+    return conn
+
 async def download_history(symbol, timeframe_seconds, limit):
+    conn = get_db_connection()
+    c = conn.cursor()
+    
+    # Check how many candles we have in DB for this symbol and timeframe
+    c.execute('SELECT COUNT(*) FROM candles WHERE symbol = ? AND timeframe = ?', (symbol, timeframe_seconds))
+    count = c.fetchone()[0]
+    
     exchange = ccxt.binance()
     tf_map = {60: '1m', 300: '5m', 900: '15m', 3600: '1h'}
     tf = tf_map.get(timeframe_seconds, '1m')
     
     try:
-        ohlcv = await exchange.fetch_ohlcv(symbol, tf, limit=limit)
+        candles_needed = limit
+        end_time = int(time.time() * 1000)
+        
+        # If we already have some data, we could just fetch the difference, but to be robust
+        # and support "Deep Backtest", we will fetch backwards from NOW until we hit the requested limit.
+        # SQLite's INSERT OR IGNORE will handle duplicates gracefully, acting as an instant cache if data exists.
+        
+        # To optimize, we check if the most recent data exists and if we have enough count
+        # BUT fetching the latest is always good to update the cache.
+        # We will paginate backwards.
+        
+        while candles_needed > 0:
+            fetch_limit = min(1000, candles_needed)
+            ohlcv = await exchange.fetch_ohlcv(symbol, tf, limit=fetch_limit, params={'endTime': end_time})
+            
+            if not ohlcv:
+                break
+                
+            records = []
+            for row in ohlcv:
+                epoch = int(row[0] / 1000)
+                open_p, high_p, low_p, close_p, volume = row[1], row[2], row[3], row[4], row[5]
+                records.append((symbol, timeframe_seconds, epoch, open_p, high_p, low_p, close_p, volume))
+            
+            c.executemany('''
+                INSERT OR IGNORE INTO candles (symbol, timeframe, epoch, open, high, low, close, volume)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ''', records)
+            conn.commit()
+            
+            # Update end_time to fetch previous chunk (earliest timestamp minus 1 ms)
+            end_time = int(ohlcv[0][0]) - 1
+            candles_needed -= len(ohlcv)
+            
+            # A void rate limits on Binance
+            if candles_needed > 0:
+                await asyncio.sleep(0.1)
+                
+        # Now query the database for the required limit
+        c.execute('''
+            SELECT epoch, open, high, low, close, volume 
+            FROM candles 
+            WHERE symbol = ? AND timeframe = ? 
+            ORDER BY epoch DESC 
+            LIMIT ?
+        ''', (symbol, timeframe_seconds, limit))
+        
+        rows = c.fetchall()
+        
         history = []
-        for c in ohlcv:
-            open_p, high_p, low_p, close_p = c[1], c[2], c[3], c[4]
-            direction = CandleDirection.BULLISH if close_p > open_p else CandleDirection.BEARISH
-            if close_p == open_p:
-                direction = CandleDirection.NEUTRAL
+        for row in reversed(rows):
             history.append(Candle(
-                epoch=int(c[0] / 1000),
-                open=open_p,
-                high=high_p,
-                low=low_p,
-                close=close_p,
-                direction=direction
+                epoch=row[0],
+                open=row[1],
+                high=row[2],
+                low=row[3],
+                close=row[4],
+                volume=row[5]
             ))
+            
         await exchange.close()
         return history
+        
     except Exception as e:
         print(f"Erro no download: {e}")
         await exchange.close()
-        return []
+        # Fallback to DB if network fails
+        c.execute('SELECT epoch, open, high, low, close, volume FROM candles WHERE symbol = ? AND timeframe = ? ORDER BY epoch DESC LIMIT ?', (symbol, timeframe_seconds, limit))
+        rows = c.fetchall()
+        history = []
+        for row in reversed(rows):
+            history.append(Candle(
+                epoch=row[0], open=row[1], high=row[2], low=row[3], close=row[4], volume=row[5]
+            ))
+        return history
 
 def run_simulation(history, consecutive_candles, rsi_oversold, rsi_overbought, max_gale, stake, payout_rate, rsi_period=14):
     balance = 0.0
