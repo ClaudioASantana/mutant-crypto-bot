@@ -16,7 +16,20 @@ class BinanceClient:
         self.tick_callbacks: List[Callable] = []
         self.history_callbacks: List[Callable] = []
         self._running = False
-        self.exchange = ccxt.binance()
+        
+        import os
+        api_key = os.getenv("BINANCE_API_KEY", "")
+        secret = os.getenv("BINANCE_API_SECRET", "")
+        env_mode = os.getenv("BINANCE_ENV", "testnet").lower()
+        
+        self.exchange = ccxt.binanceusdm({
+            'apiKey': api_key,
+            'secret': secret,
+            'enableRateLimit': True
+        })
+        
+        if env_mode == "testnet":
+            self.exchange.set_sandbox_mode(True)
 
     def add_tick_callback(self, callback: Callable):
         self.tick_callbacks.append(callback)
@@ -61,8 +74,14 @@ class BinanceClient:
         await self.fetch_history(900)
         await self.exchange.close()
         
-        stream_url = f"wss://stream.binance.com:9443/ws/{self.stream_symbol}@trade"
-        logger.info(f"[{self.symbol}] Conectando ao websocket da Binance: {stream_url}")
+        import os
+        env_mode = os.getenv("BINANCE_ENV", "testnet").lower()
+        if env_mode == "prod":
+            stream_url = f"wss://fstream.binance.com/ws/{self.stream_symbol}@trade"
+        else:
+            stream_url = f"wss://stream.binancefuture.com/ws/{self.stream_symbol}@trade"
+            
+        logger.info(f"[{self.symbol}] Conectando ao websocket da Binance ({env_mode}): {stream_url}")
         
         while self._running:
             try:

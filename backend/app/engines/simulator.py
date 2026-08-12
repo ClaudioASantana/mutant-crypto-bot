@@ -16,7 +16,12 @@ class PaperTrader:
             "daily_stop_loss": 50.0,
             "daily_stop_gain": 50.0,
             "max_gale": 2,
-            "stake_initial": 10.0
+            "stake_initial": 10.0,
+            "trailing_activation": 1.0,
+            "trailing_distance": 0.5,
+            "position_sizing_mode": "fixed",
+            "risk_percent": 2.0,
+            "max_trade_duration_minutes": 240
         }
     }
     _state_file = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data", "simulator_state_global.json"))
@@ -122,6 +127,46 @@ class PaperTrader:
     def stake_initial(self, value):
         PaperTrader._global_state["risk_settings"]["stake_initial"] = float(value)
 
+    @property
+    def trailing_activation(self):
+        return PaperTrader._global_state["risk_settings"].get("trailing_activation", 1.0)
+
+    @trailing_activation.setter
+    def trailing_activation(self, value):
+        PaperTrader._global_state["risk_settings"]["trailing_activation"] = float(value)
+
+    @property
+    def trailing_distance(self):
+        return PaperTrader._global_state["risk_settings"].get("trailing_distance", 0.5)
+
+    @trailing_distance.setter
+    def trailing_distance(self, value):
+        PaperTrader._global_state["risk_settings"]["trailing_distance"] = float(value)
+
+    @property
+    def position_sizing_mode(self):
+        return PaperTrader._global_state["risk_settings"].get("position_sizing_mode", "fixed")
+
+    @position_sizing_mode.setter
+    def position_sizing_mode(self, value):
+        PaperTrader._global_state["risk_settings"]["position_sizing_mode"] = str(value)
+
+    @property
+    def risk_percent(self):
+        return PaperTrader._global_state["risk_settings"].get("risk_percent", 2.0)
+
+    @risk_percent.setter
+    def risk_percent(self, value):
+        PaperTrader._global_state["risk_settings"]["risk_percent"] = float(value)
+
+    @property
+    def max_trade_duration_minutes(self):
+        return PaperTrader._global_state["risk_settings"].get("max_trade_duration_minutes", 240)
+
+    @max_trade_duration_minutes.setter
+    def max_trade_duration_minutes(self, value):
+        PaperTrader._global_state["risk_settings"]["max_trade_duration_minutes"] = int(value)
+
     def save_state(self):
         PaperTrader.save_state_global()
 
@@ -129,12 +174,16 @@ class PaperTrader:
         return round(self.balance - self.initial_balance, 2)
         
     def open_trade(self, direction: str, tf: int, current_epoch: int, current_price: float, sl_price: float, tp_price: float, atr: float = 0.0):
-        # Apply Martingale logic
-        multiplier = 2 ** self.consecutive_losses
-        if self.consecutive_losses > self.max_gale:
-            multiplier = 1
+        # Apply Risk Sizing logic
+        if self.position_sizing_mode == "gale":
+            multiplier = 2 ** self.consecutive_losses
+            if self.consecutive_losses > self.max_gale:
+                multiplier = 1
+            margin_usdt = self.stake_initial * multiplier
+        else:
+            # Fixed percent
+            margin_usdt = self.balance * (self.risk_percent / 100.0)
             
-        margin_usdt = self.stake_initial * multiplier
         if margin_usdt > self.balance:
             margin_usdt = self.balance # All in if insufficient balance, just for simulation
             
@@ -174,8 +223,10 @@ class PaperTrader:
                 
                 # Trailing Stop Logic for CALL
                 atr_val = trade.get("atr", 0.0)
-                if atr_val > 0 and trade["highest_reached"] >= trade["entry_price"] + atr_val:
-                    new_sl = trade["highest_reached"] - atr_val
+                activation = self.trailing_activation
+                distance = self.trailing_distance
+                if atr_val > 0 and trade["highest_reached"] >= trade["entry_price"] + (atr_val * activation):
+                    new_sl = trade["highest_reached"] - (atr_val * distance)
                     if new_sl > trade["sl"]:
                         trade["sl"] = new_sl
                         logger.info(f"📈 [CryptoSimulator] Trailing Stop movido para ${new_sl:.2f} (COMPRA)")
@@ -188,29 +239,46 @@ class PaperTrader:
                     
                 # Trailing Stop Logic for PUT
                 atr_val = trade.get("atr", 0.0)
-                if atr_val > 0 and trade["lowest_reached"] <= trade["entry_price"] - atr_val:
-                    new_sl = trade["lowest_reached"] + atr_val
+                activation = self.trailing_activation
+                distance = self.trailing_distance
+                if atr_val > 0 and trade["lowest_reached"] <= trade["entry_price"] - (atr_val * activation):
+                    new_sl = trade["lowest_reached"] + (atr_val * distance)
                     if new_sl < trade["sl"]:
                         trade["sl"] = new_sl
                         logger.info(f"📉 [CryptoSimulator] Trailing Stop movido para ${new_sl:.2f} (VENDA)")
                 
             floating_pnl = price_diff * trade["qty"]
-            trade["pnl"] = round(floating_pnl, 2)
+            
+            # Desconto das taxas (0.1% sobre o volume total da posição alavancada)
+            position_size_usd = trade["qty"] * trade["entry_price"]
+            fee_usdt = position_size_usd * 0.001
+            
+            trade["pnl"] = round(floating_pnl - fee_usdt, 2)
             
             # Check TP / SL hit
             hit_tp = (trade["direction"] == "CALL" and current_price >= trade["tp"]) or (trade["direction"] == "PUT" and current_price <= trade["tp"])
             hit_sl = (trade["direction"] == "CALL" and current_price <= trade["sl"]) or (trade["direction"] == "PUT" and current_price >= trade["sl"])
             
-            if hit_tp or hit_sl:
+            duration_seconds = current_epoch - trade["entry_epoch"]
+            hit_time_stop = duration_seconds >= (self.max_trade_duration_minutes * 60)
+            
+            if hit_tp or hit_sl or hit_time_stop:
                 trade["exit_price"] = current_price
                 trade["exit_epoch"] = current_epoch
-                trade["status"] = "WIN" if hit_tp else "LOSS"
+                if hit_time_stop:
+                    trade["status"] = "TIME_STOP"
+                else:
+                    trade["status"] = "WIN" if hit_tp else "LOSS"
                 
                 self.balance += trade["pnl"]
+                self.balance = round(self.balance, 2)
                 
-                if hit_tp:
+                # Logging apropriado
+                if hit_time_stop:
+                    logger.info(f"⏳ [CryptoSimulator] Trade {trade['direction']} fechado por TIME_STOP (4h) - PnL: ${trade['pnl']:.2f} (Preço: {current_price})")
+                elif hit_tp:
                     self.consecutive_losses = 0
-                    logger.info(f"✅ [CryptoSimulator] WIN! PnL: +${trade['pnl']} | Balanço: ${self.balance:.2f}")
+                    logger.info(f"✅ [CryptoSimulator] Trade {trade['direction']} deu WIN - PnL: +${trade['pnl']:.2f} (Preço: {current_price})")
                 else:
                     self.consecutive_losses += 1
                     logger.warning(f"❌ [CryptoSimulator] LOSS! PnL: -${abs(trade['pnl'])} | Balanço: ${self.balance:.2f}")
@@ -236,10 +304,15 @@ class PaperTrader:
             "history": self.history_trades,
             "risk": {
                 "consecutive_losses": self.consecutive_losses,
-                "next_margin": self.stake_initial * (2 ** min(self.consecutive_losses, self.max_gale)),
+                "next_margin": self.stake_initial * (2 ** min(self.consecutive_losses, self.max_gale)) if self.position_sizing_mode == "gale" else self.balance * (self.risk_percent / 100.0),
                 "stop_loss": self.daily_stop_loss,
                 "stop_gain": self.daily_stop_gain,
                 "max_gale": self.max_gale,
-                "leverage": self.leverage
+                "leverage": self.leverage,
+                "trailing_activation": self.trailing_activation,
+                "trailing_distance": self.trailing_distance,
+                "position_sizing_mode": self.position_sizing_mode,
+                "risk_percent": self.risk_percent,
+                "max_trade_duration_minutes": self.max_trade_duration_minutes
             }
         }

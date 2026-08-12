@@ -18,6 +18,8 @@ from app.engines.indicators import calculate_rsi
 from app.engines.risk import evaluate_risk
 from app.rag.agent import explain_signal
 from app.engines.ai_filter import AIFilter
+from app.engines.executor import BinanceExecutor
+from app.engines.journal import TradeJournal
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +41,10 @@ class BotInstance:
         
         self.paper_trader = PaperTrader(symbol=self.symbol, initial_balance=200.0, leverage=10)
         self.ai_filter = AIFilter()
+        self.executor = BinanceExecutor(self.client.exchange)
+        self.journal = TradeJournal()
+        self.live_qty = 0
+        self.active_trade_id = None
         
         self.active_config = {"timeframe": 60, "strategy": "3 Velas", "gale": 2, "rsi_oversold": 25, "rsi_overbought": 75}
         self.auto_optimize = False
@@ -157,11 +163,34 @@ class BotInstance:
         if finished_trades:
             await self.manager.broadcast({"event": "simulator", "symbol": self.symbol, "data": self.paper_trader.get_state()})
 
+            import os
+            for trade in finished_trades:
+                if self.active_trade_id:
+                    self.journal.log_exit(self.active_trade_id, trade["exit_epoch"], trade["exit_price"], trade["pnl"], trade["status"])
+                    
+                if os.getenv("LIVE_TRADING") == "True" and getattr(self, "live_qty", 0) > 0:
+                    async def run_live_exit(sym, dir, qty):
+                        res = await self.executor.execute_exit(sym, dir, qty)
+                        if res["status"] == "error":
+                            await self.manager.broadcast({
+                                "event": "agent_message",
+                                "symbol": sym,
+                                "data": {"analysis": f"❌ ERRO CRÍTICO (Binance): Falha ao fechar ordem real. Motivo: {res.get('error')}"}
+                            })
+                    asyncio.create_task(run_live_exit(self.symbol, trade["direction"], self.live_qty))
+                    self.live_qty = 0
+                    
+            self.active_trade_id = None
+
         # Broadcast live trade_preview a cada tick com preço atual + ATR cacheado
         if self.last_atr_cache:
             tf = self.active_config["timeframe"]
             atr_live = self.last_atr_cache.get(tf, tick.quote * 0.005)
-            margin_live = self.paper_trader.stake_initial * (2 ** self.paper_trader.consecutive_losses)
+            if self.paper_trader.position_sizing_mode == "gale":
+                margin_live = self.paper_trader.stake_initial * (2 ** self.paper_trader.consecutive_losses)
+            else:
+                margin_live = self.paper_trader.balance * (self.paper_trader.risk_percent / 100.0)
+                
             margin_live = min(margin_live, self.paper_trader.balance)
             strategy_live = self.active_config.get("strategy", "SMC")
             await self.manager.broadcast({"event": "trade_preview", "symbol": self.symbol, "data": {
@@ -315,6 +344,34 @@ class BotInstance:
                                 self.paper_trader.open_trade(signal.type.value, tf, tick.epoch, tick.quote, sl_price=sl_price, tp_price=tp_price, atr=atr_val)
                                 await self.manager.broadcast({"event": "simulator", "symbol": self.symbol, "data": self.paper_trader.get_state()})
                                 await self.manager.broadcast({"event": "trade_opened", "symbol": self.symbol, "data": {"direction": signal.type.value, "price": tick.quote}})
+                                
+                                import os
+                                live_margin = self.paper_trader.balance * (self.paper_trader.risk_percent / 100.0) if self.paper_trader.position_sizing_mode == "fixed" else self.paper_trader.stake_initial * (2 ** self.paper_trader.consecutive_losses)
+                                live_margin = min(live_margin, self.paper_trader.balance)
+                                
+                                rsi_val = df.iloc[-1].get("RSI_14", 50.0)
+                                if str(rsi_val) == "nan": rsi_val = 50.0
+                                ai_text = explanation.get("analysis", str(explanation))
+                                
+                                if os.getenv("LIVE_TRADING") == "True":
+                                    async def run_live_entry():
+                                        res = await self.executor.execute_entry(self.symbol, signal.type.value, live_margin, self.paper_trader.leverage, tick.quote)
+                                        if res["status"] == "success":
+                                            self.live_qty = res.get("qty", 0)
+                                            t_id = str(res["order"].get("id", f"live_{tick.epoch}"))
+                                            self.active_trade_id = t_id
+                                            self.journal.log_entry(t_id, self.symbol, signal.type.value, strategy_info, ai_text, tick.epoch, tick.quote, atr_val, float(rsi_val), live_margin, self.paper_trader.leverage)
+                                        else:
+                                            await self.manager.broadcast({
+                                                "event": "agent_message",
+                                                "symbol": self.symbol,
+                                                "data": {"analysis": f"❌ ERRO CRÍTICO (Binance): Não foi possível abrir a ordem real. A API retornou: {res.get('error')}"}
+                                            })
+                                    asyncio.create_task(run_live_entry())
+                                else:
+                                    t_id = f"paper_{tick.epoch}"
+                                    self.active_trade_id = t_id
+                                    self.journal.log_entry(t_id, self.symbol, signal.type.value, strategy_info, ai_text, tick.epoch, tick.quote, atr_val, float(rsi_val), live_margin, self.paper_trader.leverage)
                         except Exception as e:
                             logger.error(f"Erro IA [{self.symbol}]: {e}")
 
