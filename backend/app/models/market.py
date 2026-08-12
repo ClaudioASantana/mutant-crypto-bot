@@ -12,6 +12,7 @@ class Tick(BaseModel):
     epoch: int
     quote: float
     symbol: str
+    volume: float = 0.0
 
 class Candle(BaseModel):
     epoch: int
@@ -19,6 +20,7 @@ class Candle(BaseModel):
     high: float
     low: float
     close: float
+    volume: float = 0.0
     
     @property
     def direction(self) -> CandleDirection:

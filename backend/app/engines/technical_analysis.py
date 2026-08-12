@@ -12,7 +12,7 @@ def candles_to_df(candles: List[Candle]) -> pd.DataFrame:
             "high": c.high,
             "low": c.low,
             "close": c.close,
-            "volume": 1.0 # mock volume as it is missing in the model
+            "volume": c.volume
         })
     df = pd.DataFrame(data)
     if not df.empty:
@@ -42,8 +42,11 @@ def apply_indicators(df: pd.DataFrame):
     # ATR for Dynamic SL/TP (Crypto Futures 1:2 R:R)
     df.ta.atr(length=14, append=True)
         
-    # SMC (Donchian)
+    # SMC (Donchian - manter para retrocompatibilidade)
     df.ta.donchian(lower_length=20, upper_length=20, append=True)
+    
+    # SuperTrend
+    df.ta.supertrend(length=10, multiplier=3.0, append=True)
     
     # === Fase 1: Filtros de Qualidade de Sinal ===
     # RSI(14) — detectar zonas de exaustão
@@ -80,18 +83,15 @@ def check_volume_filter(df: pd.DataFrame) -> bool:
     """
     Volume Filter: Só aceita sinal quando o volume da vela de sinal
     está acima da média das últimas 20 velas.
-    (Como usamos volume mock=1.0, este filtro detecta padrões de preço
-    com alta amplitude como proxy de volume real)
     """
     if df.empty or len(df) < 20:
         return True
-    # Proxy de volume: amplitude da vela (high-low) vs média das últimas 20
-    df_copy = df.copy()
-    df_copy["range"] = df_copy["high"] - df_copy["low"]
-    avg_range = df_copy["range"].iloc[-20:-1].mean()
-    last_range = df_copy["range"].iloc[-1]
-    # Aceita se a vela de sinal tem amplitude ≥ 80% da média (ligeiramente permissivo)
-    return last_range >= (avg_range * 0.8)
+    
+    avg_volume = df["volume"].iloc[-20:-1].mean()
+    last_volume = df["volume"].iloc[-1]
+    
+    # Aceita se a vela de sinal tem volume >= 80% da média
+    return last_volume >= (avg_volume * 0.8)
 
 def check_trend_filter(df: pd.DataFrame, direction: str) -> bool:
     """
@@ -190,17 +190,47 @@ def eval_vwap(df: pd.DataFrame) -> str:
     if p_close >= prev_vwap and close < last_vwap: return "PUT"
     return "NONE"
 
+def eval_supertrend(df: pd.DataFrame) -> str:
+    """ SuperTrend strategy """
+    if df.empty or len(df) < 15: return "NONE"
+    
+    # pandas_ta supertrend outputs columns like SUPERTd_10_3.0 (direction)
+    st_dir_col = [c for c in df.columns if "SUPERTd" in c]
+    if not st_dir_col:
+        return "NONE"
+        
+    last_dir = df.iloc[-1].get(st_dir_col[0], 0)
+    prev_dir = df.iloc[-2].get(st_dir_col[0], 0)
+    
+    # Sinal quando a direção muda
+    if prev_dir < 0 and last_dir > 0:
+        return "CALL"
+    if prev_dir > 0 and last_dir < 0:
+        return "PUT"
+        
+    return "NONE"
+
 def eval_smc(df: pd.DataFrame) -> str:
-    if df.empty or len(df) < 25: return "NONE"
-    last = df.iloc[-1]
-    prev = df.iloc[-2]
+    """ SMC 2.0 - Detecção de Fair Value Gap (FVG) """
+    if df.empty or len(df) < 5: return "NONE"
     
-    close, p_close = last["close"], prev["close"]
-    upper = prev.get("DCU_20_20", 0)
-    lower = prev.get("DCL_20_20", 0)
+    # Pega as últimas 3 velas fechadas para buscar um FVG
+    c1 = df.iloc[-3]
+    c2 = df.iloc[-2]
+    c3 = df.iloc[-1]
     
-    if p_close <= upper and close > upper and upper > 0: return "CALL"
-    if p_close >= lower and close < lower and lower > 0: return "PUT"
+    # Bullish FVG: A mínima da vela 3 é MAIOR que a máxima da vela 1
+    # A vela 2 é um candle direcional forte (bullish)
+    if c1["high"] < c3["low"] and c2["close"] > c2["open"]:
+        # Se a FVG formou, a zona entre c1.high e c3.low é suporte.
+        # Nós operamos o rompimento do momento (CALL).
+        return "CALL"
+        
+    # Bearish FVG: A máxima da vela 3 é MENOR que a mínima da vela 1
+    # A vela 2 é direcional forte (bearish)
+    if c1["low"] > c3["high"] and c2["close"] < c2["open"]:
+        return "PUT"
+        
     return "NONE"
 
 def eval_wyckoff_bollinger(df: pd.DataFrame) -> str:

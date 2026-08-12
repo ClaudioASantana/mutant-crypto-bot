@@ -2,7 +2,7 @@ from typing import List
 from app.models.market import Candle
 from app.engines.technical_analysis import (
     candles_to_df, apply_indicators, 
-    eval_ema_macd, eval_bollinger, eval_vwap, eval_smc
+    eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend
 )
 
 def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict:
@@ -34,6 +34,8 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
         strategy_func = eval_vwap
     elif strategy_name == "SMC":
         strategy_func = eval_smc
+    elif strategy_name == "SuperTrend":
+        strategy_func = eval_supertrend
     else:
         return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "pnl_usdt": 0.0}
 
@@ -56,30 +58,58 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
             atr_val = df.iloc[i].get("ATRr_14", entry_price * 0.005) # Fallback se não existir
             
             if signal == "CALL":
-                tp_price = entry_price + (atr_val * tp_multiplier)
                 sl_price = entry_price - (atr_val * sl_multiplier)
+                tp_price = entry_price + (atr_val * tp_multiplier)
             else:
-                tp_price = entry_price - (atr_val * tp_multiplier)
                 sl_price = entry_price + (atr_val * sl_multiplier)
+                tp_price = entry_price - (atr_val * tp_multiplier)
                 
             trade_won = False
             trade_closed = False
             
+            # Variáveis para Trailing Stop
+            highest_reached = entry_price
+            lowest_reached = entry_price
+            
             for j in range(i+1, len(df)):
                 c_high = df.iloc[j]["high"]
                 c_low = df.iloc[j]["low"]
+                c_close = df.iloc[j]["close"]
                 
                 if signal == "CALL":
+                    # Atualiza máxima
+                    if c_high > highest_reached:
+                        highest_reached = c_high
+                        # Trailing Stop: move SL para o ponto de entrada se lucro >= 1x ATR, etc.
+                        # Aqui usamos um Trailing simples: SL sobe junto com o preço máximo após 1 ATR
+                        if highest_reached >= entry_price + atr_val:
+                            new_sl = highest_reached - atr_val
+                            if new_sl > sl_price:
+                                sl_price = new_sl
+                                
                     if c_low <= sl_price:
                         trade_closed = True
+                        if sl_price >= entry_price:
+                            trade_won = True
                         break
                     elif c_high >= tp_price:
                         trade_won = True
                         trade_closed = True
                         break
                 else: # PUT
+                    # Atualiza mínima
+                    if c_low < lowest_reached:
+                        lowest_reached = c_low
+                        # Trailing Stop para PUT
+                        if lowest_reached <= entry_price - atr_val:
+                            new_sl = lowest_reached + atr_val
+                            if new_sl < sl_price:
+                                sl_price = new_sl
+                                
                     if c_high >= sl_price:
                         trade_closed = True
+                        if sl_price <= entry_price:
+                            trade_won = True
                         break
                     elif c_low <= tp_price:
                         trade_won = True
@@ -89,10 +119,14 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
             if trade_closed:
                 if trade_won:
                     wins += 1
-                    pnl_usdt += (stake * leverage * ((atr_val * tp_multiplier) / entry_price))
+                    # Calcula o lucro baseado no preço de saída (aproximado pelo TP ou SL móvel)
+                    exit_price = tp_price if signal == "CALL" and c_high >= tp_price else sl_price
+                    exit_price = tp_price if signal == "PUT" and c_low <= tp_price else sl_price
+                    pnl_usdt += (stake * leverage * (abs(entry_price - exit_price) / entry_price))
                 else:
                     losses += 1
-                    pnl_usdt -= (stake * leverage * ((atr_val * sl_multiplier) / entry_price))
+                    # Perda no SL original ou parcial
+                    pnl_usdt -= (stake * leverage * (abs(entry_price - sl_price) / entry_price))
                 
     win_rate = 0.0
     if wins + losses > 0:

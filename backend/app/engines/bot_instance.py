@@ -9,7 +9,7 @@ from app.engines.cataloger import calculate_win_rate
 from app.engines.technical_analysis import (
     candles_to_df, apply_indicators, 
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc,
-    eval_consecutive,
+    eval_consecutive, eval_supertrend,
     check_signal_quality
 )
 from app.models.market import Tick, Signal, SignalType, AccountState, CandleDirection
@@ -17,6 +17,7 @@ from app.engines.news import NewsFilter
 from app.engines.indicators import calculate_rsi
 from app.engines.risk import evaluate_risk
 from app.rag.agent import explain_signal
+from app.engines.ai_filter import AIFilter
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +37,7 @@ class BotInstance:
         self.builder_m15 = CandleBuilder(900)
         
         self.paper_trader = PaperTrader(symbol=self.symbol, initial_balance=200.0, leverage=10)
+        self.ai_filter = AIFilter()
         
         self.active_config = {"timeframe": 60, "strategy": "3 Velas", "gale": 2, "rsi_oversold": 25, "rsi_overbought": 75}
         self.auto_optimize = False
@@ -72,7 +74,7 @@ class BotInstance:
     async def broadcast_catalog(self):
         catalog = []
         for timeframe, b in [(60, self.builder_m1), (300, self.builder_m5), (900, self.builder_m15)]:
-            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "3 Velas"]:
+            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "3 Velas"]:
                 stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
                 catalog.append({
                     "timeframe": timeframe,
@@ -177,6 +179,8 @@ class BotInstance:
                         sig_val = eval_vwap(df)
                     elif req_strategy == "SMC":
                         sig_val = eval_smc(df)
+                    elif req_strategy == "SuperTrend":
+                        sig_val = eval_supertrend(df)
                     elif req_strategy == "3 Velas":
                         sig_val = eval_consecutive(df, num_candles=3)
                         
@@ -209,6 +213,12 @@ class BotInstance:
                         if not approved:
                             logger.info(f"🔎 [{self.symbol} - {strategy_info}] FILTRADO: {block_reason}")
                             signal.type = SignalType.NONE
+                        else:
+                            # === Filtro de Inteligência Artificial ===
+                            ai_approved = await self.ai_filter.evaluate_signal(df, signal.type.value, req_strategy)
+                            if not ai_approved:
+                                logger.info(f"🤖 [{self.symbol} - {strategy_info}] FILTRADO: Rejeitado pela IA")
+                                signal.type = SignalType.NONE
                             
                     if signal.type.value != "NONE":
                         # Update paper trader gale max before opening trade

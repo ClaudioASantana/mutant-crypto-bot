@@ -38,7 +38,8 @@ class BinanceClient:
                     "open": c[1],
                     "high": c[2],
                     "low": c[3],
-                    "close": c[4]
+                    "close": c[4],
+                    "volume": c[5]
                 })
             
             for cb in self.history_callbacks:
@@ -76,8 +77,9 @@ class BinanceClient:
                         from app.models.market import Tick
                         
                         price = float(data['p'])
+                        vol = float(data['q'])
                         epoch = int(data['T'] / 1000)
-                        tick = Tick(epoch=epoch, quote=price, symbol=self.symbol)
+                        tick = Tick(epoch=epoch, quote=price, symbol=self.symbol, volume=vol)
                         
                         for cb in self.tick_callbacks:
                             if asyncio.iscoroutinefunction(cb):
