@@ -1,0 +1,222 @@
+[
+    {
+        "timeframe": "M1",
+        "candles": 3,
+        "gale": 2,
+        "rsi": "25/75",
+        "wins": 21,
+        "losses": 0,
+        "total_trades": 21,
+        "win_rate": 100.0,
+        "pnl": 190.0
+    },
+    {
+        "timeframe": "M1",
+        "candles": 4,
+        "gale": 2,
+        "rsi": "25/75",
+        "wins": 15,
+        "losses": 0,
+        "total_trades": 15,
+        "win_rate": 100.0,
+        "pnl": 137.0
+    },
+    {
+        "timeframe": "M1",
+        "candles": 2,
+        "gale": 2,
+        "rsi": "25/75",
+        "wins": 29,
+        "losses": 2,
+        "total_trades": 31,
+        "win_rate": 93.54838709677419,
+        "pnl": 123.0
+    },
+    {
+        "timeframe": "M5",
+        "candles": 3,
+        "gale": 2,
+        "rsi": "25/75",
+        "wins": 13,
+        "losses": 0,
+        "total_trades": 13,
+        "win_rate": 100.0,
+        "pnl": 116.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 5,
+        "gale": 2,
+        "rsi": "30/70",
+        "wins": 12,
+        "losses": 0,
+        "total_trades": 12,
+        "win_rate": 100.0,
+        "pnl": 107.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 5,
+        "gale": 2,
+        "rsi": "25/75",
+        "wins": 10,
+        "losses": 0,
+        "total_trades": 10,
+        "win_rate": 100.0,
+        "pnl": 91.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 3,
+        "gale": 2,
+        "rsi": "20/80",
+        "wins": 10,
+        "losses": 0,
+        "total_trades": 10,
+        "win_rate": 100.0,
+        "pnl": 90.0
+    },
+    {
+        "timeframe": "M5",
+        "candles": 2,
+        "gale": 2,
+        "rsi": "25/75",
+        "wins": 17,
+        "losses": 1,
+        "total_trades": 18,
+        "win_rate": 94.44444444444444,
+        "pnl": 84.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 3,
+        "gale": 2,
+        "rsi": "30/70",
+        "wins": 25,
+        "losses": 2,
+        "total_trades": 27,
+        "win_rate": 92.5925925925926,
+        "pnl": 84.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 4,
+        "gale": 1,
+        "rsi": "35/65",
+        "wins": 24,
+        "losses": 5,
+        "total_trades": 29,
+        "win_rate": 82.75862068965517,
+        "pnl": 74.0
+    },
+    {
+        "timeframe": "M1",
+        "candles": 4,
+        "gale": 0,
+        "rsi": "25/75",
+        "wins": 12,
+        "losses": 5,
+        "total_trades": 17,
+        "win_rate": 70.58823529411765,
+        "pnl": 64.0
+    },
+    {
+        "timeframe": "M1",
+        "candles": 3,
+        "gale": 0,
+        "rsi": "25/75",
+        "wins": 16,
+        "losses": 9,
+        "total_trades": 25,
+        "win_rate": 64.0,
+        "pnl": 62.0
+    },
+    {
+        "timeframe": "M5",
+        "candles": 3,
+        "gale": 0,
+        "rsi": "30/70",
+        "wins": 19,
+        "losses": 12,
+        "total_trades": 31,
+        "win_rate": 61.29032258064516,
+        "pnl": 60.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 3,
+        "gale": 1,
+        "rsi": "35/65",
+        "wins": 35,
+        "losses": 9,
+        "total_trades": 44,
+        "win_rate": 79.54545454545455,
+        "pnl": 57.0
+    },
+    {
+        "timeframe": "M1",
+        "candles": 5,
+        "gale": 0,
+        "rsi": "25/75",
+        "wins": 8,
+        "losses": 3,
+        "total_trades": 11,
+        "win_rate": 72.72727272727273,
+        "pnl": 46.0
+    },
+    {
+        "timeframe": "M1",
+        "candles": 5,
+        "gale": 0,
+        "rsi": "30/70",
+        "wins": 10,
+        "losses": 5,
+        "total_trades": 15,
+        "win_rate": 66.66666666666666,
+        "pnl": 45.0
+    },
+    {
+        "timeframe": "M5",
+        "candles": 3,
+        "gale": 0,
+        "rsi": "25/75",
+        "wins": 11,
+        "losses": 6,
+        "total_trades": 17,
+        "win_rate": 64.70588235294117,
+        "pnl": 44.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 2,
+        "gale": 2,
+        "rsi": "20/80",
+        "wins": 12,
+        "losses": 1,
+        "total_trades": 13,
+        "win_rate": 92.3076923076923,
+        "pnl": 37.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 5,
+        "gale": 1,
+        "rsi": "35/65",
+        "wins": 16,
+        "losses": 4,
+        "total_trades": 20,
+        "win_rate": 80.0,
+        "pnl": 30.5
+    },
+    {
+        "timeframe": "M1",
+        "candles": 3,
+        "gale": 0,
+        "rsi": "30/70",
+        "wins": 20,
+        "losses": 16,
+        "total_trades": 36,
+        "win_rate": 55.55555555555556,
+        "pnl": 30.0
+    }
+]
