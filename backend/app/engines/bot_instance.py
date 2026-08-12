@@ -4,7 +4,6 @@ import os
 from typing import Dict, Any
 
 from app.services.binance_client import BinanceClient
-from app.services.deriv_client import DerivClient
 from app.engines.candle_builder import CandleBuilder
 from app.engines.simulator import PaperTrader
 from app.engines.cataloger import calculate_win_rate
@@ -21,7 +20,6 @@ from app.engines.risk import evaluate_risk
 from app.rag.agent import explain_signal
 from app.engines.ai_filter import AIFilter
 from app.engines.executor import BinanceExecutor
-from app.engines.deriv_executor import DerivExecutor
 from app.engines.journal import TradeJournal
 
 logger = logging.getLogger(__name__)
@@ -34,19 +32,10 @@ class BotInstance:
         self.manager = manager  # WebSocket manager for broadcasting
         self.swarm_bots = swarm_bots or {}
         
-        self.use_deriv_simulator = os.getenv("USE_DERIV_SIMULATOR", "False").lower() == "true"
-        
-        if self.use_deriv_simulator:
-            self.deriv_client = DerivClient()
-            self.deriv_client.add_tick_callback(self.on_tick)
-            self.deriv_client.add_history_callback(self.on_history)
-            self.executor = DerivExecutor(self.deriv_client)
-            logger.info(f"🎯 [{self.symbol}] Modo Simulador Deriv ATIVADO")
-        else:
-            self.client = BinanceClient(symbol=symbol)
-            self.client.add_tick_callback(self.on_tick)
-            self.client.add_history_callback(self.on_history)
-            self.executor = BinanceExecutor(self.client.exchange)
+        self.client = BinanceClient(symbol=symbol)
+        self.client.add_tick_callback(self.on_tick)
+        self.client.add_history_callback(self.on_history)
+        self.executor = BinanceExecutor(self.client.exchange)
         
         self.builder_m1 = CandleBuilder(60)
         self.builder_m5 = CandleBuilder(300)
@@ -365,21 +354,7 @@ class BotInstance:
                                 if str(rsi_val) == "nan": rsi_val = 50.0
                                 ai_text = explanation.get("analysis", str(explanation))
                                 
-                                if self.use_deriv_simulator:
-                                    async def run_deriv_entry():
-                                        res = await self.executor.execute_entry(self.symbol, signal.type.value, live_margin)
-                                        if res["status"] == "success":
-                                            t_id = f"deriv_{tick.epoch}"
-                                            self.active_trade_id = t_id
-                                            self.journal.log_entry(t_id, self.symbol, signal.type.value, strategy_info, ai_text, tick.epoch, tick.quote, atr_val, float(rsi_val), live_margin, self.paper_trader.leverage)
-                                        else:
-                                            await self.manager.broadcast({
-                                                "event": "agent_message",
-                                                "symbol": self.symbol,
-                                                "data": {"analysis": f"❌ ERRO CRÍTICO (Deriv): Não foi possível abrir a ordem no simulador. Motivo: {res.get('error')}"}
-                                            })
-                                    asyncio.create_task(run_deriv_entry())
-                                elif os.getenv("LIVE_TRADING") == "True":
+                                if os.getenv("LIVE_TRADING") == "True":
                                     async def run_live_entry():
                                         res = await self.executor.execute_entry(self.symbol, signal.type.value, live_margin, self.paper_trader.leverage, tick.quote)
                                         if res["status"] == "success":
@@ -406,13 +381,7 @@ class BotInstance:
             await asyncio.sleep(5)
             await self.broadcast_catalog()
         asyncio.create_task(delayed_broadcast())
-        if self.use_deriv_simulator:
-            await self.deriv_client.connect_and_listen(self.token)
-        else:
-            await self.client.connect_and_listen()
+        await self.client.connect_and_listen()
         
     def stop(self):
-        if self.use_deriv_simulator:
-            self.deriv_client.stop()
-        else:
-            self.client.stop()
+        self.client.stop()
