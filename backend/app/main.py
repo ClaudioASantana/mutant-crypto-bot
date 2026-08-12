@@ -64,9 +64,10 @@ async def lifespan(app: FastAPI):
     logger.info("Iniciando o ENXAME (Swarm)... Levantando 4 bots simultâneos!")
     
     for sym in active_symbols:
-        bot = BotInstance(symbol=sym, token="", news_filter=news_filter, manager=manager)
+        bot = BotInstance(symbol=sym, token="", news_filter=news_filter, manager=manager, swarm_bots=bots)
         bots[sym] = bot
         asyncio.create_task(bot.start())
+
     
     yield
     # Shutdown
@@ -236,5 +237,45 @@ async def api_optimize(req: OptimizeRequest):
                         "pnl": res['pnl']
                     })
                     
-    results.sort(key=lambda x: x['pnl'], reverse=True)
+                    results.sort(key=lambda x: x['pnl'], reverse=True)
     return {"results": results[:5]}
+
+class AdvancedBacktestRequest(BaseModel):
+    symbol: str
+    timeframe: int
+    limit: int
+    strategy: str
+
+@app.post("/api/backtest_advanced")
+async def api_backtest_advanced(req: AdvancedBacktestRequest):
+    import sys
+    import os
+    scripts_path = os.path.join(os.path.dirname(__file__), '..', 'scripts')
+    if scripts_path not in sys.path:
+        sys.path.append(scripts_path)
+    from optimizer import download_history
+    from app.engines.cataloger import calculate_win_rate
+    
+    logger.info(f"[{req.symbol}] Baixando histórico para backtest avançado...")
+    history = await download_history(req.symbol, req.timeframe, req.limit)
+    if not history:
+        return {"error": "Falha ao baixar o histórico"}
+        
+    res = calculate_win_rate(history, req.strategy)
+    
+    # Mapear o histórico para o formato do lightweight-charts
+    history_payload = []
+    seen_times = set()
+    for c in history:
+        if c.epoch not in seen_times:
+            history_payload.append({
+                "time": c.epoch,
+                "open": c.open,
+                "high": c.high,
+                "low": c.low,
+                "close": c.close
+            })
+            seen_times.add(c.epoch)
+            
+    res["history"] = history_payload
+    return res

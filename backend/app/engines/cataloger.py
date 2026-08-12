@@ -2,7 +2,7 @@ from typing import List
 from app.models.market import Candle
 from app.engines.technical_analysis import (
     candles_to_df, apply_indicators, 
-    eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend
+    eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend, eval_pin_bar
 )
 
 def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict:
@@ -23,6 +23,7 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
     wins = 0
     losses = 0
     pnl_usdt = 0.0
+    trades = []
     
     # Mapeamento da estratégia
     strategy_func = None
@@ -36,6 +37,8 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
         strategy_func = eval_smc
     elif strategy_name == "SuperTrend":
         strategy_func = eval_supertrend
+    elif strategy_name == "Pin Bar":
+        strategy_func = eval_pin_bar
     else:
         return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "pnl_usdt": 0.0}
 
@@ -121,12 +124,28 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                     wins += 1
                     # Calcula o lucro baseado no preço de saída (aproximado pelo TP ou SL móvel)
                     exit_price = tp_price if signal == "CALL" and c_high >= tp_price else sl_price
-                    exit_price = tp_price if signal == "PUT" and c_low <= tp_price else sl_price
-                    pnl_usdt += (stake * leverage * (abs(entry_price - exit_price) / entry_price))
+                    if signal == "PUT":
+                        exit_price = tp_price if c_low <= tp_price else sl_price
+                    
+                    profit = (stake * leverage * (abs(entry_price - exit_price) / entry_price))
+                    pnl_usdt += profit
                 else:
                     losses += 1
+                    exit_price = sl_price
                     # Perda no SL original ou parcial
-                    pnl_usdt -= (stake * leverage * (abs(entry_price - sl_price) / entry_price))
+                    profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price))
+                    pnl_usdt += profit
+                    
+                entry_time = int(df.index[i].timestamp())
+                exit_time = int(df.index[j].timestamp())
+                trades.append({
+                    "entry_time": entry_time,
+                    "entry_price": float(entry_price),
+                    "exit_time": exit_time,
+                    "exit_price": float(exit_price),
+                    "signal": signal,
+                    "profit": float(profit)
+                })
                 
     win_rate = 0.0
     if wins + losses > 0:
@@ -137,5 +156,6 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
         "wins": wins,
         "losses": losses,
         "win_rate": win_rate,
-        "pnl_usdt": round(pnl_usdt, 2)
+        "pnl_usdt": round(pnl_usdt, 2),
+        "trades": trades
     }

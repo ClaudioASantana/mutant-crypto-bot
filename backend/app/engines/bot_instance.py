@@ -9,7 +9,7 @@ from app.engines.cataloger import calculate_win_rate
 from app.engines.technical_analysis import (
     candles_to_df, apply_indicators, 
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc,
-    eval_consecutive, eval_supertrend,
+    eval_consecutive, eval_supertrend, eval_pin_bar,
     check_signal_quality
 )
 from app.models.market import Tick, Signal, SignalType, AccountState, CandleDirection
@@ -22,11 +22,12 @@ from app.engines.ai_filter import AIFilter
 logger = logging.getLogger(__name__)
 
 class BotInstance:
-    def __init__(self, symbol: str, token: str, news_filter: NewsFilter, manager):
+    def __init__(self, symbol: str, token: str, news_filter: NewsFilter, manager, swarm_bots: dict = None):
         self.symbol = symbol
         self.token = token
         self.news_filter = news_filter
         self.manager = manager  # WebSocket manager for broadcasting
+        self.swarm_bots = swarm_bots or {}
         
         self.client = BinanceClient(symbol=symbol)
         self.client.add_tick_callback(self.on_tick)
@@ -55,6 +56,45 @@ class BotInstance:
             return self.builder_m5
         return self.builder_m15
 
+    def check_macro_correlation(self, direction: str) -> bool:
+        """
+        Verifica se a maioria das outras moedas está na mesma direção do sinal.
+        """
+        if not self.swarm_bots:
+            return True
+            
+        confirming_assets = 0
+        total_assets = 0
+        
+        for sym, bot in self.swarm_bots.items():
+            if sym == self.symbol:
+                continue
+                
+            b = bot.get_active_builder()
+            if not b.closed_candles:
+                continue
+                
+            last_candle = b.closed_candles[-1]
+            
+            # Veto do Rei: Se o BTC estiver contra a operação, aborta na hora.
+            if sym == "BTC/USDT":
+                if direction == "CALL" and last_candle.direction.value == "BEARISH":
+                    return False
+                if direction == "PUT" and last_candle.direction.value == "BULLISH":
+                    return False
+                    
+            total_assets += 1
+            
+            if direction == "CALL" and last_candle.direction.value == "BULLISH":
+                confirming_assets += 1
+            elif direction == "PUT" and last_candle.direction.value == "BEARISH":
+                confirming_assets += 1
+                
+        # Exige que pelo menos 50% das outras moedas concordem
+        if total_assets > 0 and confirming_assets < (total_assets / 2):
+            return False
+        return True
+
     async def on_history(self, granularity: int, candles: list):
         from app.models.market import Candle
         b = self.builder_m1 if granularity == 60 else (self.builder_m5 if granularity == 300 else self.builder_m15)
@@ -74,7 +114,7 @@ class BotInstance:
     async def broadcast_catalog(self):
         catalog = []
         for timeframe, b in [(60, self.builder_m1), (300, self.builder_m5), (900, self.builder_m15)]:
-            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "3 Velas"]:
+            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "3 Velas", "Pin Bar"]:
                 stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
                 catalog.append({
                     "timeframe": timeframe,
@@ -183,6 +223,8 @@ class BotInstance:
                         sig_val = eval_supertrend(df)
                     elif req_strategy == "3 Velas":
                         sig_val = eval_consecutive(df, num_candles=3)
+                    elif req_strategy == "Pin Bar":
+                        sig_val = eval_pin_bar(df)
                         
                     signal = Signal(type=SignalType.NONE, reason="")
                     if sig_val == "CALL":
@@ -210,6 +252,12 @@ class BotInstance:
                         if df_mtf is not None:
                             df_mtf = apply_indicators(df_mtf)
                         approved, block_reason = check_signal_quality(df, df_mtf, signal.type.value)
+                        
+                        # Macro Correlation Filter (Fase extra)
+                        if approved and not self.check_macro_correlation(signal.type.value):
+                            approved = False
+                            block_reason = "Falta de correlação Macro com outras moedas (Swarm)"
+                            
                         if not approved:
                             logger.info(f"🔎 [{self.symbol} - {strategy_info}] FILTRADO: {block_reason}")
                             signal.type = SignalType.NONE

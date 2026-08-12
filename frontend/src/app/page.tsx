@@ -19,9 +19,14 @@ export default function Home() {
   
   // Backtest State
   const [currentView, setCurrentView] = useState<"dashboard" | "backtest">("dashboard");
-  const [backtestResults, setBacktestResults] = useState<any[]>([]);
+  const [backtestResults, setBacktestResults] = useState<any>(null);
   const [isBacktesting, setIsBacktesting] = useState(false);
-  const [autoCalibrateProgress, setAutoCalibrateProgress] = useState<{current: number, total: number, message: string} | null>(null);
+  const [backtestStrategy, setBacktestStrategy] = useState("Pin Bar");
+  const [backtestTimeframe, setBacktestTimeframe] = useState(300);
+  
+  const backtestChartContainerRef = useRef<HTMLDivElement>(null);
+  const backtestChartRef = useRef<any>(null);
+  const backtestSeriesRef = useRef<any>(null);
   
   const activeSymbolRef = useRef(activeSymbol);
   useEffect(() => {
@@ -237,66 +242,8 @@ export default function Home() {
     }
   };
 
-  const runBacktest = async () => {
-    setIsBacktesting(true);
-    setBacktestResults([]);
-    try {
-      const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
-      const res = await fetch(`${httpUrl}/api/optimize`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ symbol: activeSymbol })
-      });
-      const data = await res.json();
-      setBacktestResults(data.results || []);
-    } catch (e) {
-      console.error(e);
-    }
-    setIsBacktesting(false);
-  };
-
-  const handleAutoCalibrateAll = async () => {
-    const symbols = ["R_10", "R_25", "R_50", "R_75", "R_100", "1HZ10V", "1HZ25V", "1HZ50V", "1HZ75V", "1HZ100V", "RDBEAR", "RDBULL"];
-    setAutoCalibrateProgress({ current: 0, total: symbols.length, message: "Iniciando calibração em massa..." });
-    
-    for (let i = 0; i < symbols.length; i++) {
-      const sym = symbols[i];
-      setAutoCalibrateProgress({ current: i + 1, total: symbols.length, message: `Baixando velas e otimizando ${sym}...` });
-      
-      try {
-        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
-        const res = await fetch(`${httpUrl}/api/optimize`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ symbol: sym })
-        });
-        const data = await res.json();
-        if (data.results && data.results.length > 0) {
-          const best = data.results[0];
-          if (ws.current) {
-            ws.current.send(JSON.stringify({ 
-              command: "SET_CONFIG", 
-              symbol: sym,
-              timeframe: best.timeframe, 
-              candles: best.candles,
-              gale: best.gale,
-              rsi_oversold: best.rsi_oversold,
-              rsi_overbought: best.rsi_overbought
-            }));
-          }
-        }
-      } catch (e) {
-        console.error(`Erro otimizando ${sym}`, e);
-      }
-    }
-    
-    setAutoCalibrateProgress({ current: symbols.length, total: symbols.length, message: "✅ Calibração Completa! Todo o portfólio atualizado." });
-    setTimeout(() => setAutoCalibrateProgress(null), 5000);
-  };
-
   const handleToggleAutoOptimize = () => {
     if (ws.current) {
-      const newState = !autoOptimize;
       ws.current.send(JSON.stringify({ command: "TOGGLE_AUTO_OPTIMIZE" }));
     }
   };
@@ -306,6 +253,100 @@ export default function Home() {
       ws.current.send(JSON.stringify({ command: "TOGGLE_AUTO_OPTIMIZE_ALL", active: !autoOptimize }));
     }
   };
+
+  const runAdvancedBacktest = async () => {
+    setIsBacktesting(true);
+    setBacktestResults(null);
+    try {
+      const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+      const res = await fetch(`${httpUrl}/api/backtest_advanced`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          symbol: activeSymbol, 
+          timeframe: backtestTimeframe, 
+          limit: 1000, 
+          strategy: backtestStrategy 
+        })
+      });
+      const data = await res.json();
+      setBacktestResults(data);
+
+      if (backtestSeriesRef.current && data.history) {
+        backtestSeriesRef.current.setData(data.history);
+        
+        if (data.trades) {
+          const markers = data.trades.map((t: any) => ({
+            time: t.entry_time,
+            position: t.signal === 'CALL' ? 'belowBar' : 'aboveBar',
+            color: t.signal === 'CALL' ? '#26a69a' : '#ef5350',
+            shape: t.signal === 'CALL' ? 'arrowUp' : 'arrowDown',
+            text: `${t.signal} (${t.profit > 0 ? '+' : ''}${t.profit.toFixed(2)})`
+          }));
+          backtestSeriesRef.current.setMarkers(markers);
+        }
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    setIsBacktesting(false);
+  };
+
+  useEffect(() => {
+    if (currentView !== 'backtest' || !backtestChartContainerRef.current) return;
+    
+    if (!backtestChartRef.current) {
+        const chart = createChart(backtestChartContainerRef.current, {
+          layout: {
+            background: { type: ColorType.Solid, color: 'transparent' },
+            textColor: '#d1d4dc',
+          },
+          grid: {
+            vertLines: { color: 'rgba(42, 46, 57, 0)' },
+            horzLines: { color: 'rgba(42, 46, 57, 0.2)' },
+          },
+          width: backtestChartContainerRef.current.clientWidth,
+          height: 400,
+          timeScale: {
+            timeVisible: true,
+            secondsVisible: false,
+          }
+        });
+
+        const candlestickSeries = chart.addSeries(CandlestickSeries, {
+            upColor: '#26a69a',
+            downColor: '#ef5350',
+            borderVisible: false,
+            wickUpColor: '#26a69a',
+            wickDownColor: '#ef5350',
+        });
+        
+        backtestChartRef.current = chart;
+        backtestSeriesRef.current = candlestickSeries;
+
+        const handleResize = () => {
+          if (backtestChartContainerRef.current) {
+            chart.applyOptions({ width: backtestChartContainerRef.current.clientWidth });
+          }
+        };
+        window.addEventListener('resize', handleResize);
+    }
+    
+    // Render chart with existing data if we already ran it
+    if (backtestResults?.history && backtestSeriesRef.current) {
+        backtestSeriesRef.current.setData(backtestResults.history);
+        if (backtestResults.trades) {
+          const markers = backtestResults.trades.map((t: any) => ({
+            time: t.entry_time,
+            position: t.signal === 'CALL' ? 'belowBar' : 'aboveBar',
+            color: t.signal === 'CALL' ? '#26a69a' : '#ef5350',
+            shape: t.signal === 'CALL' ? 'arrowUp' : 'arrowDown',
+            text: `${t.signal} (${t.profit > 0 ? '+' : ''}${t.profit.toFixed(2)})`
+          }));
+          backtestSeriesRef.current.setMarkers(markers);
+        }
+    }
+  }, [currentView, backtestResults]);
 
   const handleChangeSymbol = (symbol: string) => {
     if (ws.current) {
@@ -730,68 +771,72 @@ export default function Home() {
     </div>
       ) : (
         <div style={{ flex: 1, overflow: 'auto', padding: '20px' }}>
-          <div className="glass" style={{ padding: "30px", maxWidth: "800px", margin: "0 auto" }}>
-            <h2>Laboratório de Otimização - {activeSymbol}</h2>
-            <p style={{ opacity: 0.7 }}>O simulador baixará as últimas 5.000 velas e testará todas as combinações de Timeframe, RSI e Martingale.</p>
+          <div className="glass" style={{ padding: "30px", maxWidth: "1200px", margin: "0 auto" }}>
+            <h2>Laboratório (Backtest Avançado) - {activeSymbol}</h2>
+            <p style={{ opacity: 0.7 }}>Simule estratégias com 1000 velas de histórico e veja os pontos de entrada no gráfico.</p>
             
-            <div style={{ display: 'flex', gap: '16px' }}>
-              <button 
-                onClick={runBacktest} 
-                disabled={isBacktesting || autoCalibrateProgress !== null}
-                style={{ background: "var(--accent)", color: "#000", border: "none", padding: "12px 24px", borderRadius: "6px", fontWeight: "bold", cursor: (isBacktesting || autoCalibrateProgress) ? "not-allowed" : "pointer", fontSize: "1.1rem", marginTop: "16px", flex: 1 }}
+            <div style={{ display: 'flex', gap: '16px', marginTop: '20px', alignItems: 'center' }}>
+              <select 
+                value={backtestStrategy} 
+                onChange={(e) => setBacktestStrategy(e.target.value)}
+                style={{ padding: '10px', background: 'rgba(0,0,0,0.5)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '4px' }}
               >
-                {isBacktesting ? "⏳ Processando..." : `▶️ Otimizar Apenas ${activeSymbol}`}
-              </button>
-              <button 
-                onClick={handleAutoCalibrateAll} 
-                disabled={isBacktesting || autoCalibrateProgress !== null}
-                style={{ background: "transparent", color: "var(--accent)", border: "2px solid var(--accent)", padding: "12px 24px", borderRadius: "6px", fontWeight: "bold", cursor: (isBacktesting || autoCalibrateProgress) ? "not-allowed" : "pointer", fontSize: "1.1rem", marginTop: "16px", flex: 1 }}
+                <option value="Pin Bar">Pin Bar (Elite)</option>
+                <option value="SMC">Smart Money Concepts</option>
+                <option value="Bollinger">Bollinger Bands</option>
+                <option value="EMA+MACD">EMA + MACD</option>
+                <option value="SuperTrend">SuperTrend</option>
+              </select>
+              
+              <select 
+                value={backtestTimeframe} 
+                onChange={(e) => setBacktestTimeframe(Number(e.target.value))}
+                style={{ padding: '10px', background: 'rgba(0,0,0,0.5)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', borderRadius: '4px' }}
               >
-                {autoCalibrateProgress ? "⏳ Auto-Calibrando..." : "⚡ Auto-Calibrar Todo o Portfólio"}
+                <option value={60}>M1 (1 minuto)</option>
+                <option value={300}>M5 (5 minutos)</option>
+                <option value={900}>M15 (15 minutos)</option>
+              </select>
+
+              <button 
+                onClick={runAdvancedBacktest} 
+                disabled={isBacktesting}
+                style={{ background: "var(--accent)", color: "#000", border: "none", padding: "10px 24px", borderRadius: "4px", fontWeight: "bold", cursor: isBacktesting ? "not-allowed" : "pointer" }}
+              >
+                {isBacktesting ? "⏳ Processando..." : "▶️ Rodar Backtest"}
               </button>
             </div>
             
-            {autoCalibrateProgress && (
-              <div style={{ marginTop: '20px', padding: '16px', background: 'rgba(38, 166, 154, 0.1)', borderRadius: '8px', border: '1px solid var(--accent)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                  <span style={{ fontWeight: 'bold' }}>Progresso da Auto-Calibração</span>
-                  <span>{autoCalibrateProgress.current} / {autoCalibrateProgress.total}</span>
-                </div>
-                <div style={{ width: '100%', height: '8px', background: 'rgba(0,0,0,0.5)', borderRadius: '4px', overflow: 'hidden', marginBottom: '8px' }}>
-                  <div style={{ width: `${(autoCalibrateProgress.current / autoCalibrateProgress.total) * 100}%`, height: '100%', background: 'var(--accent)', transition: 'width 0.3s' }}></div>
-                </div>
-                <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>{autoCalibrateProgress.message}</div>
+            {backtestResults && !backtestResults.error && (
+              <div style={{ marginTop: "20px", display: "flex", gap: "16px" }}>
+                 <div style={{ flex: 1, background: "rgba(0,0,0,0.3)", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
+                    <div style={{ opacity: 0.7, fontSize: "0.9rem" }}>Sinais Gerados</div>
+                    <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>{backtestResults.signals}</div>
+                 </div>
+                 <div style={{ flex: 1, background: "rgba(0,0,0,0.3)", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
+                    <div style={{ opacity: 0.7, fontSize: "0.9rem" }}>Win Rate</div>
+                    <div style={{ fontSize: "1.5rem", fontWeight: "bold", color: backtestResults.win_rate >= 50 ? "var(--success)" : "var(--danger)" }}>{backtestResults.win_rate}%</div>
+                 </div>
+                 <div style={{ flex: 1, background: "rgba(0,0,0,0.3)", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
+                    <div style={{ opacity: 0.7, fontSize: "0.9rem" }}>PnL (Lucro Estimado)</div>
+                    <div style={{ fontSize: "1.5rem", fontWeight: "bold", color: backtestResults.pnl_usdt >= 0 ? "var(--success)" : "var(--danger)" }}>${backtestResults.pnl_usdt}</div>
+                 </div>
+                 <div style={{ flex: 1, background: "rgba(0,0,0,0.3)", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
+                    <div style={{ opacity: 0.7, fontSize: "0.9rem" }}>Wins / Losses</div>
+                    <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>{backtestResults.wins} / {backtestResults.losses}</div>
+                 </div>
               </div>
             )}
-            
-            {backtestResults.length > 0 && !autoCalibrateProgress && (
-              <div style={{ marginTop: "30px" }}>
-                <h3>🏆 Top 5 Estratégias Lucrativas</h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "16px" }}>
-                  {backtestResults.map((res, idx) => (
-                    <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "rgba(0,0,0,0.3)", padding: "16px", borderRadius: "8px", border: idx === 0 ? "2px solid var(--accent)" : "1px solid rgba(255,255,255,0.1)" }}>
-                      <div>
-                        {idx === 0 && <div style={{ color: "var(--accent)", fontSize: "0.8rem", fontWeight: "bold", marginBottom: "4px" }}>RECOMENDADO</div>}
-                        <div style={{ fontSize: "1.1rem", fontWeight: "bold" }}>
-                          {res.timeframe_label} | {res.candles} Velas | Gale {res.gale} | RSI {res.rsi_label}
-                        </div>
-                        <div style={{ display: "flex", gap: "16px", marginTop: "8px", opacity: 0.8, fontSize: "0.9rem" }}>
-                          <span>Win Rate: <strong style={{ color: (res.win_rate ?? 0) >= 90 ? "var(--success)" : "white" }}>{(res.win_rate ?? 0).toFixed(1)}%</strong></span>
-                          <span>PnL: <strong style={{ color: "var(--success)" }}>${(res.pnl ?? 0).toFixed(2)}</strong></span>
-                          <span>{res.wins} Wins / {res.losses} Losses</span>
-                        </div>
-                      </div>
-                      <button 
-                        onClick={() => handleApplyStrategy(res)}
-                        style={{ background: idx === 0 ? "var(--accent)" : "rgba(255,255,255,0.1)", color: idx === 0 ? "#000" : "white", border: "none", padding: "10px 20px", borderRadius: "4px", fontWeight: "bold", cursor: "pointer", transition: "0.2s" }}
-                      >
-                        Aplicar Estratégia
-                      </button>
-                    </div>
-                  ))}
-                </div>
+            {backtestResults && backtestResults.error && (
+              <div style={{ marginTop: "20px", color: "var(--danger)" }}>
+                Erro: {backtestResults.error}
               </div>
             )}
+
+            <div 
+              ref={backtestChartContainerRef} 
+              style={{ width: "100%", height: "400px", marginTop: "24px", background: "rgba(0,0,0,0.2)", borderRadius: "8px" }} 
+            />
           </div>
         </div>
       )}

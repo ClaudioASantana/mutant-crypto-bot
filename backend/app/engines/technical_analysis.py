@@ -46,7 +46,7 @@ def apply_indicators(df: pd.DataFrame):
     df.ta.donchian(lower_length=20, upper_length=20, append=True)
     
     # SuperTrend
-    df.ta.supertrend(length=10, multiplier=3.0, append=True)
+    df.ta.supertrend(length=10, multiplier=4.0, append=True)
     
     # === Fase 1: Filtros de Qualidade de Sinal ===
     # RSI(14) — detectar zonas de exaustão
@@ -194,7 +194,7 @@ def eval_supertrend(df: pd.DataFrame) -> str:
     """ SuperTrend strategy """
     if df.empty or len(df) < 15: return "NONE"
     
-    # pandas_ta supertrend outputs columns like SUPERTd_10_3.0 (direction)
+    # pandas_ta supertrend outputs columns like SUPERTd_10_4.0 (direction)
     st_dir_col = [c for c in df.columns if "SUPERTd" in c]
     if not st_dir_col:
         return "NONE"
@@ -305,6 +305,49 @@ def eval_consecutive(df: pd.DataFrame, num_candles: int = 3) -> str:
         return "CALL"
     if is_all_bullish:
         return "PUT"
+        
+    return "NONE"
+
+def eval_pin_bar(df: pd.DataFrame) -> str:
+    """
+    Estratégia Pin Bar (Martelo / Estrela Cadente) Elite:
+    - Identifica rejeição de preço através de pavios longos.
+    - Exige Contexto: Tocar/romper as Bandas de Bollinger.
+    - Exige Volume Institucional: Volume da vela deve ser > 1.5x a média de volume recente.
+    """
+    if df.empty or len(df) < 20: return "NONE"
+    
+    last = df.iloc[-1]
+    
+    open_p = last["open"]
+    close_p = last["close"]
+    high_p = last["high"]
+    low_p = last["low"]
+    curr_vol = last["volume"]
+    
+    # Médias e Bandas
+    avg_vol = df["volume"].iloc[-20:-1].mean()
+    lower_band = last.get("BBL_20_2.0_2.0", 0)
+    upper_band = last.get("BBU_20_2.0_2.0", 999999)
+    
+    body = abs(close_p - open_p)
+    if body == 0:
+        body = 0.000001
+        
+    lower_wick = min(open_p, close_p) - low_p
+    upper_wick = high_p - max(open_p, close_p)
+    
+    # Bullish Pin Bar (Martelo)
+    if lower_wick >= (2.0 * body) and upper_wick <= max(body, lower_wick * 0.25):
+        # Contexto: Mínima próxima da banda inferior (1% de folga)
+        if low_p <= (lower_band * 1.01) and curr_vol >= (1.1 * avg_vol):
+            return "CALL"
+        
+    # Bearish Pin Bar (Estrela Cadente)
+    if upper_wick >= (2.0 * body) and lower_wick <= max(body, upper_wick * 0.25):
+        # Contexto: Máxima próxima da banda superior (1% de folga)
+        if high_p >= (upper_band * 0.99) and curr_vol >= (1.1 * avg_vol):
+            return "PUT"
         
     return "NONE"
 

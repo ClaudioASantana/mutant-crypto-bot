@@ -11,9 +11,9 @@ from app.models.market import Candle, CandleDirection
 from app.engines.indicators import calculate_rsi
 from app.engines.cataloger import calculate_win_rate
 
-SYMBOL = "BTC/USDT"
+SYMBOL = "BNB/USDT"
 GRANULARITY = 300 # M5
-COUNT = 5000 # 5000 candles
+COUNT = 5000 # ~17 days of history
 
 # Strategy params
 CONSECUTIVE_CANDLES = 3
@@ -160,7 +160,7 @@ async def run_backtest():
     print("📈 TESTE DOS NOVOS MOTORES (CRYPTO FUTURES)")
     print("=" * 50)
     print("Testando estratégias avançadas com Trailing Stop e Real Volume (Risco/Retorno dinâmico).")
-    strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend"]
+    strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"]
     for s in strategies:
         res = calculate_win_rate(history, s)
         print(f"\nEstratégia: {s}")

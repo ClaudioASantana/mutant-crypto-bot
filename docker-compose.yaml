@@ -3,6 +3,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
     environment:
     - CHROMA_DB_DIR=chroma_db
     labels:
@@ -19,6 +21,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_PORT: ${BACKEND_PORT:-8010}
     depends_on:
     - backend
     environment:
