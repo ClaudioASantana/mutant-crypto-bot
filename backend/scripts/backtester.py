@@ -9,6 +9,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from app.models.market import Candle, CandleDirection
 from app.engines.indicators import calculate_rsi
+from app.engines.cataloger import calculate_win_rate
 
 SYMBOL = "BTC/USDT"
 GRANULARITY = 300 # M5
@@ -154,6 +155,19 @@ async def run_backtest():
     print(f"Saldo Inicial: ${INITIAL_BALANCE:.2f}")
     print(f"Saldo Final: ${balance:.2f}")
     print(f"Lucro Líquido (PnL): ${pnl:.2f}")
+    
+    print("\n" + "=" * 50)
+    print("📈 TESTE DOS NOVOS MOTORES (CRYPTO FUTURES)")
+    print("=" * 50)
+    print("Testando estratégias avançadas com Trailing Stop e Real Volume (Risco/Retorno dinâmico).")
+    strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend"]
+    for s in strategies:
+        res = calculate_win_rate(history, s)
+        print(f"\nEstratégia: {s}")
+        print(f"Sinais Gerados: {res['signals']}")
+        print(f"Wins: {res['wins']} | Losses: {res['losses']} | Win Rate: {res['win_rate']}%")
+        print(f"PnL USDT Estimado: ${res['pnl_usdt']}")
+
 
 if __name__ == "__main__":
     asyncio.run(run_backtest())
