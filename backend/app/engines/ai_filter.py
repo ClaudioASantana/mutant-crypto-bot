@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 class AIFilter:
     def __init__(self):
         self.api_key = os.getenv("MANIFEST_API_KEY", os.getenv("OPENAI_API_KEY"))
-        self.base_url = os.getenv("MANIFEST_API_BASE", "https://api.openai.com/v1")
+        self.base_url = os.getenv("MANIFEST_BASE_URL", "https://api.openai.com/v1")
         self.model = os.getenv("MANIFEST_MODEL_NAME", "gpt-4o-mini")
         
         if self.api_key:
@@ -53,7 +53,10 @@ class AIFilter:
                 max_tokens=10
             )
             
-            answer = response.choices[0].message.content.strip().upper()
+            content = response.choices[0].message.content
+            if not content:
+                content = "SIM"
+            answer = content.strip().upper()
             if "SIM" in answer:
                 return True
             elif "NAO" in answer or "NÃO" in answer:

@@ -142,23 +142,18 @@ async def websocket_endpoint(websocket: WebSocket):
                         logger.info(f"[{target_symbol}] Configuração local alterada: M{b.active_config['timeframe']//60} / {b.active_config['strategy']} / Gale {b.active_config['gale']} / RSI {b.active_config['rsi_oversold']}-{b.active_config['rsi_overbought']}")
                         await manager.broadcast({"event": "simulator", "symbol": target_symbol, "data": b.paper_trader.get_state()})
                 elif cmd.get("command") == "TOGGLE_AUTO_OPTIMIZE":
-                    if watching_symbol in bots:
-                        b = bots[watching_symbol]
+                    target_symbol = manager.active_connections.get(websocket, watching_symbol)
+                    if target_symbol in bots:
+                        b = bots[target_symbol]
                         b.auto_optimize = not b.auto_optimize
-                        logger.info(f"[{watching_symbol}] Auto-Optimize: {b.auto_optimize}")
-                        if b.auto_optimize:
-                            asyncio.create_task(b.broadcast_catalog())
-                        await websocket.send_json({"event": "catalog", "symbol": watching_symbol, "data": {"catalog": b.global_catalog, "active_config": b.active_config, "auto_optimize": b.auto_optimize}})
+                        logger.info(f"[{target_symbol}] Auto-Optimize: {b.auto_optimize}")
+                        asyncio.create_task(b.broadcast_catalog())
                 elif cmd.get("command") == "TOGGLE_AUTO_OPTIMIZE_ALL":
                     is_active = cmd.get("active", True)
                     for sym, bot_inst in bots.items():
                         bot_inst.auto_optimize = is_active
                         logger.info(f"[{sym}] Auto-Optimize Global: {bot_inst.auto_optimize}")
-                        if is_active:
-                            asyncio.create_task(bot_inst.broadcast_catalog())
-                    if watching_symbol in bots:
-                        b = bots[watching_symbol]
-                        await websocket.send_json({"event": "catalog", "symbol": watching_symbol, "data": {"catalog": b.global_catalog, "active_config": b.active_config, "auto_optimize": b.auto_optimize}})
+                        asyncio.create_task(bot_inst.broadcast_catalog())
             except Exception as e:
                 logger.error(f"Erro processando WS: {e}")
     except WebSocketDisconnect:
@@ -394,22 +389,33 @@ class RiskSettingsRequest(BaseModel):
 
 @app.get("/api/risk_settings")
 def get_risk_settings():
-    from app.engines.simulator import PaperTrader
-    return PaperTrader._global_state.get("risk_settings", {
+    if bots:
+        b = list(bots.values())[0]
+        return {
+            "stake_initial": b.paper_trader.stake_initial,
+            "max_gale": b.paper_trader.max_gale,
+            "daily_stop_loss": b.paper_trader.daily_stop_loss,
+            "daily_stop_gain": b.paper_trader.daily_stop_gain
+        }
+    return {
         "stake_initial": 10.0,
         "max_gale": 2,
         "daily_stop_loss": 50.0,
         "daily_stop_gain": 50.0
-    })
+    }
 
 @app.post("/api/risk_settings")
 def set_risk_settings(req: RiskSettingsRequest):
-    from app.engines.simulator import PaperTrader
-    PaperTrader._global_state["risk_settings"] = {
+    settings = {
         "stake_initial": req.stake_initial,
         "max_gale": req.max_gale,
         "daily_stop_loss": req.daily_stop_loss,
         "daily_stop_gain": req.daily_stop_gain
     }
-    PaperTrader.save_state_global()
-    return {"status": "ok", "settings": PaperTrader._global_state["risk_settings"]}
+    for b in bots.values():
+        b.paper_trader.stake_initial = req.stake_initial
+        b.paper_trader.max_gale = req.max_gale
+        b.paper_trader.daily_stop_loss = req.daily_stop_loss
+        b.paper_trader.daily_stop_gain = req.daily_stop_gain
+        b.paper_trader.save_state()
+    return {"status": "ok", "settings": settings}
