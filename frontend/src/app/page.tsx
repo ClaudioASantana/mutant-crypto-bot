@@ -38,7 +38,7 @@ export default function Home() {
   const [tradePreview, setTradePreview] = useState<any>(null);
   
   // Backtest State
-  const [currentView, setCurrentView] = useState<"dashboard" | "backtest">("dashboard");
+  const [currentView, setCurrentView] = useState<"dashboard" | "backtest" | "config">("dashboard");
   const [backtestResults, setBacktestResults] = useState<any>(null);
   const [isBacktesting, setIsBacktesting] = useState(false);
   const [backtestStrategy, setBacktestStrategy] = useState("Auto");
@@ -528,9 +528,15 @@ export default function Home() {
          >
            Laboratório (Backtest)
          </button>
+         <button 
+           onClick={() => setCurrentView('config')}
+           style={{ background: currentView === 'config' ? 'var(--accent)' : 'transparent', color: currentView === 'config' ? '#000' : '#fff', border: 'none', padding: '8px 16px', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}
+         >
+           Configuração
+         </button>
       </div>
       
-      {currentView === 'dashboard' ? (
+      {currentView === 'dashboard' && (
         <div className="layout-container" style={{ flex: 1, overflow: 'auto' }}>
           {/* Esquerda: Agente RAG e Controles */}
           <div style={{ display: "flex", flexDirection: "column", gap: "20px", minWidth: 0 }}>
@@ -569,38 +575,6 @@ export default function Home() {
               );
             })}
           </div>
-        </div>
-
-        {/* Gerenciamento de Risco Global */}
-        <div className="glass" style={{ padding: "16px", display: "flex", flexDirection: "column", gap: "12px" }}>
-          <h3 style={{ margin: 0, fontSize: "1rem", color: "var(--accent)" }}>🛡️ Gerenciamento de Risco (Global)</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stake Inicial ($)</label>
-              <input type="number" value={riskStake} onChange={e => setRiskStake(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Max Martingale</label>
-              <input type="number" value={riskGale} onChange={e => setRiskGale(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stop Loss ($)</label>
-              <input type="number" value={riskStopLoss} onChange={e => setRiskStopLoss(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stop Gain ($)</label>
-              <input type="number" value={riskStopGain} onChange={e => setRiskStopGain(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
-            </div>
-          </div>
-          <button 
-            onClick={saveRiskSettings} 
-            disabled={isSavingRisk}
-            style={{ 
-              marginTop: "8px", padding: "10px", background: "var(--accent)", color: "#000", border: "none", borderRadius: "6px", fontWeight: "bold", cursor: isSavingRisk ? "not-allowed" : "pointer", opacity: isSavingRisk ? 0.7 : 1
-            }}
-          >
-            {isSavingRisk ? "⏳ Salvando..." : "💾 Salvar Limites"}
-          </button>
         </div>
 
         <div className="glass" style={{ flex: 1, padding: "20px", display: "flex", flexDirection: "column" }}>
@@ -952,7 +926,9 @@ export default function Home() {
         />
       </div>
     </div>
-      ) : (
+      )}
+      
+      {currentView === 'backtest' && (
         <div style={{ flex: 1, overflow: 'auto', padding: '20px' }}>
           <div className="glass" style={{ padding: "30px", maxWidth: "1200px", margin: "0 auto" }}>
             <h2>Laboratório (Backtest Avançado) - {activeSymbol}</h2>
@@ -1089,6 +1065,47 @@ export default function Home() {
                 </div>
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {currentView === 'config' && (
+        <div style={{ flex: 1, overflow: 'auto', padding: '20px' }}>
+          <div className="glass" style={{ padding: "30px", maxWidth: "800px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "24px" }}>
+            <h2>Configurações do Robô</h2>
+            <p style={{ opacity: 0.7 }}>Ajuste os parâmetros de risco globais e limites operacionais.</p>
+            
+            {/* Gerenciamento de Risco Global */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <h3 style={{ margin: 0, fontSize: "1.1rem", color: "var(--accent)" }}>🛡️ Gerenciamento de Risco (Global)</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                  <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stake Inicial ($)</label>
+                  <input type="number" value={riskStake} onChange={e => setRiskStake(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                  <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Max Martingale</label>
+                  <input type="number" value={riskGale} onChange={e => setRiskGale(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                  <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stop Loss ($)</label>
+                  <input type="number" value={riskStopLoss} onChange={e => setRiskStopLoss(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                  <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stop Gain ($)</label>
+                  <input type="number" value={riskStopGain} onChange={e => setRiskStopGain(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
+                </div>
+              </div>
+              <button 
+                onClick={saveRiskSettings} 
+                disabled={isSavingRisk}
+                style={{ 
+                  marginTop: "16px", padding: "12px", background: "var(--accent)", color: "#000", border: "none", borderRadius: "6px", fontWeight: "bold", cursor: isSavingRisk ? "not-allowed" : "pointer", opacity: isSavingRisk ? 0.7 : 1
+                }}
+              >
+                {isSavingRisk ? "⏳ Salvando..." : "💾 Salvar Limites"}
+              </button>
+            </div>
           </div>
         </div>
       )}

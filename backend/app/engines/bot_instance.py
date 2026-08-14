@@ -48,7 +48,7 @@ class BotInstance:
         self.live_qty = 0
         self.active_trade_id = None
         
-        self.active_config = {"timeframe": 900, "strategy": "ABCD", "gale": 2, "rsi_oversold": 25, "rsi_overbought": 75}
+        self.active_config = {"timeframe": 300, "strategy": "SMC", "gale": 2, "rsi_oversold": 25, "rsi_overbought": 75}
         self.auto_optimize = False
         self.global_catalog = []
         

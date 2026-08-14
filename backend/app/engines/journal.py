@@ -15,6 +15,7 @@ class TradeJournal:
         try:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
+                cursor.execute("PRAGMA journal_mode=WAL;")
                 cursor.execute("""
                     CREATE TABLE IF NOT EXISTS trades (
                         id TEXT PRIMARY KEY,
