@@ -351,3 +351,46 @@ def eval_pin_bar(df: pd.DataFrame) -> str:
         
     return "NONE"
 
+
+def eval_abcd(df: pd.DataFrame) -> str:
+    """
+    Estratégia ABCD (Estratégia N - Stop Run):
+    Opera manipulações institucionais a favor da inércia.
+    - A (Início), B (Suporte/Resistência), C (Respiro), D (Rompimento Falso de B).
+    - Gatilho: Preço fecha rompendo o candle D após a armadilha.
+    - Validação: EMA 21 deve estar inclinada na direção da operação.
+    """
+    if df.empty or len(df) < 6: return "NONE"
+    
+    c4 = df.iloc[-5] # A (Início do movimento)
+    c3 = df.iloc[-4] # B (Suporte/Resistência a ser manipulada)
+    c2 = df.iloc[-3] # C (Respiro / Correção complexa)
+    c1 = df.iloc[-2] # D (O Falso Rompimento)
+    c0 = df.iloc[-1] # Candle Gatilho (Atual)
+    
+    ema21_atual = c0.get("EMA_21", 0)
+    ema21_prev = c1.get("EMA_21", 0)
+    
+    # Condição para CALL (Stop Run de Fundo)
+    # 1. Inércia de Alta (EMA 21 apontando pra cima)
+    tendencia_alta = (ema21_atual > ema21_prev) and (ema21_atual > 0)
+    # 2. Rompimento Falso (D viola a mínima de B)
+    manipulacao_fundo = c1["low"] < c3["low"]
+    # 3. Gatilho (Vela atual fecha acima da máxima da vela que violou o fundo)
+    gatilho_compra = c0["close"] > c1["high"]
+    
+    if tendencia_alta and manipulacao_fundo and gatilho_compra:
+        return "CALL"
+        
+    # Condição para PUT (Stop Run de Topo)
+    # 1. Inércia de Baixa (EMA 21 apontando pra baixo)
+    tendencia_baixa = (ema21_atual < ema21_prev) and (ema21_atual > 0)
+    # 2. Rompimento Falso (D viola a máxima de B)
+    manipulacao_topo = c1["high"] > c3["high"]
+    # 3. Gatilho (Vela atual fecha abaixo da mínima da vela que violou o topo)
+    gatilho_venda = c0["close"] < c1["low"]
+    
+    if tendencia_baixa and manipulacao_topo and gatilho_venda:
+        return "PUT"
+        
+    return "NONE"

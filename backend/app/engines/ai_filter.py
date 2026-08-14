@@ -39,6 +39,7 @@ class AIFilter:
                 f"Voce é um analista quantitativo focado em criptomoedas.\n"
                 f"Uma estrategia chamada '{strategy_name}' gerou um sinal de '{signal_direction}'.\n"
                 f"Aqui esta a acao do preco recente:\n{context_str}\n"
+                f"Considere a estrutura geral, padrões harmônicos de mercado (ex: ABCD / pullbacks) e momento.\n"
                 f"Baseado puramente no Price Action e Volume, voce aprova esta entrada? "
                 f"Responda APENAS 'SIM' ou 'NAO'."
             )

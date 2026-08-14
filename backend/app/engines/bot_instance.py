@@ -10,7 +10,7 @@ from app.engines.cataloger import calculate_win_rate
 from app.engines.technical_analysis import (
     candles_to_df, apply_indicators, 
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc,
-    eval_consecutive, eval_supertrend, eval_pin_bar,
+    eval_consecutive, eval_supertrend, eval_pin_bar, eval_abcd,
     check_signal_quality
 )
 from app.models.market import Tick, Signal, SignalType, AccountState, CandleDirection
@@ -42,12 +42,13 @@ class BotInstance:
         self.builder_m15 = CandleBuilder(900)
         
         self.paper_trader = PaperTrader(symbol=self.symbol, initial_balance=200.0, leverage=10)
+        self.paper_trader.position_sizing_mode = "volatility_adjusted"
         self.ai_filter = AIFilter()
         self.journal = TradeJournal()
         self.live_qty = 0
         self.active_trade_id = None
         
-        self.active_config = {"timeframe": 60, "strategy": "3 Velas", "gale": 2, "rsi_oversold": 25, "rsi_overbought": 75}
+        self.active_config = {"timeframe": 900, "strategy": "ABCD", "gale": 2, "rsi_oversold": 25, "rsi_overbought": 75}
         self.auto_optimize = False
         self.global_catalog = []
         
@@ -121,7 +122,7 @@ class BotInstance:
     async def broadcast_catalog(self):
         catalog = []
         for timeframe, b in [(60, self.builder_m1), (300, self.builder_m5), (900, self.builder_m15)]:
-            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "3 Velas", "Pin Bar"]:
+            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "3 Velas", "Pin Bar", "ABCD"]:
                 stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
                 stats.pop("df", None)
                 catalog.append({
@@ -256,6 +257,8 @@ class BotInstance:
                         sig_val = eval_consecutive(df, num_candles=3)
                     elif req_strategy == "Pin Bar":
                         sig_val = eval_pin_bar(df)
+                    elif req_strategy == "ABCD":
+                        sig_val = eval_abcd(df)
                         
                     signal = Signal(type=SignalType.NONE, reason="")
                     if sig_val == "CALL":
@@ -266,10 +269,14 @@ class BotInstance:
                     if signal.type.value != "NONE":
                         strategy_info = f"M{tf//60}/{req_strategy}"
 
-                    # === Stop Diário Automático (Fase 3.1) ===
-                    if self.paper_trader.get_pnl() <= self.daily_loss_limit:
+                    # === Stop Diário Automático (Trailing Floor) ===
+                    dynamic_stop = -self.paper_trader.daily_stop_loss
+                    if self.paper_trader.highest_daily_pnl >= self.paper_trader.daily_stop_gain:
+                        dynamic_stop = self.paper_trader.highest_daily_pnl - self.paper_trader.daily_stop_gain
+                        
+                    if self.paper_trader.get_pnl() <= dynamic_stop:
                         if signal.type.value != "NONE":
-                            logger.warning(f"🛑 [{self.symbol}] STOP DIÁRIO ATINGIDO (PnL: ${self.paper_trader.get_pnl():.2f}). Trades pausados.")
+                            logger.warning(f"🛑 [{self.symbol}] STOP DIÁRIO ATINGIDO (PnL: ${self.paper_trader.get_pnl():.2f} <= Piso: ${dynamic_stop:.2f}). Trades pausados.")
                             signal.type = SignalType.NONE
 
                     # === Filtros de Qualidade de Sinal (Fases 1+2) ===
@@ -316,6 +323,7 @@ class BotInstance:
                             balance=self.paper_trader.balance, 
                             current_consecutive_losses=self.paper_trader.consecutive_losses, 
                             daily_pnl=self.paper_trader.get_pnl(),
+                            highest_daily_pnl=self.paper_trader.highest_daily_pnl,
                             current_gale_level=self.paper_trader.consecutive_losses, 
                             daily_stop_loss=self.paper_trader.daily_stop_loss, 
                             daily_stop_gain=self.paper_trader.daily_stop_gain,
@@ -347,8 +355,7 @@ class BotInstance:
                                 await self.manager.broadcast({"event": "trade_opened", "symbol": self.symbol, "data": {"direction": signal.type.value, "price": tick.quote}})
                                 
                                 import os
-                                live_margin = self.paper_trader.balance * (self.paper_trader.risk_percent / 100.0) if self.paper_trader.position_sizing_mode == "fixed" else self.paper_trader.stake_initial * (2 ** self.paper_trader.consecutive_losses)
-                                live_margin = min(live_margin, self.paper_trader.balance)
+                                live_margin = self.paper_trader.get_current_margin_usdt()
                                 
                                 rsi_val = df.iloc[-1].get("RSI_14", 50.0)
                                 if str(rsi_val) == "nan": rsi_val = 50.0

@@ -52,6 +52,7 @@ class RiskEvaluation(BaseModel):
 class AccountState(BaseModel):
     balance: float
     daily_pnl: float
+    highest_daily_pnl: float = 0.0
     current_gale_level: int
     daily_stop_loss: float
     daily_stop_gain: float

@@ -9,18 +9,14 @@ def evaluate_risk(signal: Signal, account: AccountState) -> RiskEvaluation:
             gale_level=0
         )
         
-    if account.daily_pnl <= -account.daily_stop_loss:
-        return RiskEvaluation(
-            decision=RiskDecision.BLOCKED,
-            reason=f"Daily stop-loss reached: {account.daily_pnl}",
-            stake=0.0,
-            gale_level=0
-        )
+    dynamic_stop = -account.daily_stop_loss
+    if account.highest_daily_pnl >= account.daily_stop_gain:
+        dynamic_stop = account.highest_daily_pnl - account.daily_stop_gain
         
-    if account.daily_pnl >= account.daily_stop_gain:
+    if account.daily_pnl <= dynamic_stop:
         return RiskEvaluation(
             decision=RiskDecision.BLOCKED,
-            reason=f"Daily stop-gain reached: {account.daily_pnl}",
+            reason=f"Daily dynamic stop reached: {account.daily_pnl} <= {dynamic_stop}",
             stake=0.0,
             gale_level=0
         )

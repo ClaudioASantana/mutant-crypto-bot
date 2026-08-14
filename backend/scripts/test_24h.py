@@ -9,7 +9,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from app.engines.simulator import PaperTrader
 from app.engines.ai_filter import AIFilter
 from app.engines.candle_builder import CandleBuilder
-from app.engines.technical_analysis import apply_indicators, eval_ema_macd, eval_vwap, eval_smc, candles_to_df
+from app.engines.technical_analysis import apply_indicators, eval_ema_macd, eval_vwap, eval_smc, eval_abcd, candles_to_df
 from scripts.backtester import download_history
 from dotenv import load_dotenv
 
@@ -40,8 +40,8 @@ async def run_24h_test():
     trader.open_positions = []
     trader.history_trades = []
     
-    # Strategy to test: SMC or EMA+MACD
-    strategy_name = "EMA+MACD"
+    # Strategy to test: SMC or EMA+MACD or ABCD
+    strategy_name = "ABCD"
     
     closed_candles = []
     total_signals = 0
@@ -71,6 +71,8 @@ async def run_24h_test():
                 sig_val = eval_ema_macd(df)
             elif strategy_name == "SMC":
                 sig_val = eval_smc(df)
+            elif strategy_name == "ABCD":
+                sig_val = eval_abcd(df)
                 
             if sig_val != "NONE":
                 total_signals += 1

@@ -16,6 +16,7 @@ class PaperTrader:
         self.consecutive_losses = 0
         self.history_trades = []
         self.open_positions = []
+        self.highest_daily_pnl = 0.0
         
         self.daily_stop_loss = 50.0
         self.daily_stop_gain = 50.0
@@ -38,6 +39,7 @@ class PaperTrader:
                     self.balance = state.get("balance", self.initial_balance)
                     self.initial_balance = state.get("initial_balance", self.initial_balance)
                     self.consecutive_losses = state.get("consecutive_losses", 0)
+                    self.highest_daily_pnl = state.get("highest_daily_pnl", 0.0)
                     self.history_trades = state.get("history_trades", [])
                     self.open_positions = state.get("open_positions", [])
                     if "risk_settings" in state:
@@ -62,6 +64,7 @@ class PaperTrader:
                 "balance": self.balance,
                 "initial_balance": self.initial_balance,
                 "consecutive_losses": self.consecutive_losses,
+                "highest_daily_pnl": self.highest_daily_pnl,
                 "history_trades": self.history_trades,
                 "open_positions": self.open_positions,
                 "risk_settings": {
@@ -84,19 +87,24 @@ class PaperTrader:
     def get_pnl(self) -> float:
         return round(self.balance - self.initial_balance, 2)
         
-    def open_trade(self, direction: str, tf: int, current_epoch: int, current_price: float, sl_price: float, tp_price: float, atr: float = 0.0):
-        # Apply Risk Sizing logic
+    def get_current_margin_usdt(self) -> float:
         if self.position_sizing_mode == "gale":
             multiplier = 2 ** self.consecutive_losses
             if self.consecutive_losses > self.max_gale:
                 multiplier = 1
             margin_usdt = self.stake_initial * multiplier
+        elif self.position_sizing_mode == "volatility_adjusted":
+            volatility_index = 1.10 if "BTC" in self.symbol else 1.51
+            margin_usdt = self.stake_initial / volatility_index
         else:
-            # Fixed percent
             margin_usdt = self.balance * (self.risk_percent / 100.0)
             
         if margin_usdt > self.balance:
-            margin_usdt = self.balance # All in if insufficient balance, just for simulation
+            margin_usdt = self.balance
+        return margin_usdt
+
+    def open_trade(self, direction: str, tf: int, current_epoch: int, current_price: float, sl_price: float, tp_price: float, atr: float = 0.0):
+        margin_usdt = self.get_current_margin_usdt()
             
         position_size_usd = margin_usdt * self.leverage
         qty = position_size_usd / current_price
@@ -198,10 +206,10 @@ class PaperTrader:
                 self.history_trades.insert(0, trade)
                 finished.append(trade)
                 
-                # COMPOUNDING LOGIC (Dynamic Risk/Profit Target)
-                if self.get_pnl() >= self.daily_stop_gain:
-                    logger.info(f"🎉 [{self.symbol}] META ATINGIDA (+${self.get_pnl():.2f})! Travando lucros e iniciando novo ciclo com base de ${self.balance:.2f}")
-                    self.initial_balance = self.balance
+                # DAILY TRAILING STOP TRACKING
+                if self.get_pnl() > self.highest_daily_pnl:
+                    self.highest_daily_pnl = self.get_pnl()
+                    logger.info(f"🚀 [{self.symbol}] Novo pico de PnL Diário: +${self.highest_daily_pnl:.2f}")
                 
         # Trim history
         if len(self.history_trades) > 50:
