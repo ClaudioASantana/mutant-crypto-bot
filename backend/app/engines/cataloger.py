@@ -1,9 +1,9 @@
 from typing import List
 from app.models.market import Candle
 from app.engines.technical_analysis import (
-    candles_to_df, apply_indicators, 
+    candles_to_df, apply_indicators,
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend, eval_pin_bar,
-    eval_abcd
+    eval_abcd, eval_bollinger_ema_macd
 )
 
 def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict:
@@ -42,6 +42,8 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
         strategy_func = eval_pin_bar
     elif strategy_name == "ABCD":
         strategy_func = eval_abcd
+    elif strategy_name == "Bollinger+EMA+MACD":
+        strategy_func = eval_bollinger_ema_macd
     else:
         return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "pnl_usdt": 0.0}
 

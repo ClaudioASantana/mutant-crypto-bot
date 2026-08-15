@@ -946,6 +946,7 @@ export default function Home() {
                 <option value="Bollinger">Bollinger Bands</option>
                 <option value="EMA+MACD">EMA + MACD</option>
                 <option value="SuperTrend">SuperTrend</option>
+                <option value="Bollinger+EMA+MACD">📈 Combo Bollinger+EMA+MACD</option>
               </select>
               
               <select 

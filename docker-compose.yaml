@@ -12,7 +12,7 @@ services:
     - traefik.http.routers.mutant-backend.rule=Host(`dev-api.mutante.grupocin.com.br`)
     - traefik.http.services.mutant-backend.loadbalancer.server.port=8000
     ports:
-    - '8000'
+    - '8010:8000'
     restart: unless-stopped
     volumes:
     - mutant-chromadb:/app/chroma_db

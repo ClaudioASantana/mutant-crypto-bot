@@ -291,7 +291,7 @@ async def api_backtest_advanced(req: AdvancedBacktestRequest):
         
     def _compute_win_rate():
         if req.strategy == "Auto":
-            strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"]
+            strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar", "Bollinger+EMA+MACD"]
             best_res = None
             best_pnl = -float('inf')
             best_strategy = None

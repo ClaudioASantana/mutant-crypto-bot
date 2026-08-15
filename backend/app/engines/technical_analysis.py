@@ -392,5 +392,35 @@ def eval_abcd(df: pd.DataFrame) -> str:
     
     if tendencia_baixa and manipulacao_topo and gatilho_venda:
         return "PUT"
-        
+
+    return "NONE"
+
+
+def eval_bollinger_ema_macd(df: pd.DataFrame) -> str:
+    """
+    Estratégia Combinada: Bollinger (Reversão/Volatilidade) + EMA (Tendência) + MACD (Momentum).
+    Exige que o preço toque/rompa uma das bandas E haja confirmação de tendência (cruzamento EMA 9/21)
+    E momentum (histograma MACD) na mesma direção. Só gera sinal quando todas concordam.
+    """
+    if df.empty or len(df) < 30: return "NONE"
+
+    last = df.iloc[-1]
+    prev = df.iloc[-2]
+
+    close = last["close"]
+    upper = last.get("BBU_20_2.0_2.0", 0)
+    lower = last.get("BBL_20_2.0_2.0", 0)
+
+    ema9, ema21 = last.get("EMA_9", 0), last.get("EMA_21", 0)
+    p_ema9, p_ema21 = prev.get("EMA_9", 0), prev.get("EMA_21", 0)
+    macd = last.get("MACDh_12_26_9", 0)
+
+    # Condição CALL: Preço na banda inferior (sobrevendido) + EMA cruzou pra cima + MACD positivo
+    if close <= lower and p_ema9 <= p_ema21 and ema9 > ema21 and macd > 0:
+        return "CALL"
+
+    # Condição PUT: Preço na banda superior (sobrecomprado) + EMA cruzou pra baixo + MACD negativo
+    if close >= upper and p_ema9 >= p_ema21 and ema9 < ema21 and macd < 0:
+        return "PUT"
+
     return "NONE"

@@ -6,7 +6,10 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from app.rag.vector import get_vector_store
 from app.models.market import Signal, SignalType
+from app.services.llm_throttle import llm_rate_limiter, llm_retry, OpenAIRateLimitError
+import logging
 
+logger = logging.getLogger(__name__)
 load_dotenv()
 
 BASE_URL = os.getenv("MANIFEST_BASE_URL")
@@ -36,7 +39,7 @@ Sinal gerado pelo motor matemático:
 - Razão matemática: {signal_reason}
 - Avaliação de Risco prévia: {risk_evaluation}
 
-Dê uma explicação amigável e curta (máximo 2 parágrafos) justificando este sinal com base na documentação. 
+Dê uma explicação amigável e curta (máximo 2 parágrafos) justificando este sinal com base na documentação.
 Fale como se você estivesse do lado do operador. Destaque alertas de risco se existirem."""
 
 prompt = ChatPromptTemplate.from_messages([
@@ -46,24 +49,17 @@ prompt = ChatPromptTemplate.from_messages([
 
 agent_chain = prompt | llm | StrOutputParser()
 
-async def explain_signal(signal: Signal, risk_evaluation: str) -> str:
-    if signal.type == SignalType.NONE:
-        return "Nenhum sinal."
-        
-    query = f"Regras para sinal {signal.type.value} e limites de risco"
-    docs = await retriever.ainvoke(query)
-    context = "\n\n".join([doc.page_content for doc in docs])
-    
-    response = await agent_chain.ainvoke({
-        "context": context,
-        "signal_type": signal.type.value,
-        "signal_reason": signal.reason,
-        "risk_evaluation": risk_evaluation
-    })
-    
-    return response
+@llm_retry
+async def explain_signal(signal: Signal, risk_evaluation: str) -> dict:
+    # Desativação temporária da IA explicativa, conforme solicitado.
+    return {"analysis": "Análise de IA (RAG) temporariamente desativada."}
 
 if __name__ == "__main__":
     test_signal = Signal(type=SignalType.CALL, reason="9 velas de baixa seguidas")
     print("Testando o Agente...")
-    print(explain_signal(test_signal, "Risco OK. Gale permitido até nível 1."))
+    # Ajustado para o novo formato de retorno
+    import asyncio
+    async def run_test():
+        response = await explain_signal(test_signal, "Risco OK. Gale permitido até nível 1.")
+        print(response)
+    asyncio.run(run_test())
