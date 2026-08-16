@@ -112,6 +112,7 @@ class BotInstance:
                 high=c["high"],
                 low=c["low"],
                 close=c["close"],
+                volume=c.get("volume", 0.0),
                 direction=direction
             ))
         logger.info(f"[{self.symbol}] Builder M{granularity//60} inicializado com {len(b.closed_candles)} velas históricas.")

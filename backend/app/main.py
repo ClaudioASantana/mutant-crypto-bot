@@ -189,23 +189,44 @@ def get_portfolio():
 
 @app.get("/api/chart_history")
 def get_chart_history(symbol: str):
-    history_payload = []
     if symbol in bots:
         b = bots[symbol]
         active_b = b.get_active_builder()
-        seen_times = set()
-        for c in sorted(active_b.closed_candles, key=lambda x: x.epoch):
-            if c.epoch not in seen_times:
-                history_payload.append({
-                    "time": c.epoch,
-                    "open": c.open,
-                    "high": c.high,
-                    "low": c.low,
-                    "close": c.close
-                })
-                seen_times.add(c.epoch)
+        if not active_b.closed_candles:
+            return {"data": []}
             
-    return {"data": history_payload[-200:]}
+        from app.engines.technical_analysis import apply_indicators, candles_to_df
+        import numpy as np
+        import math
+        
+        # Build dataframe to calculate indicators on historical data
+        df = candles_to_df(active_b.closed_candles)
+        df = apply_indicators(df)
+        df = df.replace({np.nan: None})
+        
+        history_payload = []
+        seen_times = set()
+        for index, row in df.iterrows():
+            epoch = int(row["epoch"])
+            if epoch not in seen_times:
+                history_payload.append({
+                    "time": epoch,
+                    "open": row["open"],
+                    "high": row["high"],
+                    "low": row["low"],
+                    "close": row["close"],
+                    "volume": row.get("volume", 0.0),
+                    "bb_upper": row.get("BBU_21_2.0"),
+                    "bb_middle": row.get("BBM_21_2.0"),
+                    "bb_lower": row.get("BBL_21_2.0"),
+                    "macd_line": row.get("MACD_12_26_9"),
+                    "macd_signal": row.get("MACDs_12_26_9"),
+                    "macd_hist": row.get("MACDh_12_26_9")
+                })
+                seen_times.add(epoch)
+                
+        return {"data": history_payload[-200:]}
+    return {"data": []}
 
 from pydantic import BaseModel
 class OptimizeRequest(BaseModel):
