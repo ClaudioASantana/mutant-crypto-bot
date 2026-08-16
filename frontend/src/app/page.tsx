@@ -187,7 +187,7 @@ export default function Home() {
         horzLines: { color: 'rgba(42, 46, 57, 0.2)' },
       },
       width: chartContainerRef.current.clientWidth,
-      height: 500,
+      height: 250,
       timeScale: {
         timeVisible: true,
         secondsVisible: false,
@@ -204,20 +204,20 @@ export default function Home() {
     chartSeriesRef.current = { main: candlestickSeries };
 
     // --- PAINEL DE VOLUME (EMBAIXO) ---
+    chart.priceScale("volume").applyOptions({
+      scaleMargins: { top: 0.8, bottom: 0 },
+    });
     const volumeSeries = chart.addSeries(HistogramSeries, {
       priceFormat: { type: 'volume' },
       priceScaleId: 'volume',
     });
-    chart.priceScale("volume").applyOptions({
-      scaleMargins: { top: 0.8, bottom: 0 },
-    });
     chartSeriesRef.current.volume = volumeSeries;
 
     // --- PAINEL DE MACD (MEIO) ---
-    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd' });
     chart.priceScale('macd').applyOptions({
       scaleMargins: { top: 0.6, bottom: 0.2 },
     });
+    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd' });
     const macdSignalSeries = chart.addSeries(LineSeries, { color: '#FF6D00', lineWidth: 1, priceScaleId: 'macd' });
     const macdHistSeries = chart.addSeries(HistogramSeries, { priceScaleId: 'macd' });
     chartSeriesRef.current.macd = {
@@ -443,7 +443,6 @@ export default function Home() {
         } else {
             main.setMarkers([]);
         }
-    }
     } catch (err) {
         console.error("Erro ao definir dados/marcadores do backtest no gráfico:", err);
     } finally { // Adicionado finally para garantir que o isBacktesting seja false
@@ -510,19 +509,19 @@ export default function Home() {
     const bbLowerSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1, crosshairMarkerVisible: false, lastValueVisible: false });
 
     // --- PAINEL DE VOLUME (EMBAIXO) ---
+    chart.priceScale('volume').applyOptions({
+      scaleMargins: { top: 0.8, bottom: 0 }, // Ocupa os 20% inferiores
+    });
     const volumeSeries = chart.addSeries(HistogramSeries, {
       priceFormat: { type: 'volume' },
       priceScaleId: 'volume',
     });
-    chart.priceScale('volume').applyOptions({
-      scaleMargins: { top: 0.8, bottom: 0 }, // Ocupa os 20% inferiores
-    });
 
     // --- PAINEL DE MACD (MEIO) ---
-    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd', crosshairMarkerVisible: false, lastValueVisible: false });
     chart.priceScale('macd').applyOptions({
       scaleMargins: { top: 0.6, bottom: 0.2 }, // Entre 60% e 80% do topo
     });
+    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd', crosshairMarkerVisible: false, lastValueVisible: false });
     const macdSignalSeries = chart.addSeries(LineSeries, { color: '#FF6D00', lineWidth: 1, priceScaleId: 'macd', crosshairMarkerVisible: false, lastValueVisible: false });
     const macdHistSeries = chart.addSeries(HistogramSeries, { priceScaleId: 'macd' });
 
@@ -711,4 +710,3 @@ export default function Home() {
       </div>
     </ErrorBoundary>
   );
-}
