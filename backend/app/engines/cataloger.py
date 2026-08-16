@@ -2,15 +2,15 @@ from typing import List
 from app.models.market import Candle
 from app.engines.technical_analysis import (
     candles_to_df, apply_indicators,
-    eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend, eval_pin_bar,
-    eval_abcd, eval_bollinger_ema_macd
+    eval_ema_macd, eval_bollinger, eval_pin_bar,
+    eval_abcd, eval_bollinger_ema_macd, eval_triple_confluence
 )
 
 def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict:
     """
     Simula entradas usando a estratégia técnica sobre o histórico de velas.
     Retorna o total de sinais gerados e a % de vitoria (Win Rate).
-    Para simplificar o backtest no painel, consideramos WIN se a próxima vela fechar 
+    Para simplificar o backtest no painel, consideramos WIN se a próxima vela fechar
     a favor da direção do sinal.
     """
     if len(closed_candles) < 50:
@@ -25,26 +25,31 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
     losses = 0
     pnl_usdt = 0.0
     trades = []
-    
+
     # Mapeamento da estratégia
     strategy_func = None
     if strategy_name == "EMA+MACD":
         strategy_func = eval_ema_macd
     elif strategy_name == "Bollinger":
         strategy_func = eval_bollinger
-    elif strategy_name == "VWAP":
-        strategy_func = eval_vwap
-    elif strategy_name == "SMC":
-        strategy_func = eval_smc
-    elif strategy_name == "SuperTrend":
-        strategy_func = eval_supertrend
     elif strategy_name == "Pin Bar":
         strategy_func = eval_pin_bar
     elif strategy_name == "ABCD":
         strategy_func = eval_abcd
     elif strategy_name == "Bollinger+EMA+MACD":
         strategy_func = eval_bollinger_ema_macd
+    elif strategy_name == "Triple Confluence":
+        strategy_func = eval_triple_confluence
     else:
+        # Se a estratégia não estiver na lista simplificada, retorna vazio.
+        # Incluindo "3 Velas" aqui temporariamente para evitar que quebre,
+        # já que não foi formalmente removida mas não está nos imports.
+        if strategy_name not in ["3 Velas"]:
+             return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "pnl_usdt": 0.0}
+        else: # Mock para "3 Velas"
+            strategy_func = lambda df: "NONE"
+
+    if not strategy_func:
         return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "pnl_usdt": 0.0}
 
     # Padrão Crypto Futures Default Risco 1:2
@@ -57,36 +62,36 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
 
     for i in range(50, len(df) - 1):
         sub_df = df.iloc[:i+1]
-        
+
         signal = strategy_func(sub_df)
-        
+
         if signal != "NONE":
             signals_generated += 1
             entry_price = df.iloc[i]["close"]
-            
-            # Dynamic Target calculation using ATR
-            atr_val = df.iloc[i].get("ATRr_14", entry_price * 0.005) # Fallback se não existir
-            
+
+            # Dynamic Target calculation using ATR (fallback if not present)
+            atr_val = df.iloc[i].get("ATRr_14", entry_price * 0.005)
+
             if signal == "CALL":
                 sl_price = entry_price - (atr_val * sl_multiplier)
                 tp_price = entry_price + (atr_val * tp_multiplier)
             else:
                 sl_price = entry_price + (atr_val * sl_multiplier)
                 tp_price = entry_price - (atr_val * tp_multiplier)
-                
+
             trade_won = False
             trade_closed = False
             is_time_stop = False
-            
+
             # Variáveis para Trailing Stop
             highest_reached = entry_price
             lowest_reached = entry_price
-            
+
             for j in range(i+1, len(df)):
                 c_high = df['high'].iloc[j]
                 c_low = df['low'].iloc[j]
                 c_close = df['close'].iloc[j]
-                
+
                 current_time = int(df.index[j].timestamp())
                 entry_time = int(df.index[i].timestamp())
                 duration_seconds = current_time - entry_time
@@ -98,7 +103,7 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                     is_time_stop = True
                     exit_price = c_close
                     break
-                
+
                 if signal == "CALL":
                     # Atualiza máxima
                     if c_high > highest_reached:
@@ -108,7 +113,7 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                             new_sl = highest_reached - (atr_val * trailing_distance)
                             if new_sl > sl_price:
                                 sl_price = new_sl
-                                
+
                     if c_low <= sl_price:
                         trade_closed = True
                         if sl_price >= entry_price:
@@ -127,7 +132,7 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                             new_sl = lowest_reached + (atr_val * trailing_distance)
                             if new_sl < sl_price:
                                 sl_price = new_sl
-                                
+
                     if c_high >= sl_price:
                         trade_closed = True
                         if sl_price <= entry_price:
@@ -137,10 +142,10 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                         trade_won = True
                         trade_closed = True
                         break
-                        
+
             if trade_closed:
                 fee = stake * leverage * 0.001
-                
+
                 if hit_time_stop:
                     # Treat TIME_STOP like a partial close at current price
                     profit = (stake * leverage * ((exit_price - entry_price) / entry_price)) if signal == "CALL" else (stake * leverage * ((entry_price - exit_price) / entry_price))
@@ -156,7 +161,7 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                     exit_price = tp_price if signal == "CALL" and c_high >= tp_price else sl_price
                     if signal == "PUT":
                         exit_price = tp_price if c_low <= tp_price else sl_price
-                    
+
                     profit = (stake * leverage * (abs(entry_price - exit_price) / entry_price)) - fee
                     pnl_usdt += profit
                 else:
@@ -165,7 +170,7 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                     # Perda no SL original ou parcial
                     profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
                     pnl_usdt += profit
-                    
+
                 entry_time = int(df.index[i].timestamp())
                 exit_time = int(df.index[j].timestamp())
                 trades.append({
@@ -176,11 +181,11 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                     "signal": signal,
                     "profit": float(profit)
                 })
-                
+
     win_rate = 0.0
     if wins + losses > 0:
         win_rate = round((wins / (wins + losses)) * 100, 2)
-        
+
     return {
         "signals": signals_generated,
         "wins": wins,

@@ -172,7 +172,41 @@ export default function Home() {
         wickUpColor: '#26a69a',
         wickDownColor: '#ef5350',
     });
-    chartSeriesRef.current = candlestickSeries;
+    chartSeriesRef.current = { main: candlestickSeries };
+
+    // --- PAINEL DE VOLUME (EMBAIXO) ---
+    chart.priceScale("volume").applyOptions({
+      scaleMargins: { top: 0.8, bottom: 0 },
+    });
+    const volumeSeries = chart.addSeries(HistogramSeries, {
+      priceFormat: { type: 'volume' },
+      priceScaleId: 'volume',
+    });
+    chartSeriesRef.current.volume = volumeSeries;
+
+    // --- PAINEL DE MACD (MEIO) ---
+    chart.priceScale('macd').applyOptions({
+      scaleMargins: { top: 0.6, bottom: 0.2 },
+    });
+    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd' });
+    const macdSignalSeries = chart.addSeries(LineSeries, { color: '#FF6D00', lineWidth: 1, priceScaleId: 'macd' });
+    const macdHistSeries = chart.addSeries(HistogramSeries, { priceScaleId: 'macd' });
+    chartSeriesRef.current.macd = {
+        line: macdLineSeries,
+        signal: macdSignalSeries,
+        hist: macdHistSeries
+    };
+
+    // --- BANDAS DE BOLLINGER (NO GRÁFICO PRINCIPAL) ---
+    const bbUpperSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1 });
+    const bbMiddleSeries = chart.addSeries(LineSeries, { color: 'rgba(255, 152, 0, 0.4)', lineWidth: 1 });
+    const bbLowerSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1 });
+    chartSeriesRef.current.bb = {
+        upper: bbUpperSeries,
+        middle: bbMiddleSeries,
+        lower: bbLowerSeries
+    };
+
 
     const handleResize = () => {
       if (chartContainerRef.current) {
@@ -202,7 +236,37 @@ export default function Home() {
         const res = await fetch(`${httpUrl}/api/chart_history?symbol=${activeSymbol}&limit=200`);
         const result = await res.json();
         if (chartSeriesRef.current && result.data) {
-          chartSeriesRef.current.setData(result.data);
+          chartSeriesRef.current.main.setData(result.data);
+
+          // Popula os novos indicadores
+          const volumeData: any[] = [];
+          const bbUpperData: any[] = [];
+          const bbMiddleData: any[] = [];
+          const bbLowerData: any[] = [];
+          const macdLineData: any[] = [];
+          const macdSignalData: any[] = [];
+          const macdHistData: any[] = [];
+
+          result.data.forEach((item: any) => {
+            if (item.volume !== undefined) {
+              volumeData.push({ time: item.time, value: item.volume, color: item.close >= item.open ? 'rgba(38, 166, 154, 0.5)' : 'rgba(239, 83, 80, 0.5)' });
+            }
+            if (item.bb_upper !== undefined) bbUpperData.push({ time: item.time, value: item.bb_upper });
+            if (item.bb_middle !== undefined) bbMiddleData.push({ time: item.time, value: item.bb_middle });
+            if (item.bb_lower !== undefined) bbLowerData.push({ time: item.time, value: item.bb_lower });
+
+            if (item.macd_line !== undefined) macdLineData.push({ time: item.time, value: item.macd_line });
+            if (item.macd_signal !== undefined) macdSignalData.push({ time: item.time, value: item.macd_signal });
+            if (item.macd_hist !== undefined) macdHistData.push({ time: item.time, value: item.macd_hist, color: item.macd_hist >= 0 ? '#26a69a' : '#ef5350' });
+          });
+
+          if (chartSeriesRef.current.volume && volumeData.length > 0) chartSeriesRef.current.volume.setData(volumeData);
+          if (chartSeriesRef.current.bb.upper && bbUpperData.length > 0) chartSeriesRef.current.bb.upper.setData(bbUpperData);
+          if (chartSeriesRef.current.bb.middle && bbMiddleData.length > 0) chartSeriesRef.current.bb.middle.setData(bbMiddleData);
+          if (chartSeriesRef.current.bb.lower && bbLowerData.length > 0) chartSeriesRef.current.bb.lower.setData(bbLowerData);
+          if (chartSeriesRef.current.macd.line && macdLineData.length > 0) chartSeriesRef.current.macd.line.setData(macdLineData);
+          if (chartSeriesRef.current.macd.signal && macdSignalData.length > 0) chartSeriesRef.current.macd.signal.setData(macdSignalData);
+          if (chartSeriesRef.current.macd.hist && macdHistData.length > 0) chartSeriesRef.current.macd.hist.setData(macdHistData);
         }
       } catch (e) {
         console.error("Failed to fetch chart history", e);
@@ -216,7 +280,7 @@ export default function Home() {
 
   useEffect(() => {
     if (chartSeriesRef.current && currentView === 'dashboard' && liveData.candle) {
-        const data = {
+        const candleData = {
             time: liveData.candle.epoch,
             open: liveData.candle.open,
             high: liveData.candle.high,
@@ -224,7 +288,33 @@ export default function Home() {
             close: liveData.candle.close,
         };
         try {
-            chartSeriesRef.current.update(data);
+            chartSeriesRef.current.main.update(candleData);
+
+            if(liveData.candle.indicators) {
+                const indicators = liveData.candle.indicators;
+                if (chartSeriesRef.current.volume) {
+                    chartSeriesRef.current.volume.update({ time: candleData.time, value: liveData.candle.volume, color: candleData.close >= candleData.open ? 'rgba(38, 166, 154, 0.5)' : 'rgba(239, 83, 80, 0.5)' });
+                }
+                if (chartSeriesRef.current.bb.upper) {
+                    chartSeriesRef.current.bb.upper.update({ time: candleData.time, value: indicators.BBU_21_2_0 });
+                }
+                if (chartSeriesRef.current.bb.middle) {
+                    chartSeriesRef.current.bb.middle.update({ time: candleData.time, value: indicators.BBM_21_2_0 });
+                }
+                if (chartSeriesRef.current.bb.lower) {
+                    chartSeriesRef.current.bb.lower.update({ time: candleData.time, value: indicators.BBL_21_2_0 });
+                }
+                if (chartSeriesRef.current.macd.line) {
+                    chartSeriesRef.current.macd.line.update({ time: candleData.time, value: indicators.MACD_12_26_9 });
+                }
+                if (chartSeriesRef.current.macd.signal) {
+                    chartSeriesRef.current.macd.signal.update({ time: candleData.time, value: indicators.MACDs_12_26_9 });
+                }
+                if (chartSeriesRef.current.macd.hist) {
+                    chartSeriesRef.current.macd.hist.update({ time: candleData.time, value: indicators.MACDh_12_26_9, color: indicators.MACDh_12_26_9 >= 0 ? '#26a69a' : '#ef5350' });
+                }
+            }
+
         } catch (e) {
             console.warn("Ignoring tick update error (possibly older timestamp)", e);
         }
@@ -363,10 +453,10 @@ export default function Home() {
     setIsSavingRisk(false);
   };
 
-  // Efeito para desenhar linhas de TP/SL no gráfico
+  // Efeito para CRIAR o gráfico de backtest
   useEffect(() => {
     if (currentView !== 'backtest' || !backtestChartContainerRef.current) return;
-    
+
     const chart = createChart(backtestChartContainerRef.current, {
       layout: {
         background: { type: ColorType.Solid, color: 'transparent' },
@@ -384,6 +474,7 @@ export default function Home() {
       }
     });
 
+    // --- GRÁFICO PRINCIPAL ---
     const candlestickSeries = chart.addSeries(CandlestickSeries, {
         upColor: '#26a69a',
         downColor: '#ef5350',
@@ -391,37 +482,36 @@ export default function Home() {
         wickUpColor: '#26a69a',
         wickDownColor: '#ef5350',
     });
-    
-    const volumeSeries = chart.addSeries(HistogramSeries, {
-      color: '#26a69a',
-      priceFormat: { type: 'volume' },
-      priceScaleId: '', // overlay
+
+    // --- BANDAS DE BOLLINGER (NO GRÁFICO PRINCIPAL) ---
+    const bbUpperSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1, crosshairMarkerVisible: false, lastValueVisible: false });
+    const bbMiddleSeries = chart.addSeries(LineSeries, { color: 'rgba(255, 152, 0, 0.4)', lineWidth: 1, crosshairMarkerVisible: false, lastValueVisible: false });
+    const bbLowerSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1, crosshairMarkerVisible: false, lastValueVisible: false });
+
+    // --- PAINEL DE VOLUME (EMBAIXO) ---
+    chart.priceScale('volume').applyOptions({
+      scaleMargins: { top: 0.8, bottom: 0 }, // Ocupa os 20% inferiores
     });
-    
-    chart.priceScale('').applyOptions({
-      scaleMargins: {
-        top: 0.8,
-        bottom: 0,
-      },
+    const volumeSeries = chart.addSeries(HistogramSeries, {
+      priceFormat: { type: 'volume' },
+      priceScaleId: 'volume',
     });
 
-    const bbUpperSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1 });
-    const bbMiddleSeries = chart.addSeries(LineSeries, { color: 'rgba(255, 152, 0, 0.4)', lineWidth: 1 });
-    const bbLowerSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1 });
-    
+    // --- PAINEL DE MACD (MEIO) ---
     chart.priceScale('macd').applyOptions({
-      scaleMargins: {
-        top: 0.8,
-        bottom: 0,
-      },
+      scaleMargins: { top: 0.6, bottom: 0.2 }, // Entre 60% e 80% do topo
     });
-    
-    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd' });
-    const macdSignalSeries = chart.addSeries(LineSeries, { color: '#FF6D00', lineWidth: 1, priceScaleId: 'macd' });
+    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd', crosshairMarkerVisible: false, lastValueVisible: false });
+    const macdSignalSeries = chart.addSeries(LineSeries, { color: '#FF6D00', lineWidth: 1, priceScaleId: 'macd', crosshairMarkerVisible: false, lastValueVisible: false });
     const macdHistSeries = chart.addSeries(HistogramSeries, { priceScaleId: 'macd' });
-    
+
     backtestChartRef.current = chart;
-    backtestSeriesRef.current = candlestickSeries;
+    backtestSeriesRef.current = {
+      main: candlestickSeries,
+      volume: volumeSeries,
+      bb: { upper: bbUpperSeries, middle: bbMiddleSeries, lower: bbLowerSeries },
+      macd: { line: macdLineSeries, signal: macdSignalSeries, hist: macdHistSeries }
+    };
 
     const handleResize = () => {
       if (backtestChartContainerRef.current) {
@@ -429,11 +519,28 @@ export default function Home() {
       }
     };
     window.addEventListener('resize', handleResize);
-    
-    if (backtestResults?.history) {
-      try {
-        candlestickSeries.setData(backtestResults.history);
-        
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      chart.remove();
+      backtestChartRef.current = null;
+      backtestSeriesRef.current = null;
+    };
+  }, [currentView]);
+
+  // Efeito para POPULAR o gráfico de backtest com dados
+  useEffect(() => {
+    if (currentView !== 'backtest' || !backtestResults?.history || !backtestSeriesRef.current) {
+      if (backtestSeriesRef.current?.main) {
+        backtestSeriesRef.current.main.setData([]); // Limpa o gráfico se não houver resultados
+      }
+      return;
+    };
+
+    try {
+        const { main, volume, bb, macd } = backtestSeriesRef.current;
+        main.setData(backtestResults.history);
+
         const volumeData: any[] = [];
         const bbUpperData: any[] = [];
         const bbMiddleData: any[] = [];
@@ -441,27 +548,25 @@ export default function Home() {
         const macdLineData: any[] = [];
         const macdSignalData: any[] = [];
         const macdHistData: any[] = [];
-        
+
         backtestResults.history.forEach((item: any) => {
-          if (item.volume !== undefined) {
-            volumeData.push({ time: item.time, value: item.volume, color: item.close >= item.open ? 'rgba(38, 166, 154, 0.5)' : 'rgba(239, 83, 80, 0.5)' });
-          }
+          if (item.volume !== undefined) volumeData.push({ time: item.time, value: item.volume, color: item.close >= item.open ? 'rgba(38, 166, 154, 0.5)' : 'rgba(239, 83, 80, 0.5)' });
           if (item.bb_upper !== undefined) bbUpperData.push({ time: item.time, value: item.bb_upper });
           if (item.bb_middle !== undefined) bbMiddleData.push({ time: item.time, value: item.bb_middle });
           if (item.bb_lower !== undefined) bbLowerData.push({ time: item.time, value: item.bb_lower });
-          
           if (item.macd_line !== undefined) macdLineData.push({ time: item.time, value: item.macd_line });
           if (item.macd_signal !== undefined) macdSignalData.push({ time: item.time, value: item.macd_signal });
           if (item.macd_hist !== undefined) macdHistData.push({ time: item.time, value: item.macd_hist, color: item.macd_hist >= 0 ? '#26a69a' : '#ef5350' });
         });
-        
-        if (volumeData.length > 0) volumeSeries.setData(volumeData);
-        if (bbUpperData.length > 0) bbUpperSeries.setData(bbUpperData);
-        if (bbMiddleData.length > 0) bbMiddleSeries.setData(bbMiddleData);
-        if (bbLowerData.length > 0) bbLowerSeries.setData(bbLowerData);
-        if (macdLineData.length > 0) macdLineSeries.setData(macdLineData);
-        if (macdSignalData.length > 0) macdSignalSeries.setData(macdSignalData);
-        if (macdHistData.length > 0) macdHistSeries.setData(macdHistData);
+
+        if (volumeData.length > 0) volume.setData(volumeData);
+        if (bbUpperData.length > 0) bb.upper.setData(bbUpperData);
+        if (bbMiddleData.length > 0) bb.middle.setData(bbMiddleData);
+        if (bbLowerData.length > 0) bb.lower.setData(bbLowerData);
+        if (macdLineData.length > 0) macd.line.setData(macdLineData);
+        if (macdSignalData.length > 0) macd.signal.setData(macdSignalData);
+        if (macdHistData.length > 0) macd.hist.setData(macdHistData);
+
         if (backtestResults.trades) {
           const markers = backtestResults.trades.map((t: any) => ({
             time: t.entry_time,
@@ -470,8 +575,7 @@ export default function Home() {
             shape: t.signal === 'CALL' ? 'arrowUp' : 'arrowDown',
             text: `${t.signal} (${t.profit > 0 ? '+' : ''}${t.profit.toFixed(2)})`
           }));
-          
-          // Lightweight-charts exige que os marcadores estejam ordenados por tempo e sem tempos duplicados exatos
+
           const uniqueMarkers: any[] = [];
           const seenTimes = new Set();
           markers.sort((a: any, b: any) => a.time - b.time).forEach((m: any) => {
@@ -480,23 +584,15 @@ export default function Home() {
               uniqueMarkers.push(m);
             }
           });
-          
-          if (uniqueMarkers.length > 0) {
-            (candlestickSeries as any).setMarkers(uniqueMarkers);
-          }
-        }
-      } catch (err) {
-        console.error("Erro ao definir dados/marcadores do backtest no gráfico:", err);
-      }
-    }
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      chart.remove();
-      backtestChartRef.current = null;
-      backtestSeriesRef.current = null;
-    };
-  }, [currentView, backtestResults]);
+          main.setMarkers(uniqueMarkers.length > 0 ? uniqueMarkers : []);
+        } else {
+            main.setMarkers([]);
+        }
+    } catch (err) {
+        console.error("Erro ao definir dados/marcadores do backtest no gráfico:", err);
+    }
+  }, [backtestResults, currentView]);
 
   const handleChangeSymbol = (symbol: string) => {
     if (ws.current) {
@@ -537,76 +633,36 @@ export default function Home() {
       </div>
       
       {currentView === 'dashboard' && (
-        <div className="layout-container" style={{ flex: 1, overflow: 'auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px', flex: 1, overflow: 'auto', padding: '20px' }}>
           {/* Esquerda: Agente RAG e Controles */}
           <div style={{ display: "flex", flexDirection: "column", gap: "20px", minWidth: 0 }}>
-            
+
             <header>
               <h1>Cockpit de Decisão</h1>
               <p style={{ opacity: 0.6 }}>Análise Quantitativa + IA</p>
             </header>
 
-        {/* Seletor de Ativo */}
-        <div className="glass" style={{ padding: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
-          <h3 style={{ margin: 0, fontSize: "1rem", color: "var(--accent)" }}>Ativo Operacional</h3>
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-            {/* ATIVOS CRIPTO */}
-            {["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT"].map(sym => {
-              const isSelected = activeSymbol === sym;
-              return (
-                <button
-                  key={sym}
-                  onClick={() => handleChangeSymbol(sym)}
-                  style={{
-                    flex: "1 1 20%",
-                    padding: "6px 8px",
-                    background: isSelected ? "var(--accent)" : "rgba(255,255,255,0.05)",
-                    color: isSelected ? "#000" : "#fff",
-                    border: `1px solid ${isSelected ? "var(--accent)" : "rgba(255,255,255,0.1)"}`,
-                    borderRadius: "6px",
-                    cursor: "pointer",
-                    fontSize: "0.85rem",
-                    fontWeight: isSelected ? "bold" : "normal",
-                    transition: "all 0.2s"
-                  }}
-                >
-                  {sym}
-                </button>
-              );
-            })}
-          </div>
-        </div>
 
-        <div className="glass" style={{ flex: 1, padding: "20px", display: "flex", flexDirection: "column" }}>
-          <h3 style={{ marginBottom: "16px", color: "var(--accent)" }}>🧠 Análise da IA</h3>
-          <div style={{ 
-            flex: 1, 
-            background: "rgba(0,0,0,0.3)", 
-            borderRadius: "8px", 
-            padding: "16px", 
-            overflowY: "auto",
-            fontFamily: "var(--font-geist-mono), monospace",
-            fontSize: "0.95rem",
-            lineHeight: "1.6",
-            whiteSpace: "pre-wrap"
-          }}>
-            {agentMessage ? (
-              <p>{agentMessage}</p>
-            ) : (
-              <p style={{ opacity: 0.4 }}>Aguardando formação de sinais no mercado...</p>
-            )}
-          </div>
+
+        {/* Contêiner do Gráfico (expandido) */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <div
+            ref={chartContainerRef}
+            style={{ width: "100%", flex: 1, marginTop: "0px", background: "rgba(0,0,0,0.2)", borderRadius: "8px" }}
+          />
         </div>
+        {/* Fim do Contêiner do Gráfico */}
+
 
         <div className="glass" style={{ padding: "20px", overflowX: "auto" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <h3 style={{ margin: 0 }}>📊 Catalogador de Sinais</h3>
             <div style={{ display: 'flex', gap: '8px' }}>
-              <button 
+              <button
                 onClick={handleToggleAutoOptimize}
-                style={{ 
-                  padding: "8px 16px", 
-                  borderRadius: "20px", 
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: "20px",
                   border: "none",
                   background: autoOptimize ? "#10b981" : "rgba(255,255,255,0.1)",
                   color: "white",
@@ -620,11 +676,11 @@ export default function Home() {
               >
                 {autoOptimize ? "🧬 Mutante Ativo" : "🔧 Modo Manual"}
               </button>
-              <button 
+              <button
                 onClick={handleToggleGlobalMutant}
-                style={{ 
-                  padding: "8px 16px", 
-                  borderRadius: "20px", 
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: "20px",
                   border: `1px solid ${autoOptimize ? "#10b981" : "rgba(255,255,255,0.2)"}`,
                   background: "transparent",
                   color: autoOptimize ? "#10b981" : "white",
@@ -641,7 +697,7 @@ export default function Home() {
             </div>
           </div>
           <p style={{ fontSize: "0.85rem", opacity: 0.7, marginBottom: "16px" }}>
-            {autoOptimize ? 
+            {autoOptimize ?
               "O robô está varrendo a tabela e se reconfigurando sozinho a cada vela fechada!"
               : "Clique no card para alterar a estratégia base do robô autônomo."
             }
@@ -652,7 +708,7 @@ export default function Home() {
             <div style={{ fontWeight: "bold", opacity: 0.5, textAlign: "center" }}>Bollinger</div>
             <div style={{ fontWeight: "bold", opacity: 0.5, textAlign: "center" }}>VWAP</div>
             <div style={{ fontWeight: "bold", opacity: 0.5, textAlign: "center" }}>SMC</div>
-            
+
             {[60, 300, 900].map(tf => (
               <React.Fragment key={tf}>
                 <div style={{ display: "flex", alignItems: "center", fontWeight: "bold" }}>
@@ -665,12 +721,12 @@ export default function Home() {
                   const isManualActive = activeConfig.timeframe === tf && activeConfig.strategy === s;
                   const isActive = autoOptimize ? (pnl > 0) : isManualActive;
                   return (
-                    <div 
-                      key={`${tf}-${s}`} 
+                    <div
+                      key={`${tf}-${s}`}
                       onClick={() => !autoOptimize && handleSetConfig(tf, s)}
-                      style={{ 
-                        padding: "8px", 
-                        borderRadius: "4px", 
+                      style={{
+                        padding: "8px",
+                        borderRadius: "4px",
                         textAlign: "center",
                         cursor: autoOptimize ? "not-allowed" : "pointer",
                         opacity: autoOptimize && !isActive ? 0.4 : 1,
@@ -692,7 +748,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        
+
         {/* Status de Notícias (Calendário Econômico) */}
         {newsStatus && (
           <div style={{ marginBottom: "20px", padding: "12px 20px", background: newsStatus.safe ? "rgba(38, 166, 154, 0.15)" : "rgba(239, 83, 80, 0.2)", borderRadius: "8px", border: `1px solid ${newsStatus.safe ? "var(--success)" : "var(--danger)"}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -737,15 +793,15 @@ export default function Home() {
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Entrada</span>
-                    <span key={`call-entry-${tradePreview.current_price}`} className="animate-flash" style={{ fontWeight: 600 }}>${tradePreview.current_price.toLocaleString()}</span>
+                    <span key={`call-entry-${tradePreview.current_price}`} className="animate-flash" style={{ fontWeight: 600 }}>${tradePreview?.current_price?.toLocaleString()}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Take Profit</span>
-                    <span key={`call-tp-${tradePreview.call_tp}`} className="animate-flash" style={{ color: "var(--success)", fontWeight: 600 }}>${tradePreview.call_tp.toLocaleString()}</span>
+                    <span key={`call-tp-${tradePreview.call_tp}`} className="animate-flash" style={{ color: "var(--success)", fontWeight: 600 }}>${tradePreview?.call_tp?.toLocaleString()}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Stop Loss</span>
-                    <span key={`call-sl-${tradePreview.call_sl}`} className="animate-flash" style={{ color: "var(--danger)", fontWeight: 600 }}>${tradePreview.call_sl.toLocaleString()}</span>
+                    <span key={`call-sl-${tradePreview.call_sl}`} className="animate-flash" style={{ color: "var(--danger)", fontWeight: 600 }}>${tradePreview?.call_sl?.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -755,15 +811,15 @@ export default function Home() {
                 <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Entrada</span>
-                    <span key={`put-entry-${tradePreview.current_price}`} className="animate-flash" style={{ fontWeight: 600 }}>${tradePreview.current_price.toLocaleString()}</span>
+                    <span key={`put-entry-${tradePreview.current_price}`} className="animate-flash" style={{ fontWeight: 600 }}>${tradePreview?.current_price?.toLocaleString()}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Take Profit</span>
-                    <span key={`put-tp-${tradePreview.put_tp}`} className="animate-flash" style={{ color: "var(--success)", fontWeight: 600 }}>${tradePreview.put_tp.toLocaleString()}</span>
+                    <span key={`put-tp-${tradePreview.put_tp}`} className="animate-flash" style={{ color: "var(--success)", fontWeight: 600 }}>${tradePreview?.put_tp?.toLocaleString()}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem" }}>
                     <span style={{ opacity: 0.65 }}>Stop Loss</span>
-                    <span key={`put-sl-${tradePreview.put_sl}`} className="animate-flash" style={{ color: "var(--danger)", fontWeight: 600 }}>${tradePreview.put_sl.toLocaleString()}</span>
+                    <span key={`put-sl-${tradePreview.put_sl}`} className="animate-flash" style={{ color: "var(--danger)", fontWeight: 600 }}>${tradePreview?.put_sl?.toLocaleString()}</span>
                   </div>
                 </div>
               </div>
@@ -782,149 +838,203 @@ export default function Home() {
           )}
         </div>
 
-        {/* Módulo Simulador Financeiro (Movido para dentro da coluna esquerda) */}
-        {simulatorState && (
-        <div style={{ display: "flex", gap: "20px" }}>
-          <div className="glass" style={{ padding: "20px", flex: 1 }}>
-            <h3 style={{ marginBottom: "16px", color: "var(--accent)" }}>💳 Conta Futuros (USDT)</h3>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "8px" }}>
-              <span style={{ fontSize: "0.9rem", opacity: 0.7 }}>Saldo USDT</span>
-              <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>${simulatorState.balance.toFixed(2)}</span>
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px", background: "rgba(0,0,0,0.2)", borderRadius: "8px" }}>
-              <span style={{ fontSize: "0.85rem" }}>Lucro/Prejuízo (PnL)</span>
-              <span style={{ fontWeight: "bold", color: simulatorState.pnl >= 0 ? "var(--success)" : "var(--danger)" }}>
-                {simulatorState.pnl >= 0 ? "+" : ""}${simulatorState.pnl.toFixed(2)}
-              </span>
-            </div>
-            {simulatorState.risk && (
-              <div style={{ marginTop: "16px", padding: "12px", background: "rgba(0,0,0,0.3)", borderRadius: "8px", fontSize: "0.85rem" }}>
-                <div style={{ marginBottom: "8px", fontWeight: "bold", color: "var(--accent)" }}>🛡️ Gestão de Risco (Crypto)</div>
-                
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                  <span style={{ opacity: 0.7 }}>Alavancagem</span>
-                  <span>{simulatorState.risk.leverage}x</span>
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                  <span style={{ opacity: 0.7 }}>Margem por Trade</span>
-                  <span style={{ fontWeight: "bold" }}>${simulatorState.risk.next_margin.toFixed(2)}</span>
-                </div>
-                
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                  <span style={{ opacity: 0.7 }}>Multiplicador Gale (Atual)</span>
-                  <span>{simulatorState.risk.consecutive_losses === 0 ? "1x" : `${2 ** simulatorState.risk.consecutive_losses}x`}</span>
-                </div>
-                
-                {/* Stop Gain Progress */}
-                <div style={{ marginTop: "12px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", opacity: 0.8, marginBottom: "4px" }}>
-                    <span>Stop Gain (${simulatorState.risk.stop_gain})</span>
-                    <span>{Math.min(100, Math.max(0, (simulatorState.pnl / simulatorState.risk.stop_gain) * 100)).toFixed(0)}%</span>
-                  </div>
-                  <div style={{ width: "100%", height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "3px", overflow: "hidden" }}>
-                    <div style={{ width: `${Math.min(100, Math.max(0, (simulatorState.pnl / simulatorState.risk.stop_gain) * 100))}%`, height: "100%", background: "var(--success)" }}></div>
-                  </div>
-                </div>
-                
-                {/* Stop Loss Progress */}
-                <div style={{ marginTop: "8px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", opacity: 0.8, marginBottom: "4px" }}>
-                    <span>Stop Loss (-${simulatorState.risk.stop_loss})</span>
-                    <span>{Math.min(100, Math.max(0, (simulatorState.pnl / -simulatorState.risk.stop_loss) * 100)).toFixed(0)}%</span>
-                  </div>
-                  <div style={{ width: "100%", height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "3px", overflow: "hidden" }}>
-                    <div style={{ width: `${Math.min(100, Math.max(0, (simulatorState.pnl / -simulatorState.risk.stop_loss) * 100))}%`, height: "100%", background: "var(--danger)" }}></div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="glass" style={{ padding: "20px", flex: 2, overflowY: "auto", maxHeight: "250px" }}>
-            <h3 style={{ marginBottom: "16px" }}>📋 Posições Abertas</h3>
-            {simulatorState.pending && simulatorState.pending.length > 0 ? (
-              <div style={{ marginBottom: "16px" }}>
-                {simulatorState.pending.map((t: any) => (
-                  <div key={t.id} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                    <span>
-                      {t.direction === "CALL" ? "🟩 LONG" : "🟥 SHORT"}
-                      <div style={{ fontSize: "0.75rem", opacity: 0.7 }}>Entry: {t.entry_price?.toFixed(2) ?? "0.00"}</div>
-                    </span>
-                    <span style={{ textAlign: "right", color: (t.pnl ?? 0) >= 0 ? "var(--success)" : "var(--danger)", fontWeight: "bold" }}>
-                      {(t.pnl ?? 0) >= 0 ? "+" : ""}${(t.pnl ?? 0).toFixed(2)}
-                      <div style={{ fontSize: "0.75rem", color: "white", opacity: 0.7, fontWeight: "normal" }}>Margem: ${(t.margin ?? 0).toFixed(2)}</div>
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p style={{ opacity: 0.5, fontSize: "0.85rem", marginBottom: "16px" }}>Nenhuma posição aberta.</p>
-            )}
-            
-            <div>
-              <strong style={{ fontSize: "0.85rem", opacity: 0.7 }}>HISTÓRICO</strong>
-              {simulatorState.history.length === 0 ? (
-                <p style={{ opacity: 0.5, fontSize: "0.85rem" }}>Nenhuma operação finalizada ainda.</p>
-              ) : (
-                simulatorState.history.map((t: any) => (
-                  <div key={t.id} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-                    <span style={{ color: t.status === "WIN" ? "var(--success)" : (t.status === "LOSS" ? "var(--danger)" : "white") }}>
-                      {t.status === "WIN" ? "📈" : (t.status === "LOSS" ? "📉" : "⚖️")} {t.direction} <span style={{fontSize:'0.7rem', opacity:0.5}}>[{t.strategy_info || "N/A"}]</span>
-                    </span>
-                    <span style={{ fontWeight: "bold", color: t.status === "WIN" ? "var(--success)" : (t.status === "LOSS" ? "var(--danger)" : "white") }}>
-                      {(t.profit ?? 0) >= 0 ? "+" : ""}${(t.profit ?? 0).toFixed(2)}
-                    </span>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-        )}
       </div>
 
-      {/* Direita: Market Feed */}
-      <div className="glass" style={{ padding: "20px", display: "flex", flexDirection: "column" }}>
-        <h3 style={{ marginBottom: "16px", display: "flex", alignItems: "center" }}>
-          <span className="live-indicator"></span> 
-          Mercado Ao Vivo
-        </h3>
-        
-        <div style={{ marginBottom: "24px" }}>
-          <div style={{ fontSize: "0.8rem", opacity: 0.6, textTransform: "uppercase" }}>{activeSymbol} (Binance)</div>
-          <div style={{ fontSize: "2.8rem", fontWeight: "bold" }}>
-            {liveData.quote > 0 ? liveData.quote.toFixed(2) : "0.00"}
-          </div>
-        </div>
-
-        <h4>Vela Atual (M{activeConfig.timeframe / 60})</h4>
-        <div className="feed-section" style={{ marginTop: "12px" }}>
-          {liveData.candle ? (
-            <div className={`candle-card ${liveData.candle.close >= liveData.candle.open ? 'candle-bullish' : 'candle-bearish'}`}>
-              <div>
-                <div className="badge" style={{ 
-                  background: liveData.candle.close >= liveData.candle.open ? 'var(--success-glow)' : 'var(--danger-glow)',
-                  color: liveData.candle.close >= liveData.candle.open ? 'var(--bullish)' : 'var(--bearish)'
-                }}>
-                  {liveData.candle.close >= liveData.candle.open ? 'BULLISH' : 'BEARISH'}
-                </div>
-                <div style={{ marginTop: "8px", fontSize: "0.95rem" }}>O: {liveData.candle.open.toFixed(2)}</div>
-                <div style={{ fontSize: "0.95rem" }}>C: {liveData.candle.close.toFixed(2)}</div>
-              </div>
-              <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: "0.95rem" }}>H: {liveData.candle.high.toFixed(2)}</div>
-                <div style={{ fontSize: "0.95rem" }}>L: {liveData.candle.low.toFixed(2)}</div>
+          {/* Coluna Direita (Simulador e Posições) */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            {/* Seletor de Ativo */}
+            <div className="glass" style={{ padding: "16px", display: "flex", flexDirection: "column", gap: "10px" }}>
+              <h3 style={{ margin: 0, fontSize: "1rem", color: "var(--accent)" }}>Ativo Operacional</h3>
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                {/* ATIVOS CRIPTO */}
+                {["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT"].map(sym => {
+                  const isSelected = activeSymbol === sym;
+                  return (
+                    <button
+                      key={sym}
+                      onClick={() => handleChangeSymbol(sym)}
+                      style={{
+                        flex: "1 1 20%",
+                        padding: "6px 8px",
+                        background: isSelected ? "var(--accent)" : "rgba(255,255,255,0.05)",
+                        color: isSelected ? "#000" : "#fff",
+                        border: `1px solid ${isSelected ? "var(--accent)" : "rgba(255,255,255,0.1)"}`,
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        fontSize: "0.85rem",
+                        fontWeight: isSelected ? "bold" : "normal",
+                        transition: "all 0.2s"
+                      }}
+                    >
+                      {sym}
+                    </button>
+                  );
+                })}
               </div>
             </div>
-          ) : (
-            <p style={{ opacity: 0.5, fontSize: "0.9rem" }}>Aguardando sincronização da Binance...</p>
-          )}
-        </div>
-        <div 
-          ref={chartContainerRef} 
-          style={{ width: "100%", height: "250px", marginTop: "24px" }} 
-        />
-      </div>
+
+            {/* Início: Mercado Ao Vivo (movido para a direita) */}
+            <div className="glass" style={{ padding: "20px", display: "flex", flexDirection: "column" }}>
+              <h3 style={{ marginBottom: "16px", display: "flex", alignItems: "center" }}>
+                <span className="live-indicator"></span>
+                Mercado Ao Vivo
+              </h3>
+
+              <div style={{ marginBottom: "24px" }}>
+                <div style={{ fontSize: "0.8rem", opacity: 0.6, textTransform: "uppercase" }}>{activeSymbol} (Binance)</div>
+                <div style={{ fontSize: "2.8rem", fontWeight: "bold" }}>
+                  {liveData.quote > 0 ? liveData.quote.toFixed(2) : "0.00"}
+                </div>
+              </div>
+
+              <h4>Vela Atual (M{activeConfig.timeframe / 60})</h4>
+              <div className="feed-section" style={{ marginTop: "12px" }}>
+                {liveData.candle ? (
+                  <div className={`candle-card ${liveData.candle.close >= liveData.candle.open ? 'candle-bullish' : 'candle-bearish'}`}>
+                    <div>
+                      <div className="badge" style={{
+                        background: liveData.candle.close >= liveData.candle.open ? 'var(--success-glow)' : 'var(--danger-glow)',
+                        color: liveData.candle.close >= liveData.candle.open ? 'var(--bullish)' : 'var(--bearish)'
+                      }}>
+                        {liveData.candle.close >= liveData.candle.open ? 'BULLISH' : 'BEARISH'}
+                      </div>
+                      <div style={{ marginTop: "8px", fontSize: "0.95rem" }}>O: {liveData.candle.open?.toFixed(2)}</div>
+                      <div style={{ fontSize: "0.95rem" }}>C: {liveData.candle.close?.toFixed(2)}</div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontSize: "0.95rem" }}>H: {liveData.candle.high?.toFixed(2)}</div>
+                      <div style={{ fontSize: "0.95rem" }}>L: {liveData.candle.low?.toFixed(2)}</div>
+                    </div>
+                  </div>
+                ) : (
+                  <p style={{ opacity: 0.5, fontSize: "0.9rem" }}>Aguardando sincronização da Binance...</p>
+                )}
+              </div>
+            </div>
+            {/* Fim: Mercado Ao Vivo */}
+
+            {/* Análise da IA */}
+            <div className="glass" style={{ flex: 1, padding: "20px", display: "flex", flexDirection: "column" }}>
+              <h3 style={{ marginBottom: "16px", color: "var(--accent)" }}>🧠 Análise da IA</h3>
+              <div style={{
+                flex: 1,
+                background: "rgba(0,0,0,0.3)",
+                borderRadius: "8px",
+                padding: "16px",
+                overflowY: "auto",
+                fontFamily: "var(--font-geist-mono), monospace",
+                fontSize: "0.95rem",
+                lineHeight: "1.6",
+                whiteSpace: "pre-wrap"
+              }}>
+                {agentMessage ? (
+                  <p>{agentMessage}</p>
+                ) : (
+                  <p style={{ opacity: 0.4 }}>Aguardando formação de sinais no mercado...</p>
+                )}
+              </div>
+            </div>
+
+            {/* Módulo Simulador Financeiro */}
+            {simulatorState && (
+            <>
+              <div className="glass" style={{ padding: "20px" }}>
+                <h3 style={{ marginBottom: "16px", color: "var(--accent)" }}>💳 Conta Futuros (USDT)</h3>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "8px" }}>
+                  <span style={{ fontSize: "0.9rem", opacity: 0.7 }}>Saldo USDT</span>
+                  <span style={{ fontSize: "1.5rem", fontWeight: "bold" }}>${(simulatorState?.balance || 0).toFixed(2)}</span>
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px", background: "rgba(0,0,0,0.2)", borderRadius: "8px" }}>
+                  <span style={{ fontSize: "0.85rem" }}>Lucro/Prejuízo (PnL)</span>
+                  <span style={{ fontWeight: "bold", color: (simulatorState?.pnl || 0) >= 0 ? "var(--success)" : "var(--danger)" }}>
+                    {(simulatorState?.pnl || 0) >= 0 ? "+" : ""}${(simulatorState?.pnl || 0).toFixed(2)}
+                  </span>
+                </div>
+                {simulatorState?.risk && (
+                  <div style={{ marginTop: "16px", padding: "12px", background: "rgba(0,0,0,0.3)", borderRadius: "8px", fontSize: "0.85rem" }}>
+                    <div style={{ marginBottom: "8px", fontWeight: "bold", color: "var(--accent)" }}>🛡️ Gestão de Risco (Crypto)</div>
+
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
+                      <span style={{ opacity: 0.7 }}>Alavancagem</span>
+                      <span>{(simulatorState?.risk?.leverage || 1)}x</span>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
+                      <span style={{ opacity: 0.7 }}>Margem por Trade</span>
+                      <span style={{ fontWeight: "bold" }}>${(simulatorState?.risk?.next_margin || 0).toFixed(2)}</span>
+                    </div>
+
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
+                      <span style={{ opacity: 0.7 }}>Multiplicador Gale (Atual)</span>
+                      <span>{(simulatorState?.risk?.consecutive_losses || 0) === 0 ? "1x" : `${2 ** (simulatorState?.risk?.consecutive_losses || 0)}x`}</span>
+                    </div>
+
+                    {/* Stop Gain Progress */}
+                    <div style={{ marginTop: "12px" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", opacity: 0.8, marginBottom: "4px" }}>
+                        <span>Stop Gain (${(simulatorState?.risk?.stop_gain || 1)})</span>
+                        <span>{Math.min(100, Math.max(0, (simulatorState.pnl / (simulatorState?.risk?.stop_gain || 1)) * 100)).toFixed(0)}%</span>
+                      </div>
+                      <div style={{ width: "100%", height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "3px", overflow: "hidden" }}>
+                        <div style={{ width: `${Math.min(100, Math.max(0, (simulatorState.pnl / (simulatorState?.risk?.stop_gain || 1)) * 100))}%`, height: "100%", background: "var(--success)" }}></div>
+                      </div>
+                    </div>
+
+                    {/* Stop Loss Progress */}
+                    <div style={{ marginTop: "8px" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.7rem", opacity: 0.8, marginBottom: "4px" }}>
+                        <span>Stop Loss (-${(simulatorState?.risk?.stop_loss || 1)})</span>
+                        <span>{Math.min(100, Math.max(0, (simulatorState.pnl / -(simulatorState?.risk?.stop_loss || 1)) * 100)).toFixed(0)}%</span>
+                      </div>
+                      <div style={{ width: "100%", height: "6px", background: "rgba(255,255,255,0.1)", borderRadius: "3px", overflow: "hidden" }}>
+                        <div style={{ width: `${Math.min(100, Math.max(0, (simulatorState.pnl / -(simulatorState?.risk?.stop_loss || 1)) * 100))}%`, height: "100%", background: "var(--danger)" }}></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="glass" style={{ padding: "20px", overflowY: "auto" }}>
+                <h3 style={{ marginBottom: "16px" }}>📋 Posições Abertas</h3>
+                {(simulatorState?.pending || []).length > 0 ? (
+                  <div style={{ marginBottom: "16px" }}>
+                    {(simulatorState?.pending || []).map((t: any) => (
+                      <div key={t.id} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+                        <span>
+                          {t.direction === "CALL" ? "🟩 LONG" : "🟥 SHORT"}
+                          <div style={{ fontSize: "0.75rem", opacity: 0.7 }}>Entry: {t.entry_price?.toFixed(2) ?? "0.00"}</div>
+                        </span>
+                        <span style={{ textAlign: "right", color: (t.pnl ?? 0) >= 0 ? "var(--success)" : "var(--danger)", fontWeight: "bold" }}>
+                          {(t.pnl ?? 0) >= 0 ? "+" : ""}${(t.pnl ?? 0).toFixed(2)}
+                          <div style={{ fontSize: "0.75rem", color: "white", opacity: 0.7, fontWeight: "normal" }}>Margem: ${(t.margin ?? 0).toFixed(2)}</div>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p style={{ opacity: 0.5, fontSize: "0.85rem", marginBottom: "16px" }}>Nenhuma posição aberta.</p>
+                )}
+
+                <div>
+                  <strong style={{ fontSize: "0.85rem", opacity: 0.7 }}>HISTÓRICO</strong>
+                  {(simulatorState?.history || []).length === 0 ? (
+                    <p style={{ opacity: 0.5, fontSize: "0.85rem" }}>Nenhuma operação finalizada ainda.</p>
+                  ) : (
+                    (simulatorState?.history || []).map((t: any) => (
+                      <div key={t.id} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+                        <span style={{ color: t.status === "WIN" ? "var(--success)" : (t.status === "LOSS" ? "var(--danger)" : "white") }}>
+                          {t.status === "WIN" ? "📈" : (t.status === "LOSS" ? "📉" : "⚖️")} {t.direction} <span style={{fontSize:'0.7rem', opacity:0.5}}>[{t.strategy_info || "N/A"}]</span>
+                        </span>
+                        <span style={{ fontWeight: "bold", color: t.status === "WIN" ? "var(--success)" : (t.status === "LOSS" ? "var(--danger)" : "white") }}>
+                          {(t.profit ?? 0) >= 0 ? "+" : ""}${(t.profit ?? 0).toFixed(2)}
+                        </span>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </>
+            )}
+          </div>
     </div>
       )}
       
@@ -942,11 +1052,10 @@ export default function Home() {
               >
                 <option value="Auto">✨ Auto-Otimização (I.A.)</option>
                 <option value="Pin Bar">Pin Bar (Elite)</option>
-                <option value="SMC">Smart Money Concepts</option>
                 <option value="Bollinger">Bollinger Bands</option>
                 <option value="EMA+MACD">EMA + MACD</option>
-                <option value="SuperTrend">SuperTrend</option>
                 <option value="Bollinger+EMA+MACD">📈 Combo Bollinger+EMA+MACD</option>
+                <option value="Triple Confluence">🏆 Triple Confluence (Padrão)</option>
               </select>
               
               <select 

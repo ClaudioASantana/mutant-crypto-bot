@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import os
-from typing import Dict, Any
 
 from app.services.binance_client import BinanceClient
 from app.engines.candle_builder import CandleBuilder
@@ -9,13 +8,11 @@ from app.engines.simulator import PaperTrader
 from app.engines.cataloger import calculate_win_rate
 from app.engines.technical_analysis import (
     candles_to_df, apply_indicators,
-    eval_ema_macd, eval_bollinger, eval_vwap, eval_smc,
-    eval_consecutive, eval_supertrend, eval_pin_bar, eval_abcd, eval_bollinger_ema_macd,
+    eval_ema_macd, eval_bollinger, eval_consecutive, eval_pin_bar, eval_abcd, eval_bollinger_ema_macd, eval_triple_confluence,
     check_signal_quality
 )
 from app.models.market import Tick, Signal, SignalType, AccountState, CandleDirection
 from app.engines.news import NewsFilter
-from app.engines.indicators import calculate_rsi
 from app.engines.risk import evaluate_risk
 from app.rag.agent import explain_signal
 from app.engines.ai_filter import AIFilter
@@ -48,7 +45,7 @@ class BotInstance:
         self.live_qty = 0
         self.active_trade_id = None
 
-        self.active_config = {"timeframe": 300, "strategy": "SMC", "gale": 2, "rsi_oversold": 25, "rsi_overbought": 75}
+        self.active_config = {"timeframe": 300, "strategy": "Triple Confluence", "gale": 2}
         self.auto_optimize = False
         self.global_catalog = []
 
@@ -121,8 +118,9 @@ class BotInstance:
 
     async def broadcast_catalog(self):
         catalog = []
+        simplified_strategies = ["EMA+MACD", "Bollinger", "3 Velas", "Pin Bar", "ABCD", "Bollinger+EMA+MACD", "Triple Confluence"]
         for timeframe, b in [(60, self.builder_m1), (300, self.builder_m5), (900, self.builder_m15)]:
-            for strategy_name in ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "3 Velas", "Pin Bar", "ABCD", "Bollinger+EMA+MACD"]:
+            for strategy_name in simplified_strategies:
                 stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
                 stats.pop("df", None)
                 catalog.append({
@@ -194,7 +192,7 @@ class BotInstance:
                 margin_live = self.paper_trader.balance * (self.paper_trader.risk_percent / 100.0)
 
             margin_live = min(margin_live, self.paper_trader.balance)
-            strategy_live = self.active_config.get("strategy", "SMC")
+            strategy_live = self.active_config.get("strategy", "Triple Confluence")
             await self.manager.broadcast({"event": "trade_preview", "symbol": self.symbol, "data": {
                 "strategy": strategy_live,
                 "timeframe": f"M{tf // 60}",
@@ -232,6 +230,19 @@ class BotInstance:
                     df = candles_to_df(builder.closed_candles)
                     df = apply_indicators(df)
 
+                    # Atualiza o current_candle com os indicadores para o frontend
+                    last_row = df.iloc[-1]
+                    builder.current_candle.indicators = {
+                        "BBU_21_2.0": last_row.get("BBU_21_2.0"),
+                        "BBM_21_2.0": last_row.get("BBM_21_2.0"),
+                        "BBL_21_2.0": last_row.get("BBL_21_2.0"),
+                        "MACD_12_26_9": last_row.get("MACD_12_26_9"),
+                        "MACDh_12_26_9": last_row.get("MACDh_12_26_9"),
+                        "MACDs_12_26_9": last_row.get("MACDs_12_26_9"),
+                    }
+                    builder.current_candle.volume = last_row.get("volume")
+
+
                     atr_preview = df.iloc[-1].get("ATRr_14", tick.quote * 0.005)
                     import math
                     if atr_preview is None or (isinstance(atr_preview, float) and math.isnan(atr_preview)):
@@ -241,13 +252,11 @@ class BotInstance:
                     sig_val = "NONE"
                     if req_strategy == "EMA+MACD": sig_val = eval_ema_macd(df)
                     elif req_strategy == "Bollinger": sig_val = eval_bollinger(df)
-                    elif req_strategy == "VWAP": sig_val = eval_vwap(df)
-                    elif req_strategy == "SMC": sig_val = eval_smc(df)
-                    elif req_strategy == "SuperTrend": sig_val = eval_supertrend(df)
                     elif req_strategy == "3 Velas": sig_val = eval_consecutive(df, num_candles=3)
                     elif req_strategy == "Pin Bar": sig_val = eval_pin_bar(df)
                     elif req_strategy == "ABCD": sig_val = eval_abcd(df)
                     elif req_strategy == "Bollinger+EMA+MACD": sig_val = eval_bollinger_ema_macd(df)
+                    elif req_strategy == "Triple Confluence": sig_val = eval_triple_confluence(df)
 
                     signal = Signal(type=SignalType.NONE, reason="")
                     if sig_val == "CALL": signal = Signal(type=SignalType.CALL, reason=f"Estratégia {req_strategy} indicou COMPRA no M{tf//60}")
@@ -270,12 +279,9 @@ class BotInstance:
                             approved_for_trade = False
                             block_reason = "STOP DIÁRIO ATINGIDO"
 
-                    # 2. Filtros de Qualidade (RSI, Vol, Trend, MTF)
+                    # 2. Filtros de Qualidade (Volume)
                     if approved_for_trade:
-                        mtf_builder = self.builder_m15 if tf == 300 else self.builder_m5
-                        df_mtf = candles_to_df(mtf_builder.closed_candles) if len(mtf_builder.closed_candles) >= 26 else None
-                        if df_mtf is not None: df_mtf = apply_indicators(df_mtf)
-                        passed, reason = check_signal_quality(df, df_mtf, signal.type.value)
+                        passed, reason = check_signal_quality(df)
                         if not passed:
                             approved_for_trade = False
                             block_reason = reason
