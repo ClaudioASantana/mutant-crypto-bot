@@ -29,7 +29,7 @@ export default function Home() {
   const [signal, setSignal] = useState<any>(null);
   const [agentMessage, setAgentMessage] = useState<string>("");
   const [catalog, setCatalog] = useState<any[]>([]);
-  const [activeConfig, setActiveConfig] = useState<any>({ timeframe: 300, strategy: "EMA+MACD" });
+  const [activeConfig, setActiveConfig] = useState<any>({ timeframe: 300, strategy: "3 Velas" });
   const [autoOptimize, setAutoOptimize] = useState<boolean>(false);
   const [simulatorState, setSimulatorState] = useState<any>(null);
   const [newsStatus, setNewsStatus] = useState<any>(null);
@@ -409,16 +409,16 @@ export default function Home() {
     const bbMiddleSeries = chart.addSeries(LineSeries, { color: 'rgba(255, 152, 0, 0.4)', lineWidth: 1 });
     const bbLowerSeries = chart.addSeries(LineSeries, { color: 'rgba(33, 150, 243, 0.4)', lineWidth: 1 });
     
+    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd' });
+    const macdSignalSeries = chart.addSeries(LineSeries, { color: '#FF6D00', lineWidth: 1, priceScaleId: 'macd' });
+    const macdHistSeries = chart.addSeries(HistogramSeries, { priceScaleId: 'macd' });
+    
     chart.priceScale('macd').applyOptions({
       scaleMargins: {
         top: 0.8,
         bottom: 0,
       },
     });
-    
-    const macdLineSeries = chart.addSeries(LineSeries, { color: '#2962FF', lineWidth: 1, priceScaleId: 'macd' });
-    const macdSignalSeries = chart.addSeries(LineSeries, { color: '#FF6D00', lineWidth: 1, priceScaleId: 'macd' });
-    const macdHistSeries = chart.addSeries(HistogramSeries, { priceScaleId: 'macd' });
     
     backtestChartRef.current = chart;
     backtestSeriesRef.current = candlestickSeries;
@@ -684,7 +684,7 @@ export default function Home() {
                 <div style={{ display: "flex", alignItems: "center", fontWeight: "bold" }}>
                   M{tf / 60}
                 </div>
-                {["EMA+MACD", "Bollinger", "VWAP", "SMC"].map(s => {
+                {["3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"].map(s => {
                   const cat = (catalog || []).find(x => x.timeframe === tf && x.strategy === s);
                   const winRate = cat?.stats?.win_rate ?? 0;
                   const pnl = cat?.stats?.pnl_usdt ?? 0;
@@ -968,6 +968,7 @@ export default function Home() {
                 <option value="Pin Bar">Pin Bar (Elite)</option>
                 <option value="SMC">Smart Money Concepts</option>
                 <option value="Bollinger">Bollinger Bands</option>
+                <option value="3 Velas">3 Velas Consecutivas</option>
                 <option value="EMA+MACD">EMA + MACD</option>
                 <option value="SuperTrend">SuperTrend</option>
               </select>

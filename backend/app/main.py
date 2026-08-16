@@ -80,7 +80,7 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://0.0.0.0:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -134,7 +134,7 @@ async def websocket_endpoint(websocket: WebSocket):
                     if target_symbol in bots:
                         b = bots[target_symbol]
                         b.active_config["timeframe"] = cmd.get("timeframe", 300)
-                        b.active_config["strategy"] = cmd.get("strategy", "EMA+MACD")
+                        b.active_config["strategy"] = cmd.get("strategy", "3 Velas")
                         b.active_config["gale"] = cmd.get("gale", 3)
                         b.active_config["rsi_oversold"] = cmd.get("rsi_oversold", 30)
                         b.active_config["rsi_overbought"] = cmd.get("rsi_overbought", 70)
@@ -291,7 +291,7 @@ async def api_backtest_advanced(req: AdvancedBacktestRequest):
         
     def _compute_win_rate():
         if req.strategy == "Auto":
-            strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"]
+            strategies = ["3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"]
             best_res = None
             best_pnl = -float('inf')
             best_strategy = None

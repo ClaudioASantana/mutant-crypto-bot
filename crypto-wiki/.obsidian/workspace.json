@@ -1,0 +1,209 @@
+{
+  "main": {
+    "id": "822c110ac01c1e73",
+    "type": "split",
+    "children": [
+      {
+        "id": "9d776a6f5cf30710",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "31c25de2fe0f9934",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Clippings/Note Taking & Research Assistant Powered by AI.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Note Taking & Research Assistant Powered by AI"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0aed1d185b0df52f",
+    "type": "split",
+    "children": [
+      {
+        "id": "19cbed0f133b5f48",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fdf5ff2cab90fdaf",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "f24130edae3158fa",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "8c2d6d5bd9f59894",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "3a86a2c9d42086b2",
+    "type": "split",
+    "children": [
+      {
+        "id": "c95c54541d52b7d6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7eb048b38681c940",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Clippings/Note Taking & Research Assistant Powered by AI.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos"
+            }
+          },
+          {
+            "id": "26a676956b5d18af",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Clippings/Note Taking & Research Assistant Powered by AI.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída"
+            }
+          },
+          {
+            "id": "1b55beff1356ace8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "a65ae3cd0a330432",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas as propriedades"
+            }
+          },
+          {
+            "id": "9b90a0aac40e5f61",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Clippings/Note Taking & Research Assistant Powered by AI.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false
+    }
+  },
+  "active": "fdf5ff2cab90fdaf",
+  "lastOpenFiles": [
+    "raw/assets/guia-referencia-padroes-3-velas-v4.pdf",
+    "raw/assets/Não confirmado 998670.crdownload",
+    "raw/assets/relatorio-estatistico-win.csv",
+    "raw/assets/Não confirmado 395913.crdownload",
+    "raw/assets/comparativo-win.png",
+    "raw/assets/Não confirmado 175725.crdownload",
+    "raw/assets/guia-referencia-padroes-3-velas-v3.pdf",
+    "raw/assets/Não confirmado 365051.crdownload",
+    "raw/assets/relatorio-estatistico-velas-v3.csv",
+    "raw/assets/Não confirmado 730069.crdownload",
+    "raw/assets/comparativo-heikin-ashi-v2.png",
+    "raw/assets/Não confirmado 277975.crdownload",
+    "raw/assets/relatorio-estatistico-velas-v2.csv",
+    "raw/assets/comparativo-heikin-ashi.png",
+    "Clippings/Note Taking & Research Assistant Powered by AI.md"
+  ]
+}

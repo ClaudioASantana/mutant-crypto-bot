@@ -36,9 +36,22 @@ async def download_history(symbol: str, timeframe_seconds: int, limit: int):
     print(f"🔄 Conectando na Binance para baixar histórico de {symbol} ({limit} velas de {tf})...")
     
     try:
-        ohlcv = await exchange.fetch_ohlcv(symbol, tf, limit=limit)
+        now_ms = exchange.milliseconds()
+        since = now_ms - (limit * timeframe_seconds * 1000)
+        
+        all_ohlcv = []
+        while len(all_ohlcv) < limit:
+            fetch_limit = min(1000, limit - len(all_ohlcv))
+            ohlcv = await exchange.fetch_ohlcv(symbol, tf, since=since, limit=fetch_limit)
+            if not ohlcv:
+                break
+            all_ohlcv.extend(ohlcv)
+            since = ohlcv[-1][0] + 1
+            print(f"   {len(all_ohlcv)} velas carregadas...", end="\r")
+            await asyncio.sleep(0.1)
+            
         history = []
-        for c in ohlcv:
+        for c in all_ohlcv:
             open_p, high_p, low_p, close_p = c[1], c[2], c[3], c[4]
             direction = CandleDirection.BULLISH if close_p > open_p else CandleDirection.BEARISH
             if close_p == open_p:
@@ -52,11 +65,11 @@ async def download_history(symbol: str, timeframe_seconds: int, limit: int):
                 close=close_p,
                 direction=direction
             ))
-        print(f"✅ Download concluído! {len(history)} velas recebidas.")
+        print(f"\n✅ Download concluído! {len(history)} velas recebidas.")
         await exchange.close()
         return history
     except Exception as e:
-        print(f"❌ Erro baixando histórico: {e}")
+        print(f"\n❌ Erro baixando histórico: {e}")
         await exchange.close()
         return []
 
