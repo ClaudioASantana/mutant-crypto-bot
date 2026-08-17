@@ -1,19 +1,21 @@
 import logging
 import uuid
-import json
-import os
-from datetime import datetime
+
+from app.domain.repositories.paper_trader_repository import AbstractPaperTraderRepository
 
 logger = logging.getLogger(__name__)
 
 class PaperTrader:
-    def __init__(self, symbol: str = "BTCUSDT", initial_balance: float = 200.0, leverage: int = 10):
+    def __init__(self, symbol: str, identity: str, repository: AbstractPaperTraderRepository, initial_balance: float = 200.0, leverage: int = 10):
         self.symbol = symbol.replace("/", "_")
+        self.identity = identity
+        self.repository = repository
+
         self.initial_balance = initial_balance
         self.leverage = leverage
-        
+
         self.balance = initial_balance
-        self.consecutive_losses = 0 # Deprecated, will be removed
+        self.consecutive_losses = 0
         self.history_trades = []
         self.open_positions = []
         self.highest_daily_pnl = 0.0
@@ -23,41 +25,38 @@ class PaperTrader:
         self.stake_initial = 10.0
         self.trailing_activation = 1.0
         self.trailing_distance = 0.5
-        self.position_sizing_mode = "fixed" # 'fixed', 'volatility_adjusted', or 'risk_percent'
+        self.position_sizing_mode = "fixed"
         self.risk_percent = 2.0
         self.max_trade_duration_minutes = 240
-        
-        self._state_file = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data", f"simulator_state_{self.symbol}.json"))
+
         self.load_state()
 
     def load_state(self):
-        try:
-            if os.path.exists(self._state_file):
-                with open(self._state_file, "r") as f:
-                    state = json.load(f)
-                    self.balance = state.get("balance", self.initial_balance)
-                    self.initial_balance = state.get("initial_balance", self.initial_balance)
-                    self.consecutive_losses = state.get("consecutive_losses", 0)
-                    self.highest_daily_pnl = state.get("highest_daily_pnl", 0.0)
-                    self.history_trades = state.get("history_trades", [])
-                    self.open_positions = state.get("open_positions", [])
-                    if "risk_settings" in state:
-                        rs = state["risk_settings"]
-                        self.daily_stop_loss = rs.get("daily_stop_loss", self.daily_stop_loss)
-                        self.daily_stop_gain = rs.get("daily_stop_gain", self.daily_stop_gain)
-                        self.stake_initial = rs.get("stake_initial", self.stake_initial)
-                        self.trailing_activation = rs.get("trailing_activation", self.trailing_activation)
-                        self.trailing_distance = rs.get("trailing_distance", self.trailing_distance)
-                        self.position_sizing_mode = rs.get("position_sizing_mode", self.position_sizing_mode)
-                        self.risk_percent = rs.get("risk_percent", self.risk_percent)
-                        self.max_trade_duration_minutes = rs.get("max_trade_duration_minutes", self.max_trade_duration_minutes)
-                    logger.info(f"💾 [CryptoSimulator - {self.symbol}] Estado carregado. Saldo: ${self.balance:.2f}, Histórico: {len(self.history_trades)}")
-        except Exception as e:
-            logger.error(f"Erro ao carregar estado do simulador para {self.symbol}: {e}")
+        state = self.repository.load(self.identity)
+        if state:
+            try:
+                self.balance = state.get("balance", self.initial_balance)
+                self.initial_balance = state.get("initial_balance", self.initial_balance)
+                self.consecutive_losses = state.get("consecutive_losses", 0)
+                self.highest_daily_pnl = state.get("highest_daily_pnl", 0.0)
+                self.history_trades = state.get("history_trades", [])
+                self.open_positions = state.get("open_positions", [])
+                if "risk_settings" in state:
+                    rs = state["risk_settings"]
+                    self.daily_stop_loss = rs.get("daily_stop_loss", self.daily_stop_loss)
+                    self.daily_stop_gain = rs.get("daily_stop_gain", self.daily_stop_gain)
+                    self.stake_initial = rs.get("stake_initial", self.stake_initial)
+                    self.trailing_activation = rs.get("trailing_activation", self.trailing_activation)
+                    self.trailing_distance = rs.get("trailing_distance", self.trailing_distance)
+                    self.position_sizing_mode = rs.get("position_sizing_mode", self.position_sizing_mode)
+                    self.risk_percent = rs.get("risk_percent", self.risk_percent)
+                    self.max_trade_duration_minutes = rs.get("max_trade_duration_minutes", self.max_trade_duration_minutes)
+                logger.info(f"💾 [CryptoSimulator - {self.symbol}] Estado carregado via repositório. Saldo: ${self.balance:.2f}")
+            except Exception as e:
+                logger.error(f"Erro ao processar estado carregado do simulador para {self.symbol}: {e}")
 
     def save_state(self):
         try:
-            os.makedirs(os.path.dirname(self._state_file), exist_ok=True)
             state = {
                 "balance": self.balance,
                 "initial_balance": self.initial_balance,
@@ -76,10 +75,9 @@ class PaperTrader:
                     "max_trade_duration_minutes": self.max_trade_duration_minutes
                 }
             }
-            with open(self._state_file, "w") as f:
-                json.dump(state, f, indent=4)
+            self.repository.save(self.identity, state)
         except Exception as e:
-            logger.error(f"Erro ao salvar estado do simulador para {self.symbol}: {e}")
+            logger.error(f"Erro ao salvar estado do simulador para {self.symbol} via repositório: {e}")
 
     def get_pnl(self) -> float:
         return round(self.balance - self.initial_balance, 2)

@@ -1,5 +1,5 @@
 from typing import List
-from app.models.market import Candle, CandleDirection, Signal, SignalType
+from app.domain.entities.market import Candle, CandleDirection, Signal, SignalType
 
 def evaluate_strategy(candles: List[Candle], seconds_in_cycle: int) -> Signal:
     if seconds_in_cycle < 297 or seconds_in_cycle > 299:

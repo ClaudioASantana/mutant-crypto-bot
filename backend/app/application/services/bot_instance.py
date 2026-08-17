@@ -1,22 +1,23 @@
 import asyncio
 import logging
-import os
 import time
 from typing import List, Dict
-from app.models.personality import Personality
-from app.models.performance import PersonalityPerformance
-from app.services.market_data_provider import MarketDataProvider
-from app.engines.candle_builder import CandleBuilder
-from app.engines.simulator import PaperTrader
-from app.engines.cataloger import calculate_win_rate
-from app.engines.technical_analysis import (
-    candles_to_df, apply_indicators, eval_three_candles_composite
+from app.domain.entities.personality import Personality
+from app.domain.entities.performance import PersonalityPerformance
+from app.infrastructure.market_data.market_data_provider import MarketDataProvider
+from app.application.services.candle_builder import CandleBuilder
+from app.application.services.simulator import PaperTrader
+from app.infrastructure.repositories.json_paper_trader_repository import JsonPaperTraderRepository
+from app.domain.services.personality_selector_service import PersonalitySelectorService
+from app.domain.services.trading_decision_service import TradingDecisionService
+from app.application.services.cataloger import calculate_win_rate
+from app.application.services.technical_analysis import (
+    candles_to_df, apply_indicators
 )
-from app.models.market import Tick, Signal, SignalType, AccountState, CandleDirection
-from app.engines.news import NewsFilter
-from app.engines.risk import evaluate_risk
-from app.engines.ai_filter import AIFilter
-from app.engines.journal import TradeJournal
+from app.domain.entities.market import Tick, AccountState, CandleDirection
+from app.application.services.news import NewsFilter
+from app.application.services.ai_filter import AIFilter
+from app.application.services.journal import TradeJournal
 
 logger = logging.getLogger(__name__)
 
@@ -48,10 +49,16 @@ class BotInstance:
 
         # Create one PaperTrader per personality with unique state files
         self.paper_traders: Dict[str, PaperTrader] = {}
+        self.paper_trader_repository = JsonPaperTraderRepository("data") # Shared repository instance
         for personality in personalities:
             state_filename = f"simulator_state_{self.symbol.replace('/', '_')}_{personality.name}_{personality.timeframe//60}m.json"
-            trader = PaperTrader(symbol=self.symbol, initial_balance=200.0, leverage=10)
-            trader._state_file = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data", state_filename))
+            trader = PaperTrader(
+                symbol=self.symbol,
+                identity=state_filename,
+                repository=self.paper_trader_repository,
+                initial_balance=200.0,
+                leverage=10
+            )
             trader.position_sizing_mode = "volatility_adjusted"
             self.paper_traders[personality.name] = trader
 
@@ -65,6 +72,17 @@ class BotInstance:
         for p_name in self.personalities:
             self.performance_trackers[p_name] = PersonalityPerformance(personality_name=p_name, symbol=self.symbol)
         self.active_personality_name: str = next(iter(self.personalities.keys())) # Inicia com a primeira por padrao
+
+        # Serviço de seleção de personalidade (injetado)
+        self.selector_service = PersonalitySelectorService(
+            reset_after_seconds=SELECTOR_RESET_AFTER_SECONDS,
+            min_trades_for_fitness=SELECTOR_MIN_TRADES,
+            max_consecutive_losses=SELECTOR_MAX_CONSECUTIVE_LOSSES,
+            hysteresis_margin=SELECTOR_HYSTERESIS
+        )
+
+        # Serviço de decisão de trade (injetado)
+        self.trading_decision_service = TradingDecisionService(self.news_filter, self.ai_filter)
 
 
         self.auto_optimize = False
@@ -89,59 +107,9 @@ class BotInstance:
         # ativo deve ser usada para a correlação. Desativado por enquanto.
         return True
 
-    def _select_best_personality(self) -> str:
-        """
-        Seleciona a personalidade com melhor aptidao (fitness) para operar.
-        Penaliza fortemente personalidades com muitas perdas consecutivas.
-        """
-        if not self.performance_trackers:
-            logger.warning(f"[{self.symbol}] Nenhuma personalidade para selecionar.")
-            return next(iter(self.personalities.keys())) if self.personalities else None
-
-        # 1. Reset de janela de performance se for muito antiga
-        now = time.time()
-        for perf in self.performance_trackers.values():
-            if perf.last_update and (now - perf.last_update) > SELECTOR_RESET_AFTER_SECONDS:
-                logger.info(f"[{self.symbol}] Reiniciando janela de performance para {perf.personality_name} (muito tempo sem operar).")
-                perf.wins = 0
-                perf.losses = 0
-                perf.total_pnl = 0.0
-                perf.trades_count = 0
-                perf.consecutive_losses = 0
-                perf.last_update = now
-
-        # 2. Filtrar personalidades elegiveis (com minimo de trades ou sem perdas consecutivas excessivas)
-        eligible = []
-        for name, perf in self.performance_trackers.items():
-            if perf.consecutive_losses >= SELECTOR_MAX_CONSECUTIVE_LOSSES:
-                logger.info(f"[{self.symbol}] Personalidade '{name}' desativada por {perf.consecutive_losses} perdas seguidas.")
-                continue
-            if perf.trades_count < SELECTOR_MIN_TRADES:
-                # Personalidades novas ainda sao elegiveis
-                eligible.append((name, 0.0))  # Fitness neutro
-            else:
-                eligible.append((name, perf.fitness))
-
-        if not eligible:
-            logger.warning(f"[{self.symbol}] Nenhuma personalidade elegivel. Usando a primeira disponivel.")
-            return next(iter(self.personalities.keys())) if self.personalities else None
-
-        # 3. Selecionar a de maior fitness com Histerese
-        best_name, best_fitness = max(eligible, key=lambda x: x[1])
-
-        # Se ja temos uma ativa, aplicar a margem de histerese
-        if self.active_personality_name in self.performance_trackers:
-            current_active_fitness = self.performance_trackers[self.active_personality_name].fitness
-            if (best_fitness - current_active_fitness) < SELECTOR_HYSTERESIS:
-                best_name = self.active_personality_name
-                logger.debug(f"[{self.symbol}] Histerese ativa: mantendo '{best_name}' (diferenca de fitness < {SELECTOR_HYSTERESIS})")
-
-        # 4. Atualizar nome da personalidade ativa para logging
-        self.active_personality_name = best_name
-        return best_name
 
     async def on_history(self, granularity: int, candles: list):
-        from app.models.market import Candle
+        from app.domain.entities.market import Candle
         b = self.get_builder_for_timeframe(granularity)
         if b:
             b.closed_candles = []
@@ -215,7 +183,12 @@ class BotInstance:
 
         # --- Dynamic Personality Selector ---
         # Before evaluating new trades, select the best personality based on recent performance
-        best_personality_name = self._select_best_personality()
+        best_personality_name = self.selector_service.select_best(
+            self.performance_trackers,
+            self.active_personality_name
+        )
+        # Atualizar o nome da personalidade ativa para logging
+        self.active_personality_name = best_personality_name
 
         # --- Personalities Decision Loop ---
         # Iterate over all personalities and check for trade signals if a candle has just closed for their timeframe
@@ -247,43 +220,54 @@ class BotInstance:
                 atr = df.iloc[-1].get("ATRr_14", tick.quote * 0.005) # Default ATR if not found
                 self.last_atr_cache[personality.timeframe] = float(atr)
 
-                # AI Decision
-                ai_decision = await self.ai_filter.make_decision(df, personality.strategy)
-                signal_type = SignalType.NONE
-                if ai_decision["decision"] == "BUY" and ai_decision["confidence"] >= 0.7: signal_type = SignalType.CALL
-                elif ai_decision["decision"] == "SELL" and ai_decision["confidence"] >= 0.7: signal_type = SignalType.PUT
+                # Avaliar decisão de trade usando o serviço de domínio
+                account_state = AccountState(
+                    balance=trader.balance, daily_pnl=trader.get_pnl(),
+                    highest_daily_pnl=trader.highest_daily_pnl,
+                    daily_stop_loss=trader.daily_stop_loss,
+                    daily_stop_gain=trader.daily_stop_gain,
+                    stake_initial=trader.stake_initial
+                )
 
-                if signal_type != SignalType.NONE:
-                    # Confluence: Validate 3-candle pattern (positive filter)
-                    pattern_signal = eval_three_candles_composite(df, require_confluence=True)
-                    if pattern_signal != "NONE" and ((pattern_signal == "CALL" and signal_type == SignalType.CALL) or (pattern_signal == "PUT" and signal_type == SignalType.PUT)):
-                        signal = Signal(type=signal_type, reason=ai_decision["reason"] + " | 3V-Confirmed")
-                        strategy_info = f"M{personality.timeframe//60}/{personality.strategy} (Conf: {ai_decision['confidence']:.2f})"
+                decision = await self.trading_decision_service.evaluate(
+                    personality=personality,
+                    account_state=account_state,
+                    df_candles=df,
+                    tick=tick,
+                    atr=atr
+                )
 
-                        # Risk Checks
-                        if self.news_filter.check_safety(tick.epoch)["safe"]:
-                            account_state = AccountState(
-                                balance=trader.balance, daily_pnl=trader.get_pnl(),
-                                highest_daily_pnl=trader.highest_daily_pnl,
-                                daily_stop_loss=trader.daily_stop_loss,
-                                daily_stop_gain=trader.daily_stop_gain,
-                                stake_initial=trader.stake_initial
-                            )
-                            # TODO: Use risk_config from personality
-                            risk_eval = evaluate_risk(signal, account_state)
-                            if risk_eval.decision == "APPROVED":
-                                # Optimized risk adjustment for backtest: SL 1.5 / TP 8.0
-                                sl_mult = personality.risk_config.get("sl_multiplier", 1.5)
-                                tp_mult = personality.risk_config.get("tp_multiplier", 8.0)
-                                sl_price = tick.quote - (atr * sl_mult) if signal_type == SignalType.CALL else tick.quote + (atr * sl_mult)
-                                tp_price = tick.quote + (atr * tp_mult) if signal_type == SignalType.CALL else tick.quote - (atr * tp_mult)
+                if decision:
+                    # Abrir trade se a decisão foi aprovada
+                    trader.open_trade(
+                        direction=decision.direction.value,
+                        tf=personality.timeframe,
+                        current_epoch=tick.epoch,
+                        current_price=decision.entry_price,
+                        sl_price=decision.sl_price,
+                        tp_price=decision.tp_price,
+                        atr=decision.atr
+                    )
 
-                                trader.open_trade(signal_type.value, personality.timeframe, tick.epoch, tick.quote, sl_price, tp_price, atr)
-                                t_id = trader.open_positions[-1]["id"]
-                                self.active_trade_ids[p_name] = t_id
-                                self.journal.log_entry(t_id, self.symbol, signal_type.value, strategy_info, ai_decision["reason"], tick.epoch, tick.quote, atr, 50.0, trader.get_current_margin_usdt(), trader.leverage)
-                                await self.manager.broadcast({"event": "trade_opened", "symbol": self.symbol, "data": {"direction": signal_type.value, "price": tick.quote, "personality": p_name}})
-                                await self.broadcast_state()
+                    # Registrar trade e atualizar estado
+                    t_id = trader.open_positions[-1]["id"]
+                    self.active_trade_ids[p_name] = t_id
+                    self.journal.log_entry(
+                        t_id, self.symbol, decision.direction.value,
+                        decision.strategy_info, decision.reason,
+                        tick.epoch, decision.entry_price, decision.atr,
+                        50.0, trader.get_current_margin_usdt(), trader.leverage
+                    )
+                    await self.manager.broadcast({
+                        "event": "trade_opened",
+                        "symbol": self.symbol,
+                        "data": {
+                            "direction": decision.direction.value,
+                            "price": decision.entry_price,
+                            "personality": p_name
+                        }
+                    })
+                    await self.broadcast_state()
 
         self.last_tick_time = tick.epoch
 

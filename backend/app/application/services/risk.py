@@ -1,4 +1,4 @@
-from app.models.market import Signal, AccountState, RiskEvaluation, RiskDecision, SignalType
+from app.domain.entities.market import Signal, AccountState, RiskEvaluation, RiskDecision, SignalType
 
 def evaluate_risk(signal: Signal, account: AccountState) -> RiskEvaluation:
     if signal.type == SignalType.NONE:

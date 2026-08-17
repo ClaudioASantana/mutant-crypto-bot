@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from app.rag.vector import get_vector_store
-from app.models.market import Signal, SignalType
+from app.domain.entities.market import Signal, SignalType
 
 load_dotenv()
 

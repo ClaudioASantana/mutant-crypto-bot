@@ -1,5 +1,5 @@
 from typing import List, Optional
-from app.models.market import Tick, Candle
+from app.domain.entities.market import Tick, Candle
 
 class CandleBuilder:
     def __init__(self, timeframe: int = 300):

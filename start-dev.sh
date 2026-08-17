@@ -72,7 +72,7 @@ fi
 # 3. Start Backend
 log_info "Starting Backend (FastAPI) on port 8000..."
 cd backend
-./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload &
+./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload < /dev/null &
 BACKEND_PID=$!
 cd ..
 
@@ -82,7 +82,7 @@ sleep 2
 # 4. Start Frontend
 log_info "Starting Frontend (Next.js) on port 3000..."
 cd frontend
-npm run dev -- -H 0.0.0.0 -p 3000 &
+npm run dev -- -H 0.0.0.0 -p 3000 < /dev/null &
 FRONTEND_PID=$!
 cd ..
 

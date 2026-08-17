@@ -1,6 +1,6 @@
 from typing import List
-from app.models.market import Candle
-from app.engines.technical_analysis import (
+from app.domain.entities.market import Candle
+from app.application.services.technical_analysis import (
     candles_to_df, apply_indicators,
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend, eval_pin_bar,
     eval_abcd, eval_consecutive, eval_rsi_ema_confluence, eval_mean_reversion_exhaustion

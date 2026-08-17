@@ -93,7 +93,7 @@ class BinanceClient:
                         
                         # Binance trade stream payload:
                         # "p": "0.001", "T": 123456785, ...
-                        from app.models.market import Tick
+                        from app.domain.entities.market import Tick
                         
                         price = float(data['p'])
                         vol = float(data['q'])

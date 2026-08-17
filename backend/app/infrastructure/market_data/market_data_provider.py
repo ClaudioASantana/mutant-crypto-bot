@@ -1,8 +1,8 @@
 import asyncio
 import logging
 from typing import Dict, List, Callable
-from app.services.binance_client import BinanceClient
-from app.models.market import Tick
+from app.infrastructure.market_data.binance_client import BinanceClient
+from app.domain.entities.market import Tick
 
 logger = logging.getLogger(__name__)
 

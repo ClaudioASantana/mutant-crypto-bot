@@ -5,7 +5,7 @@ import logging
 import urllib.request
 import websockets
 from typing import Callable, Any, List
-from app.models.market import Tick
+from app.domain.entities.market import Tick
 
 logger = logging.getLogger(__name__)
 

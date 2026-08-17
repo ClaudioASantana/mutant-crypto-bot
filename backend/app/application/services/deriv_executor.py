@@ -1,6 +1,6 @@
 import logging
 import asyncio
-from app.services.deriv_client import DerivClient
+from app.infrastructure.market_data.deriv_client import DerivClient
 
 logger = logging.getLogger(__name__)
 

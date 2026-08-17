@@ -1,7 +1,7 @@
 import pandas as pd
 import pandas_ta  # noqa: F401  (registra o accessor df.ta usado em apply_indicators)
 from typing import List
-from app.models.market import Candle
+from app.domain.entities.market import Candle
 
 def candles_to_df(candles: List[Candle]) -> pd.DataFrame:
     data = []

@@ -5,7 +5,6 @@ import asyncio
 from typing import List
 from openai import AsyncOpenAI
 import pandas as pd
-from app.models.market import Candle
 
 logger = logging.getLogger(__name__)
 

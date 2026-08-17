@@ -7,8 +7,8 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 
-from app.engines.bot_instance import BotInstance
-from app.engines.news import NewsFilter
+from app.application.services.bot_instance import BotInstance
+from app.application.services.news import NewsFilter
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -55,7 +55,7 @@ news_filter = NewsFilter()
 
 # --- SWARM STATE ---
 bots: dict[str, BotInstance] = {}
-from app.models.personality import Personality
+from app.domain.entities.personality import Personality
 
 # Define active portfolios - each symbol has multiple personalities
 active_portfolios = {
@@ -87,7 +87,7 @@ async def lifespan(app: FastAPI):
     logger.info("Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!")
 
     # Initialize MarketDataProvider
-    from app.services.market_data_provider import MarketDataProvider
+    from app.infrastructure.market_data.market_data_provider import MarketDataProvider
     market_provider = MarketDataProvider()
 
     for sym in active_symbols:
@@ -332,7 +332,7 @@ async def api_backtest_advanced(req: AdvancedBacktestRequest):
     if scripts_path not in sys.path:
         sys.path.append(scripts_path)
     from optimizer import download_history
-    from app.engines.cataloger import calculate_win_rate
+    from app.application.services.cataloger import calculate_win_rate
     
     logger.info(f"[{req.symbol}] Baixando histórico para backtest avançado...")
     
