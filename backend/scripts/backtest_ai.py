@@ -23,7 +23,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 # Carrega MANIFEST_API_KEY / BASE_URL do backend/.env
 load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
-from app.engines.technical_analysis import candles_to_df, apply_indicators
+from app.engines.technical_analysis import candles_to_df, apply_indicators, eval_three_candles_composite
 from app.engines.ai_filter import AIFilter
 from scripts.backtester import download_history
 
@@ -101,8 +101,34 @@ async def collect_decisions(ai: AIFilter, df, start: int, end: int, strategy: st
     return all_results
 
 
-def simulate(df, decisions, threshold: float = CONFIDENCE_THRESHOLD) -> dict:
-    """Reproduz trades para as decisões BUY/SELL acima do limiar (puramente offline)."""
+def meets_confirmation_pattern(df_context, direction, require_confluence) -> bool:
+    """Filtro Positivo: valida se um padrão de 3 velas confirma a direção."""
+    pattern_signal = eval_three_candles_composite(df_context, require_confluence)
+    return pattern_signal == direction
+
+def meets_technical_gates(i, df, direction) -> bool:
+    """Verificação offline de confluência técnica."""
+    row = df.iloc[i]
+    close = row["close"]
+
+    # 1. Filtro de Volatilidade (ATR min > 0.15% do preço)
+    atr = float(row.get("ATRr_14", 0))
+    if atr < (close * 0.0015):
+        return False
+
+    # 2. Filtro de Tendência Rígido (EMA200)
+    ema200 = float(row.get("EMA_200", close))
+    if direction == "CALL" and close < ema200: return False
+    if direction == "PUT" and close > ema200: return False
+
+    # 3. Filtro de Exaustão RSI
+    rsi = float(row.get("RSI_14", 50))
+    if direction == "CALL" and rsi > 70: return False
+    if direction == "PUT" and rsi < 30: return False
+
+    return True
+
+def simulate(df, decisions, threshold: float = CONFIDENCE_THRESHOLD, use_gates: bool = False, use_pattern: bool = False, sl_mult: float = SL_MULT, tp_mult: float = TP_MULT) -> dict:
     wins = losses = signals = 0
     pnl = 0.0
     trades_log = []
@@ -110,7 +136,16 @@ def simulate(df, decisions, threshold: float = CONFIDENCE_THRESHOLD) -> dict:
     for i, decision in decisions:
         d = decision["decision"]
         conf = decision["confidence"]
+        direction = "CALL" if d == "BUY" else "PUT"
+
+        # Filtro inicial
         if d not in ("BUY", "SELL") or conf < threshold:
+            continue
+
+        # Filtros (se ativados)
+        if use_gates and not meets_technical_gates(i, df, direction):
+            continue
+        if use_pattern and not meets_confirmation_pattern(df.iloc[: i + 1], direction, require_confluence=True):
             continue
 
         signals += 1
@@ -120,27 +155,25 @@ def simulate(df, decisions, threshold: float = CONFIDENCE_THRESHOLD) -> dict:
             atr = entry * 0.005
 
         direction = "CALL" if d == "BUY" else "PUT"
-        sl = entry - (atr * SL_MULT) if direction == "CALL" else entry + (atr * SL_MULT)
-        tp = entry + (atr * TP_MULT) if direction == "CALL" else entry - (atr * TP_MULT)
+        sl = entry - (atr * sl_mult) if direction == "CALL" else entry + (atr * sl_mult)
+        tp = entry + (atr * tp_mult) if direction == "CALL" else entry - (atr * tp_mult)
 
         # Procura pelo primeiro toque de SL/TP; se nenhum, fecha no último preço.
         result = None
         exit_price = None
-        j_exit = None
         for j in range(i + 1, len(df)):
             high = df["high"].iloc[j]
             low = df["low"].iloc[j]
             if (direction == "CALL" and low <= sl) or (direction == "PUT" and high >= sl):
-                result, exit_price, j_exit = "LOSS", sl, j
+                result, exit_price = "LOSS", sl
                 break
             if (direction == "CALL" and high >= tp) or (direction == "PUT" and low <= tp):
-                result, exit_price, j_exit = "WIN", tp, j
+                result, exit_price = "WIN", tp
                 break
 
         if result is None and i + 1 < len(df):
             result = "TIME"
             exit_price = df["close"].iloc[-1]
-            j_exit = len(df) - 1
 
         pos_usd = STAKE * LEVERAGE
         fee = pos_usd * FEE_RATE * 2
@@ -205,17 +238,37 @@ async def main():
 
     print(f"📊 Reproduzindo simulações de trades para SL {SL_MULT} / TP {TP_MULT}", flush=True)
 
+    print("\n" + "=" * 72)
+    print("📊 VARREDURA 1: IA PURA")
     for t in [0.70, 0.75, 0.80, 0.85, 0.90]:
         report = simulate(df, decisions, threshold=t)
-        print(f"Conf >= {t:.2f} | Sinais: {report['signals']:>3} | "
-              f"Wins: {report['wins']:>3} | Losses: {report['losses']:>3} | "
-              f"WR: {report['win_rate']:>6.2f}% | PnL: ${report['pnl']:>9.2f}", flush=True)
+        print(f"Conf >= {t:.2f} | Sinais: {report['signals']:>3} | WR: {report['win_rate']:>6.2f}% | PnL: ${report['pnl']:>9.2f}")
+
+    print("\n" + "=" * 72)
+    print("📊 VARREDURA 2: IA + FILTROS TÉCNICOS (NEGATIVOS)")
+    for t in [0.70, 0.75, 0.80, 0.85, 0.90]:
+        report = simulate(df, decisions, threshold=t, use_gates=True)
+        print(f"Conf >= {t:.2f} | Sinais: {report['signals']:>3} | WR: {report['win_rate']:>6.2f}% | PnL: ${report['pnl']:>9.2f}")
+
+    print("\n" + "=" * 72)
+    print("📊 VARREDURA 3: IA + PADRÃO 3 VELAS (POSITIVO)")
+    for t in [0.70, 0.75, 0.80, 0.85, 0.90]:
+        report = simulate(df, decisions, threshold=t, use_pattern=True)
+        print(f"Conf >= {t:.2f} | Sinais: {report['signals']:>3} | WR: {report['win_rate']:>6.2f}% | PnL: ${report['pnl']:>9.2f}")
+
+    print("\n" + "=" * 72)
+    print("📊 VARREDURA 5: IA + PADRÃO 3V — SL 1.5 / TP variável (Conf >= 0.70)")
+    for tp_m in [3.0, 4.0, 6.0, 8.0, 10.0]:
+        report = simulate(df, decisions, threshold=0.70, use_pattern=True, sl_mult=1.5, tp_mult=tp_m)
+        print(f"TP {tp_m:.0f}x | Sinais: {report['signals']:>3} | WR: {report['win_rate']:>6.2f}% | PnL: ${report['pnl']:>9.2f}")
 
     print("\n" + "-" * 72)
-    print(f"📈 RESUMO | {SYMBOL} M{TF // 60} ({len(df)} velas) — conf >= 0.70")
-    report = simulate(df, decisions, threshold=0.70)
-    for t in report["trades"]:
-        print(t)
+    print("📈 DETALHES DOS TRADES (Padrão 3V, Conf >= 0.70)")
+    report_hybrid = simulate(df, decisions, threshold=0.70, use_pattern=True)
+    for trade_log_line in report_hybrid["trades"]:
+        print(trade_log_line)
+
+
 
 
 if __name__ == "__main__":

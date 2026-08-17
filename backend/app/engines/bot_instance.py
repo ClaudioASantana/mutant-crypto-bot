@@ -6,7 +6,7 @@ from app.engines.candle_builder import CandleBuilder
 from app.engines.simulator import PaperTrader
 from app.engines.cataloger import calculate_win_rate
 from app.engines.technical_analysis import (
-    candles_to_df, apply_indicators
+    candles_to_df, apply_indicators, eval_three_candles_composite
 )
 from app.models.market import Tick, Signal, SignalType, AccountState, CandleDirection
 from app.engines.news import NewsFilter
@@ -137,31 +137,36 @@ class BotInstance:
             elif ai_decision["decision"] == "SELL" and ai_decision["confidence"] >= 0.7: signal_type = SignalType.PUT
 
             if signal_type != SignalType.NONE:
-                signal = Signal(type=signal_type, reason=ai_decision["reason"])
-                strategy_info = f"M{tf//60}/AI (Conf: {ai_decision['confidence']:.2f})"
+                # Nova confluência: Validar padrão de 3 velas (filtro positivo)
+                # Só entra se a estratégia for "3 Velas" ou se tivermos um padrão de reversão/continuação
+                pattern_signal = eval_three_candles_composite(df, require_confluence=True)
+                if pattern_signal != "NONE" and ((pattern_signal == "CALL" and signal_type == SignalType.CALL) or (pattern_signal == "PUT" and signal_type == SignalType.PUT)):
+                    signal = Signal(type=signal_type, reason=ai_decision["reason"] + " | 3V-Confirmed")
+                    strategy_info = f"M{tf//60}/AI+3V (Conf: {ai_decision['confidence']:.2f})"
 
-                # Risk Checks
-                if self.news_filter.check_safety(tick.epoch)["safe"]:
-                    account_state = AccountState(
-                        balance=self.paper_trader.balance, daily_pnl=self.paper_trader.get_pnl(),
-                        highest_daily_pnl=self.paper_trader.highest_daily_pnl,
-                        daily_stop_loss=self.paper_trader.daily_stop_loss,
-                        daily_stop_gain=self.paper_trader.daily_stop_gain,
-                        stake_initial=self.paper_trader.stake_initial
-                    )
-                    risk_eval = evaluate_risk(signal, account_state)
-                    if risk_eval.decision == "APPROVED":
-                        sl_mult = 2.0
-                        tp_mult = 2.0
-                        sl_price = tick.quote - (atr * sl_mult) if signal_type == SignalType.CALL else tick.quote + (atr * sl_mult)
-                        tp_price = tick.quote + (atr * tp_mult) if signal_type == SignalType.CALL else tick.quote - (atr * tp_mult)
+                    # Risk Checks
+                    if self.news_filter.check_safety(tick.epoch)["safe"]:
+                        account_state = AccountState(
+                            balance=self.paper_trader.balance, daily_pnl=self.paper_trader.get_pnl(),
+                            highest_daily_pnl=self.paper_trader.highest_daily_pnl,
+                            daily_stop_loss=self.paper_trader.daily_stop_loss,
+                            daily_stop_gain=self.paper_trader.daily_stop_gain,
+                            stake_initial=self.paper_trader.stake_initial
+                        )
+                        risk_eval = evaluate_risk(signal, account_state)
+                        if risk_eval.decision == "APPROVED":
+                            # Ajuste de risco otimizado para o backtest: SL 1.5 / TP 8.0
+                            sl_mult = 1.5
+                            tp_mult = 8.0
+                            sl_price = tick.quote - (atr * sl_mult) if signal_type == SignalType.CALL else tick.quote + (atr * sl_mult)
+                            tp_price = tick.quote + (atr * tp_mult) if signal_type == SignalType.CALL else tick.quote - (atr * tp_mult)
 
-                        self.paper_trader.open_trade(signal_type.value, tf, tick.epoch, tick.quote, sl_price, tp_price, atr)
-                        t_id = self.paper_trader.open_positions[-1]["id"]
-                        self.active_trade_id = t_id
-                        self.journal.log_entry(t_id, self.symbol, signal_type.value, strategy_info, ai_decision["reason"], tick.epoch, tick.quote, atr, 50.0, self.paper_trader.get_current_margin_usdt(), self.paper_trader.leverage)
-                        await self.manager.broadcast({"event": "trade_opened", "symbol": self.symbol, "data": {"direction": signal_type.value, "price": tick.quote}})
-                        await self.broadcast_state()
+                            self.paper_trader.open_trade(signal_type.value, tf, tick.epoch, tick.quote, sl_price, tp_price, atr)
+                            t_id = self.paper_trader.open_positions[-1]["id"]
+                            self.active_trade_id = t_id
+                            self.journal.log_entry(t_id, self.symbol, signal_type.value, strategy_info, ai_decision["reason"], tick.epoch, tick.quote, atr, 50.0, self.paper_trader.get_current_margin_usdt(), self.paper_trader.leverage)
+                            await self.manager.broadcast({"event": "trade_opened", "symbol": self.symbol, "data": {"direction": signal_type.value, "price": tick.quote}})
+                            await self.broadcast_state()
 
         self.last_tick_time = tick.epoch
 

@@ -306,30 +306,28 @@ def _get_midpoint(candle):
 def _get_candle_body_midpoint(candle):
     return (candle["open"] + candle["close"]) / 2
 
-def _check_confluence_filters(df: pd.DataFrame, direction: str) -> bool:
+def _check_confluence_filters(df: pd.DataFrame, direction: str, require_confluence: bool = True) -> bool:
     """
     Aplica filtros de volume e EMA para validar sinais de 3 velas.
     - Volume: Última vela deve ter volume > 1.0 * volume médio das últimas 20.
     - EMA: Para CALL, preço deve estar acima da EMA 20. Para PUT, abaixo da EMA 20.
+    require_confluence=False desativa os filtros (usado para isolar a geometria
+    do padrão durante auditorias/backtests).
     """
+    if not require_confluence:
+        return True  # Isola apenas a geometria do padrão
+
     if len(df) < 21: # Mínimo para EMA20 e volume médio
         return False
 
     # Filtro de Volume
     last_volume = df["volume"].iloc[-1]
     avg_volume = df["volume"].iloc[-21:-1].mean() # Últimas 20 velas, excluindo a atual
-    if last_volume < avg_volume * 1.0: # Apenas 1x a média, pode ajustar se for muito restritivo
-        # print(f"DEBUG: Volume filtro falhou: {last_volume} vs {avg_volume}")
+    if last_volume < avg_volume * 1.0: # Apenas 1x a média
         return False
 
     # Filtro de EMA (Média Móvel Exponencial de 20 períodos)
-    # Garante que a EMA_20 esteja calculada
     if "EMA_20" not in df.columns or df["EMA_20"].isnull().iloc[-1]:
-        # Se a EMA_20 não estiver calculada, não podemos usar este filtro.
-        # Poderíamos adicionar aqui a lógica para calcular se necessário,
-        # ou apenas ignorar o filtro para evitar erros, mas para robustez, vamos falhar.
-        # Ou simplesmente garantir que apply_indicators seja chamado antes.
-        # Para este contexto, presumimos que apply_indicators já foi chamado.
         return False
 
     last_close = df["close"].iloc[-1]
@@ -337,44 +335,14 @@ def _check_confluence_filters(df: pd.DataFrame, direction: str) -> bool:
 
     if direction == "CALL":
         if last_close < ema_20:
-            # print(f"DEBUG: EMA filtro CALL falhou: {last_close} vs {ema_20}")
             return False
     elif direction == "PUT":
         if last_close > ema_20:
-            # print(f"DEBUG: EMA filtro PUT falhou: {last_close} vs {ema_20}")
-            return False
-
-    # Filtro de Localização (Suporte/Resistência)
-    # Usamos Bollinger Bands e Donchian Channel como proxy de S/R
-    bb_upper = df["BBU_20_2.0_2.0"].iloc[-1]
-    bb_lower = df["BBL_20_2.0_2.0"].iloc[-1]
-    dc_upper = df["DCU_20_20"].iloc[-1]
-    dc_lower = df["DCL_20_20"].iloc[-1]
-
-    last_low = df["low"].iloc[-1]
-    last_high = df["high"].iloc[-1]
-
-    if direction == "CALL": # Esperamos que o preço esteja perto de um suporte
-        # A mínima da vela deve tocar a banda inferior de BB ou o canal inferior de Donchian
-        if not (last_low <= bb_lower or last_low <= dc_lower):
-            return False
-        # Confirmação de rejeição: fechamento não pode estar "afundado" no suporte
-        candle_range = last_high - last_low
-        if candle_range > 0 and last_close < last_low + candle_range * 0.2:
-            return False
-
-    elif direction == "PUT": # Esperamos que o preço esteja perto de uma resistência
-        # A máxima da vela deve tocar a banda superior de BB ou o canal superior de Donchian
-        if not (last_high >= bb_upper or last_high >= dc_upper):
-            return False
-        # Confirmação de rejeição: fechamento não pode estar "estourado" na resistência
-        candle_range = last_high - last_low
-        if candle_range > 0 and last_close > last_high - candle_range * 0.2:
             return False
 
     return True
 
-def eval_three_white_soldiers(df: pd.DataFrame) -> str:
+def eval_three_white_soldiers(df: pd.DataFrame, require_confluence: bool = True) -> str:
     """
     Detects Three White Soldiers pattern.
     Structure: Three consecutive long bullish candles with progressively higher closes.
@@ -401,12 +369,12 @@ def eval_three_white_soldiers(df: pd.DataFrame) -> str:
         return "NONE"
 
     # Apply confluence filters
-    if not _check_confluence_filters(df, "CALL"):
+    if not _check_confluence_filters(df, "CALL", require_confluence):
         return "NONE"
 
     return "CALL"
 
-def eval_three_black_crows(df: pd.DataFrame) -> str:
+def eval_three_black_crows(df: pd.DataFrame, require_confluence: bool = True) -> str:
     """
     Detects Three Black Crows pattern.
     Structure: Three consecutive long bearish candles with progressively lower closes.
@@ -430,12 +398,12 @@ def eval_three_black_crows(df: pd.DataFrame) -> str:
         return "NONE"
 
     # Aplica filtros de confluência (volume + EMA 20)
-    if not _check_confluence_filters(df, "PUT"):
+    if not _check_confluence_filters(df, "PUT", require_confluence):
         return "NONE"
 
     return "PUT"
 
-def eval_morning_star(df: pd.DataFrame) -> str:
+def eval_morning_star(df: pd.DataFrame, require_confluence: bool = True) -> str:
     """
     Detects Morning Star pattern.
     Structure: Bearish candle, small body candle (Doji/Spinning Top) with gap down,
@@ -455,7 +423,7 @@ def eval_morning_star(df: pd.DataFrame) -> str:
 
     # 2. Second candle is small body (Doji or Spinning Top) and gaps down
     body_c2_ratio = _get_candle_body_range(c2) / (c2["high"] - c2["low"] + 1e-9)
-    if body_c2_ratio > 0.5 or body_c2_ratio == 0: # Body too large or is a perfect Doji (which can be good, but we want small, not zero)
+    if body_c2_ratio > 0.5 or body_c2_ratio == 0: # Body too large or is a perfect Doji
         return "NONE"
 
     # Gap down check
@@ -471,12 +439,12 @@ def eval_morning_star(df: pd.DataFrame) -> str:
         return "NONE"
 
     # Aplica filtros de confluência (volume + EMA 20)
-    if not _check_confluence_filters(df, "CALL"):
+    if not _check_confluence_filters(df, "CALL", require_confluence):
         return "NONE"
 
     return "CALL"
 
-def eval_evening_star(df: pd.DataFrame) -> str:
+def eval_evening_star(df: pd.DataFrame, require_confluence: bool = True) -> str:
     """
     Detects Evening Star pattern.
     Structure: Bullish candle, small body candle (Doji/Spinning Top) with gap up,
@@ -512,12 +480,12 @@ def eval_evening_star(df: pd.DataFrame) -> str:
         return "NONE"
 
     # Aplica filtros de confluência (volume + EMA 20)
-    if not _check_confluence_filters(df, "PUT"):
+    if not _check_confluence_filters(df, "PUT", require_confluence):
         return "NONE"
 
     return "PUT"
 
-def eval_three_bar_play(df: pd.DataFrame) -> str:
+def eval_three_bar_play(df: pd.DataFrame, require_confluence: bool = True) -> str:
     """
     Detects 3 Bar Play pattern (continuation).
     Structure: Igniting bar (strong directional), Resting bar (small, inside), Trigger bar (breaks resting bar).
@@ -546,6 +514,9 @@ def eval_three_bar_play(df: pd.DataFrame) -> str:
 
         # Trigger bar (c3) breaks above c2's high
         if c3["close"] > c2["high"]:
+            # Aplica filtros de confluência (volume + EMA 20)
+            if not _check_confluence_filters(df, "CALL", require_confluence):
+                return "NONE"
             return "CALL"
 
     elif is_c1_strong_bear: # Bearish 3 Bar Play
@@ -562,38 +533,42 @@ def eval_three_bar_play(df: pd.DataFrame) -> str:
 
         # Trigger bar (c3) breaks below c2's low
         if c3["close"] < c2["low"]:
+            # Aplica filtros de confluência (volume + EMA 20)
+            if not _check_confluence_filters(df, "PUT", require_confluence):
+                return "NONE"
             return "PUT"
 
     return "NONE"
 
-def eval_three_candles_composite(df: pd.DataFrame) -> str:
+def eval_three_candles_composite(df: pd.DataFrame, require_confluence: bool = True) -> str:
     """
     Composite evaluation for various 3-candle patterns.
     This function will be called as "3 Velas" strategy.
     It prioritizes continuation over reversal if both are present in the same candle context.
+    require_confluence=False isola a geometria (auditorias/backtests).
     """
     if len(df) < 3:
         return "NONE"
 
     # Check for continuation first (3 Bar Play is a strong continuation signal)
-    signal = eval_three_bar_play(df)
+    signal = eval_three_bar_play(df, require_confluence)
     if signal != "NONE":
         return signal
 
     # Then check for reversals
-    signal = eval_three_white_soldiers(df)
+    signal = eval_three_white_soldiers(df, require_confluence)
     if signal != "NONE":
         return signal
 
-    signal = eval_three_black_crows(df)
+    signal = eval_three_black_crows(df, require_confluence)
     if signal != "NONE":
         return signal
 
-    signal = eval_morning_star(df)
+    signal = eval_morning_star(df, require_confluence)
     if signal != "NONE":
         return signal
 
-    signal = eval_evening_star(df)
+    signal = eval_evening_star(df, require_confluence)
     if signal != "NONE":
         return signal
 
