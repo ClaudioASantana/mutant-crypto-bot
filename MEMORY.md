@@ -1,0 +1,2 @@
+- [Estratégia de Confluência](memory/strategy-philosophy.md) — Filosofia operacional para o bot de crypto.
+- [Wiki Patterns Reference](memory/wikicode.md) — Referência da wiki do projeto.

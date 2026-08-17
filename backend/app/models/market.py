@@ -47,14 +47,11 @@ class RiskEvaluation(BaseModel):
     decision: RiskDecision
     reason: str
     stake: float
-    gale_level: int
 
 class AccountState(BaseModel):
     balance: float
     daily_pnl: float
     highest_daily_pnl: float = 0.0
-    current_gale_level: int
     daily_stop_loss: float
     daily_stop_gain: float
-    max_gale: int
     stake_initial: float

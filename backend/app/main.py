@@ -80,7 +80,7 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://0.0.0.0:3000"],
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://0.0.0.0:3000", "http://192.168.1.9:3010"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -135,11 +135,9 @@ async def websocket_endpoint(websocket: WebSocket):
                         b = bots[target_symbol]
                         b.active_config["timeframe"] = cmd.get("timeframe", 300)
                         b.active_config["strategy"] = cmd.get("strategy", "3 Velas")
-                        b.active_config["gale"] = cmd.get("gale", 3)
                         b.active_config["rsi_oversold"] = cmd.get("rsi_oversold", 30)
                         b.active_config["rsi_overbought"] = cmd.get("rsi_overbought", 70)
-                        b.paper_trader.max_gale = cmd.get("gale", 3)
-                        logger.info(f"[{target_symbol}] Configuração local alterada: M{b.active_config['timeframe']//60} / {b.active_config['strategy']} / Gale {b.active_config['gale']} / RSI {b.active_config['rsi_oversold']}-{b.active_config['rsi_overbought']}")
+                        logger.info(f"[{target_symbol}] Configuração local alterada: M{b.active_config['timeframe']//60} / {b.active_config['strategy']} / RSI {b.active_config['rsi_oversold']}-{b.active_config['rsi_overbought']}")
                         await manager.broadcast({"event": "simulator", "symbol": target_symbol, "data": b.paper_trader.get_state()})
                 elif cmd.get("command") == "TOGGLE_AUTO_OPTIMIZE":
                     target_symbol = manager.active_connections.get(websocket, watching_symbol)
@@ -228,35 +226,32 @@ async def api_optimize(req: OptimizeRequest):
     for history, timeframe_name in [(history_m5, "M5"), (history_m1, "M1")]:
         if not history: continue
         for consecutive_candles in [3, 5, 7, 9]:
-            for max_gale in [1, 2, 3]:
-                for rsi_combo in [(35, 65), (30, 70), (25, 75)]:
-                    rsi_over, rsi_under = rsi_combo
-                    res = run_simulation(
-                        history,
-                        consecutive_candles,
-                        rsi_over,
-                        rsi_under,
-                        max_gale,
-                        stake=10.0,
-                        payout_rate=0.95
-                    )
-                    total = res['wins'] + res['losses']
-                    win_rate = (res['wins'] / total * 100) if total > 0 else 0
-                    results.append({
-                        "timeframe": 300 if timeframe_name == "M5" else 60,
-                        "timeframe_label": timeframe_name,
-                        "candles": consecutive_candles,
-                        "gale": max_gale,
-                        "rsi_oversold": rsi_over,
-                        "rsi_overbought": rsi_under,
-                        "rsi_label": f"{rsi_over}/{rsi_under}",
-                        "wins": res['wins'],
-                        "losses": res['losses'],
-                        "win_rate": win_rate,
-                        "pnl": res['pnl']
-                    })
-                    
-                    results.sort(key=lambda x: x['pnl'], reverse=True)
+            for rsi_combo in [(35, 65), (30, 70), (25, 75)]:
+                rsi_over, rsi_under = rsi_combo
+                res = run_simulation(
+                    history,
+                    consecutive_candles,
+                    rsi_over,
+                    rsi_under,
+                    stake=10.0,
+                    payout_rate=0.95
+                )
+                total = res['wins'] + res['losses']
+                win_rate = (res['wins'] / total * 100) if total > 0 else 0
+                results.append({
+                    "timeframe": 300 if timeframe_name == "M5" else 60,
+                    "timeframe_label": timeframe_name,
+                    "candles": consecutive_candles,
+                    "rsi_oversold": rsi_over,
+                    "rsi_overbought": rsi_under,
+                    "rsi_label": f"{rsi_over}/{rsi_under}",
+                    "wins": res['wins'],
+                    "losses": res['losses'],
+                    "win_rate": win_rate,
+                    "pnl": res['pnl']
+                })
+
+        results.sort(key=lambda x: x['pnl'], reverse=True)
     return {"results": results[:5]}
 
 class AdvancedBacktestRequest(BaseModel):
@@ -383,7 +378,6 @@ async def api_backtest_advanced(req: AdvancedBacktestRequest):
 
 class RiskSettingsRequest(BaseModel):
     stake_initial: float
-    max_gale: int
     daily_stop_loss: float
     daily_stop_gain: float
 
@@ -393,13 +387,11 @@ def get_risk_settings():
         b = list(bots.values())[0]
         return {
             "stake_initial": b.paper_trader.stake_initial,
-            "max_gale": b.paper_trader.max_gale,
             "daily_stop_loss": b.paper_trader.daily_stop_loss,
             "daily_stop_gain": b.paper_trader.daily_stop_gain
         }
     return {
         "stake_initial": 10.0,
-        "max_gale": 2,
         "daily_stop_loss": 50.0,
         "daily_stop_gain": 50.0
     }
@@ -408,13 +400,11 @@ def get_risk_settings():
 def set_risk_settings(req: RiskSettingsRequest):
     settings = {
         "stake_initial": req.stake_initial,
-        "max_gale": req.max_gale,
         "daily_stop_loss": req.daily_stop_loss,
         "daily_stop_gain": req.daily_stop_gain
     }
     for b in bots.values():
         b.paper_trader.stake_initial = req.stake_initial
-        b.paper_trader.max_gale = req.max_gale
         b.paper_trader.daily_stop_loss = req.daily_stop_loss
         b.paper_trader.daily_stop_gain = req.daily_stop_gain
         b.paper_trader.save_state()

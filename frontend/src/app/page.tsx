@@ -45,7 +45,6 @@ export default function Home() {
   
   // Risk Settings State
   const [riskStake, setRiskStake] = useState<number>(10);
-  const [riskGale, setRiskGale] = useState<number>(2);
   const [riskStopLoss, setRiskStopLoss] = useState<number>(50);
   const [riskStopGain, setRiskStopGain] = useState<number>(50);
   const [isSavingRisk, setIsSavingRisk] = useState<boolean>(false);
@@ -105,8 +104,10 @@ export default function Home() {
       } else if (msg.event === "active_symbol") {
         setActiveSymbol(msg.data);
       } else if (msg.event === "chart_history") {
-        if (chartSeriesRef.current) {
+        if (chartSeriesRef.current && typeof chartSeriesRef.current.setData === 'function') {
           chartSeriesRef.current.setData(msg.data);
+        } else {
+          console.warn("Chart series ref não inicializado ou setData indisponível, ignorando update.");
         }
       }
     };
@@ -135,7 +136,6 @@ export default function Home() {
         const res = await fetch(`${httpUrl}/api/risk_settings`);
         const data = await res.json();
         setRiskStake(data.stake_initial);
-        setRiskGale(data.max_gale);
         setRiskStopLoss(data.daily_stop_loss);
         setRiskStopGain(data.daily_stop_gain);
       } catch (e) {}
@@ -191,24 +191,24 @@ export default function Home() {
 
 
   useEffect(() => {
-    if (chartSeriesRef.current) {
+    if (chartSeriesRef.current && typeof chartSeriesRef.current.setData === 'function') {
       // Limpa o gráfico imediatamente para evitar bug de escala ao trocar de ativo
       chartSeriesRef.current.setData([]);
     }
-    
+
     const fetchHistory = async () => {
       try {
         const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
         const res = await fetch(`${httpUrl}/api/chart_history?symbol=${activeSymbol}&limit=200`);
         const result = await res.json();
-        if (chartSeriesRef.current && result.data) {
+        if (chartSeriesRef.current && typeof chartSeriesRef.current.setData === 'function' && result.data) {
           chartSeriesRef.current.setData(result.data);
         }
       } catch (e) {
         console.error("Failed to fetch chart history", e);
       }
     };
-    
+
     if (activeSymbol) {
       fetchHistory();
     }
@@ -288,18 +288,16 @@ export default function Home() {
 
   const handleApplyStrategy = (strategyConfig: any) => {
     if (ws.current) {
-      ws.current.send(JSON.stringify({ 
-        command: "SET_CONFIG", 
-        timeframe: strategyConfig.timeframe, 
+      ws.current.send(JSON.stringify({
+        command: "SET_CONFIG",
+        timeframe: strategyConfig.timeframe,
         strategy: strategyConfig.strategy,
-        gale: strategyConfig.gale,
         rsi_oversold: strategyConfig.rsi_oversold,
         rsi_overbought: strategyConfig.rsi_overbought
       }));
-      setActiveConfig({ 
-        timeframe: strategyConfig.timeframe, 
+      setActiveConfig({
+        timeframe: strategyConfig.timeframe,
         strategy: strategyConfig.strategy,
-        gale: strategyConfig.gale,
         rsi_oversold: strategyConfig.rsi_oversold,
         rsi_overbought: strategyConfig.rsi_overbought
       });
@@ -351,7 +349,6 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           stake_initial: riskStake,
-          max_gale: riskGale,
           daily_stop_loss: riskStopLoss,
           daily_stop_gain: riskStopGain
         })
@@ -578,10 +575,6 @@ export default function Home() {
             <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
               <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stake Inicial ($)</label>
               <input type="number" value={riskStake} onChange={e => setRiskStake(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-              <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Max Martingale</label>
-              <input type="number" value={riskGale} onChange={e => setRiskGale(Number(e.target.value))} style={{ padding: "8px", background: "rgba(0,0,0,0.4)", color: "white", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "4px" }} />
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
               <label style={{ fontSize: "0.85rem", opacity: 0.8 }}>Stop Loss ($)</label>
@@ -834,11 +827,6 @@ export default function Home() {
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
                   <span style={{ opacity: 0.7 }}>Margem por Trade</span>
                   <span style={{ fontWeight: "bold" }}>${simulatorState.risk.next_margin.toFixed(2)}</span>
-                </div>
-                
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                  <span style={{ opacity: 0.7 }}>Multiplicador Gale (Atual)</span>
-                  <span>{simulatorState.risk.consecutive_losses === 0 ? "1x" : `${2 ** simulatorState.risk.consecutive_losses}x`}</span>
                 </div>
                 
                 {/* Stop Gain Progress */}

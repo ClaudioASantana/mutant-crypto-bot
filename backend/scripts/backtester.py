@@ -25,8 +25,6 @@ RSI_OVERBOUGHT = 65
 INITIAL_BALANCE = 10000.0
 STAKE = 10.0
 PAYOUT_RATE = 0.95 # Payout simulated 95%
-MARTINGALE_MULTIPLIER = 2.0
-MAX_GALE = 2
 
 async def download_history(symbol: str, timeframe_seconds: int, limit: int):
     exchange = ccxt.binance()
@@ -77,58 +75,43 @@ async def run_backtest():
     history = await download_history(SYMBOL, GRANULARITY, COUNT)
     if not history:
         return
-            
+
     # RUN BACKTEST
     balance = INITIAL_BALANCE
     wins = 0
     losses = 0
-    current_gale = 0
-    current_stake = STAKE
-    
+
     in_trade = False
     trade_direction = None
-    
+
     print("🚀 Iniciando Simulação Cripto...")
     print("-" * 50)
-    
+
     for i in range(len(history)):
         if i < RSI_PERIOD + CONSECUTIVE_CANDLES:
             continue
-            
+
         current_candle = history[i]
-        
+
         if in_trade:
             won = False
             if trade_direction == "CALL" and current_candle.direction == CandleDirection.BULLISH:
                 won = True
             elif trade_direction == "PUT" and current_candle.direction == CandleDirection.BEARISH:
                 won = True
-                
+
+            dt = datetime.fromtimestamp(current_candle.epoch).strftime('%Y-%m-%d %H:%M')
             if won:
-                profit = current_stake * PAYOUT_RATE
+                profit = STAKE * PAYOUT_RATE
                 balance += profit
                 wins += 1
-                dt = datetime.fromtimestamp(current_candle.epoch).strftime('%Y-%m-%d %H:%M')
-                print(f"✅ WIN no {dt} | Lucro: +${profit:.2f} | Saldo: ${balance:.2f} (Gale {current_gale})")
-                
-                in_trade = False
-                current_stake = STAKE
-                current_gale = 0
+                print(f"✅ WIN no {dt} | Lucro: +${profit:.2f} | Saldo: ${balance:.2f}")
             else:
-                balance -= current_stake
-                dt = datetime.fromtimestamp(current_candle.epoch).strftime('%Y-%m-%d %H:%M')
-                
-                if current_gale < MAX_GALE:
-                    current_gale += 1
-                    current_stake *= MARTINGALE_MULTIPLIER
-                    print(f"⚠️ LOSS no {dt}. Aplicando Gale {current_gale} de ${current_stake:.2f} | Saldo: ${balance:.2f}")
-                else:
-                    losses += 1
-                    print(f"❌ HIT MAX GALE no {dt} | Prejuízo da operação: Saldo: ${balance:.2f}")
-                    in_trade = False
-                    current_stake = STAKE
-                    current_gale = 0
-                    
+                balance -= STAKE
+                losses += 1
+                print(f"❌ LOSS no {dt} | Prejuízo: -${STAKE:.2f} | Saldo: ${balance:.2f}")
+
+            in_trade = False
             continue
             
         slice_history = history[:i+1]
@@ -156,14 +139,13 @@ async def run_backtest():
     print(f"Ativo: {SYMBOL} | Velas: {len(history)} (M{GRANULARITY//60})")
     print(f"Estratégia: {CONSECUTIVE_CANDLES} Velas Consecutivas")
     print(f"Filtro RSI: CALL < {RSI_OVERSOLD} | PUT > {RSI_OVERBOUGHT}")
-    print(f"Gale Máximo: {MAX_GALE}")
-    print(f"Vitórias (Ciclos Vencedores): {wins}")
-    print(f"Derrotas (Ciclos Perdidos Máximos): {losses}")
-    
+    print(f"Vitórias: {wins}")
+    print(f"Derrotas: {losses}")
+
     total_cycles = wins + losses
     win_rate = (wins / total_cycles * 100) if total_cycles > 0 else 0
-    print(f"Win Rate Real (com Gale): {win_rate:.2f}%")
-    
+    print(f"Win Rate: {win_rate:.2f}%")
+
     pnl = balance - INITIAL_BALANCE
     print(f"Saldo Inicial: ${INITIAL_BALANCE:.2f}")
     print(f"Saldo Final: ${balance:.2f}")
@@ -173,7 +155,7 @@ async def run_backtest():
     print("📈 TESTE DOS NOVOS MOTORES (CRYPTO FUTURES)")
     print("=" * 50)
     print("Testando estratégias avançadas com Trailing Stop e Real Volume (Risco/Retorno dinâmico).")
-    strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"]
+    strategies = ["EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar", "ABCD", "3 Velas", "RSI+EMA", "Exaustão"]
     for s in strategies:
         res = calculate_win_rate(history, s)
         print(f"\nEstratégia: {s}")

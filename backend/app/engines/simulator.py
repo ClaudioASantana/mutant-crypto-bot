@@ -13,18 +13,17 @@ class PaperTrader:
         self.leverage = leverage
         
         self.balance = initial_balance
-        self.consecutive_losses = 0
+        self.consecutive_losses = 0 # Deprecated, will be removed
         self.history_trades = []
         self.open_positions = []
         self.highest_daily_pnl = 0.0
-        
+
         self.daily_stop_loss = 50.0
         self.daily_stop_gain = 50.0
-        self.max_gale = 2
         self.stake_initial = 10.0
         self.trailing_activation = 1.0
         self.trailing_distance = 0.5
-        self.position_sizing_mode = "fixed"
+        self.position_sizing_mode = "fixed" # 'fixed', 'volatility_adjusted', or 'risk_percent'
         self.risk_percent = 2.0
         self.max_trade_duration_minutes = 240
         
@@ -46,7 +45,6 @@ class PaperTrader:
                         rs = state["risk_settings"]
                         self.daily_stop_loss = rs.get("daily_stop_loss", self.daily_stop_loss)
                         self.daily_stop_gain = rs.get("daily_stop_gain", self.daily_stop_gain)
-                        self.max_gale = rs.get("max_gale", self.max_gale)
                         self.stake_initial = rs.get("stake_initial", self.stake_initial)
                         self.trailing_activation = rs.get("trailing_activation", self.trailing_activation)
                         self.trailing_distance = rs.get("trailing_distance", self.trailing_distance)
@@ -70,7 +68,6 @@ class PaperTrader:
                 "risk_settings": {
                     "daily_stop_loss": self.daily_stop_loss,
                     "daily_stop_gain": self.daily_stop_gain,
-                    "max_gale": self.max_gale,
                     "stake_initial": self.stake_initial,
                     "trailing_activation": self.trailing_activation,
                     "trailing_distance": self.trailing_distance,
@@ -88,17 +85,12 @@ class PaperTrader:
         return round(self.balance - self.initial_balance, 2)
         
     def get_current_margin_usdt(self) -> float:
-        if self.position_sizing_mode == "gale":
-            multiplier = 2 ** self.consecutive_losses
-            if self.consecutive_losses > self.max_gale:
-                multiplier = 1
-            margin_usdt = self.stake_initial * multiplier
-        elif self.position_sizing_mode == "volatility_adjusted":
+        if self.position_sizing_mode == "volatility_adjusted":
             volatility_index = 1.10 if "BTC" in self.symbol else 1.51
             margin_usdt = self.stake_initial / volatility_index
         else:
             margin_usdt = self.balance * (self.risk_percent / 100.0)
-            
+
         if margin_usdt > self.balance:
             margin_usdt = self.balance
         return margin_usdt
@@ -228,10 +220,9 @@ class PaperTrader:
             "history": self.history_trades,
             "risk": {
                 "consecutive_losses": self.consecutive_losses,
-                "next_margin": self.stake_initial * (2 ** min(self.consecutive_losses, self.max_gale)) if self.position_sizing_mode == "gale" else self.balance * (self.risk_percent / 100.0),
+                "next_margin": self.balance * (self.risk_percent / 100.0),
                 "stop_loss": self.daily_stop_loss,
                 "stop_gain": self.daily_stop_gain,
-                "max_gale": self.max_gale,
                 "leverage": self.leverage,
                 "trailing_activation": self.trailing_activation,
                 "trailing_distance": self.trailing_distance,

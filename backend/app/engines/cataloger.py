@@ -1,9 +1,9 @@
 from typing import List
 from app.models.market import Candle
 from app.engines.technical_analysis import (
-    candles_to_df, apply_indicators, 
+    candles_to_df, apply_indicators,
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend, eval_pin_bar,
-    eval_abcd
+    eval_abcd, eval_consecutive, eval_rsi_ema_confluence, eval_mean_reversion_exhaustion
 )
 
 def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict:
@@ -42,6 +42,12 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
         strategy_func = eval_pin_bar
     elif strategy_name == "ABCD":
         strategy_func = eval_abcd
+    elif strategy_name == "3 Velas":
+        strategy_func = eval_consecutive
+    elif strategy_name == "RSI+EMA":
+        strategy_func = eval_rsi_ema_confluence
+    elif strategy_name == "Exaustão":
+        strategy_func = eval_mean_reversion_exhaustion
     else:
         return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "pnl_usdt": 0.0}
 
@@ -50,8 +56,6 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
     sl_multiplier = 1.5
     stake = 100.0
     leverage = 10
-    trailing_activation = 1.0
-    trailing_distance = 0.5
 
     for i in range(50, len(df) - 1):
         sub_df = df.iloc[:i+1]
@@ -62,29 +66,41 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
             signals_generated += 1
             entry_price = df.iloc[i]["close"]
             
-            # Dynamic Target calculation using ATR
-            atr_val = df.iloc[i].get("ATRr_14", entry_price * 0.005) # Fallback se não existir
-            
-            if signal == "CALL":
-                sl_price = entry_price - (atr_val * sl_multiplier)
-                tp_price = entry_price + (atr_val * tp_multiplier)
+            # Dynamic Target calculation using ATR (Default)
+            atr_val = df.iloc[i].get("ATRr_14", entry_price * 0.005)
+
+            if strategy_name == "3 Velas":
+                #Wiki: SL na Barra 2 (resting bar), TP = amplitude da Barra 1 (igniting bar)
+                c1 = df.iloc[i-2] # Igniting
+                c2 = df.iloc[i-1] # Resting
+
+                igniting_body = abs(c1["close"] - c1["open"])
+                if signal == "CALL":
+                    sl_price = c2["low"]
+                    tp_price = entry_price + igniting_body
+                else:
+                    sl_price = c2["high"]
+                    tp_price = entry_price - igniting_body
             else:
-                sl_price = entry_price + (atr_val * sl_multiplier)
-                tp_price = entry_price - (atr_val * tp_multiplier)
+                if signal == "CALL":
+                    sl_price = entry_price - (atr_val * sl_multiplier)
+                    tp_price = entry_price + (atr_val * tp_multiplier)
+                else:
+                    sl_price = entry_price + (atr_val * sl_multiplier)
+                    tp_price = entry_price - (atr_val * tp_multiplier)
                 
             trade_won = False
             trade_closed = False
-            is_time_stop = False
             
-            # Variáveis para Trailing Stop
-            highest_reached = entry_price
-            lowest_reached = entry_price
-            
+            # Variáveis para Trailing Stop (DESATIVADO)
+            # highest_reached = entry_price
+            # lowest_reached = entry_price
+
             for j in range(i+1, len(df)):
                 c_high = df['high'].iloc[j]
                 c_low = df['low'].iloc[j]
                 c_close = df['close'].iloc[j]
-                
+
                 current_time = int(df.index[j].timestamp())
                 entry_time = int(df.index[i].timestamp())
                 duration_seconds = current_time - entry_time
@@ -93,43 +109,23 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
                 if hit_time_stop:
                     trade_won = False
                     trade_closed = True
-                    is_time_stop = True
                     exit_price = c_close
                     break
-                
+
                 if signal == "CALL":
-                    # Atualiza máxima
-                    if c_high > highest_reached:
-                        highest_reached = c_high
-                        # Trailing Stop: move SL progressivamente
-                        if highest_reached >= entry_price + (atr_val * trailing_activation):
-                            new_sl = highest_reached - (atr_val * trailing_distance)
-                            if new_sl > sl_price:
-                                sl_price = new_sl
-                                
+                    # Trailing Stop removido. Apenas SL e TP fixos.
                     if c_low <= sl_price:
+                        trade_won = False
                         trade_closed = True
-                        if sl_price >= entry_price:
-                            trade_won = True
                         break
                     elif c_high >= tp_price:
                         trade_won = True
                         trade_closed = True
                         break
                 else: # PUT
-                    # Atualiza mínima
-                    if c_low < lowest_reached:
-                        lowest_reached = c_low
-                        # Trailing Stop para PUT
-                        if lowest_reached <= entry_price - (atr_val * trailing_activation):
-                            new_sl = lowest_reached + (atr_val * trailing_distance)
-                            if new_sl < sl_price:
-                                sl_price = new_sl
-                                
                     if c_high >= sl_price:
+                        trade_won = False
                         trade_closed = True
-                        if sl_price <= entry_price:
-                            trade_won = True
                         break
                     elif c_low <= tp_price:
                         trade_won = True

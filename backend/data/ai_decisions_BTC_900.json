@@ -1,0 +1,1352 @@
+{
+  "1786896900": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia fortemente altista (pre\u00e7o ~250pts acima EMA200, HH/HL cont\u00ednuos), mas RSI 87.36 = exaust\u00e3o extrema. Pre\u00e7o est\u00e1 ~7 ATR acima da EMA20, estiramento an\u00f4malo. As \u00faltimas 2 velas mostram acelera\u00e7\u00e3o parab\u00f3lica \u2014 padr\u00e3o t\u00edpico de cl\u00edmax comprador antes de corre\u00e7\u00e3o. BUY agora = comprar topo; SELL = contra-tend\u00eancia sem revers\u00e3o confirmada. Aguardar pullback at\u00e9 EMA20 (~63,111) ou resfriamento do RSI abaixo de 70 para entrada com risco/retorno favor\u00e1vel.",
+    "confidence": 0.88
+  },
+  "1786796100": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro inconclusiva (EMA200 indispon\u00edvel), pre\u00e7o abaixo da EMA20 indicando vi\u00e9s de curto prazo levemente bearish, mas RSI em 41.86 n\u00e3o sinaliza exaust\u00e3o nem de compra nem de venda. ATR baixo (33.41) confirma consolida\u00e7\u00e3o sem momentum direcional claro. \u00daltima vela corpo m\u00ednimo (range ~$2.50) indica indecis\u00e3o. Sem conflu\u00eancia suficiente para entrada.",
+    "confidence": 0.75
+  },
+  "1786846500": {
+    "decision": "WAIT",
+    "reason": "Queda consistente nas \u00faltimas 19 velas de 63168\u219263024 (tend\u00eancia claramente bearish). A \u00faltima vela grande de alta (O:63024\u2192C:63115, +90 pts) parece ser um snap-back/revers\u00e3o de curto prazo, mas \u00e9 apenas 1 vela contra 19 de queda. RSI neutro em 54.43 n\u00e3o confirma momentum comprador sustentado. Pre\u00e7o acima da EMA200 (63074) e EMA20 (63087) \u00e9 positivo, mas sem confirma\u00e7\u00e3o de continua\u00e7\u00e3o alcista no pr\u00f3ximo candle. Pode ser bull trap em estrutura bearish. Conservador aguardar: 2\u00aa vela verde + RSI acima de 58 para validar.",
+    "confidence": 0.62
+  },
+  "1786695300": {
+    "decision": "WAIT",
+    "reason": "Downtrend claro com pre\u00e7o abaixo da EMA20, mas RSI em 21.62 indica exaust\u00e3o extrema de venda. Sem dados de EMA200 para confirmar tend\u00eancia macro. A vela atual possui pavil inferior longo (low 62735 vs close 62781), sugerindo poss\u00edvel absor\u00e7\u00e3o de venda, por\u00e9m sem confirma\u00e7\u00e3o de revers\u00e3o. Ambiente de alta incerteza - aguardar rea\u00e7\u00e3o do pre\u00e7o na zona de suporte ~62735 ou recupera\u00e7\u00e3o acima da EMA20.",
+    "confidence": 0.35
+  },
+  "1786745700": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente baixa (pre\u00e7o abaixo da EMA20, sequ\u00eancia de lower lows/lowers highs), por\u00e9m o RSI em 40.49 n\u00e3o est\u00e1 em zona de exaust\u00e3o compradora nem de momentum bearish forte, e a EMA200 est\u00e1 indispon\u00edvel (nan), impedindo a confirma\u00e7\u00e3o da tend\u00eancia macro. Sem contexto macro, entrar em SELL agora seria operar no escuro contra um RSI que j\u00e1 se aproxima de zonas de potencial revers\u00e3o. Aguardar: ou rompimento definivo abaixo de 62.800 com RSI abaixo de 35 para SELL, ou recupera\u00e7\u00e3o acima da EMA20 (~62.920) para BUY.",
+    "confidence": 0.35
+  },
+  "1786771800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita determinar a tend\u00eancia macro. RSI neutro em 51.15 sem sinal de exaust\u00e3o. Pre\u00e7o rompeu levemente abaixo da EMA20 (63.075 vs 63.082.88) ap\u00f3s rejei\u00e7\u00e3o em ~63.187, sugerindo press\u00e3o vendedora de curto prazo, mas sem confirma\u00e7\u00e3o direcional clara. Sem contexto de timeframe superior, qualquer entrada seria adivinha\u00e7\u00e3o.",
+    "confidence": 0.25
+  },
+  "1786721400": {
+    "decision": "WAIT",
+    "reason": "Breakout acima do range de consolida\u00e7\u00e3o (63.006) \u00e9 recente (apenas 2 velas), mas EMA200 indispon\u00edvel impede confirma\u00e7\u00e3o da tend\u00eancia macro. RSI 58.68 \u00e9 neutro-sem exaust\u00e3o, e EMA50 ausente. Sem confirma\u00e7\u00e3o de estrutura macro, o rompimento pode ser falso. Conservador aguarda reteste da EMA20 (~62.799) ou continuidade com volume.",
+    "confidence": 0.62
+  },
+  "1786822200": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) e EMA50 zerada impossibilitam confirma\u00e7\u00e3o da tend\u00eancia macro. RSI 59.39 \u00e9 neutro, sem exaust\u00e3o clara. Pre\u00e7o acima da EMA20 (63076.70) sugere vi\u00e9s de curto prazo levemente positivo, mas ATR de 26.84 indica consolida\u00e7\u00e3o de baixa volatilidade \u2014 sem momentum suficiente para entrada confi\u00e1vel. Sem confirma\u00e7\u00e3o de tend\u00eancia de fundo, arriscar uma posi\u00e7\u00e3o seria antecipado.",
+    "confidence": 0.35
+  },
+  "1786923000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia bearish confirmada (pre\u00e7o ~62.898 abaixo de EMA20 62.973 e EMA200 63.069, com death cross). Por\u00e9m, RSI 40.24 n\u00e3o mostra exaust\u00e3o compradora nem oversold \u2014 falta conflu\u00eancia. As \u00faltimas 3 velas mostram consolida\u00e7\u00e3o lateral (62.790\u201362.913), sugerindo indecis\u00e3o ap\u00f3s a queda acentuada at\u00e9 62.754. Entrar SELL agora seria tarde no movimento; pre\u00e7o j\u00e1 descolou +170pts da EMA20 sem pullback. Aguardar: pullback \u00e0 EMA20 (~62.973) para SELL de continua\u00e7\u00e3o, ou RSI < 30 para tentar rea\u00e7\u00e3o compradora.",
+    "confidence": 0.78
+  },
+  "1786872600": {
+    "decision": "SELL",
+    "reason": "Rompimento bearish forte at\u00e9 63000 (\u00faltima vela range ~4x ATR). Pre\u00e7o abaixo de EMA20 (63067) e EMA200 (63076), confirmando vi\u00e9s de baixa macro. Sequ\u00eancia de topos decrescentes nas \u00faltimas velas. RSI em 32 indica press\u00e3o vendedora mas ainda n\u00e3o exaust\u00e3o extrema (30), h\u00e1 espa\u00e7o para continuidade. A vela final \u00e9 um marubozu de baixa sem pavil superior, sinalizando for\u00e7a dos vendedores.",
+    "confidence": 0.62
+  },
+  "1786696200": {
+    "decision": "WAIT",
+    "reason": "Downtrend persistente (de ~63.470 a ~62.843) com pre\u00e7o ~284 pontos abaixo da EMA20. RSI 27.28 em sobrevendido sugere exaust\u00e3o vendedora, mas sem confirma\u00e7\u00e3o de revers\u00e3o (apenas 1 vela verde no \u00faltimo candle). EMA200 indispon\u00edvel para tend\u00eancia macro. \u00daltimo candle mostra recupera\u00e7\u00e3o parcial (L:62.700 \u2192 C:62.843), por\u00e9m insuficiente para confirmar fundo. Aguardar: rompimento acima da EMA20 (~63.128) para BUY ou continua\u00e7\u00e3o com nova rejei\u00e7\u00e3o para SELL.",
+    "confidence": 0.75
+  },
+  "1786746600": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia levemente baixista com pre\u00e7o abaixo da EMA20 (62.916), mas EMA50 e EMA200 indispon\u00edveis impossibilitam confirma\u00e7\u00e3o de tend\u00eancia macro. RSI em 46.40 indica momentum neutro-baixista, sem exaust\u00e3o clara. A \u00faltima vela mostra um rebote em 62.800 (suporte), por\u00e9m \u00e9 insuficiente como sinal de revers\u00e3o. Sem conflu\u00eancia de indicadores, o risco n\u00e3o justifica entrada.",
+    "confidence": 0.72
+  },
+  "1786797000": {
+    "decision": "SELL",
+    "reason": "Tend\u00eancia claramente baixista: pre\u00e7o abaixo da EMA20 (62.960 vs 63.020), sequ\u00eancia de fechamentos descendentes nos \u00faltimos candles, e \u00faltimo candle fechou na m\u00ednima (bearish close forte). RSI em 38 confirma momentum vendedor sem estar em exaust\u00e3o de sobreventa. Ressalva: EMA200 indispon\u00edvel, o que limita a confirma\u00e7\u00e3o de tend\u00eancia macro.",
+    "confidence": 0.55
+  },
+  "1786897800": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de alta clara (pre\u00e7o ~214 acima da EMA200), por\u00e9m RSI em 78.45 em zona de sobrecompra. \u00daltima vela forma topo em 63.390 com rejei\u00e7\u00e3o e fechamento inferior em 63.290 \u2014 pavio superior de ~100 pontos indica press\u00e3o vendedora. Entrar agora significa comprar topo ap\u00f3s rally de +400 pontos em poucas velas. Aguardar pullback para EMA20 (~63.128) ou RSI abaixo de 70 para entrada com melhor risco/retorno.",
+    "confidence": 0.82
+  },
+  "1786722300": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) impede confirma\u00e7\u00e3o da tend\u00eancia macro. RSI em 57.79 \u00e9 neutro, sem sinal claro de exaust\u00e3o. A \u00faltima vela fechou abaixo da abertura (C:62990 < O:63006) ap\u00f3s tocar 63089, sugerindo rejei\u00e7\u00e3o parcial na m\u00e1xima local. Embora o pre\u00e7o esteja acima da EMA20 (62817) e a recupera\u00e7\u00e3o de ~62535 tenha sido forte, a falta de confirma\u00e7\u00e3o macro e o RSI sem dire\u00e7\u00e3o definida n\u00e3o oferecem raz\u00e3o suficiente para entrada.",
+    "confidence": 0.55
+  },
+  "1786847400": {
+    "decision": "BUY",
+    "reason": "Reversal de baixa consistente: pre\u00e7o recuperou acima da EMA200 (63075.10) ap\u00f3s teste de suporte em ~63012. \u00daltimas 2 velas com forte momentum comprador (range de ~96 e ~37 pts). RSI 59.49 em zona neutro-alta com espa\u00e7o para upside sem exaust\u00e3o. Pre\u00e7o acima da EMA20 confirmando impulso de curto prazo.",
+    "confidence": 0.62
+  },
+  "1786772700": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) \u2014 sem confirma\u00e7\u00e3o de tend\u00eancia macro; RSI neutro em 52.86 sem exaust\u00e3o; price action mostra range lateral entre ~63.040-63.155 com closes alternando (rally \u2192 sell-off \u2192 rally \u2192 sell-off); pre\u00e7o colado na EMA20 (63.089 vs 63.083) sem direcionalidade clara. Ambiente de consolida\u00e7\u00e3o sem edge definido.",
+    "confidence": 0.82
+  },
+  "1786823100": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) impossibilita an\u00e1lise de tend\u00eancia macro. Embora o pre\u00e7o esteja acima da EMA20 (63.081) e o RSI (61.15) mostre vi\u00e9s de alta sem exaust\u00e3o, a \u00faltima vela fechou em 63.126 \u2014 zona de resist\u00eancia testada repetidamente (63.120-63.127) nas \u00faltimas velas. ATR extremamente baixo (25.67) indica compress\u00e3o e baixa convic\u00e7\u00e3o direcional. Sem confirma\u00e7\u00e3o de tend\u00eancia macro e com resist\u00eancia sendo tocada sem rompimento limpo, o risco/recompensa n\u00e3o justifica entrada.",
+    "confidence": 0.35
+  },
+  "1786873500": {
+    "decision": "WAIT",
+    "reason": "Price rompeu abaixo de 63000 e est\u00e1 sob EMA200 (63075.63), confirmando vi\u00e9s de baixa. Por\u00e9m, RSI em 30.91 indica exaust\u00e3o de venda pr\u00f3xima de sobrecompra reversa. Entrar SELL agora arrisca pegar o fundo do movimento; BUY vai contra a tend\u00eancia macro. Aguardar: ou RSI confirma oversold (<30) com candle de revers\u00e3o para BUY, ou consolida acima de 63000 para reavaliar SELL em pullback.",
+    "confidence": 0.35
+  },
+  "1786747500": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita an\u00e1lise de tend\u00eancia macro. RSI 46.68 em zona neutra sem exaust\u00e3o. Pre\u00e7o ligeiramente abaixo da EMA20 (62887 vs 62914), sugerindo leve vi\u00e9s bearish, mas sem confirma\u00e7\u00e3o. Consolida\u00e7\u00e3o entre 62800-62930 sem rompimento claro. Sinal fraco, sem conflu\u00eancia suficiente para entrada.",
+    "confidence": 0.25
+  },
+  "1786697100": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de baixa persistente \u2014 pre\u00e7o ~62.940 bem abaixo da EMA20 (63.110). RSI em 35.10 indica press\u00e3o vendedora mas ainda n\u00e3o atingiu exaust\u00e3o (<30). EMA200 indispon\u00edvel (nan), impossibilitando an\u00e1lise de tend\u00eancia macro. As duas \u00faltimas velas verdes (reban\u00e7o de ~62.700) s\u00e3o insuficientes para confirmar revers\u00e3o \u2014 podem ser apenas um pullback t\u00e9cnico. Sem conflu\u00eancia de sinais, aguardar \u00e9 a decis\u00e3o prudente.",
+    "confidence": 0.7
+  },
+  "1786797900": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) e EMA50 zerado impedem avalia\u00e7\u00e3o da tend\u00eancia macro. RSI 53.26 em territ\u00f3rio neutro, sem sinal de exaust\u00e3o. Pre\u00e7o oscilando em range lateral (~62.920\u201363.086). A \u00faltima vela \u00e9 de recupera\u00e7\u00e3o, mas sem confirma\u00e7\u00e3o de tend\u00eancia de fundo para operar com convic\u00e7\u00e3o. Cen\u00e1rio amb\u00edguo \u2014 aguardar rompimento claro do range ou dados de EMAs superiores.",
+    "confidence": 0.25
+  },
+  "1786898700": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o acima de EMA20 e EMA200 confirma tend\u00eancia de alta macro, mas RSI em 71.61 (sobrecompra) somado a 2 velas de rejei\u00e7\u00e3o bearish com topos em ~63,390 e fechamentos descendentes (63,290\u219263,260) indicam exaust\u00e3o compradora. Entrada LONG agora seria comprar no topo de um impulso esticado. Aguardar pullback at\u00e9 EMA20 (~63,141) para reentrada com melhor R:R, ou rompimento limpo acima de 63,390 para confirmar continuidade.",
+    "confidence": 0.78
+  },
+  "1786848300": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o acima de EMA20 e EMA200 (estrutura levemente altista), por\u00e9m RSI neutro em 54.23 sem exaust\u00e3o clara. A \u00faltima vela mostrou rejei\u00e7\u00e3o/retra\u00e7\u00e3o (de 63151\u219263121) ap\u00f3s forte candle de alta, sugerindo poss\u00edvel enfraquecimento do impulso comprador. O mercado permanece em consolida\u00e7\u00e3o lateral (range ~63012-63175) sem rompimento decisivo. Sinal fraco para entrada conservadora \u2014 aguardar confirma\u00e7\u00e3o de continua\u00e7\u00e3o acima de 63151 ou nova rejei\u00e7\u00e3o.",
+    "confidence": 0.35
+  },
+  "1786773600": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 imposs\u00edvel avaliar tend\u00eancia macro. Pre\u00e7o fechou abaixo da EMA20 (63037 vs 63079) com vela bearish no fundo, mas RSI neutro em 46.42 n\u00e3o indica exaust\u00e3o clara. Mercado em consolida\u00e7\u00e3o lateral (~63000-63188) com ATR baixo (47.54). Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.25
+  },
+  "1786723200": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o acima da EMA20 com momentum altista recente (\u00faltimas 5 velas HH/HL, rompimento de 63.000), mas EMA200=NaN e EMA50=0 impedem qualquer confirma\u00e7\u00e3o de tend\u00eancia macro. RSI 60.04 \u00e9 neutro-bullish, sem exaust\u00e3o mas sem sinal categ\u00f3rico. Operar sem contexto macro \u00e9 apostar, n\u00e3o tradear \u2014 aguardar: pullback \u00e0 EMA20 (~62838) com rejei\u00e7\u00e3o para BUY, ou revers\u00e3o com candle bearish engolindo acima de 63100 para reavaliar.",
+    "confidence": 0.42
+  },
+  "1786824000": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) impossibilita an\u00e1lise de tend\u00eancia macro; RSI neutro em 50.49 sem sinal de exaust\u00e3o; \u00faltima vela rompeu abaixo da EMA20 com fechamento em 63078 vs EMA20 63081, mas pavio inferior longo indica compra em 63076 \u2014 sinal amb\u00edguo em range estreito (ATR 27.35). Sem conflu\u00eancia, sem entrada.",
+    "confidence": 0.85
+  },
+  "1786924800": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro bearish (pre\u00e7o abaixo de EMA20 e EMA200), mas RSI 41.59 sem exaust\u00e3o de venda clara. Consolida\u00e7\u00e3o lateral entre 62.742-62.932 ap\u00f3s queda \u2014 sem rompimento definido. Entrada SELL agora arriscada pelo suporte local; BUY contra-tend\u00eancia sem confirma\u00e7\u00e3o.",
+    "confidence": 0.72
+  },
+  "1786874400": {
+    "decision": "WAIT",
+    "reason": "Rompimento bearish claro (63072\u219262968) com pre\u00e7o abaixo da EMA200 (63074.75), por\u00e9m RSI em 30.15 indica exaust\u00e3o vendedora pr\u00f3xima de sobrevenda. Short agora seria persegui\u00e7\u00e3o tardia do movimento; long seria contra-tend\u00eancia sem sinal de revers\u00e3o. Aguardar: ou consolida\u00e7\u00e3o para short com RSI resetado, ou fundo confirmado para long.",
+    "confidence": 0.72
+  },
+  "1786698000": {
+    "decision": "SELL",
+    "reason": "Tend\u00eancia baixista consistente: pre\u00e7o ~62.877 abaixo da EMA20 (63.087) por ~210 pts, sequ\u00eancia clara de lower highs/lower lows. \u00daltima vela com O=H (sem pavil superior) confirma dom\u00ednio dos vendedores. RSI em 32.64 aproxima-se de sobrevenda mas ainda tem espa\u00e7o para cair (zona extrema <25 em tend\u00eancias fortes). Aus\u00eancia de qualquer sinal de revers\u00e3o: sem diverg\u00eancia bullish, sem martelo, sem engulfing. EMA200 indispon\u00edvel, mas a estrutura de pre\u00e7o \u00e9 inequivocamente bearish.",
+    "confidence": 0.72
+  },
+  "1786798800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 zerado \u2014 imposs\u00edvel avaliar tend\u00eancia macro. RSI 56.22 em zona neutra sem exaust\u00e3o. Pre\u00e7o acima da EMA20 (63028) com leve vi\u00e9s de curto prazo, mas as \u00faltimas velas mostram consolida\u00e7\u00e3o em range apertado (~62946-63080). Sem confirma\u00e7\u00e3o de tend\u00eancia de fundo, sinal fraco para entrada.",
+    "confidence": 0.3
+  },
+  "1786748400": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indefinida \u2014 EMA200 indispon\u00edvel (nan) e EMA50 zerada, impossibilitando avalia\u00e7\u00e3o da dire\u00e7\u00e3o macro. RSI em 50.73 \u00e9 perfeitamente neutro, sem exaust\u00e3o. Pre\u00e7o oscilando lateralmente em torno da EMA20 (~62915) com ATR de apenas 72.90 (volatilidade comprimida ~0.12%). As \u00faltimas velas mostram consolida\u00e7\u00e3o em range estreito (62800-63090) sem rompimento definido. Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.85
+  },
+  "1786899600": {
+    "decision": "WAIT",
+    "reason": "Pullback em andamento (3 velas baixistas consecutivas desde topo 63.390). Pre\u00e7o ainda acima da EMA20 (63.148) e EMA200 (63.079), mantendo estrutura macro bullish. RSI 63.63 sem exaust\u00e3o clara. Aguardar: (1) teste da EMA20 como suporte para BUY com melhor risco, ou (2) rompimento acima de 63.350 para confirma\u00e7\u00e3o de continua\u00e7\u00e3o.",
+    "confidence": 0.62
+  },
+  "1786724100": {
+    "decision": "WAIT",
+    "reason": "Rompimento altista claro (5 velas seguidas de alta, +545pts desde swing low \u2248 3.9 ATR), por\u00e9m: EMA200 indispon\u00edvel impossibilita confirma\u00e7\u00e3o de tend\u00eancia macro; pre\u00e7o j\u00e1 estendido bem acima da EMA20 (+253pts); \u00faltima vela fechou abaixo da m\u00e1xima (63.166\u219263.118) sugerindo press\u00e3o vendedora em 63.100+. RSI 63 ainda n\u00e3o exaurido mas risco/recompensa desfavor\u00e1vel para entrada neste topo. Aguardar pullback para EMA20 (~62.865) ou confirma\u00e7\u00e3o de continuidade.",
+    "confidence": 0.7
+  },
+  "1786774500": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita confirma\u00e7\u00e3o da tend\u00eancia macro. RSI em 46.27 \u00e9 neutro, sem exaust\u00e3o clara. Pre\u00e7o abaixo da EMA20 (63.075 vs 63.036) indica vi\u00e9s bearish de curto prazo, mas o range \u00e9 estreito (~160 pontos) e a volatilidade baixa (ATR: 47). Padr\u00e3o de topos descendentes desde 63.187 sugere press\u00e3o vendedora, por\u00e9m sem rompimento decisivo. Sinal fraco e inconclusivo \u2014 sem conflu\u00eancia suficiente para entrada.",
+    "confidence": 0.25
+  },
+  "1786824900": {
+    "decision": "WAIT",
+    "reason": "Mercado em consolida\u00e7\u00e3o lateral apertada (~63.050\u201363.127) com ATR baixo (25.39). RSI neutro em 50.49 sem exaust\u00e3o. EMA200 indispon\u00edvel (nan) e EMA50 zerada \u2014 imposs\u00edvel confirmar tend\u00eancia macro. Pre\u00e7o colado na EMA20 (63.078 vs 63.080.90) sem momentum direcional. Sem setup claro para entrada.",
+    "confidence": 0.15
+  },
+  "1786849200": {
+    "decision": "WAIT",
+    "reason": "Price acima de EMA20 (63098) e EMA200 (63076) indica vi\u00e9s levemente altista, por\u00e9m a \u00faltima vela \u00e9 um doji (O:63121.92 C:63122.98) com corpo m\u00ednimo, sinalizando indecis\u00e3o ap\u00f3s o pullback do topo em 63151. RSI em 54.39 \u00e9 neutro \u2014 sem exaust\u00e3o mas tamb\u00e9m sem momentum. O rally de 63024\u219263151 foi forte (+127pts), mas a consolida\u00e7\u00e3o atual em range apertado n\u00e3o oferece gatilho claro. Conservador: aguardar rompimento acima de 63151 para BUY ou reteste da EMA20 (~63098) com vela de rea\u00e7\u00e3o para entrada melhor.",
+    "confidence": 0.62
+  },
+  "1786875300": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o abaixo da EMA200 (63013 vs 63074) indica vi\u00e9s de baixa macro, mas a \u00faltima vela mostra bounce do suporte em 62968. RSI em 38.71 n\u00e3o est\u00e1 em zona de exaust\u00e3o (<30) para confirmar revers\u00e3o de compra. Entrar SELL agora p\u00f3s-bounce do suporte \u00e9 arriscado; entrar BUY contra a tend\u00eancia \u00e9 prematuro. Aguardar: se romper 62968 com volume \u2192 SELL; se recuperar acima da EMA200 com for\u00e7a \u2192 BUY.",
+    "confidence": 0.72
+  },
+  "1786923900": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro bearish confirmada (pre\u00e7o abaixo da EMA200 em ~167 pontos, RSI em 40.46), mas as \u00faltimas 5 velas mostram consolida\u00e7\u00e3o com corpos pequenos e poss\u00edveis fundos ascendentes desde 62.754, sugerindo exaust\u00e3o do movimento baixista. Entrar SHORT agora p\u00f3s-consolida\u00e7\u00e3o oferece risco/recompensa desfavor\u00e1vel. Aguardar: rejei\u00e7\u00e3o clara na EMA20 (62.966) para SELL, ou rompimento acima da EMA200 para BUY.",
+    "confidence": 0.65
+  },
+  "1786925700": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o (62.866) abaixo de EMA20 (62.952) e EMA200 (63.064), confirmando vi\u00e9s bearish macro. RSI em 38 indica momentum negativo com espa\u00e7o at\u00e9 a zona de exaust\u00e3o (~30). Estrutura de pre\u00e7o mostra sequ\u00eancia consistente de lower highs e lower lows desde 63.230. Apesar da mecha inferior longa na \u00faltima vela (toque em 62.760), o fechamento ocorreu bem abaixo da abertura, e a recupera\u00e7\u00e3o n\u00e3o foi suficiente para romper EMA20 \u2014 sugerindo que a press\u00e3o vendedora segue dominante.",
+    "confidence": 0.56
+  },
+  "1786698900": {
+    "decision": "WAIT",
+    "reason": "Downtrend persistente (63423\u219262794), pre\u00e7o -3.8% abaixo da EMA20 (63060), \u00faltima vela fechou na m\u00ednima (62794.98) \u2014 sinal bearish. Por\u00e9m RSI em 29.71 (oversold) indica exaust\u00e3o de venda. EMA200=NaN impede an\u00e1lise macro. Conflito: momentum baixista forte vs. RSI sobrevendido. Sem confirma\u00e7\u00e3o de revers\u00e3o (sem hammer, sem diverg\u00eancia) e sem suporte claro identificado. Conservadorismo exige aguardar: ou bounce com volume para BUY, ou continua\u00e7\u00e3o abaixo de 62700 para SELL.",
+    "confidence": 0.2
+  },
+  "1786749300": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita confirma\u00e7\u00e3o de tend\u00eancia macro; RSI 52.37 em zona neutra sem exaust\u00e3o; pre\u00e7o oscilando lateralmente entre 62.800-63.000 com recupera\u00e7\u00e3o marginal acima da EMA20 (62.918), mas sem momentum claro. Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.15
+  },
+  "1786799700": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN), impossibilitando avalia\u00e7\u00e3o da tend\u00eancia macro. RSI neutro em 50.64, sem sinal de exaust\u00e3o. Mercado em consolida\u00e7\u00e3o lateral apertada (range ~160 pts, ATR 39.64). \u00daltima vela foi bearish mas dentro do range. Sem confluentes claros para entrada \u2014 aguardar rompimento ou tend\u00eancia definida.",
+    "confidence": 0.85
+  },
+  "1786850100": {
+    "decision": "WAIT",
+    "reason": "Ap\u00f3s forte recupera\u00e7\u00e3o de 63.012 at\u00e9 63.151, o pre\u00e7o entrou em consolida\u00e7\u00e3o lateral entre 63.119-63.123 com velas de corpo pequeno e baixa convic\u00e7\u00e3o. RSI neutro em 53.83 sem momentum direcional. Embora o pre\u00e7o esteja acima da EMA200 (63.076), a falta de rompimento do topo local em 63.151 e a compress\u00e3o do ATR sugerem indecis\u00e3o. Aguardar confirma\u00e7\u00e3o de rompimento com volume.",
+    "confidence": 0.35
+  },
+  "1786825800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) impossibilita an\u00e1lise de tend\u00eancia macro. RSI em 51.02 indica neutralidade sem exaust\u00e3o. Pre\u00e7o oscillando em range apertado (~80 pontos) com ATR baixo (23.76) indicando consolida\u00e7\u00e3o. \u00daltima tentativa de rompimento para 63.126 foi rejeitada de volta a ~63.081. Sem sinal claro de dire\u00e7\u00e3o \u2014 aguardar breakout com volume ou defini\u00e7\u00e3o de tend\u00eancia.",
+    "confidence": 0.15
+  },
+  "1786725000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia bullish clara (5 velas consecutivas de alta, pre\u00e7o +0.5% acima da EMA20), por\u00e9m dois fatores desfavorecem entrada agora: (1) EMA50 e EMA200 indispon\u00edveis impedem confirma\u00e7\u00e3o da tend\u00eancia macro e conflu\u00eancia de suportes; (2) RSI 66.43 aproxima-se da zona de exaust\u00e3o (70), e o pre\u00e7o j\u00e1 acumula +$600 desde o fundo sem pullback. Entrar no topo do impulso \u00e9 arriscado. Aguardar retra\u00e7\u00e3o \u00e0 EMA20 (~62.898) para melhor risco/retorno.",
+    "confidence": 0.78
+  },
+  "1786775400": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis (nan/0.00) impossibilitam avalia\u00e7\u00e3o da tend\u00eancia macro. RSI em 50.71 \u00e9 neutro \u2014 sem exaust\u00e3o. Pre\u00e7o oscila em range estreito (63.027\u201363.188) com estrutura de topos levemente descendentes ap\u00f3s rejei\u00e7\u00e3o em 63.188, mas sem rompimento definido. Leve press\u00e3o bearish (pre\u00e7o abaixo da EMA20 por ~5 pontos) \u00e9 insuficiente para entrada. Sem conflu\u00eancia de sinais.",
+    "confidence": 0.82
+  },
+  "1786900500": {
+    "decision": "WAIT",
+    "reason": "Pullback ativo com 4 velas consecutivas de lower highs/lower lows (63390\u219263290\u219263276\u219263231). Pre\u00e7o (63190) testando suporte na EMA20 (63152) mas sem confirma\u00e7\u00e3o de revers\u00e3o. Macro bullish (acima EMA200 em 63080), RSI neutro sem exaust\u00e3o. Aguardar: (1) vela de rejei\u00e7\u00e3o/revers\u00e3o na EMA20 para BUY, ou (2) break abaixo da EMA200 para SELL.",
+    "confidence": 0.3
+  },
+  "1786750200": {
+    "decision": "WAIT",
+    "reason": "\u00daltima vela \u00e9 fortemente rompeu range lateral (~62.800-63.030) com close em 63.009, mas EMA200 e EMA50 indispon\u00edveis \u2014 sem confirma\u00e7\u00e3o de tend\u00eancia macro. RSI 57.48 neutro. Rompimento precisa de confirma\u00e7\u00e3o: aguardar pr\u00f3xima vela fechando acima de 63.030 com follow-through, ou pullback \u00e0 EMA20 (62.927) com rejei\u00e7\u00e3o para entrada mais segura.",
+    "confidence": 0.4
+  },
+  "1786699800": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia persistente: pre\u00e7o continua abaixo da EMA20 (63031) com m\u00ednimas descendentes (\u00faltima vela fechou em 62763 perto da m\u00ednima de 62744). RSI 28.66 em sobrevenda profunda, mas sem padr\u00e3o de revers\u00e3o \u2014 nenhum hammer, engulfing ou diverg\u00eancia vis\u00edvel. EMA200 e EMA50 indispon\u00edveis impedem avalia\u00e7\u00e3o da tend\u00eancia macro. Entrar BUY seria antecipar revers\u00e3o sem confirma\u00e7\u00e3o; SHORT em RSI < 30 carrega risco de squeeze. Aguardar rompimento acima da EMA20 ou forma\u00e7\u00e3o de padr\u00e3o reversal claro na zona 62700.",
+    "confidence": 0.78
+  },
+  "1786876200": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o rompeu abaixo da EMA200 (63073.49) e da EMA20 (63045.98), consolidando em 63008 com rejei\u00e7\u00e3o fraca. RSI em 37.73 confirma momentum bearish sem oversold. Estrutura de lower highs/lower lows desde o topo em 63083, com vela 16 fechando em 63000 (breakout) e bounce an\u00eamico at\u00e9 63013. A consolida\u00e7\u00e3o abaixo da EMA200 atua como resist\u00eancia din\u00e2mica. Risco: RSI se aproximando de zona de exaust\u00e3o vendedora.",
+    "confidence": 0.55
+  },
+  "1786800600": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indeterminada (EMA50=0, EMA200=nan), RSI neutro em 49.98 sem exaust\u00e3o, pre\u00e7o colado na EMA20 (63029 vs 63031), ATR baixo (38.11) indicando consolida\u00e7\u00e3o sem dire\u00e7\u00e3o clara. \u00daltimas velas mostram rejei\u00e7\u00e3o em 63073 seguida de pullback leve, mas sem rompimento de suporte ou resist\u00eancia definidos. Sem edge operacional.",
+    "confidence": 0.85
+  },
+  "1786926600": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (62.947) abaixo da EMA200 (63.062) confirma vi\u00e9s macro bearish. RSI neutro em 47.18 sem exaust\u00e3o. Apesar de dois pavios inferiores longos consecutivos (~62.750) sugerindo acumula\u00e7\u00e3o, pre\u00e7o ainda n\u00e3o rompeu sequer a EMA20 (62.951). Sem confirma\u00e7\u00e3o de revers\u00e3o, permanecemos fora.",
+    "confidence": 0.71
+  },
+  "1786851000": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o acima de EMA20 (63102) e EMA200 (63077), indicando vi\u00e9s levemente altista, por\u00e9m RSI neutro em 54.51 sem exaust\u00e3o e as \u00faltimas 4 velas apresentam corpos m\u00ednimos (consolida\u00e7\u00e3o/indecis\u00e3o) com ATR baixo (26.56). A compress\u00e3o de volatilidade sugere aguardar resolu\u00e7\u00e3o da consolida\u00e7\u00e3o antes de entrada. Sem sinal claro de breakout.",
+    "confidence": 0.45
+  },
+  "1786901400": {
+    "decision": "SELL",
+    "reason": "5 velas consecutivas de baixa com fechamento no fundo (sem pavio inferior) \u2014 momentum bearish claro. Rompimento abaixo da EMA20 (63.150) confirmando revers\u00e3o de curto prazo. Rejei\u00e7\u00e3o forte em 63.390. RSI neutro (49) sem exaust\u00e3o de venda, indicando espa\u00e7o para continuidade. Pre\u00e7o ainda acima da EMA200 (63.081) oferece alvo de ~45 pts antes de suporte macro.",
+    "confidence": 0.62
+  },
+  "1786776300": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 zerada impedem an\u00e1lise de tend\u00eancia macro \u2014 crit\u00e9rio essencial n\u00e3o atendido. RSI 56.13 em zona neutra sem exaust\u00e3o. Pre\u00e7o em consolida\u00e7\u00e3o lateral entre ~63.030-63.155, sem breakout claro. A \u00faltima vela \u00e9 de alta (C:63114.68 acima da EMA20 de 63078.33), mas sem confirma\u00e7\u00e3o de timeframe superior. Sem confluo suficiente para entrada conservadora.",
+    "confidence": 0.78
+  },
+  "1786826700": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) e EMA50 zerado \u2014 imposs\u00edvel confirmar tend\u00eancia macro. RSI 55.49 em zona neutra sem exaust\u00e3o. Price action mostra consolida\u00e7\u00e3o lateral apertada (range ~63044\u201363127) com m\u00faltiplas velas de corpo m\u00ednimo (dojis), indicando indecis\u00e3o. Pre\u00e7o ligeiramente acima da EMA20 (63083), mas sem confirma\u00e7\u00e3o direcional de maior timeframe. ATR baixo (23.65) refor\u00e7a compress\u00e3o \u2014 prov\u00e1vel squeeze sem dire\u00e7\u00e3o definida. Entrar agora seria puro chute.",
+    "confidence": 0.85
+  },
+  "1786725900": {
+    "decision": "WAIT",
+    "reason": "Sem EMA200 (nan) e EMA50 (0.00), a tend\u00eancia macro \u00e9 inconclusiva. Apesar do momentum de alta curto prazo (HH/HL) e RSI 61.40 sem exaust\u00e3o, a \u00faltima vela \u00e9 bearish com rejei\u00e7\u00e3o em 63210 (O=H, corpo vermelho). Risco de pullback ap\u00f3s 6 velas consecutivas de alta. Conservador: aguardar confirma\u00e7\u00e3o macro ou retra\u00e7\u00e3o \u00e0 EMA20 (~62920) para entrada melhor.",
+    "confidence": 0.75
+  },
+  "1786927500": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (62917) abaixo de EMA20 (62948) e EMA200 (63062) indica vi\u00e9s de baixa, mas RSI em 44.55 n\u00e3o sinaliza exaust\u00e3o clara. Consolida\u00e7\u00e3o lateral p\u00f3s-queda sem rompimento definido \u2014 falta convic\u00e7\u00e3o para entrada direcional.",
+    "confidence": 0.3
+  },
+  "1786877100": {
+    "decision": "WAIT",
+    "reason": "Price est\u00e1 abaixo da EMA200 (63072.85) confirmando vi\u00e9s macro bearish, por\u00e9m as \u00faltimas 5-6 velas apresentam compress\u00e3o extrema com corpos praticamente nulos (~63008), indicando indecis\u00e3o forte. RSI em 37.73 mostra press\u00e3o vendedora mas n\u00e3o atingiu exaust\u00e3o extrema (zona de oversold <30). ATR de 18.26 indica volatilidade muito baixa \u2014 t\u00edpico de consolida\u00e7\u00e3o antes de um movimento direcional. Entrar agora no SELL arriscaria entrar no fundo de uma consolida\u00e7\u00e3o; melhor aguardar um rompimento claro abaixo de 62968.45 (suporte recente) com vela de confirma\u00e7\u00e3o para entrada SHORT, ou um retorno acima da EMA20 (63042.42) para reconsiderar vi\u00e9s.",
+    "confidence": 0.65
+  },
+  "1786801500": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan), impossibilitando an\u00e1lise de tend\u00eancia macro. RSI neutro em 54.05 sem sinal de exaust\u00e3o. Price action lateralizado entre ~62.946 e ~63.055 com m\u00faltiplos toques de suporte/resist\u00eancia, indicando consolida\u00e7\u00e3o sem direcionalidade clara. Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.85
+  },
+  "1786851900": {
+    "decision": "BUY",
+    "reason": "Pre\u00e7o acima da EMA200 (63.077) e EMA20 (63.105) com alinhamento de altas. Piso de pre\u00e7o formado em ~63.012 com sequ\u00eancia de topos e fundos ascendentes desde ent\u00e3o. RSI em 55.54 indica vi\u00e9s de alta sem exaust\u00e3o. \u00daltimas 3 velas fechando em progress\u00e3o (63.122 \u2192 63.124 \u2192 63.130) sugerem retomada compradora. ATR baixo (25.32) indica consolida\u00e7\u00e3o \u2014 entrada com stop apertado recomendado.",
+    "confidence": 0.55
+  },
+  "1786751100": {
+    "decision": "BUY",
+    "reason": "Rompimento de alta em curso: pre\u00e7o quebrou a consolida\u00e7\u00e3o lateral (62.800-63.000) com 2 velas de impulso fortes, fechando em 63.043 acima da EMA20 (62.938). RSI 60 confirma momentum comprador sem exaust\u00e3o. \u00daltima vela com close pr\u00f3ximo \u00e0 m\u00e1xima (63.066) indica continuidade. Risco: EMA200/EMA50 indispon\u00edveis impedem confirma\u00e7\u00e3o macro.",
+    "confidence": 0.58
+  },
+  "1786700700": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia bearish clara (pre\u00e7o -3.4% do topo, abaixo da EMA20 em ~63.009), mas RSI em 31.10 aproxima-se de exaust\u00e3o vendedora (<30), sugerindo bounce potencial. EMA200 indispon\u00edvel (NaN) impede confirma\u00e7\u00e3o da tend\u00eancia macro. Velas recentes mostram consolida\u00e7\u00e3o em 62.750-62.800 \u2014 poss\u00edvel suporte formando mas n\u00e3o confirmado. Entrar SELL agora seria tardio (RSI exausto); BUY seria contra-tend\u00eancia sem confirma\u00e7\u00e3o.",
+    "confidence": 0.35
+  },
+  "1786726800": {
+    "decision": "WAIT",
+    "reason": "Sem EMA200 nem EMA50 dispon\u00edveis \u2014 tend\u00eancia macro n\u00e3o confirm\u00e1vel. Pre\u00e7o acima da EMA20 (~62,945) com RSI 63.21 em zona bullish mas sem exaust\u00e3o clara. Movimento ascendente consistente das \u00faltimas 7-8 velas, por\u00e9m o pre\u00e7o est\u00e1 consolidando sob resist\u00eancia local em ~63,215 (m\u00e1xima da vela 18 com rejei\u00e7\u00e3o). \u00daltimas velas mostram pavios superiores e closes abaixo do topo, sugerindo poss\u00edvel cansa\u00e7o comprador. Sem confirma\u00e7\u00e3o de rompimento acima de 63,215 ou retra\u00e7\u00e3o at\u00e9 suporte din\u00e2mico (EMA20), o risco/recompensa n\u00e3o favorece entrada. Aguardar rompimento limpo da resist\u00eancia ou corre\u00e7\u00e3o para melhor posi\u00e7\u00e3o.",
+    "confidence": 0.75
+  },
+  "1786902300": {
+    "decision": "WAIT",
+    "reason": "Rejei\u00e7\u00e3o clara em 63.350-63.390 gerou 5 velas bearish consecutivas com lower highs/lower lows. \u00daltima vela forma martelo (wick de 63.120\u219263.159) sugerindo poss\u00edvel suporte, mas sem confirma\u00e7\u00e3o de revers\u00e3o. Pre\u00e7o paira exatamente na EMA20 (63.151) e acima da EMA200 (63.082) \u2014 zona de decis\u00e3o. RSI neutro em 53.26 n\u00e3o indica exaust\u00e3o. Aguardar: fechamento acima de 63.220 confirma recupera\u00e7\u00e3o (BUY) ou quebra de 63.083/EMA200 confirma continua\u00e7\u00e3o da queda (SELL).",
+    "confidence": 0.68
+  },
+  "1786827600": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 zerado impossibilitam avalia\u00e7\u00e3o de tend\u00eancia macro. RSI 55.74 em zona neutra sem exaust\u00e3o. ATR extremamente baixo (22.05) indica consolida\u00e7\u00e3o lateral entre ~63.044-63.127 sem momentum direcional. Price action com diversas velas de corpo m\u00ednimo (dojis), sinalizando indecis\u00e3o. Sem confluentes suficientes para entrada.",
+    "confidence": 0.85
+  },
+  "1786687200": {
+    "decision": "SELL",
+    "reason": "Vela de alta convic\u00e7\u00e3o bearish (O=H=63379.83, C=L=63294.52) sem pavio superior \u2014 press\u00e3o vendedora cont\u00ednua. Pre\u00e7o consolidou abaixo da EMA20 (63405) confirmando vi\u00e9s de baixa no curto prazo. RSI a 33.65 ainda n\u00e3o em sobrevenda extrema, h\u00e1 espa\u00e7o para continua\u00e7\u00e3o da queda. Tend\u00eancia de 20 velas claramente descendente com lower highs e lower lows. Risco: suporte em 63276 pode causar rea\u00e7\u00e3o, mas a for\u00e7a da \u00faltima vela favorece a continuidade.",
+    "confidence": 0.62
+  },
+  "1786878000": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o em 63006 abaixo da EMA200 (63072.19) e EMA20 (63039), confirmando estrutura bearish. RSI 37.30 indica momentum vendedor sem satura\u00e7\u00e3o. Queda at\u00e9 62968 seguida de rea\u00e7\u00e3o fraca (apenas 63013) e consolida\u00e7\u00e3o lateral em 63006-63008 forma padr\u00e3o de continua\u00e7\u00e3o (bear flag). ATR baixo (17.10) sugere compress\u00e3o antes de novo impulso. Entrada short com stop acima da EMA200.",
+    "confidence": 0.62
+  },
+  "1786777200": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indefinida (EMA200=nan, EMA50=0). Embora haja recupera\u00e7\u00e3o V-shaped desde o suporte em 63037 (\u00faltimas 3 velas fortemente compradoras) e pre\u00e7o acima da EMA20 (63083.71), o pre\u00e7o se aproxima da zona de resist\u00eancia 63150-63155, que rejeitou o pre\u00e7o duas vezes anteriormente. RSI 58.32 \u00e9 neutro, sem exaust\u00e3o. ATR baixo (48.77) sugere consolida\u00e7\u00e3o lateral. Risco/retorno desfavor\u00e1vel comprar t\u00e3o pr\u00f3ximo da resist\u00eancia sem confirma\u00e7\u00e3o de tend\u00eancia macro.",
+    "confidence": 0.6
+  },
+  "1786752000": {
+    "decision": "WAIT",
+    "reason": "EMA200 ausente (nan) \u2014 sem refer\u00eancia de tend\u00eancia macro. RSI 56.72 neutro, sem exaust\u00e3o. Pre\u00e7o rejeitado em 63066 e fechou em 63012, com poss\u00edvel topo de range. Sem confirma\u00e7\u00e3o de rompimento ou tend\u00eancia clara para entrada.",
+    "confidence": 0.2
+  },
+  "1786701600": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia permanece baista: pre\u00e7o (62861) consolidando abaixo da EMA20 (62994). RSI em 36.62 indica momentum negativo mas sem atingir zona de sobrevenda (<30) para revers\u00e3o confi\u00e1vel. EMA200 indispon\u00edvel, sem confirma\u00e7\u00e3o de tend\u00eancia macro. \u00daltimas 5 velas mostram consolida\u00e7\u00e3o lateral (62740-62865) sem padr\u00e3o de revers\u00e3o claro. Sem confluentes suficientes para entrada.",
+    "confidence": 0.75
+  },
+  "1786928400": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o testou a EMA200 (63061) de baixo, fechando em 63054 \u2014 exatamente na zona de resist\u00eancia. A \u00faltima vela fez uma mecha alta at\u00e9 63192 mas n\u00e3o sustentou acima da EMA200, sinalizando rejei\u00e7\u00e3o. RSI 56 \u00e9 neutro, sem exaust\u00e3o. Entrar agora seria apostar na dire\u00e7\u00e3o do rompimento sem confirma\u00e7\u00e3o. Aguardar: se fechar acima de 63061 com volume, BUY; se rejeitar e cair abaixo de 62960 (EMA20), SELL.",
+    "confidence": 0.3
+  },
+  "1786802400": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) impossibilita avalia\u00e7\u00e3o da tend\u00eancia macro. RSI neutro em 53.19 sem sinal de exaust\u00e3o. Pre\u00e7o consolidando entre 63030-63060 ap\u00f3s rally recente, sem direcionalidade clara. Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.85
+  },
+  "1786778100": {
+    "decision": "WAIT",
+    "reason": "Consolida\u00e7\u00e3o lateral entre 63.027-63.188 sem direcionalidade clara. EMA200 indispon\u00edvel (nan) impede an\u00e1lise de tend\u00eancia macro. RSI neutro em 50.50, sem exaust\u00e3o. Pre\u00e7o oscila em torno da EMA20 (63.083). \u00daltima vela fechou em baixa (63.076) mas dentro do range. ATR baixo (49.93) indica compress\u00e3o \u2014 poss\u00edvel rompimento futuro, mas sem sinal claro agora.",
+    "confidence": 0.88
+  },
+  "1786727700": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 zerada impedem confirma\u00e7\u00e3o de tend\u00eancia macro. Embora pre\u00e7o acima da EMA20 e RSI 64 indiquem vi\u00e9s de alta de curto prazo, a sequ\u00eancia de 10 velas ascendentes sem corre\u00e7\u00e3o significativa eleva o risco de pullback. Sem suporte de m\u00e9dias de longo prazo, entrada agora seria cega em rela\u00e7\u00e3o ao contexto macro. Aguardar.",
+    "confidence": 0.35
+  },
+  "1786903200": {
+    "decision": "WAIT",
+    "reason": "Pullback ativo: pre\u00e7o fechou abaixo da EMA20 (63140 < 63149) com 7 velas de topo/fundo decrescentes. RSI neutro em 50.67 sem sinal de exaust\u00e3o. Ainda acima da EMA200 (63082) por ~57pts (~1.3x ATR), mas margem encolhendo. Vela 20 bearish com pavio inferior longo (L:63120) indica compra em suporte, mas sem confirma\u00e7\u00e3o de revers\u00e3o. Aguardar: BUY se fechar acima de 63170 com volume, SELL se perder 63082 (EMA200).",
+    "confidence": 0.25
+  },
+  "1786852800": {
+    "decision": "WAIT",
+    "reason": "Price acima das EMAs (20 e 200) indica vi\u00e9s levemente bullish, mas RSI em 56.38 est\u00e1 em zona neutra sem momentum forte. ATR de 23.85 indica volatilidade comprimida \u2014 mercado em consolida\u00e7\u00e3o ap\u00f3s o impulso de 63024\u219263151. Sem exaust\u00e3o clara para revers\u00e3o e sem confirma\u00e7\u00e3o de continua\u00e7\u00e3o para entrada. Aguardar rompimento da faixa 63151 (compra) ou perda de 63108/EMA20 (venda).",
+    "confidence": 0.25
+  },
+  "1786878900": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o abaixo de EMA200 (63.071) e EMA20 (63.033) confirma vi\u00e9s bearish, mas RSI em 32.40 j\u00e1 pr\u00f3ximo de oversold (30) limita potencial de queda adicional. \u00daltimo candle rompeu suporte em 63.000 com corpo vermelho s\u00f3lido (close=low), por\u00e9m risco de rejei\u00e7\u00e3o/revers\u00e3o t\u00e9cnica \u00e9 elevado neste n\u00edvel. Sem EMA50 dispon\u00edvel para confirmar estrutura. Melhor aguardar pullback para entrada SELL em zona 63.000-63.030 ou RSI resetando acima de 40 antes de reentrar short.",
+    "confidence": 0.55
+  },
+  "1786752900": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indeterminada (EMA200=nan, EMA50=0.00). Pre\u00e7o acima da EMA20 (+58 pts), por\u00e9m estagnado em consolida\u00e7\u00e3o lateral (63.000-63.033) ap\u00f3s rejei\u00e7\u00e3o em 63.066. RSI neutro em 56.45 sem momentum decisivo. Velas recentes mostram pavios superiores longos (63.066, 63.059), indicando press\u00e3o vendedora na zona de resist\u00eancia. Sem confirma\u00e7\u00e3o de tend\u00eancia macro e com sinal fraco, o setup n\u00e3o justifica entrada.",
+    "confidence": 0.28
+  },
+  "1786702500": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia claramente bearish de curto prazo: pre\u00e7o em ~62.888 bem abaixo da EMA20 (62.985). EMA200 e EMA50 indispon\u00edveis impossibilitam an\u00e1lise de tend\u00eancia macro. RSI em 38.72 indica momentum negativo mas sem exaust\u00e3o de venda (n\u00e3o atingiu oversold <30). Pequena recupera\u00e7\u00e3o nas \u00faltimas 3 velas (62.763\u219262.888) insuficiente como revers\u00e3o \u2014 pode ser apenas corre\u00e7\u00e3o dentro da tend\u00eancia de queda. Sem confirma\u00e7\u00e3o macro nem sinal de exaust\u00e3o claro, entrada seria prematura.",
+    "confidence": 0.8
+  },
+  "1786828500": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita confirma\u00e7\u00e3o da tend\u00eancia macro. Embora o pre\u00e7o tenha fechado forte em 63.154 (acima da EMA20 de 63.091) com RSI em 64.30 (momentum positivo sem exaust\u00e3o), a \u00faltima vela de ~$50 pode representar um spike de exaust\u00e3o dentro do range consolida\u00e7\u00e3o (ATR baixo de 24.08). Sem a refer\u00eancia da EMA200 para saber se estamos comprando com ou contra a mar\u00e9 macro, o risco \u00e9 elevado. Aguardar reteste da EMA20 como suporte ou forma\u00e7\u00e3o de estrutura mais clara.",
+    "confidence": 0.45
+  },
+  "1786803300": {
+    "decision": "WAIT",
+    "reason": "RSI neutro (50.75), pre\u00e7o oscilando lateralmente em torno da EMA20 (63034.86), EMA50 zerada e EMA200 indispon\u00edvel \u2014 sem base para confirmar tend\u00eancia macro. Faixa consolidada entre ~62946-63080 sem ruptura clara. Sinal fraco em ambas as dire\u00e7\u00f5es.",
+    "confidence": 0.78
+  },
+  "1786853700": {
+    "decision": "BUY",
+    "reason": "Pre\u00e7o acima da EMA200 (tend\u00eancia macro de alta), RSI em 59.67 com espa\u00e7o para subir sem exaust\u00e3o, \u00faltima vela forte (fechamento perto da m\u00e1xima em 63153.56), sequ\u00eancia de HH/HL desde o fundo em ~63024. Momentum comprador claro.",
+    "confidence": 0.66
+  },
+  "1786904100": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o em zona de decis\u00e3o na EMA20 (63.150 vs 63.157). Pullback de ~270 pontos ap\u00f3s topo em 63.390 n\u00e3o apresenta revers\u00e3o clara \u2014 \u00faltimas velas mostram consolida\u00e7\u00e3o fraca, sem padr\u00e3o de continua\u00e7\u00e3o ou revers\u00e3o confirmado. RSI neutro em 52.90 e pre\u00e7o apenas 74 pontos acima da EMA200. Sem sinal de momentum definido em nenhuma dire\u00e7\u00e3o.",
+    "confidence": 0.75
+  },
+  "1786728600": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 sem refer\u00eancia de tend\u00eancia macro. \u00daltimas 4 velas mostram estagna\u00e7\u00e3o do impulso comprador: a vela mais recente \u00e9 claramente bearish (abriu em 63202 e fechou em 63109, pr\u00f3ximo da m\u00ednima em 63075), sugerindo rejei\u00e7\u00e3o na zona de resist\u00eancia ~63200-63250. RSI 57.97 \u00e9 neutro, sem exaust\u00e3o mas tamb\u00e9m sem momentum forte. Pre\u00e7o acima da EMA20 (62983) d\u00e1 vi\u00e9s de curto prazo levemente positivo, por\u00e9m a diverg\u00eancia entre pre\u00e7o e o enfraquecimento das \u00faltimas velas indica poss\u00edvel pullback. Sem confirma\u00e7\u00e3o macro e com sinais mistos, a entrada \u00e9 arriscada.",
+    "confidence": 0.78
+  },
+  "1786779000": {
+    "decision": "WAIT",
+    "reason": "Consolida\u00e7\u00e3o lateral com compress\u00e3o de volatilidade (ATR:48.97). RSI neutro (50.88) sem momentum. Pre\u00e7o colado na EMA20 (63079 vs 63082). Topos progressivamente descendentes (63187\u219263151\u219263134\u219263099) sugerem press\u00e3o vendedora, mas fundos est\u00e1veis em ~63030 mant\u00eam suporte. EMA200 indispon\u00edvel (NaN) \u2014 imposs\u00edvel confirmar tend\u00eancia macro. Tri\u00e2ngulo descendente em forma\u00e7\u00e3o, mas sem rompimento confirmado. Entrar agora seria antecipar um breakout que ainda n\u00e3o aconteceu.",
+    "confidence": 0.82
+  },
+  "1786829400": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita confirma\u00e7\u00e3o da tend\u00eancia macro. RSI em 66.14 j\u00e1 se aproxima de zona de exaust\u00e3o (70). Apesar do price action recente mostrar for\u00e7a compradora (\u00faltima vela fechou na m\u00e1xima em 63168.17 acima da EMA20 em 63099.04), sem o filtro da EMA200 para validar a direcionalidade macro e com RSI elevado, o risco de entrada em topo local \u00e9 alto. Conservadorismo indica aguardar pullback ou confirma\u00e7\u00e3o de continuidade.",
+    "confidence": 0.65
+  },
+  "1786703400": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia claramente bearish (queda de 63.380\u219262.740) com pre\u00e7o abaixo da EMA20 (62.974). EMA200 indispon\u00edvel impossibilita confirma\u00e7\u00e3o de macro. RSI 38.04 mostra momentum negativo mas sem exaust\u00e3o compradora (acima de 30). Consolida\u00e7\u00e3o atual entre 62.740-62.920 sem rompimento definido. Sem conflu\u00eancia para entrada.",
+    "confidence": 0.25
+  },
+  "1786753800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 imposs\u00edvel confirmar tend\u00eancia macro. RSI 57.35 neutro sem exaust\u00e3o. Price action mostra consolida\u00e7\u00e3o lateral em 63000-63020 com velas de corpo reduzido e sombras testando suporte em 63000 repetidamente \u2014 indecis\u00e3o clara. Potencial resist\u00eancia em 63066 (m\u00e1xima recente). Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.78
+  },
+  "1786804200": {
+    "decision": "WAIT",
+    "reason": "Consolida\u00e7\u00e3o clara entre 62.960-63.080. RSI neutro (50.75) sem momentum, EMA200 indispon\u00edvel impossibilita an\u00e1lise de tend\u00eancia macro, ATR baixo (36.17) indica mercado lateral. Velas recentes mostram corpos pequenos e sobreposi\u00e7\u00e3o \u2014 t\u00edpico de range sem dire\u00e7\u00e3o definida. Sem conflu\u00eancia para entrada.",
+    "confidence": 0.82
+  },
+  "1786879800": {
+    "decision": "SELL",
+    "reason": "Price consolidou em 63.072 e rompeu violentamente para baixo, fechando em 62.999 \u2014 bem abaixo da EMA200 (63.070) e EMA20 (63.030). Estrutura de lower-highs e lower-lows clara: pico em 63.083 \u2192 63.013 \u2192 63.003, fundo em 62.968 \u2192 62.981. \u00daltimo candle fez um reteste fraco a 63.003 e rejeitou, incapaz de recuperar nem a EMA20. RSI em 38.64 confirma momentum bearish com espa\u00e7o para mais queda antes de sobrevenda (30). ATR baixo (17.92) indica compress\u00e3o dentro da tend\u00eancia de baixa, favorecendo continua\u00e7\u00e3o. Suporte em 62.968 sendo testado pela segunda vez \u2014 rompimento abre caminho para 62.950.",
+    "confidence": 0.68
+  },
+  "1786854600": {
+    "decision": "WAIT",
+    "reason": "\u00daltima vela fortemente bearish (63153\u219263117), rejei\u00e7\u00e3o clara em 63158. Apesar de pre\u00e7o acima da EMA200 (63079) indicando macro bullish, o pullback ainda est\u00e1 em andamento e n\u00e3o h\u00e1 confirma\u00e7\u00e3o de fundo. RSI neutro em 51.53 n\u00e3o sinaliza exaust\u00e3o de venda nem revers\u00e3o. Aguardar teste da EMA20 (63113) ou EMA200 (63079) como suporte, com vela de confirma\u00e7\u00e3o, antes de entrada.",
+    "confidence": 0.65
+  },
+  "1786905000": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o consolidando entre EMA20 (63150) como resist\u00eancia e EMA200 (63084) como suporte macro. RSI neutro em 51 sem sinal de momentum. Pullback do topo em 63390 gerou sequ\u00eancia de velas pequenas e indecisas na faixa 63120-63170. Sem padr\u00e3o de revers\u00e3o ou continua\u00e7\u00e3o claro. Aguardar rompimento definido com confirma\u00e7\u00e3o de volume.",
+    "confidence": 0.75
+  },
+  "1786729500": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita an\u00e1lise de tend\u00eancia macro. RSI 52.35 neutro, sem exaust\u00e3o. Price action mostra poss\u00edvel revers\u00e3o com topos descendentes (63247\u219263220\u219263127) e \u00faltimo fechamento em 63013 abaixo da zona de consolida\u00e7\u00e3o recente, por\u00e9m pre\u00e7o ainda acima da EMA20 (62986). Sinal amb\u00edguo: sem confirma\u00e7\u00e3o de rompimento para baixo nem de continuidade de alta. Aguardar defini\u00e7\u00e3o clara.",
+    "confidence": 0.8
+  },
+  "1786779900": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indeterminada (EMA200=nan), RSI perfeitamente neutro em 50.28, pre\u00e7o lateralizado entre 63028-63188 com corpo pequeno nas \u00faltimas velas. Pre\u00e7o levemente abaixo da EMA20 (63075 vs 63082), mas sem momentum direcional claro. ATR baixo (48.33) confirma compress\u00e3o. Sem conflito definido = sem edge para entrada.",
+    "confidence": 0.85
+  },
+  "1786880700": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63.013) permanece abaixo da EMA200 (63.070) e da EMA20 (63.028), configurando vi\u00e9s bearish de curto e m\u00e9dio prazo. A \u00faltima vela mostrou recupera\u00e7\u00e3o (m\u00ednima 62.983 \u2192 fechamento 63.013), mas as tentativas anteriores de recupera\u00e7\u00e3o foram rejeitadas repetidamente. RSI 43.12 \u00e9 neutro, sem exaust\u00e3o compradora nem vendedora clara. O pre\u00e7o est\u00e1 comprimido entre suporte (~62.968) e resist\u00eancia (EMA20/EMA200), sem rompimento definido. Entrar agora seria for\u00e7ar um sinal num mercado lateral bearish com baixa convic\u00e7\u00e3o.",
+    "confidence": 0.25
+  },
+  "1786830300": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita confirma\u00e7\u00e3o de tend\u00eancia macro. Apesar do pre\u00e7o estar acima da EMA20 (63.104) e momentum recente positivo, o RSI em 63.69 j\u00e1 sinaliza exaust\u00e3o parcial e as \u00faltimas 2 velas mostram estagna\u00e7\u00e3o em ~63.160 ap\u00f3s o impulso \u2014 poss\u00edvel topo de curto prazo. Entrar agora seria comprar no fim de um impulso sem confirma\u00e7\u00e3o macro.",
+    "confidence": 0.65
+  },
+  "1786821300": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis (NaN/0.00) \u2014 sem confirma\u00e7\u00e3o de tend\u00eancia macro. RSI 56.92 neutro, sem exaust\u00e3o. Pre\u00e7o levemente acima da EMA20 (63.101 vs 63.072), mas range operacional muito estreito (~$95) com baixa volatilidade (ATR 26.90). \u00daltimas velas mostram tentativa de rompimento para cima (high 63.125), mas sem volume de confirma\u00e7\u00e3o. Sinal fraco e incompleto \u2014 sem contexto macro, arriscar entrada \u00e9 imprudente.",
+    "confidence": 0.35
+  },
+  "1786704300": {
+    "decision": "WAIT",
+    "reason": "Downtrend consistente (de 63.379 a 62.814, pre\u00e7o abaixo da EMA20 em 62.959), mas RSI em 35.09 aproxima-se da zona de exaust\u00e3o (<30), reduzindo a rela\u00e7\u00e3o risco/retorno de um SELL agora. EMA200 e EMA50 indispon\u00edveis impedem confirma\u00e7\u00e3o da tend\u00eancia macro. Entrar SELL neste ponto pode pegar uma revers\u00e3o t\u00e9cnica; entrar BUY contra a tend\u00eancia sem confirma\u00e7\u00e3o de fundo seria imprudente. Aguardar: SELL se perder 62.700 com for\u00e7a, ou BUY se RSI <30 + vela de revers\u00e3o com volume.",
+    "confidence": 0.75
+  },
+  "1786754700": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) e EMA50 zerado impossibilitam avalia\u00e7\u00e3o da tend\u00eancia macro. RSI 57.33 neutro sem exaust\u00e3o. \u00daltimas 4 velas formam consolida\u00e7\u00e3o lateral em 63.000-63.020 com pavilhos duplos indicando indecis\u00e3o. Pre\u00e7o acima da EMA20 (62.963) sugere vi\u00e9s comprador, mas falta confirma\u00e7\u00e3o de rompimento acima de 63.066 (\u00faltimo topo). Sinal fraco para entrada conservadora.",
+    "confidence": 0.3
+  },
+  "1786805100": {
+    "decision": "WAIT",
+    "reason": "Consolida\u00e7\u00e3o lateral sem dire\u00e7\u00e3o clara. RSI 50.75 = neutralidade total. EMA200 indispon\u00edvel (nan) impede an\u00e1lise de tend\u00eancia macro. EMA50 zerada indica falha de dados. Pre\u00e7o oscila em range apertado (62946-63080) com velas de corpo pequeno e rejei\u00e7\u00f5es sim\u00e9tricas em ambos os lados. Spike at\u00e9 63080 foi rejeitado; drop at\u00e9 62946 foi comprado de volta \u2014 mercado em equil\u00edbrio. ATR baixo (34.41) confirma compress\u00e3o. Sem conflu\u00eancia, sem edge. Aguardar breakout com volume.",
+    "confidence": 0.9
+  },
+  "1786905900": {
+    "decision": "WAIT",
+    "reason": "Consolida\u00e7\u00e3o indecisa: pre\u00e7o (63140) abaixo da EMA20 (63149) = press\u00e3o vendedora curto prazo, mas acima da EMA200 (63084) = vi\u00e9s macro altista. RSI neutro em 50.40 sem exaust\u00e3o. \u00daltimas velas com corpos m\u00ednimos e baixa volatilidade indicam equil\u00edbrio comprador/vendedor. Pullback do topo em 63390 n\u00e3o encontrou suporte definido nem revers\u00e3o confirmada. Sem sinal claro de entrada.",
+    "confidence": 0.82
+  },
+  "1786855500": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o retra\u00edndo de topo local (63158\u219263090) e testando EMA200 como suporte (~63079). RSI neutro (46.51) sem exaust\u00e3o clara, \u00faltima vela fechou com corpo bearish no m\u00ednimo. Zona de decis\u00e3o: pode romper abaixo da EMA200 ou reverter. Sem sinal definido para entrada.",
+    "confidence": 0.35
+  },
+  "1786730400": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel \u2014 tend\u00eancia macro indeterminada. RSI neutro (51.80) sem exaust\u00e3o. Price Action mostra topo em 63.247 seguido de 4 velas com topos descendentes (63.220\u219263.127\u219263.070), indicando perda de momentum comprador. Pre\u00e7o fecha em 63.004, apenas 16 pontos acima da EMA20 (62.987) \u2014 suporte fr\u00e1gil. Sem confirma\u00e7\u00e3o de tend\u00eancia macro e com sinais de exaust\u00e3o p\u00f3s-rally, setup inadequado para entrada.",
+    "confidence": 0.8
+  },
+  "1786780800": {
+    "decision": "WAIT",
+    "reason": "Consolida\u00e7\u00e3o lateral apertada (~$120) sem dire\u00e7\u00e3o clara. EMA50/EMA200 indispon\u00edveis impedem an\u00e1lise de tend\u00eancia macro. RSI neutro em 48.43 sem exaust\u00e3o. Pre\u00e7o fechou na \u00faltima vela em 63061.88 (pr\u00f3ximo ao suporte ~63038 e abaixo da EMA20 de 63080), mostrando leve press\u00e3o vendedora, mas sem rompimento do range. Sem conflu\u00eancia suficiente para entrada.",
+    "confidence": 0.85
+  },
+  "1786831200": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel impossibilita confirma\u00e7\u00e3o de tend\u00eancia macro. \u00daltimas 2 velas fecharam em baixa com tochas de rejei\u00e7\u00e3o na zona 63168 (resist\u00eancia formada). RSI 61.27 neutro, ATR muito baixo (23.07) indica baixa volatilidade/momentum. Pre\u00e7o fechou na m\u00ednima da vela (63150) - press\u00e3o vendedora imediata. Sem confirma\u00e7\u00e3o direcional clara.",
+    "confidence": 0.75
+  },
+  "1786755600": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis, impedindo confirma\u00e7\u00e3o de tend\u00eancia macro. RSI 56.40 neutro sem exaust\u00e3o. Pre\u00e7o acima da EMA20 (62968) mas em consolida\u00e7\u00e3o lateral apertada (62993-63035) nas \u00faltimas 6 velas. ATR baixo (64) indica compress\u00e3o \u2014 poss\u00edvel breakout iminente, mas dire\u00e7\u00e3o indefinida. Sem sinal claro para entrada.",
+    "confidence": 0.72
+  },
+  "1786705200": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o permanece ~$90 abaixo da EMA20 (62859 vs 62949), confirmando vi\u00e9s bearish de curto prazo. RSI em 38.93 indica momentum negativo mas sem exaust\u00e3o de vendedores (ainda longe de <30). EMA200 indispon\u00edvel impossibilita an\u00e1lise de tend\u00eancia macro. Consolida\u00e7\u00e3o lateral entre 62740-62950 sem padr\u00e3o de revers\u00e3o claro. Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.72
+  },
+  "1786881600": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63.025) operando abaixo da EMA200 (63.069) \u2014 vi\u00e9s macro bearish. RSI 46.64 em zona neutra sem sinal de exaust\u00e3o. Embora exista uma recupera\u00e7\u00e3o em curso desde a m\u00ednima de 62.968, o pre\u00e7o ainda n\u00e3o rompeu a EMA20 (63.028), que age como resist\u00eancia imediata. ATR extremamente baixo (18.26) indica compress\u00e3o \u2014 cen\u00e1rio de consolida\u00e7\u00e3o sem direcionalidade clara. Entrar agora seria antecipar breakout sem confirma\u00e7\u00e3o.",
+    "confidence": 0.25
+  },
+  "1786806000": {
+    "decision": "WAIT",
+    "reason": "EMA200=NaN e EMA50=0.00 \u2014 tend\u00eancia macro completamente desconhecida. RSI 50.75 = neutro absoluto, sem exaust\u00e3o. Price action lateral: ap\u00f3s rejei\u00e7\u00e3o em 62.946 (suporte forte) e falha em 63.073 (resist\u00eancia), \u00faltimas 5 velas formam dojis em torno de 63.040, todas com corpos m\u00ednimos. Pre\u00e7o grudado na EMA20 (63.036), sem direcionalidade. ATR de 32.35 consolida a falta de volatilidade. Sem tend\u00eancia, sem momentum, sem sinal \u2014 entrar agora \u00e9 adivinha\u00e7\u00e3o.",
+    "confidence": 0.1
+  },
+  "1786856400": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o comprimido entre EMA20 (63109.18) como resist\u00eancia e EMA200 (63079.43) como suporte \u2014 zona de indecis\u00e3o (~30 pontos, pouco mais de 1 ATR). Estrutura de curto prazo bearish (topos e fundos descendentes desde 63158), mas EMA200 segura por enquanto. RSI neutro em 47.33 sem exaust\u00e3o. Aguardar rompimento claro de uma das duas m\u00e9dias.",
+    "confidence": 0.25
+  },
+  "1786731300": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indefinida (EMA200 indispon\u00edvel). Pre\u00e7o em corre\u00e7\u00e3o desde topo local 63.247 com topos descendentes nas \u00faltimas 5 velas, testando suporte em 63.000. RSI 53.62 neutro sem exaust\u00e3o. Candle atual com pavio superior longo (H:63088 vs C:63037) indica press\u00e3o vendedora em recupera\u00e7\u00f5es. Pre\u00e7o colado na EMA20 (62992) sem dire\u00e7\u00e3o definida. Aguardar rompimento claro de 63.000 (sell) ou 63.250 (buy).",
+    "confidence": 0.75
+  },
+  "1786781700": {
+    "decision": "WAIT",
+    "reason": "Sem EMA200 dispon\u00edvel para definir tend\u00eancia macro. RSI 47.16 neutro, sem exaust\u00e3o. Pre\u00e7o abaixo da EMA20 com drift bearish leve nas \u00faltimas velas, mas dentro de range comprimido (~63.027-63.155). Sem rompimento claro nem confirma\u00e7\u00e3o direcional suficiente para entrada.",
+    "confidence": 0.78
+  },
+  "1786882500": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63025) abaixo da EMA200 (63069) confirma vi\u00e9s bearish macro, mas RSI neutro (46.63) sem exaust\u00e3o. ATR baix\u00edssimo (16.96) indica consolida\u00e7\u00e3o comprimida \u2014 poss\u00edvel acumula\u00e7\u00e3o antes de breakout, mas dire\u00e7\u00e3o indefinida. Pre\u00e7o gira em torno da EMA20 (63028) sem rompimento. Sem setup claro para entrada.",
+    "confidence": 0.75
+  },
+  "1786832100": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 sem confirma\u00e7\u00e3o de tend\u00eancia macro. RSI 61.72 neutro, sem exaust\u00e3o clara. Pre\u00e7o recuou do topo local (63.168) nas \u00faltimas 3 velas com topos decrescentes, sugerindo poss\u00edvel enfraquecimento. ATR baixo (22.64) indica consolida\u00e7\u00e3o sem dire\u00e7\u00e3o definida. Condi\u00e7\u00f5es insuficientes para entrada conservadora.",
+    "confidence": 0.2
+  },
+  "1786906800": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o acima da EMA200 (63.085) confirma tend\u00eancia macro de alta, e a \u00faltima vela mostra rebote forte de 63.140\u219263.182 ap\u00f3s m\u00faltiplos testes de suporte em 63.120-63.140. Por\u00e9m, ainda estamos em corre\u00e7\u00e3o desde 63.390 e o rebote \u00e9 uma \u00fanica vela sem confirma\u00e7\u00e3o. RSI neutro (56.08) n\u00e3o indica momentum forte. Aguardar rompimento de 63.220 (resist\u00eancia local) ou forma\u00e7\u00e3o de higher low confirmado para entrada com melhor risco/retorno.",
+    "confidence": 0.68
+  },
+  "1786706100": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 inv\u00e1lida (0.00) impedem an\u00e1lise de tend\u00eancia macro. RSI em 41.78 indica momentum levemente baixista sem exaust\u00e3o definida. Pre\u00e7o (62.895) persiste abaixo da EMA20 (62.944), sinalizando vi\u00e9s bearish de curto prazo. Velas recentes mostram consolida\u00e7\u00e3o lateral sem rompimento claro. Sem conflu\u00eancia de sinais, n\u00e3o h\u00e1 setup confi\u00e1vel para entrada.",
+    "confidence": 0.82
+  },
+  "1786756500": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 tend\u00eancia macro n\u00e3o confirm\u00e1vel. RSI 58.60 em zona neutra sem exaust\u00e3o. Pre\u00e7o (63034) acima da EMA20 (62975) sugere vi\u00e9s de curto prazo, mas as \u00faltimas 6 velas formam consolida\u00e7\u00e3o lateral entre 62993-63037 com corpos pequenos e pavios duplos, sinalizando indecis\u00e3o ap\u00f3s o impulso de 62800\u219263066. Sem confirma\u00e7\u00e3o macro, o breakout da consolida\u00e7\u00e3o ainda n\u00e3o ocorreu.",
+    "confidence": 0.3
+  },
+  "1786806900": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 zerado \u2014 tend\u00eancia macro n\u00e3o pode ser determinada. Apesar da \u00faltima vela ser fortemente altista (close 63073.55 pr\u00f3ximo ao high), o pre\u00e7o est\u00e1 no limite superior do range recente (~63080), funcionando como resist\u00eancia. RSI 56.72 \u00e9 neutro, sem exaust\u00e3o clara. Sem confirma\u00e7\u00e3o de tend\u00eancia macro e com pre\u00e7o em zona de resist\u00eancia, sinal \u00e9 fraco para entrada.",
+    "confidence": 0.2
+  },
+  "1786857300": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o rompeu abaixo da EMA200 (63.079) e fecha em 63.070, confirmando press\u00e3o vendedora. RSI em 43 confirma momentum bearish sem exaust\u00e3o. Sequ\u00eancia de 4 velas com lower highs/lower lows desde 63.158. Pre\u00e7o tamb\u00e9m abaixo da EMA20 (63.105). Estrutura de mercado indica continua\u00e7\u00e3o de queda.",
+    "confidence": 0.58
+  },
+  "1786770900": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel \u2014 sem confirma\u00e7\u00e3o de tend\u00eancia macro. Pre\u00e7o rejeitado 3x na resist\u00eancia 63.150-63.155 (\u00faltimas velas com pavios superiores longos). Vela mais recente fecha bearish no fundo (C=63124.54 \u2248 L=63124.53), sugerindo press\u00e3o vendedora. RSI 58.12 neutro, sem exaust\u00e3o definida. Padr\u00e3o de rejei\u00e7\u00e3o indica poss\u00edvel topo local, mas falta conflu\u00eancia de EMA50/200 para SHORT confirmado.",
+    "confidence": 0.72
+  },
+  "1786907700": {
+    "decision": "BUY",
+    "reason": "Tend\u00eancia macro altista (pre\u00e7o 63.220 > EMA200 63.087). Pullback de 63.390\u219263.126 respeitou suporte acima da EMA200. \u00daltimas 2 velas mostram recupera\u00e7\u00e3o forte com fechamento no high (63.220). RSI em 60.49 sem exaust\u00e3o. Estrutura de higher low mantida. Risco: resist\u00eancia em 63.276/63.390 ainda n\u00e3o rompida.",
+    "confidence": 0.55
+  },
+  "1786732200": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (macro indefinida), RSI neutro em 49.70, pre\u00e7o levemente abaixo da EMA20 (62.972 < 62.990). Price action mostra topos descendentes desde 63.247 mas fundo em 62.948 segurando. Consolida\u00e7\u00e3o sem dire\u00e7\u00e3o clara \u2014 aguardar rompimento.",
+    "confidence": 0.2
+  },
+  "1786782600": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel impossibilita confirmar tend\u00eancia macro. Pre\u00e7o abaixo da EMA20 (63.020 < 63.072) com RSI em 42.85 indica momentum bearish, mas sem exaust\u00e3o. \u00daltima vela fechou no m\u00ednimo (63.020) sugerindo press\u00e3o vendedora cont\u00ednua. Por\u00e9m, sem EMA50/EMA200 para contexto de timeframe maior e RSI ainda longe de sobrevenda (30), falta confirma\u00e7\u00e3o para SELL. Ambiente de range com vi\u00e9s de baixa fraco \u2014 aguardar clareza.",
+    "confidence": 0.3
+  },
+  "1786833000": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 imposs\u00edvel confirmar tend\u00eancia macro. Embora pre\u00e7o acima da EMA20 (63117) com RSI 62.83 sugira vi\u00e9s de curto prazo, h\u00e1 rejei\u00e7\u00e3o em 63168 e consolida\u00e7\u00e3o lateral nas \u00faltimas 5 velas (63135-63168). ATR baixo (21.50) indica compress\u00e3o. Sem confirma\u00e7\u00e3o de timeframe superior, entrada \u00e9 prematura.",
+    "confidence": 0.3
+  },
+  "1786883400": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o (62997.77) abaixo de EMA20 (63025.24) e EMA200 (63068.42) confirmando tend\u00eancia macro bearish. Estrutura de topos descendentes (63079\u219263025\u219262997). RSI em 39.91 indica vi\u00e9s vendedor com espa\u00e7o para queda (n\u00e3o sobrevendido). \u00daltima vela fechou no m\u00ednimo (O:63025\u2192C:62997) com corpo vermelho robusto (~27 pontos), sinalizando press\u00e3o vendedora. Distribui\u00e7\u00e3o vis\u00edvel ap\u00f3s consolida\u00e7\u00e3o em 63072. ATR baixo sugere movimento direcional iminente alinhado com a tend\u00eancia.",
+    "confidence": 0.55
+  },
+  "1786757400": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) \u2014 tend\u00eancia macro indefinida. Pre\u00e7o acima da EMA20 (63.030 > 62.980) sugere vi\u00e9s de curto prazo levemente altista, mas consolida\u00e7\u00e3o lateral nas \u00faltimas 8 velas entre 63.000-63.050 indica indecis\u00e3o. RSI 58 em zona neutra sem sinal de exaust\u00e3o. Sem confirma\u00e7\u00e3o de rompimento ou tend\u00eancia clara, o setup \u00e9 fraco para entrada.",
+    "confidence": 0.82
+  },
+  "1786707000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro imposs\u00edvel de confirmar (EMA200=NaN). Pre\u00e7o (62.896) abaixo da EMA20 (62.939) indica vi\u00e9s de curto prazo baixista. RSI 41.90 mostra momentum negativo sem exaust\u00e3o (nem sobrecomprado nem sobrevendido). \u00daltimas velas exibem corpos pequenos e consolida\u00e7\u00e3o entre 62.800-62.930 \u2014 padr\u00e3o de indecis\u00e3o sem rompimento definido. ATR de 98.40 sugere volatilidade moderada mas\u0e41\u0e2a\u0e14 n\u00e3o h\u00e1 catalisador claro. Sem confirma\u00e7\u00e3o macro e sem sinal t\u00e9cnico forte, o cen\u00e1rio conservador permanece aguardar defini\u00e7\u00e3o direcional.",
+    "confidence": 0.8
+  },
+  "1786807800": {
+    "decision": "WAIT",
+    "reason": "Apesar do rompimento bullish para 63.115 acima da EMA20 (63.046) com RSI 62.81 sem exaust\u00e3o, a EMA200 est\u00e1 indispon\u00edvel (NaN) e a EMA50 \u00e9 inv\u00e1lida (0.00). Sem confirma\u00e7\u00e3o da tend\u00eancia macro, o breakout pode ser um bull trap dentro de uma corre\u00e7\u00e3o ou consolida\u00e7\u00e3o lateral. Os \u00faltimos dois candles s\u00e3o fortes, mas sem contexto macro \u00e9 arriscado entrar. Conservadorismo exige confirma\u00e7\u00e3o multi-timeframe.",
+    "confidence": 0.35
+  },
+  "1786908600": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o exatamente na EMA20 (63157.91 vs 63158.60) \u2014 zona de decis\u00e3o, sem vi\u00e9s claro. RSI 51.40 perfeitamente neutro, sem exaust\u00e3o. Margem sobre EMA200 \u00e9 m\u00ednima (~0.11%). Sequ\u00eancia de topos decrescentes desde o pico em 63390 sugere enfraquecimento comprador, mas fundos segurando acima de ~63120. Mercado em consolida\u00e7\u00e3o lateral (range ~63120-63230). ATR baixo confirma compress\u00e3o. Sem setup conservador definido.",
+    "confidence": 0.78
+  },
+  "1786733100": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro imposs\u00edvel de confirmar (EMA200=nan, EMA50=0). Price action mostra sequ\u00eancia de topos e fundos decrescentes desde o topo em 63.247, com pre\u00e7o abaixo da EMA20 (62.930 < 62.985) \u2014 vi\u00e9s bearish de curto prazo. Por\u00e9m, RSI em 47.32 \u00e9 neutro, sem exaust\u00e3o compradora nem vendedora. Sem contexto macro e sem sinal de revers\u00e3o claro, entrar agora seria prematuro. Aguardar reteste da EMA20 como resist\u00eancia ou rompimento definido.",
+    "confidence": 0.68
+  },
+  "1786858200": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o rompeu abaixo da EMA200 (63079) com 5 velas consecutivas de baixa. Fechamento pr\u00f3ximo \u00e0 m\u00ednima (63053 vs low 63052) sem rea\u00e7\u00e3o compradora. RSI em 40.33 confirma momentum bearish sem sobrevenda extrema. Rejei\u00e7\u00e3o clara do topo em 63158 com topos e fundos decrescentes.",
+    "confidence": 0.52
+  },
+  "1786833900": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 zerada impossibilitam an\u00e1lise de tend\u00eancia macro. \u00daltima vela formou rejei\u00e7\u00e3o bearish agressiva (pavio superior de ~39pts, fechamento no low em 63135.52). RSI 56.23 em zona neutra sem exaust\u00e3o. Pre\u00e7o ligeiramente acima da EMA20 (63119.26), mas sem confirma\u00e7\u00e3o de tend\u00eancia maior. ATR baixo (22.79) indica compress\u00e3o. Sem conflu\u00eancia de sinais para entrada segura.",
+    "confidence": 0.82
+  },
+  "1786783500": {
+    "decision": "SELL",
+    "reason": "Tend\u00eancia de baixa clara: sequ\u00eancia de topos e fundos decrescentes, \u00faltima vela com rompimento forte abaixo do suporte ~63.020 (m\u00ednima em 62.933). Pre\u00e7o 123 pontos abaixo da EMA20, confirmando momentum bearish. RSI em 34 indica press\u00e3o vendedora sem exaust\u00e3o extrema. Risco: RSI pr\u00f3ximo de sobreventa pode gerar rebote.",
+    "confidence": 0.6
+  },
+  "1786884300": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63.021) permanece abaixo da EMA200 (63.067) confirmando vi\u00e9s macro bearish, por\u00e9m RSI neutro (47.11) sem exaust\u00e3o. Recupera\u00e7\u00e3o fraca desde o fundo em 62.968 n\u00e3o rompeu a EMA200. ATR baixo (18.18) indica consolida\u00e7\u00e3o sem for\u00e7a direcional. Pre\u00e7o ligeiramente abaixo da EMA20 (63.024) \u2014 sem conflu\u00eancia para entrada.",
+    "confidence": 0.75
+  },
+  "1786707900": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel \u2014 tend\u00eancia macro indefinida. RSI 40.20 indica leve vi\u00e9s bearish sem exaust\u00e3o. Pre\u00e7o abaixo da EMA20 (62.868 vs 62.933), velas recentes com corpos pequenos e pavilhos duplos indicam indecis\u00e3o. ATR baixo (96.85) consolida cen\u00e1rio de range sem momentum direcional. Sem confluentes para entrada.",
+    "confidence": 0.2
+  },
+  "1786871700": {
+    "decision": "WAIT",
+    "reason": "Compress\u00e3o extrema \u2014 \u00faltimas 4 velas com range de ~0.01 (praticamente flat em 63072.42). Pre\u00e7o ligeiramente abaixo da EMA200 (63077.23) e EMA20 (63074.98), vi\u00e9s micro-bearish, mas RSI neutro (48.02) e ATR em 14.41 indicam aus\u00eancia total de volatilidade e convic\u00e7\u00e3o. Sinal fraco demais \u2014 aguardar rompimento da compress\u00e3o com volume.",
+    "confidence": 0.85
+  },
+  "1786758300": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan), EMA50 zerado \u2014 tend\u00eancia macro imposs\u00edvel de confirmar. RSI 59.67 neutro, sem exaust\u00e3o. Pre\u00e7o acima da EMA20 (62.986) com consolida\u00e7\u00e3o lateral entre 63.000-63.050 nas \u00faltimas 8 velas, sugerindo indecis\u00e3o ap\u00f3s impulso de baixa\u2192alta. ATR baixo (57.77) refor\u00e7a compress\u00e3o. Sem confirma\u00e7\u00e3o de fundo (EMA200) e sem rompimento claro do range, entrada seria cega.",
+    "confidence": 0.18
+  },
+  "1786808700": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) \u2014 sem refer\u00eancia de tend\u00eancia macro. \u00daltima vela fechou bearish em 63100.55 (fechamento = m\u00ednima), sugerindo rejei\u00e7\u00e3o ap\u00f3s o impulso at\u00e9 63120. RSI 59.58 \u00e9 neutro, sem exaust\u00e3o mas tamb\u00e9m sem confirma\u00e7\u00e3o de momentum forte. Movimento recente (~80 pts, ~2.4x ATR) j\u00e1 est\u00e1 estendido. Pre\u00e7o acima da EMA20 favorece vi\u00e9s de alta no curto prazo, mas sem confirma\u00e7\u00e3o macro e com sinal de exaust\u00e3o na \u00faltima vela, o setup \u00e9 inconclusivo para entrada conservadora.",
+    "confidence": 0.3
+  },
+  "1786859100": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63069) levemente abaixo da EMA200 (63079) e EMA20 (63098), sugerindo vi\u00e9s bearish fraco. RSI em 44 confirma momentum de baixa, mas sem exaust\u00e3o de revers\u00e3o. Sequ\u00eancia de topos e fundos decrescentes desde o pico em 63158, por\u00e9m a \u00faltima vela fechou acima da abertura, indicando poss\u00edvel suporte. ATR baixo (25) = consolida\u00e7\u00e3o sem dire\u00e7\u00e3o definida. Conflu\u00eancia insuficiente para entrada confi\u00e1vel.",
+    "confidence": 0.3
+  },
+  "1786784400": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia claramente baixista (pre\u00e7o abaixo da EMA20, sequ\u00eancia de lower lows), mas EMA200 indispon\u00edvel impossibilita confirma\u00e7\u00e3o macro. RSI em 37.56 indica momentum bearish sem chegar a oversold (<30). \u00daltima vela mostra pequena retra\u00e7\u00e3o compradora no fundo do range, mas sem padr\u00e3o de revers\u00e3o definido. Aguardar: rompimento de 62920 para SELL confirmado, ou RSI <30 com padr\u00e3o de revers\u00e3o para BUY.",
+    "confidence": 0.75
+  },
+  "1786909500": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o testando suporte da EMA200 (63087) mas padr\u00e3o de topos decrescentes persiste. \u00daltima vela fechou pr\u00f3xima \u00e0 m\u00ednima (63108 vs low 63100), indicando press\u00e3o vendedora cont\u00ednua. RSI neutro em 45.57 sem sinal de exaust\u00e3o. Risco de rompimento do suporte macro elevado. Aguardar confirma\u00e7\u00e3o de revers\u00e3o ou rompimento.",
+    "confidence": 0.78
+  },
+  "1786734000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente bearish (7 velas consecutivas de baixa, pre\u00e7o abaixo da EMA20 em 62.972), mas EMA200 indispon\u00edvel para confirmar tend\u00eancia macro. RSI em 43.54 indica momentum negativo sem exaust\u00e3o. Pre\u00e7o testando suporte ~62.850 \u2014 zona indecisa. Sem conflu\u00eancia suficiente para entrada conservadora.",
+    "confidence": 0.25
+  },
+  "1786834800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel, impossibilitando confirma\u00e7\u00e3o de tend\u00eancia macro. RSI 55.82 neutro. Price action mostra rejei\u00e7\u00e3o em 63.175 com topos descendentes e pre\u00e7o lateralizando sobre a EMA20 (63.120.67). ATR baixo (23.09) indica compress\u00e3o \u2014 poss\u00edvel breakout iminente, mas sem dire\u00e7\u00e3o clara. Sem conflu\u00eancia de sinais.",
+    "confidence": 0.82
+  },
+  "1786708800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 tend\u00eancia macro indefinida. Pre\u00e7o (62.824) persiste abaixo da EMA20 (62.922), com RSI a 37.57 confirmando vi\u00e9s de baixa moderado, mas sem exaust\u00e3o compradora (< 30). Price action mostra drift descendente gradual com lower highs, por\u00e9m sem rompimento forte. Entrar SELL ap\u00f3s 250pt de queda apresenta risco de short squeeze; BUY sem confirma\u00e7\u00e3o de revers\u00e3o \u00e9 prematuro. Aguardar RSI < 30 com rea\u00e7\u00e3o no suporte ~62.700, ou recupera\u00e7\u00e3o acima da EMA20 com volume.",
+    "confidence": 0.68
+  },
+  "1786809600": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) impossibilita confirma\u00e7\u00e3o de tend\u00eancia macro. RSI 55.97 em zona neutra sem exaust\u00e3o. \u00daltimas velas mostram rejei\u00e7\u00e3o no topo 63.120 com pullback para 63.083, sugerindo poss\u00edvel topo local. ATR comprimido (32.36) indica consolida\u00e7\u00e3o sem dire\u00e7\u00e3o definida. Sem conflu\u00eancia de sinais suficiente para entrada.",
+    "confidence": 0.75
+  },
+  "1786885200": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63063.34) testando EMA200 (63067.91) por baixo \u2014 diferen\u00e7a de apenas ~4.5 pontos. \u00daltimo candle forte (bullish de +41pts) trouxe o pre\u00e7o at\u00e9 a resist\u00eancia din\u00e2mica, mas n\u00e3o houve rompimento. RSI neutro (56.67) sem exaust\u00e3o. ATR baixo (19.84) indica compress\u00e3o pr\u00e9-breakout. Entrar agora \u00e9 apostar na dire\u00e7\u00e3o sem confirma\u00e7\u00e3o. Aguardar: fechamento acima de 63070 \u2192 BUY; rejei\u00e7\u00e3o com revers\u00e3o abaixo de 63030 \u2192 SELL.",
+    "confidence": 0.25
+  },
+  "1786759200": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) impossibilita an\u00e1lise de tend\u00eancia macro. RSI 60.44 \u00e9 neutro, sem exaust\u00e3o clara. Price action mostra consolida\u00e7\u00e3o lateral apertada entre 63000-63066 por ~8 velas consecutivas, sem rompimento definitivo. Embora pre\u00e7o esteja acima da EMA20 (62992), a falta de confirma\u00e7\u00e3o em timeframe superior e a compress\u00e3o de volatilidade sugerem aguardar: breakout acima de 63066 ou pullback at\u00e9 EMA20 para entrada mais segura.",
+    "confidence": 0.3
+  },
+  "1786860000": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o consolidado abaixo da EMA200 (63078.63) com fechamento em 63044 \u2014 confirma\u00e7\u00e3o de rompimento. Sequ\u00eancia de lower lows cont\u00ednua (63090\u219263070\u219263051\u219263040\u219263043). \u00daltima vela fechou no m\u00ednimo, indicando press\u00e3o vendedora sem rea\u00e7\u00e3o compradora. RSI (39.84) com espa\u00e7o para cair ainda mais antes de sobrevenda. EMA20 (63092) acima confirma vi\u00e9s bearish de curto prazo.",
+    "confidence": 0.65
+  },
+  "1786910400": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o comprimido entre EMA20 (63152) como resist\u00eancia e EMA200 (63088) como suporte. Sequ\u00eancia de topos menores (63390\u219263276\u219263230\u219263140) indica press\u00e3o vendedora, mas pre\u00e7o sustenta acima da EMA200. RSI neutro em 49 sem momentum. ATR baixo = compress\u00e3o. Aguardar rompimento de 63200 (compra) ou 63088 (venda) para entrada definida.",
+    "confidence": 0.82
+  },
+  "1786734900": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN), sem refer\u00eancia de tend\u00eancia macro. RSI 47.96 neutro, sem exaust\u00e3o. Pre\u00e7o (62.929) abaixo da EMA20 (62.968), com topos decrescentes claros (63.247\u219263.088\u219262.974\u219262.936) e fundos testando mais baixo (62.830). \u00daltima vela mostrou recupera\u00e7\u00e3o, mas fraca. Sem confirma\u00e7\u00e3o de suporte s\u00f3lido nem revers\u00e3o consistente. Ambiente indefinido favorece aguardar.",
+    "confidence": 0.75
+  },
+  "1786785300": {
+    "decision": "WAIT",
+    "reason": "Downtrend claro com pre\u00e7o abaixo da EMA20 (63.042) e sequ\u00eancia de lower highs/lower lows. Por\u00e9m RSI em 41.39 n\u00e3o indica exaust\u00e3o de sobrevenda para SHORT seguro, nem h\u00e1 padr\u00e3o de revers\u00e3o para LONG. EMA200 e EMA50 indispon\u00edveis impedem confirma\u00e7\u00e3o de tend\u00eancia macro. \u00daltimas 2 velas mostram leve recupera\u00e7\u00e3o, mas sem volume ou estrutura de fundo definida.",
+    "confidence": 0.78
+  },
+  "1786886100": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63063) testa EMA200 (63067.86) por baixo \u2014 resist\u00eancia macro ativa. \u00daltima vela \u00e9 doji (O\u2248C, range de apenas $12: 63058-63070), indicando indecis\u00e3o na zona cr\u00edtica. RSI neutro (56.58) sem exaust\u00e3o. Sequ\u00eancia de alta recente (62968\u219263070) perdeu momentum \u2014 corpo da \u00faltima vela quase zero. ATR comprimido (19.28) sugere squeeze, mas sem dire\u00e7\u00e3o definida. Aguardar: rompimento acima de 63070 confirma BUY; rejei\u00e7\u00e3o e queda abaixo de 63050 aponta SELL.",
+    "confidence": 0.82
+  },
+  "1786835700": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro n\u00e3o confirm\u00e1vel (EMA200 = nan, EMA50 = 0). RSI neutro em 50.09 sem exaust\u00e3o definida. Pre\u00e7o est\u00e1 apenas marginalmente abaixo da EMA20 (63112 vs 63119.84), indicando consolida\u00e7\u00e3o e n\u00e3o ruptura clara. \u00daltima vela bearish (O=H, C=L) sugere press\u00e3o vendedora, mas ATR baixo (23.02) indica baixa volatilidade \u2014 poss\u00edvel armadilha. Sem confirma\u00e7\u00e3o macro, entrar agora \u00e9 arriscado.",
+    "confidence": 0.4
+  },
+  "1786922100": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o (62.846) abaixo da EMA20 (62.981) e EMA200 (63.071) confirma tend\u00eancia de baixa. Sequ\u00eancia de topos decrescentes: 63.230\u219263.190\u219262.993\u219262.913. \u00daltima vela com pavil superior longo (high 62.913 vs close 62.846) mostra rejei\u00e7\u00e3o de alta \u2014 vendedores ativos nos picos. RSI em 34.21 indica momentum bearish sem exaust\u00e3o extrema, espa\u00e7o para queda at\u00e9 ~30. Bounces recentes est\u00e3o sendo vendidos. Estrutura favorece continua\u00e7\u00e3o de baixa.",
+    "confidence": 0.6
+  },
+  "1786709700": {
+    "decision": "WAIT",
+    "reason": "Sem EMA200/EMA50 para definir tend\u00eancia macro \u2014 crit\u00e9rio essencial ausente. RSI 43.64 neutro sem exaust\u00e3o. Pre\u00e7o (62.891) ainda abaixo da EMA20 (62.919), sugerindopress\u00e3o vendedora de curto prazo. Consolida\u00e7\u00e3o lateral entre 62.700-63.100 sem rompimento definido. \u00daltima vela com pavio inferior mostra compra, mas insuficiente como entrada isolada.",
+    "confidence": 0.15
+  },
+  "1786760100": {
+    "decision": "WAIT",
+    "reason": "Rompimento acima de 63.100 com momentum forte, mas EMA200 (nan) e EMA50 (0.00) inviabilizam confirma\u00e7\u00e3o da tend\u00eancia macro. RSI 65.65 em zona elevada \u2014 risco de exaust\u00e3o iminente. \u00daltima vela com pavil superior longo (H: 63118 vs C: 63102) sugere press\u00e3o vendedora no topo. Operar sem timeframe superior confirmado \u00e9 apostar, n\u00e3o tradear.",
+    "confidence": 0.62
+  },
+  "1786810500": {
+    "decision": "WAIT",
+    "reason": "Breakout acima da EMA20 com RSI 61.50 sugerindo momentum comprador, por\u00e9m EMA200 indispon\u00edvel (nan) impede confirma\u00e7\u00e3o da tend\u00eancia macro. Pre\u00e7o rejeitou anteriormente em 63120 e retornou a 63083, formando poss\u00edvel topo duplo em 63120-63121. Sem contexto de tend\u00eancia macro, entrada \u00e9 arriscada.",
+    "confidence": 0.3
+  },
+  "1786860900": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63.072) est\u00e1 testando a EMA200 (63.078) por baixo \u2014 zona cr\u00edtica sem confirma\u00e7\u00e3o. Estrutura de topos e fundos decrescentes persiste (63.158\u219263.043), indicando vi\u00e9s baixista de curto prazo. Embora a \u00faltima vela tenha pavio inferior longo (rejei\u00e7\u00e3o de 63.043), o fechamento ficou abaixo da EMA200 e da EMA20 (63.090). RSI neutro em 45.99 n\u00e3o oferece sinal de exaust\u00e3o. Sem rompimento acima de 63.090 (EMA20) nem consolida\u00e7\u00e3o clara abaixo, o cen\u00e1rio permanece amb\u00edguo para entrada direcional.",
+    "confidence": 0.78
+  },
+  "1786735800": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 tend\u00eancia macro n\u00e3o confirm\u00e1vel. Estrutura de pre\u00e7o mostra sequ\u00eancia de topos e fundos decrescentes desde 63.247 (downtrend de curto prazo). \u00daltima vela fechou bullish na m\u00e1xima (62.983), mas encontrou resist\u00eancia exata na EMA20 (62.970). RSI 51.14 \u00e9 neutro, sem exaust\u00e3o. Sem confirma\u00e7\u00e3o de revers\u00e3o (precisaria romper 63.050+) nem de continua\u00e7\u00e3o bearish clara. Zona de decis\u00e3o \u2014 aguardar resolu\u00e7\u00e3o.",
+    "confidence": 0.2
+  },
+  "1786786200": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indefinida (EMA200 = nan). Pre\u00e7o abaixo da EMA20 (63026 < 63041) com vi\u00e9s bearish de curto prazo. Estrutura de lower highs/lower lows ao longo das 20 velas. RSI 47.70 neutro, sem exaust\u00e3o. O bounce recente de 62920 \u00e9 fraco \u2014 3 velas verdes sem reaver a EMA20. Sem confirma\u00e7\u00e3o de revers\u00e3o ou continua\u00e7\u00e3o clara.",
+    "confidence": 0.2
+  },
+  "1786836600": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan), impossibilitando an\u00e1lise de tend\u00eancia macro. Pre\u00e7o (63.102) abaixo da EMA20 (63.118) com sequ\u00eancia de lower highs/lower lows sugere vi\u00e9s bearish de curto prazo, mas RSI neutro (47.86) sem exaust\u00e3o. ATR baixo (22.23) indica compress\u00e3o. Sem confirma\u00e7\u00e3o de timeframe superior, entrada seria prematura.",
+    "confidence": 0.2
+  },
+  "1786911300": {
+    "decision": "SELL",
+    "reason": "Tend\u00eancia claramente bearish com lower highs consistentes desde 63390. \u00daltima vela fechou na m\u00ednima absoluta (63094) sem pavio inferior \u2014 press\u00e3o vendedora forte. Pre\u00e7o abaixo da EMA20 (63146) e testando EMA200 (63088). RSI 44.40 com espa\u00e7o para cair. Momentum sugere rompimento iminente da EMA200.",
+    "confidence": 0.68
+  },
+  "1786887000": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63067.01) colado na EMA200 (63067.85) \u2014 testando resist\u00eancia macro sem confirma\u00e7\u00e3o de rompimento. RSI neutro (57.44), ATR baixo (18.41) indicando compress\u00e3o. A recupera\u00e7\u00e3o do fundo em 62968 mostra algum momentum comprador, mas a vela atual forma um doji dentro de range de ~$7, sem convic\u00e7\u00e3o. Aguardar: fechamento acima de 63070 com corpo decisivo para BUY, ou rejei\u00e7\u00e3o clara em 63070 para SELL.",
+    "confidence": 0.78
+  },
+  "1786761000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente bullish (rompimento de 63.000 com for\u00e7a), por\u00e9m EMA200 indispon\u00edvel (nan) impede confirma\u00e7\u00e3o da direcional macro. RSI em 67.35 aproxima-se de sobrecompra, e pre\u00e7o j\u00e1 estendeu ~107 pontos acima da EMA20. Entrar agora seria perseguir o movimento ap\u00f3s o impulso principal. Aguardar retra\u00e7\u00e3o saud\u00e1vel at\u00e9 regi\u00e3o de 63.000-63.020 (suporte/EMA20) para entrada com melhor risco/retorno.",
+    "confidence": 0.75
+  },
+  "1786710600": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel, impossibilitando an\u00e1lise de tend\u00eancia macro. \u00daltima vela fechou na m\u00ednima (62.761/62.761) com corpo bearish robusto, indicando press\u00e3o vendedora sem absor\u00e7\u00e3o. Pre\u00e7o consolidando abaixo da EMA20 (62.761 < 62.904), sugerindo vi\u00e9s de baixa. RSI em 36.29 aponta momentum negativo mas sem exaust\u00e3o extrema (<30) para revers\u00e3o. Sem confirma\u00e7\u00e3o macro e sem conflu\u00eancia t\u00e9cnica para entrada. Conservador: aguardar estrutura mais definida.",
+    "confidence": 0.78
+  },
+  "1786811400": {
+    "decision": "WAIT",
+    "reason": "EMA200 (nan) e EMA50 (0.00) indispon\u00edveis \u2014 tend\u00eancia macro indefinida. \u00daltima vela mostrou rejei\u00e7\u00e3o em 63124.99 com fechamento bearish (close 63096.60 abaixo da abertura 63121.60), formando um upper wick significativo. RSI 56.55 neutro, sem exaust\u00e3o. Pre\u00e7o acima da EMA20 (63064.72) sugere vi\u00e9s de curto prazo levemente altista, mas a rejei\u00e7\u00e3o no topo e a falta de confirma\u00e7\u00e3o macro impedem entrada. ATR baixo (33.83) indica consolida\u00e7\u00e3o \u2014 aguardar rompimento claro acima de 63125 ou retra\u00e7\u00e3o para suporte.",
+    "confidence": 0.72
+  },
+  "1786912200": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o rompeu a EMA200 (63088) com vela bearish fechando em 63071,58 \u2014 m\u00ednima em 63046. RSI 42 confirma momentum baixista sem exaust\u00e3o. Tend\u00eancia de curto prazo claramente descendente (abaixo EMA20). Rompimento da EMA200 sugere continua\u00e7\u00e3o da queda. ATR de 44 indica volatilidade moderada \u2014 stop acima de 63130.",
+    "confidence": 0.68
+  },
+  "1786861800": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o abaixo de EMA20 (63087) e EMA200 (63078), confirmando vi\u00e9s baixista macro. Sequ\u00eancia de topos e fundos decrescentes desde 63158. \u00daltima vela forte de baixa (O:63072\u2192C:63058) fechando pr\u00f3xima \u00e0 m\u00ednima. RSI em 43.65 abaixo de 50 refor\u00e7a momentum vendedor sem estar em exaust\u00e3o. ATR baixo indica consolida\u00e7\u00e3o mas dire\u00e7\u00e3o pendente para baixo.",
+    "confidence": 0.55
+  },
+  "1786787100": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 sem refer\u00eancia de tend\u00eancia macro. RSI 48.20 (neutro) sem exaust\u00e3o. Pre\u00e7o atual (63.030) abaixo da EMA20 (63.040), indicando leve press\u00e3o vendedora de curto prazo. Oscila\u00e7\u00e3o lateral entre 62.920-63.134 sem rompimento claro. \u00daltimo candle de recupera\u00e7\u00e3o fraca (corpo pequeno). Sem conflu\u00eancia para entrada \u2014 ambiente de consolida\u00e7\u00e3o.",
+    "confidence": 0.25
+  },
+  "1786736700": {
+    "decision": "WAIT",
+    "reason": "Dados insuficientes para entrada segura: EMA200=NaN e EMA50=0.00 impedem an\u00e1lise de tend\u00eancia macro. RSI 50.22 perfeitamente neutro \u2014 sem exaust\u00e3o. Pre\u00e7o exatamente sobre EMA20 (62.968 vs 62.969), indicando equil\u00edbrio. Price action mostra corre\u00e7\u00e3o de topo 63.247\u219262.830, com bounce fraco e forma\u00e7\u00e3o de topos decrescentes (63.247\u219263.220\u219263.088\u219262.996). Sem confirma\u00e7\u00e3o de revers\u00e3o nem continua\u00e7\u00e3o. Zona de decis\u00e3o sem vi\u00e9s claro.",
+    "confidence": 0.88
+  },
+  "1786761900": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis impossibilitam confirma\u00e7\u00e3o da tend\u00eancia macro. RSI em 68.55 aproxima-se de sobrecompra (<70). Breakout acima de 63.000 \u00e9 promissor com fechamento no topo da \u00faltima vela, mas sem suporte das EMAs de maior per\u00edodo, o risco de compra em topo local \u00e9 elevado. Aguardar pullback \u00e0 EMA20 (~63.025) ou rompimento consolidado com confirma\u00e7\u00e3o de volume.",
+    "confidence": 0.6
+  },
+  "1786887900": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o (63.060) rejeitado na EMA200 (63.068) \u2014 3 velas consecutivas tocando ~63.070 e fechando abaixo. Fechamentos decrescentes (63.067 \u2192 63.060) com topos iguais indicam press\u00e3o vendedora em resist\u00eancia. RSI 55 neutro n\u00e3o sustenta compra. ATR baixo = consolida\u00e7\u00e3o p\u00f3s-impulso. Alvo: EMA20 (~63.038).",
+    "confidence": 0.64
+  },
+  "1786812300": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro imposs\u00edvel de avaliar (EMA200=nan, EMA50=0). RSI 56.55 neutro, sem exaust\u00e3o. \u00daltima vela praticamente um doji (range de ~$1), ATR baixo (31.49) \u2014 mercado em consolida\u00e7\u00e3o lateral entre 63.000-63.125. Pre\u00e7o levemente acima da EMA20 (63.067), mas sem momentum definido. Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.15
+  },
+  "1786711500": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 imposs\u00edvel confirmar tend\u00eancia macro. RSI (35.29) em territ\u00f3rio bearish mas sem exaust\u00e3o (<30). Price Action mostra sequ\u00eancia de lower lows nas \u00faltimas 3 velas (62892\u219262762\u219262742) com pre\u00e7o ~147 pontos abaixo da EMA20. Momentum vendedor intacto e sem sinal de revers\u00e3o. Operar agora seria contra o momentum sem confirma\u00e7\u00e3o macro.",
+    "confidence": 0.3
+  },
+  "1786837500": {
+    "decision": "SELL",
+    "reason": "Tend\u00eancia de curto prazo claramente bearish: 8 velas consecutivas de lower highs/lows, pre\u00e7o abaixo da EMA20 (63.115 vs 63.086), RSI 44 confirma momentum vendedor. \u00daltima vela fechou exatamente na m\u00ednima (63.086), sinal de continuidade. Sem EMA200 o macro \u00e9 incerto, mas o price action de curto prazo \u00e9 inequ\u00edvoco.",
+    "confidence": 0.5
+  },
+  "1786862700": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63069) levemente abaixo da EMA20 (63085) e EMA200 (63078), mas sem for\u00e7a \u2014 diferen\u00e7a de apenas ~9-16 pts. RSI neutro (45.97) sem exaust\u00e3o. ATR baix\u00edssimo (25.32) indica compress\u00e3o extrema. Velas recentes formam range lateral 63040-63083 com topos descendentes suaves, sem rompimento definido. Sem setup claro \u2014 aguardar breakout do range.",
+    "confidence": 0.75
+  },
+  "1786737600": {
+    "decision": "WAIT",
+    "reason": "Sem dados de EMA200 para definir tend\u00eancia macro. RSI neutro em 50.65 sem exaust\u00e3o. Price action mostra consolida\u00e7\u00e3o lateral (range ~62.830-63.020) ap\u00f3s rejei\u00e7\u00e3o em 63.247, com pre\u00e7o colado na EMA20 (62.970 vs close 62.975). \u00daltimas velas com corpos pequenos e pavilhos indicam indecis\u00e3o. Sem conflu\u00eancia para entrada.",
+    "confidence": 0.88
+  },
+  "1786788000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente bearish (pre\u00e7o abaixo da EMA20, lower highs/lower lows consistentes, queda de ~130 pts em 20 velas), por\u00e9m EMA200 indispon\u00edvel (nan) impede confirma\u00e7\u00e3o da tend\u00eancia macro. RSI em 46.72 \u00e9 neutro \u2014 sem exaust\u00e3o para revers\u00e3o. \u00daltima vela fez novo low em 63.002 mas n\u00e3o rompeu 63.000. Falta conflu\u00eancia: sem suporte macro (EMA200) nem sinal de revers\u00e3o (RSI oversold). Conservador: aguardar rompimento de 63.000 para SELL ou bounce com volume para BUY.",
+    "confidence": 0.72
+  },
+  "1786913100": {
+    "decision": "WAIT",
+    "reason": "Rompeu ligeiramente abaixo da EMA200 (63088) com fechamento em 63067, mas a margem \u00e9 pequena (~20 pts). Estrutura bearish clara (lower-lows/Highs), RSI em 41.64 sem estar oversold. Por\u00e9m, break abaixo da 200 \u00e9 muito fresco e superficial \u2014 precisa de confirma\u00e7\u00e3o. Aguardar reteste da EMA200 como resist\u00eancia para entrada SHORT mais segura, ou rejei\u00e7\u00e3o forte dos 63000.",
+    "confidence": 0.55
+  },
+  "1786888800": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63063) grudado na EMA200 (63068) \u2014 zona de decis\u00e3o sem confirma\u00e7\u00e3o. RSI neutro (56) sem exaust\u00e3o. ATR extremamente baixo (16.55) indica compress\u00e3o; aguardar rompimento confirmado acima da EMA200 para BUY ou rejei\u00e7\u00e3o forte para SELL. Sem setup definido.",
+    "confidence": 0.8
+  },
+  "1786838400": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan), impossibilitando confirma\u00e7\u00e3o da tend\u00eancia macro. Embora o price action mostre sequ\u00eancia de 6 velas bearish com pre\u00e7o abaixo da EMA20 (63111), sem a refer\u00eancia da EMA200 n\u00e3o \u00e9 poss\u00edvel validar se estamos em pullback de alta ou in\u00edcio de revers\u00e3o macro. RSI em 41.05 indica fraqueza mas n\u00e3o exaust\u00e3o de venda. Sinal incompleto \u2014 aguardar dados da EMA200 ou rompimento confirmado com volume.",
+    "confidence": 0.35
+  },
+  "1786762800": {
+    "decision": "WAIT",
+    "reason": "RSI em 70.28 indica sobrecompra/exaust\u00e3o. EMA200 indispon\u00edvel (nan) impossibilita confirma\u00e7\u00e3o da tend\u00eancia macro. Embora price action mostre momentum forte com 4 velas consecutivas fechando pr\u00f3ximas dos highs, pre\u00e7o est\u00e1 ~$116 acima da EMA20 - extens\u00e3o significativa. Entrar comprado agora seria FOMO; shortar contra momentum forte \u00e9 prematuro. Aguardar pullback \u00e0 EMA20 (63037) ou RSI normalizar para zona neutra.",
+    "confidence": 0.75
+  },
+  "1786813200": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 tend\u00eancia macro indefinida. RSI 56.54 neutro, sem exaust\u00e3o. \u00daltimas 2 velas s\u00e3o dojis ultra-comprimidos (range ~$0.05), indicando indecis\u00e3o extrema ap\u00f3s impulso de baixa. ATR baixo (29.25) confirma compress\u00e3o. Price acima da EMA20 mas sem confirma\u00e7\u00e3o de continuidade. Aguardar rompimento de 63125 (compra) ou quebra de 63095 (venda).",
+    "confidence": 0.88
+  },
+  "1786712400": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia bearish clara com pre\u00e7o ~182 pts abaixo da EMA20, mas RSI em 32.74 j\u00e1 pr\u00f3ximo de sobrevendido com vela martelo no fundo (wick at\u00e9 62.605). Venda agora seria chase; compra sem confirma\u00e7\u00e3o de revers\u00e3o \u00e9 prematura. EMA200 e EMA50 indispon\u00edveis impedem an\u00e1lise macro.",
+    "confidence": 0.7
+  },
+  "1786863600": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o (63054) rompeu abaixo de EMA20 (63082) e EMA200 (63078). \u00daltima vela \u00e9 marubozu de baixa (Open=High, Close=Low). Sequ\u00eancia de lower highs desde 63158. RSI 43.31 confirma momentum bearish sem estar em exaust\u00e3o de venda. Estrutura de mercado claramente de baixa com teste repetido da zona 63040-63044.",
+    "confidence": 0.55
+  },
+  "1786738500": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 sem refer\u00eancia de tend\u00eancia macro; RSI neutro (48.96) sem exaust\u00e3o; pre\u00e7o fecha levemente abaixo da EMA20 (62.949 vs 62.968) com topos descendentes progressivos desde 63.247, sugerindo drift bearish leve, por\u00e9m suporte em 62.830 n\u00e3o foi rompido. Consolida\u00e7\u00e3o sem dire\u00e7\u00e3o clara \u2014 ATR baixo (101) confirma compress\u00e3o. Sem conflu\u00eancia para entrada.",
+    "confidence": 0.75
+  },
+  "1786688100": {
+    "decision": "WAIT",
+    "reason": "Downtrend persistente (pre\u00e7o em 63.183, ~200pts abaixo da EMA20 em 63.384) com \u00faltima vela fechando no m\u00ednimo \u2014 press\u00e3o vendedora intacta. RSI em 27.69 aproxima-se de sobrevenda mas ainda n\u00e3o extremo. EMA200 indispon\u00edvel impede confirma\u00e7\u00e3o macro. SELL agora arriscado perto de zona de exaust\u00e3o; BUY contra-tend\u00eancia sem sinal de revers\u00e3o. Aguardar: rompimento abaixo de 63.100 para short confirmado, ou diverg\u00eancia/consolida\u00e7\u00e3o com RSI < 25 para oportunidade de reentrada.",
+    "confidence": 0.75
+  },
+  "1786914000": {
+    "decision": "SELL",
+    "reason": "Tend\u00eancia de baixa consistente: pre\u00e7o (63058) abaixo da EMA20 (63125) e rec\u00e9m-cruzou abaixo da EMA200 (63087). Sequ\u00eancia de lower lows cont\u00ednua (63046\u219263027\u219263030), rejei\u00e7\u00e3o em 63220 confirmou resist\u00eancia. RSI 40.58 confirma momentum bearish com espa\u00e7o para queda antes de sobrevenda. \u00daltimas velas mostram corpos vermelhos dominantes sem sinal de revers\u00e3o.",
+    "confidence": 0.6
+  },
+  "1786839300": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o rompeu marginalmente a EMA200 (63074.70) por apenas ~3 pontos. Rompimento fraco sem confirma\u00e7\u00e3o. RSI em 41.05 indica press\u00e3o vendedora mas sem exaust\u00e3o definida. Aguardar: ou confirma\u00e7\u00e3o com fechamento consistente abaixo + volume, ou rejei\u00e7\u00e3o com bounce acima da EMA200.",
+    "confidence": 0.65
+  },
+  "1786788900": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indeterminada (EMA200=nan, EMA50=0). RSI 46.90 neutro, sem exaust\u00e3o. Pre\u00e7o (63019.99) abaixo da EMA20 (63036.47) com press\u00e3o vendedora leve. Sequ\u00eancia de velas 17-20 mostra perda de momentum do rebote p\u00f3s-queda (de 63135 at\u00e9 62920). \u00daltima vela doji = indecis\u00e3o. Sem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.75
+  },
+  "1786713300": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 tend\u00eancia macro n\u00e3o pode ser determinada. Pre\u00e7o (62.782) abaixo da EMA20 (62.861) indica vi\u00e9s bearish de curto prazo. RSI em 40.87 est\u00e1 em zona neutra-baixa, sem sinal claro de exaust\u00e3o (nem oversold <30 nem diverg\u00eancia). \u00daltima vela mostrou recupera\u00e7\u00e3o do fundo em 62.640, mas sem volume nem confirma\u00e7\u00e3o de revers\u00e3o. Mercado em range lateral com leve inclina\u00e7\u00e3o de baixa \u2014 sem conflu\u00eancia suficiente para entrada.",
+    "confidence": 0.75
+  },
+  "1786763700": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis, sem refer\u00eancia de tend\u00eancia macro. RSI 59.13 em zona neutra. A \u00faltima vela mostra forte rejei\u00e7\u00e3o de alta (pavio superior ~34pts, corpo bearish de ~62pts, fechando em 63091.75 ap\u00f3s tocar 63187.98). Embora sugira press\u00e3o vendedora no topo, \u00e9 apenas uma vela de revers\u00e3o isolada ap\u00f3s sequ\u00eancia ascendente. Sem confirma\u00e7\u00e3o de tend\u00eancia macro e sem exaust\u00e3o clara de RSI, o sinal permanece fraco para entrada.",
+    "confidence": 0.82
+  },
+  "1786889700": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o apenas $12 acima da EMA200 (63067.85) \u2014 breakout marginal sem confirma\u00e7\u00e3o. \u00daltima vela rejeitou com pavio superior de $20 em 63100.90. EMA20 (63043.81) permanece ABAIXO da EMA200, indicando estrutura macro ainda bearish. ATR de 18.08 reflete compress\u00e3o extrema de volatilidade \u2014 sem dire\u00e7\u00e3o clara. RSI 60 \u00e9 neutro-bullish mas insuficiente isoladamente. Falta de conflu\u00eancia: sem confirma\u00e7\u00e3o de rompimento, sem acelera\u00e7\u00e3o de volume impl\u00edcita, sem cruzamento de m\u00e9dias.",
+    "confidence": 0.85
+  },
+  "1786814100": {
+    "decision": "WAIT",
+    "reason": "EMA200 (nan) e EMA50 (0.00) indispon\u00edveis \u2014 imposs\u00edvel avaliar tend\u00eancia macro. RSI neutro em 51.17 sem exaust\u00e3o. Pre\u00e7o rejeitado em 63.125 e testando EMA20 (63.070.51). \u00daltima vela bearish com pavil inferior longo (low 63.066.21) indica indecis\u00e3o. ATR comprimido (29.62) sugere consolida\u00e7\u00e3o. Sem confirma\u00e7\u00e3o de tend\u00eancia, aguardar.",
+    "confidence": 0.82
+  },
+  "1786739400": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o fechou abaixo da EMA20 (62912 vs 62963) indicando press\u00e3o vendedora, mas EMA200 indispon\u00edvel (NaN) impossibilita confirma\u00e7\u00e3o da tend\u00eancia macro. RSI em 46.48 \u00e9 neutro sem exaust\u00e3o. \u00daltimas velas mostram consolida\u00e7\u00e3o indecisa com toques no suporte ~62912 sem rompimento definitivo. Sem conflu\u00eancia de sinais para entrada segura.",
+    "confidence": 0.3
+  },
+  "1786864500": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63061) abaixo de EMA20 (63080) e EMA200 (63077), sugerindo vi\u00e9s bearish, mas consolida\u00e7\u00e3o apertada entre 63040-63083 com ATR baixo (23.31) indica falta de momentum direcional. RSI neutro (44.84) sem exaust\u00e3o. Sem padr\u00e3o de revers\u00e3o clara nem rompimento definido \u2014 mercado indeciso. Aguardar confirma\u00e7\u00e3o de rompimento.",
+    "confidence": 0.3
+  },
+  "1786914900": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o (63032) rompeu abaixo da EMA200 (63087) confirmando quebra de suporte macro. Sequ\u00eancia de lower lows intacta, \u00faltima vela fechou na m\u00ednima com rejei\u00e7\u00e3o em 63085. RSI em 37.83 mostra momentum bearish com espa\u00e7o at\u00e9 zona de exaust\u00e3o (30). EMA20 (63117) acima do pre\u00e7o atua como resist\u00eancia din\u00e2mica. Estrutura de mercado claramente de baixa.",
+    "confidence": 0.68
+  },
+  "1786689000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia bearish clara com pre\u00e7o ~184 pontos abaixo da EMA20, mas RSI em 27.53 (quase sobrevendido) desencoraja SHORT \u2014 risco de bounce t\u00e9cnico. Sem revers\u00e3o confirmada, sem EMA200 dispon\u00edvel, e \u00faltima vela fechou em m\u00ednima (63180) sem padr\u00e3o de revers\u00e3o. Aguardar: SHORT em reteste da EMA20 (~63365), ou BUY com confirma\u00e7\u00e3o de fundo (bullish engulfing/revers\u00e3o com volume).",
+    "confidence": 0.3
+  },
+  "1786789800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 tend\u00eancia macro imposs\u00edvel de avaliar. RSI 49.39 perfeitamente neutro. Pre\u00e7o grudado na EMA20 (63036 vs 63035.99) ap\u00f3s rejei\u00e7\u00e3o em 63134 e recupera\u00e7\u00e3o de 62920 \u2014 mercado lateral/range. \u00daltimas 5 velas com corpos m\u00ednimos e consolida\u00e7\u00e3o estreita (63019-63036). ATR baixo (39.82) indica compress\u00e3o de volatilidade. Zero conflu\u00eancia para entrada.",
+    "confidence": 0.85
+  },
+  "1786714200": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 sem refer\u00eancia de tend\u00eancia macro. Pre\u00e7o (62718) permanece abaixo da EMA20 (62848) por m\u00faltiplas sess\u00f5es, indicando vi\u00e9s de baixa de curto prazo. RSI em 37.54 mostra press\u00e3o vendedora moderada, mas n\u00e3o atingiu zona de sobrevenda extrema (< 30) que justificaria revers\u00e3o. \u00daltimas velas formam topos decrescentes (62913\u219262796\u219262822) com fundos testando a regi\u00e3o 62600-62612 \u2014 poss\u00edvel suporte, mas sem confirma\u00e7\u00e3o de rompimento acima da EMA20 ou padr\u00e3o de revers\u00e3o claro. Conservadorismo indica aguardar.",
+    "confidence": 0.3
+  },
+  "1786764600": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 imposs\u00edvel avaliar tend\u00eancia macro; \u00faltimas 2 velas formam padr\u00e3o de rejei\u00e7\u00e3o bearish no topo (mecha superior longa em 63187 \u2192 fechamento em 63064); RSI neutro em 54.99 sem confirma\u00e7\u00e3o de momentum; pre\u00e7o ligeiramente acima da EMA20 mas sem suporte de m\u00e9dias superiores para validar dire\u00e7\u00e3o.",
+    "confidence": 0.22
+  },
+  "1786890600": {
+    "decision": "BUY",
+    "reason": "Pre\u00e7o rompeu acima da EMA200 (63068.18) com duas velas de impulso consecutivas, fechando em 63100.89 \u2014 praticamente na m\u00e1xima da sess\u00e3o (63100.90), sem pavio superior relevante. RSI a 64.37 indica momentum comprador com margem at\u00e9 a zona de exaust\u00e3o (>70). Fechamento acima tanto da EMA20 (63049.25) quanto da EMA200 confirma alinhamento de alta. Risco: breakout ainda recente, consolida\u00e7\u00e3o pode ocorrer na regi\u00e3o de 63100.",
+    "confidence": 0.61
+  },
+  "1786840200": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63070) acabou de romper EMA200 (63074.65) mas velas recentes formam corpos pequenos com pavos longos, sugerindo indecis\u00e3o/exaust\u00e3o vendedora. RSI a 40.66 sem sobre-venda clara. Aguardo: (1) confirma\u00e7\u00e3o de rompimento com vela de corpo forte abaixo de 63060 para SELL, ou (2) reacima acima da EMA200 (63075) + EMA20 (63103) para BUY reversal. Entrar agora no limiar da EMA200 \u00e9 arriscado \u2014 pode ser falso rompimento.",
+    "confidence": 0.65
+  },
+  "1786815000": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) e EMA50 zerado impedem avalia\u00e7\u00e3o de tend\u00eancia macro. RSI neutro em 51.16 sem momentum. Pre\u00e7o testou 63120-63125 duas vezes e falhou, voltando para a EMA20 (63070). ATR baixo (27.50) com m\u00faltiplas dojis indicam compress\u00e3o e indecis\u00e3o. Entrar sem contexto de tend\u00eancia macro seria imprudente.",
+    "confidence": 0.88
+  },
+  "1786915800": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o fechou em 62.939 \u2014 abaixo da EMA20 (63.099) e EMA200 (63.085), confirmando estrutura de baixa. RSI em 30 indica sobreextrema\u00e7\u00e3o vendedora e a \u00faltima vela formou um hammer com pavio at\u00e9 62.754, sugerindo rea\u00e7\u00e3o compradora nos m\u00ednimos. Por\u00e9m, sem confirma\u00e7\u00e3o de revers\u00e3o (fechamento acima da EMA200). Entrar comprado agora seria contra-trend e arriscado; entrar vendido com RSI em 30 \u00e9 tardio. Aguardar pr\u00f3xima vela para confirma\u00e7\u00e3o.",
+    "confidence": 0.72
+  },
+  "1786865400": {
+    "decision": "WAIT",
+    "reason": "Downtrend claro de 63151\u219263061, pre\u00e7o abaixo de EMA20 e EMA200, mas consolida\u00e7\u00e3o extrema nas \u00faltimas 4 velas (range de apenas 2pts na \u00faltima vela) indica compress\u00e3o. RSI 44.85 neutro, sem exaust\u00e3o para revers\u00e3o. ATR baixo (21.78) confirma baixa volatilidade. Aguardar rompimento do range 63040-63083 para dire\u00e7\u00e3o definida.",
+    "confidence": 0.75
+  },
+  "1786740300": {
+    "decision": "WAIT",
+    "reason": "Price action mostra sequ\u00eancia clara de lower highs/lower lows (de 63.247 \u2192 62.907) com pre\u00e7o abaixo da EMA20, indicando vi\u00e9s bearish de curto prazo. Por\u00e9m: EMA200 indispon\u00edvel (nan) impede an\u00e1lise de tend\u00eancia macro; RSI em 46.15 est\u00e1 em zona neutra sem exaust\u00e3o definida; pre\u00e7o testou suporte em 62.830 mas n\u00e3o apresentou revers\u00e3o clara. Sem confirma\u00e7\u00e3o macro e sem sinal de exaust\u00e3o, o risco/recompensa \u00e9 desfavor\u00e1vel para entrada.",
+    "confidence": 0.78
+  },
+  "1786689900": {
+    "decision": "WAIT",
+    "reason": "Downtrend persistente (pre\u00e7o ~62.974 vs EMA20 ~63.328), por\u00e9m RSI em 19.94 indica exaust\u00e3o extrema de venda. SHORT agora \u00e9 arriscado (rebote iminente). BUY \u00e9 prematuro (sem confirma\u00e7\u00e3o de revers\u00e3o, sem suporte da EMA200 dispon\u00edvel). \u00daltima vela com pavil longo inferior (L:62.942) sugere tentativa de defesa. Aguardar sinal claro.",
+    "confidence": 0.85
+  },
+  "1786790700": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 tend\u00eancia macro n\u00e3o avali\u00e1vel. RSI 50.95 totalmente neutro, sem exaust\u00e3o. Price action mostra corre\u00e7\u00e3o de ~214 pts (63.134\u219262.920) seguida de recupera\u00e7\u00e3o gradual at\u00e9 63.046, mas sem rompimento claro. Pre\u00e7o ligeiramente acima da EMA20 (63.037), dentro de consolida\u00e7\u00e3o lateral com ATR baixo (38.73). \u00daltimas velas apresentam momentum fraco e sem volume direcional definido. Ambiente de range sem confluentes para entrada.",
+    "confidence": 0.88
+  },
+  "1786715100": {
+    "decision": "WAIT",
+    "reason": "Downtrend confirmado (pre\u00e7o 62.668 bem abaixo da EMA20 em 62.830) com RSI em 35.12 indicando press\u00e3o vendedora moderada mas sem oversold (<30). Suporte testado repetidamente em 62.600-62.612 nas \u00faltimas 4 velas. EMA200 indispon\u00edvel - imposs\u00edvel avaliar tend\u00eancia macro. SELL arriscado neste suporte forte; BUY prematuro sem revers\u00e3o confirmada. Aguardar: rompimento de 62.600 para SHORT ou bounce com RSI saindo de 30 para LONG.",
+    "confidence": 0.7
+  },
+  "1786891500": {
+    "decision": "BUY",
+    "reason": "Pre\u00e7o rompeu acima da EMA200 (63068.52) e fechou em 63102.85 \u2014 acima tanto da EMA20 quanto da EMA200, confirmando alinhamento altista. Sequ\u00eancia de HH/HL nas \u00faltimas 7 velas com vela forte (63063\u219263100) indicando momentum real. RSI 64.75 saud\u00e1vel, sem exaust\u00e3o, com espa\u00e7o at\u00e9 70. Entrada em pullback \u00e0 EMA20 seria ideal, mas a estrutura de breakout limpa acima de 63100 com ATR baixo (17.43) sugere continuidade. Stop sugerido: ~63063 (abaixo da EMA200).",
+    "confidence": 0.68
+  },
+  "1786841100": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente baixista (queda de ~63175 para ~63061), pre\u00e7o abaixo da EMA20 (63102). \u00daltima vela fez um leve bounce em cima da EMA200 (63074.76), mas o m\u00ednimo de 63061 j\u00e1 rompeu essa m\u00e9dia \u2014 suporte comprometido. RSI neutro (45.73) sem exaust\u00e3o de venda. Entrar LONG agora seria apostar num suporte fraco; SHORT carece de confirma\u00e7\u00e3o de rompimento definitivo da EMA200. Aguardar reteste claro ou rompimento confirmado.",
+    "confidence": 0.82
+  },
+  "1786815900": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 zerada impedem avalia\u00e7\u00e3o de tend\u00eancia macro. RSI 51.17 em neutralidade perfeita sem exaust\u00e3o. Price Action mostra consolida\u00e7\u00e3o lateral com \u00faltimas velas como dojis (range de 0.02 pontos), indicando indecis\u00e3o total. ATR baixo (25.54) confirma compress\u00e3o de volatilidade. Sem conflito de timeframes nem setup claro \u2014 operar aqui seria ru\u00eddo.",
+    "confidence": 0.0
+  },
+  "1786765500": {
+    "decision": "WAIT",
+    "reason": "Rejei\u00e7\u00e3o bearish clara em 63.188 com 3 velas de baixa consecutivas, por\u00e9m pre\u00e7o ainda segura na EMA20 (63.045). EMA200 indispon\u00edvel (nan) impede confirma\u00e7\u00e3o de tend\u00eancia macro. RSI neutro (53.08) sem exaust\u00e3o. Zona de decis\u00e3o \u2014 aguardar rompimento definido da EMA20 ou rejei\u00e7\u00e3o com nova compra.",
+    "confidence": 0.75
+  },
+  "1786866300": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63061) abaixo de EMA20 (63077) e EMA200 (63077), vi\u00e9s bearish claro. Por\u00e9m, RSI neutro em 44.84 sem exaust\u00e3o definida, e \u00faltima vela doji indica indecis\u00e3o total. Consolida\u00e7\u00e3o lateral entre 63040-63072 ap\u00f3s perna de queda. Aguardar: breakdown abaixo de 63040 (suporte do range) para SHORT confirmado, OU recupera\u00e7\u00e3o acima de 63077 (EMA20/EMA200) para revers\u00e3o.",
+    "confidence": 0.7
+  },
+  "1786916700": {
+    "decision": "WAIT",
+    "reason": "Resposta vazia da IA",
+    "confidence": 0.0
+  },
+  "1786741200": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indefinida \u2014 EMA200 indispon\u00edvel (nan). RSI 45.89 neutro sem exaust\u00e3o. Pre\u00e7o abaixo da EMA20 (62.904 vs 62.952) indica leve vi\u00e9s baixista, mas \u00faltimas 5 velas formam consolida\u00e7\u00e3o de baixa volatilidade (range ~40 pontos) sem rompimento. Sem confirma\u00e7\u00e3o direcional suficiente para entrada.",
+    "confidence": 0.8
+  },
+  "1786791600": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro inavali\u00e1vel (EMA200=NaN, EMA50=0). RSI 48.39 em zona neutra \u2014 sem exaust\u00e3o. Pre\u00e7o oscilando na EMA20 (63036.65) com ATR baixo (37.14), caracterizando consolida\u00e7\u00e3o lateral entre ~62920 e ~63135. Sem rompimento definido nem conflu\u00eancia de sinais para entrada.",
+    "confidence": 0.85
+  },
+  "1786690800": {
+    "decision": "BUY",
+    "reason": "RSI em 29.82 (sobrevenda profunda) + \u00faltimas 2 velas mostram revers\u00e3o: vela 19 formou fundo em 62.942 com pavio inferior longo (rejei\u00e7\u00e3o de pre\u00e7o baixo), vela 20 fechou verde (63.072 > 62.974) confirmando press\u00e3o compradora. Pre\u00e7o ~230 pontos abaixo da EMA20 indica sobreextens\u00e3o bearish. Entrada conservadora para scalp de revers\u00e3o, com stop apertado dado ATR de 97.",
+    "confidence": 0.42
+  },
+  "1786842000": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o quebrou abaixo da EMA200 (63074.54) e fechou na m\u00ednima absoluta (63052.25). \u00daltima vela com sombra superior m\u00ednima indica press\u00e3o vendedora dominante. Sequ\u00eancia consistente de lower lows nas \u00faltimas ~8 velas. RSI em 38.26 confirma momentum bearish com espa\u00e7o para continuar antes de atingir sobreventa. Pre\u00e7o tamb\u00e9m abaixo da EMA20 (63097) refor\u00e7ando tend\u00eancia de curto prazo negativa.",
+    "confidence": 0.68
+  },
+  "1786716000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente baixista (pre\u00e7o 62.610 < EMA20 62.809, lower lows consecutivos, \u00faltima vela fechou pr\u00f3xima \u00e0 m\u00ednima). EMA200 indispon\u00edvel impossibilita confirmar tend\u00eancia macro. RSI 32.52 aproxima-se de sobrevenda mas ainda n\u00e3o atingiu exaust\u00e3o extrema (<30). Entrada comprada seria contra-tend\u00eancia sem confirma\u00e7\u00e3o de revers\u00e3o; entrada vendida seria arriscada com RSI j\u00e1 baixo. Aguardar RSI <30 para poss\u00edvel revers\u00e3o ou rompimento claro de suporte.",
+    "confidence": 0.72
+  },
+  "1786766400": {
+    "decision": "WAIT",
+    "reason": "EMA200/EMA50 indispon\u00edveis \u2014 imposs\u00edvel confirmar tend\u00eancia macro. Rejei\u00e7\u00e3o forte em 63.188 (vela 17, wick superior de ~96pts) com sequ\u00eancia de baixa nas velas 18-19. \u00daltima vela recuperou at\u00e9 63.100 mas ainda abaixo da m\u00e1xima rejeitada. RSI 58.82 em zona neutra sem exaust\u00e3o definida. Pre\u00e7o acima da EMA20 (63.050) d\u00e1 leve vi\u00e9s de alta, por\u00e9m a rejei\u00e7\u00e3o recente e a falta de confirma\u00e7\u00e3o de tend\u00eancia macro exigem cautela.",
+    "confidence": 0.3
+  },
+  "1786816800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 inv\u00e1lido (0.00) \u2014 tend\u00eancia macro imposs\u00edvel de determinar. RSI 56.45 neutro, sem exaust\u00e3o. Pre\u00e7o em consolida\u00e7\u00e3o extremamente aperta (range ~$129 entre 62.996\u201363.125). ATR de 26.97 indica volatilidade muito baixa \u2014 ambiente de sideways. \u00daltima vela fez bounce de 63.070\u219263.097 mas sem rompimento confirmado. Pre\u00e7o ligeiramente acima da EMA20 (63.073), mas sem confirma\u00e7\u00e3o macro. Sem conflu\u00eancia suficiente para entrada.",
+    "confidence": 0.9
+  },
+  "1786867200": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63064) abaixo de EMA20 (63075) e EMA200 (63077) confirma vi\u00e9s bearish, mas RSI neutro (45.69) sem exaust\u00e3o. Velas recentes com corpos m\u00ednimos (dojis) indicam indecis\u00e3o forte. ATR baixo (19) = sem momentum. Aguardar rompimento do range 63040-63072 com volume.",
+    "confidence": 0.25
+  },
+  "1786892400": {
+    "decision": "BUY",
+    "reason": "Pre\u00e7o rompeu e se sustenta acima da EMA200 (63.068,94) com fechamento em 63.110,25 \u2014 ~41 pontos acima, confirmando breakout. Sequ\u00eancia de 5 velas consecutivas de altas com HH/HL. RSI em 66,22 indica momentum comprador com ainda ~4 pontos de folga antes de exaust\u00e3o (70). EMA20 (63.059,68) abaixo do pre\u00e7o refor\u00e7a vi\u00e9s de alta. Entrada segue a tend\u00eancia macro com ATR comprimido (17,41), oferecendo stop tight.",
+    "confidence": 0.72
+  },
+  "1786742100": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente bearish com pre\u00e7o abaixo da EMA20 e fechamentos progressivamente mais baixos (de ~63210 a ~62892). RSI em 45.03 indica momentum negativo sem exaust\u00e3o (n\u00e3o oversold). EMA200 indispon\u00edvel para confirmar tend\u00eancia macro. Consolida\u00e7\u00e3o em ~62890 pode ser suporte ou pausa antes de continua\u00e7\u00e3o \u2014 sem confirma\u00e7\u00e3o de revers\u00e3o ou rompimento.",
+    "confidence": 0.78
+  },
+  "1786792500": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) impede an\u00e1lise de tend\u00eancia macro; RSI neutro (48.82) sem exaust\u00e3o; pre\u00e7o consolidando em range estreito (~63018-63046) com ATR baixo (35.55); pre\u00e7o oscilando em torno da EMA20 sem direcionalidade clara - mercado sem convic\u00e7\u00e3o.",
+    "confidence": 0.88
+  },
+  "1786691700": {
+    "decision": "WAIT",
+    "reason": "Downtrend persistente com pre\u00e7o ~181 pts abaixo da EMA20, mas RSI em 32.67 aproxima-se de sobrevenda (poss\u00edvel bounce). \u00daltimas 2 velas mostram recupera\u00e7\u00e3o fraca (62.974\u219263.103) sem confirma\u00e7\u00e3o de revers\u00e3o. EMA200 indispon\u00edvel para valida\u00e7\u00e3o macro. Sem setup claro para entrada.",
+    "confidence": 0.8
+  },
+  "1786917600": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro claramente baixista (pre\u00e7o 62.922 vs EMA200 63.082). RSI em 28.81 indica sobreextens\u00e3o, mas sem confirma\u00e7\u00e3o de revers\u00e3o \u2014 \u00faltima vela fez fundo em 62.790 com pavio longo inferior, por\u00e9m n\u00e3o recuperou a EMA200. Entrar agora seria antecipar o fundo sem sinal estrutural.",
+    "confidence": 0.74
+  },
+  "1786842900": {
+    "decision": "SELL",
+    "reason": "Price rompeu abaixo da EMA200 (63074.39), fechando em 63059.68. Estrutura de mercado claramente bearish com lower highs/lower lows desde 63175. RSI a 40.57 com espa\u00e7o para cair at\u00e9 oversold, confirmando momentum descendente. \u00daltima vela fez reteste da EMA200 (mecha at\u00e9 63078) e foi rejeitada, validando a quebra. ATR de 20.65 d\u00e1 margem para queda at\u00e9 ~63032.",
+    "confidence": 0.68
+  },
+  "1786716900": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente bearish (topos e fundos decrescentes, pre\u00e7o ~124pts abaixo da EMA20), mas EMA200 indispon\u00edvel para confirmar macro. RSI em 37.91 mostra momentum negativo sem exaust\u00e3o compradora (n\u00e3o chegou em <30). \u00daltima vela tem pavio inferior (62.573\u219262.673) sugerindo tentativa de rea\u00e7\u00e3o, mas sem confirma\u00e7\u00e3o de revers\u00e3o. Sem confirma\u00e7\u00e3o macro e sem sinal claro de exaust\u00e3o, o setup \u00e9 fraco.",
+    "confidence": 0.25
+  },
+  "1786767300": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel \u2014 sem confirma\u00e7\u00e3o de tend\u00eancia macro. A vela 16 rejeitou fortemente em 63.188 (pavio superior de ~$96) e o pre\u00e7o ainda n\u00e3o rompeu essa resist\u00eancia. \u00daltimas velas mostram recupera\u00e7\u00e3o gradual, mas o padr\u00e3o sugere um reteste da zona de rejei\u00e7\u00e3o sem for\u00e7a decisiva. RSI 61.38 \u00e9 neutro-bullish, sem exaust\u00e3o mas tamb\u00e9m sem momentum forte. Aguardar rompimento claro acima de 63.188 ou rejei\u00e7\u00e3o confirmada para SHORT.",
+    "confidence": 0.58
+  },
+  "1786817700": {
+    "decision": "WAIT",
+    "reason": "\u00daltima vela rompeu abaixo da EMA20 (63,070\u219263,050) com corpo bearish s\u00f3lido fechando exatamente no m\u00ednimo \u2014 sinal de press\u00e3o vendedora. Por\u00e9m, EMA200 indispon\u00edvel para confirmar tend\u00eancia macro, EMA50 zerada, e RSI 46.81 em zona neutra sem exaust\u00e3o definida. Movimento ainda pode ser reteste de suporte (~63,030) antes de revers\u00e3o. Sem conflu\u00eancia suficiente para entrada.",
+    "confidence": 0.25
+  },
+  "1786893300": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia claramente alta (pre\u00e7o acima de EMA20 e EMA200), por\u00e9m dois sinais de cautela: (1) \u00faltima vela \u00e9 praticamente um doji em 63.110 indicando exaust\u00e3o compradora no topo local, e (2) vela anterior mostrou rejei\u00e7\u00e3o em 63.120 (pavio superior longo). RSI em 66.22 se aproximando de sobrecompra. Entrar agora compra no topo de um mini-impulso com risco/retorno desfavor\u00e1vel. Aguardo pullback \u00e0 EMA20 (~63.064) ou rompimento confirmado acima de 63.120 com vela forte.",
+    "confidence": 0.78
+  },
+  "1786868100": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o fechou exatamente na EMA200 (63079.76 vs 63077.43) \u2014 zona pivotal sem rompimento definido. RSI 49.90 neutro, sem momentum direcional. \u00daltima vela foi de impulso, mas ATR baixo (18.77) indica volatilidade comprimida. Tras consolida\u00e7\u00e3o extensa com dojis, precisa de confirma\u00e7\u00e3o acima de 63084 para BUY ou rejei\u00e7\u00e3o em 63080 para SELL.",
+    "confidence": 0.72
+  },
+  "1786918500": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia fortemente bearish: pre\u00e7o em 62845, bem abaixo de EMA20 (63047) e EMA200 (63080), com sequ\u00eancia de lower lows. RSI em 23.89 indica sobrevendido profundo, sugerindo poss\u00edvel exaust\u00e3o vendedora, por\u00e9m sem confirma\u00e7\u00e3o de revers\u00e3o (sem padr\u00e3o de vela bullish, sem diverg\u00eancia de fundo). \u00daltimo candle fechou pr\u00f3ximo \u00e0 m\u00ednima (C:62845 vs L:62834), mostrando press\u00e3o vendedora cont\u00ednua. Comprar agora seria antecipar fundo; vender ap\u00f3s RSI t\u00e3o baixo traz risco de squeeze violento. Aguardar: ou rompimento claro abaixo de 62754 para SELL, ou padr\u00e3o de revers\u00e3o confirmado para BUY.",
+    "confidence": 0.78
+  },
+  "1786692600": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente baixa (pre\u00e7o 63.024 bem abaixo da EMA20 em 63.259), com 20 velas de queda consistente. RSI em 29.42 indica sobrevenda extrema, o que impede entrada SELL por risco de bounce. \u00daltima vela tem pavio inferior longo (low 62.965 vs close 63.024), sugerindo poss\u00edvel absor\u00e7\u00e3o de compra nessa zona. EMA200 indispon\u00edvel (nan), impossibilitando confirma\u00e7\u00e3o de tend\u00eancia macro. Sem padr\u00e3o de revers\u00e3o claro (sem martelo, engulfing ou fundo duplo). Conservador: aguardar confirma\u00e7\u00e3o de revers\u00e3o ou rompimento do suporte ~62.940.",
+    "confidence": 0.72
+  },
+  "1786793400": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis (NaN/0.00), impossibilitando an\u00e1lise de tend\u00eancia macro. RSI 51.48 perfeitamente neutro, sem exaust\u00e3o. Pre\u00e7o recuperou de 62.920 para 63.047, mas encontra resist\u00eancia na zona 63.045-63.065 com tochas superiores nas \u00faltimas velas. Apenas marginalmente acima da EMA20 (63.037). Sem conflu\u00eancia de sinais \u2014 aguardar confirma\u00e7\u00e3o direcional.",
+    "confidence": 0.85
+  },
+  "1786743000": {
+    "decision": "SELL",
+    "reason": "Price action claramente bearish: 20 velas de decl\u00ednio consistente com lower highs e lower closes (63.247\u219262.889). Pre\u00e7o (62.889) bem abaixo da EMA20 (62.941). RSI 44.74 confirma momentum bearish sem estar em exaust\u00e3o. \u00daltimas 5 velas fecharam abaixo da abertura (corpos vermelhos consecutivos). Apesar de EMA200/EMA50 indispon\u00edveis, a estrutura de curto prazo \u00e9 inequivocamente de baixa com risco definido pelo \u00faltimo high local (~62.937).",
+    "confidence": 0.58
+  },
+  "1786843800": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia claramente baixista (topos e fundos decrescentes, pre\u00e7o abaixo da EMA20 e EMA200). Embora a \u00faltima vela tenha formado um hammer com rejei\u00e7\u00e3o em 63012, o RSI em 42.83 n\u00e3o indica exaust\u00e3o de venda extrema, e o pre\u00e7o fechou abaixo das EMAs. O sinal de revers\u00e3o precisa de confirma\u00e7\u00e3o \u2014 entrar agora seria antecipar sem confirma\u00e7\u00e3o do movimento.",
+    "confidence": 0.65
+  },
+  "1786717800": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (NaN) \u2014 tend\u00eancia macro n\u00e3o avali\u00e1vel. Pre\u00e7o (62.746) abaixo da EMA20 (62.792) mant\u00e9m vi\u00e9s bearish de curto prazo. RSI neutro em 43.51 sem sinal de exaust\u00e3o. \u00daltimas velas mostram sequ\u00eancia de topos e fundos descendentes (de ~62.946 at\u00e9 fundo em 62.573). O bounce recente nas 2 \u00faltimas velas \u00e9 incipiente e ainda n\u00e3o rompeu a EMA20. Sem confirma\u00e7\u00e3o macro e sem revers\u00e3o estrutural clara, manter conservador.",
+    "confidence": 0.78
+  },
+  "1786818600": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 tend\u00eancia macro indefinida. Pre\u00e7o (63,050) abaixo da EMA20 (63,068) com vi\u00e9s bearish leve nas \u00faltimas velas (rejei\u00e7\u00e3o em ~63,124 e queda para 63,050). RSI neutro em 46.81 sem exaust\u00e3o. ATR baixo (26.38) indica consolida\u00e7\u00e3o sem momentum direcional. Sem confirma\u00e7\u00e3o de tend\u00eancia, sem sinal de exaust\u00e3o \u2014 permanecer fora \u00e9 a decis\u00e3o prudente.",
+    "confidence": 0.78
+  },
+  "1786894200": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia claramente bullish (pre\u00e7o acima EMA20/EMA200), mas RSI a 67.04 se aproxima da zona de exaust\u00e3o (70). \u00daltima vela teve pavio superior at\u00e9 63140 com rejei\u00e7\u00e3o, fechando em 63114 \u2014 sinal de poss\u00edvel resist\u00eancia. Entrar agora significaria perseguir topo ap\u00f3s movimento de ~$106 (~6 ATR). Melhor aguardar pullback para EMA20 (63069) ou RSI mais neutro para entrada com melhor risco/retorno.",
+    "confidence": 0.78
+  },
+  "1786869000": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63072.42) ligeiramente abaixo de EMA20 (63075.88) e EMA200 (63077.38), RSI neutro (48.02). Consolida\u00e7\u00e3o comprimida com ATR baixo (18.00) \u2014 aguardar breakout com volume/dire\u00e7\u00e3o definida.",
+    "confidence": 0.15
+  },
+  "1786768200": {
+    "decision": "BUY",
+    "reason": "Pre\u00e7o acima da EMA20 (+85 pts), RSI 64 em zona de momentum comprador saud\u00e1vel sem exaust\u00e3o. \u00daltima vela fechou na m\u00e1xima (63151.64), sinal de for\u00e7a. Recupera\u00e7\u00e3o clara ap\u00f3s pullback das velas 15-17, formando padr\u00e3o de continua\u00e7\u00e3o. Risco: reteste da resist\u00eancia 63188 (m\u00e1xima vela 15). EMA200 ausente limita confian\u00e7a na tend\u00eancia macro.",
+    "confidence": 0.62
+  },
+  "1786919400": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia fortemente bearish \u2014 pre\u00e7o 62.790 bem abaixo de EMA20 (63.022) e EMA200 (63.077) com sequ\u00eancia consistente de lower lows. Por\u00e9m, RSI em 21.11 indica exaust\u00e3o vendedora extrema. Entrar SHORT agora \u00e9 arriscado por poss\u00edvel rebote t\u00e9cnico; entrar BUY n\u00e3o tem confirma\u00e7\u00e3o de revers\u00e3o (sem candle de revers\u00e3o, sem rompimento de resist\u00eancia). \u00daltima vela tem pavil inferior (low 62.716 vs close 62.790) sugerindo alguma absor\u00e7\u00e3o, mas fraca. Aguardar: rompimento abaixo de 62.716 para SHORT limpo, ou candle bullish de confirma\u00e7\u00e3o + recupera\u00e7\u00e3o acima de 62.845 para revers\u00e3o.",
+    "confidence": 0.3
+  },
+  "1786693500": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia bearish persistente: pre\u00e7o fechando nos m\u00ednimos (62.920) sem sinal de revers\u00e3o, bem abaixo da EMA20 (63.227). RSI 25.78 em sobrevenda profunda, mas sem diverg\u00eancia de alta nem padr\u00e3o de revers\u00e3o (sem hammer/bullish engulfing). Sem EMA200 dispon\u00edvel para contexto macro. Entrar agora seria pegar faca caindo \u2014 aguardar confirma\u00e7\u00e3o de fundo.",
+    "confidence": 0.72
+  },
+  "1786743900": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 tend\u00eancia macro indefinida. Pre\u00e7o abaixo da EMA20 (62.928 vs 62.940) sugere vi\u00e9s bearish de curto prazo, mas RSI neutro (48.59) sem exaust\u00e3o. \u00daltimas velas formam consolida\u00e7\u00e3o lateral (range ~62.870-62.930) com compress\u00e3o de volatilidade. \u00daltimo candle fechou no high, mas volume/momentum insuficiente para rompimento. Sem confirma\u00e7\u00e3o de dire\u00e7\u00e3o clara, aguardar.",
+    "confidence": 0.76
+  },
+  "1786844700": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63,084.78) comprimido entre EMA200 (63,074.42) e EMA20 (63,090.54). RSI neutro (48.05) sem exaust\u00e3o. Estrutura de curto prazo ainda bearish (lower highs/lower lows de 63,175\u219263,012), mas \u00faltimo candle mostra rejei\u00e7\u00e3o de baixa com pavio inferior. Zona de decis\u00e3o \u2014 aguardar rompimento acima da EMA20 para confirma\u00e7\u00e3o de revers\u00e3o ou quebra da EMA200 para continua\u00e7\u00e3o de venda.",
+    "confidence": 0.3
+  },
+  "1786895100": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia claramente bullish \u2014 pre\u00e7o (63146) acima de EMA20 (63076) e EMA200 (63070), com sequ\u00eancia de HH/HL nas \u00faltimas velas. Por\u00e9m, RSI em 73.04 j\u00e1 em zona de sobrecompra e pre\u00e7o estendido ~70 pontos acima da EMA20, distorcendo o risco/retorno. Entrar LONG agora \u00e9 persegui\u00e7\u00e3o de topo; SHORT seria contra-tend\u00eancia forte. Aguardar pullback \u00e0 regi\u00e3o da EMA20 (~63076) ou consolida\u00e7\u00e3o lateral para RSI resetar abaixo de 70 oferece entrada muito mais favor\u00e1vel.",
+    "confidence": 0.78
+  },
+  "1786794300": {
+    "decision": "WAIT",
+    "reason": "EMAs 50/200 indispon\u00edveis \u2014 tend\u00eancia macro indetermin\u00e1vel. RSI neutro (47.04), sem exaust\u00e3o. Price action lateral entre 62920-63135; \u00faltima vela formou rejei\u00e7\u00e3o bearish (pavio inferior at\u00e9 62996) sugerindo indecis\u00e3o. Pre\u00e7o (63022) cruzou ligeiramente abaixo da EMA20 (63036), mas sem for\u00e7a direcional. Range de consolida\u00e7\u00e3o sem breakout \u2014 sem setup de entrada.",
+    "confidence": 0.82
+  },
+  "1786769100": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) \u2014 imposs\u00edvel avaliar tend\u00eancia macro. RSI 59.24 neutro, sem exaust\u00e3o. \u00daltima vela bearish (O\u2248H, fechou na m\u00ednima em 63.122), indicando rejei\u00e7\u00e3o na zona de resist\u00eancia ~63.150-63.188 (testada 2x). Pre\u00e7o acima da EMA20 (63.072) d\u00e1 suporte, mas duplo topo potencial e falta de conflu\u00eancia macro justificam aguardar.",
+    "confidence": 0.78
+  },
+  "1786819500": {
+    "decision": "WAIT",
+    "reason": "EMA200 indispon\u00edvel (nan) e EMA50 zerada \u2014 imposs\u00edvel avaliar tend\u00eancia macro. RSI 48.44 neutro, sem exaust\u00e3o. Pre\u00e7o ligeiramente abaixo da EMA20 (63.057 vs 63.068), sinal fraco bearish mas ATR muito baixo (25.44) indica consolida\u00e7\u00e3o lateral sem dire\u00e7\u00e3o clara. Velas recentes mostram indecis\u00e3o com pavilhos longos e corpos pequenos. Sem conflu\u00eancia suficiente para entrada.",
+    "confidence": 0.88
+  },
+  "1786869900": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o (63072.42) levemente abaixo da EMA200 (63077.33) e EMA20 (63075.55) \u2014 convergindo como resist\u00eancia conjunta. RSI neutro (48.02), ATR baixo (16.72) e \u00faltimas 3 velas com corpos m\u00ednimos (dojis/flat). Consolida\u00e7\u00e3o lateral sem rompimento definido. Entrar agora seria for\u00e7ar opera\u00e7\u00e3o em mercado sem dire\u00e7\u00e3o clara.",
+    "confidence": 0.85
+  },
+  "1786694400": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia claramente bearish com lower-highs e lower-lows consistentes \u2014 pre\u00e7o 284 pontos abaixo da EMA20. RSI em 25.55 indica sobrevenda extrema, sugerindo exaust\u00e3o de vendedores, por\u00e9m n\u00e3o h\u00e1 vela de revers\u00e3o, diverg\u00eancia bullish ou confirma\u00e7\u00e3o de fundo. EMA200 indispon\u00edvel impossibilita avaliar a tend\u00eancia macro. Entrar SELL agora seria perseguir o pre\u00e7o; BUY sem confirma\u00e7\u00e3o \u00e9 prematuro. Aguardar: (1) hammer/bullish engulfing com RSI voltando acima de 30 para BUY, ou (2) pullback \u00e0 EMA20 (~63.197) rejeitado como resist\u00eancia para SELL.",
+    "confidence": 0.78
+  },
+  "1786718700": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente bearish (pre\u00e7o 62.620 abaixo da EMA20 em 62.775, lower lows cont\u00ednuos, \u00faltima vela com forte rejei\u00e7\u00e3o em 62.784 fechando perto da m\u00ednima em 62.535). Por\u00e9m, EMA200 e EMA50 indispon\u00edveis \u2014 imposs\u00edvel confirmar tend\u00eancia macro. RSI em 37.25 indica momentum bearish mas sem sobrevenda (<30). Pre\u00e7o testando suporte na zona 62.535-62.600, onde pode haver rea\u00e7\u00e3o de compra. Entrar SELL agora arrisca vender no fundo de um range; entrar BUY n\u00e3o tem confirma\u00e7\u00e3o alguma. Sem macro trend confirmado, a postura conservadora \u00e9 aguardar.",
+    "confidence": 0.3
+  },
+  "1786920300": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de baixa clara: pre\u00e7o (62.913) abaixo da EMA20 (63.012) e EMA200 (63.075). A \u00faltima vela forma um martelo (O:62.790, C:62.913, L:62.742), sugerindo rejei\u00e7\u00e3o dos m\u00ednimos, por\u00e9m RSI em 38.40 n\u00e3o atingiu exaust\u00e3o (<30) e n\u00e3o h\u00e1 confirma\u00e7\u00e3o de revers\u00e3o \u2014 pre\u00e7o ainda n\u00e3o rompeu a EMA20. Poss\u00edvel bear flag ou retra\u00e7\u00e3o dentro do movimento de baixa. Aguardar: 1) rompimento acima da EMA20 (63.012) para BUY, ou 2) RSI < 30 com padr\u00e3o de revers\u00e3o confirmado.",
+    "confidence": 0.6
+  },
+  "1786744800": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia de curto prazo claramente bearish \u2014 pre\u00e7o abaixo da EMA20 (62.930), fechamentos descendentes e \u00faltima vela fechando na m\u00ednima (62.833). RSI em 41.15 confirma momentum negativo, mas n\u00e3o indica exaust\u00e3o (fora da zona de sobrevenda <30). EMA200 e EMA50 indispon\u00edveis (nan/0.00), impossibilitando confirma\u00e7\u00e3o da tend\u00eancia macro. Sem suporte chave testado, sem diverg\u00eancia no RSI e sem confirma\u00e7\u00e3o de timeframe superior, o risco de entrar agora \u00e9 elevado. Operar sem a EMA200 \u00e9 operar sem \u00e2ncora direcional.",
+    "confidence": 0.3
+  },
+  "1786795200": {
+    "decision": "WAIT",
+    "reason": "Sem EMA200 dispon\u00edvel para confirmar tend\u00eancia macro. RSI em 41.68 indica momentum levemente bearish mas sem exaust\u00e3o definida. Pre\u00e7o fechou abaixo da EMA20 (62.986 < 63.031), e a \u00faltima vela mostroupress\u00e3o vendedora (O=H, sem pavio superior), mas o range estreito e ATR baixo (35.79) sugerem consolida\u00e7\u00e3o, n\u00e3o breakout claro. Dados insuficientes para entrada com confian\u00e7a adequada.",
+    "confidence": 0.2
+  },
+  "1786845600": {
+    "decision": "SELL",
+    "reason": "Pre\u00e7o (63024) rompeu abaixo da EMA200 (63073) com vela bearish marubozu fechando no low sem pavio superior \u2014 press\u00e3o vendedora decisiva. Sequ\u00eancia de 20 velas com lower lows e lower highs confirmam tend\u00eancia de baixa. RSI 36 indica momentum negativo com espa\u00e7o para queda antes de exaust\u00e3o extrema (<30). Pre\u00e7o tamb\u00e9m abaixo da EMA20 (63084) refor\u00e7a vi\u00e9s bearish.",
+    "confidence": 0.72
+  },
+  "1786896000": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia fortemente alcista (pre\u00e7o ~63208 acima EMA20 e EMA200), mas RSI em 80.37 indica exaust\u00e3o severa. \u00daltima vela estendeu ~$62 (2.8x ATR), sinalizando sobreextens\u00e3o. Entrar agora persegui topo de curto prazo. Aguardar pullback \u00e0 EMA20 (~63089) ou RSI abaixo de 70 para entrada mais segura.",
+    "confidence": 0.85
+  },
+  "1786719600": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro imposs\u00edvel de avaliar (EMA200=nan, EMA50=0). Pre\u00e7o (62705) abaixo da EMA20 (62769) \u2014 vi\u00e9s baixista de curto prazo. RSI 43.22 indica momentum levemente negativo, sem exaust\u00e3o definida. \u00daltima vela fez bounce (62620\u219262705), mas n\u00e3o h\u00e1 confirma\u00e7\u00e3o de revers\u00e3o: sequ\u00eancia de topos e fundos decrescentes persiste. Com ATR de ~129 e pre\u00e7o em zona de congest\u00e3o (62535-62946), o risco de whipsaw \u00e9 alto. Sem conflu\u00eancia de sinais, n\u00e3o h\u00e1 raz\u00e3o para entrada.",
+    "confidence": 0.78
+  },
+  "1786820400": {
+    "decision": "WAIT",
+    "reason": "Tend\u00eancia macro indeterminada (EMA200 nan, EMA50 zerada). RSI 54.27 neutro sem exaust\u00e3o. Pre\u00e7o em consolida\u00e7\u00e3o lateral apertada (~130 pts) com ATR de 26.01 indicando baixa volatilidade e aus\u00eancia de momentum. \u00daltimas velas mostram padr\u00e3o de indecis\u00e3o (dojis e corpos pequenos). Sem conflu\u00eancia t\u00e9cnica para entrada segura.",
+    "confidence": 0.82
+  },
+  "1786770000": {
+    "decision": "WAIT",
+    "reason": "Pre\u00e7o se aproxima da zona de forte rejei\u00e7\u00e3o (63.150-63.188) onde ocorreu o grande candle de baixa recente. Entrar agora oferece risco/retorno desfavor\u00e1vel. EMA200 indispon\u00edvel impossibilita confirmar a tend\u00eancia macro. Duas op\u00e7\u00f5es melhores: aguardar rompimento confirmado acima de 63.188 OU retra\u00e7\u00e3o at\u00e9 a EMA20 (~63.079) para entrada compradora com melhor pre\u00e7o.",
+    "confidence": 0.7
+  },
+  "1786870800": {
+    "decision": "WAIT",
+    "reason": "Consolida\u00e7\u00e3o extrema: pre\u00e7o (~63072) comprimido entre EMA20 (63075) e EMA200 (63077), ambas como resist\u00eancia imediata. \u00daltimas 5 velas s\u00e3o dojis perfeitos (corpo ~0). RSI neutro (48.02), ATR baix\u00edssimo (15.52). Mercado em compress\u00e3o aguardando rompimento \u2014 sem vantagem para entrada.",
+    "confidence": 0.9
+  },
+  "1786921200": {
+    "decision": "SELL",
+    "reason": "Tend\u00eancia macro baixista clara: pre\u00e7o (62.842) bem abaixo de EMA20 (62.996) e EMA200 (63.073). \u00daltima vela mostrou rejei\u00e7\u00e3o agressiva em 62.993 com fechamento pr\u00f3ximo \u00e0 m\u00ednima (62.842), confirmando press\u00e3o vendedora. RSI em 33.82 indica momentum negativo com espa\u00e7o para cair antes da exaust\u00e3o extrema (<30). Sequ\u00eancia de lower highs e lower lows intacta. Entrada short com dire\u00e7\u00e3o do fluxo predominante.",
+    "confidence": 0.68
+  },
+  "1786720500": {
+    "decision": "WAIT",
+    "reason": "EMA200 e EMA50 indispon\u00edveis \u2014 imposs\u00edvel avaliar tend\u00eancia macro. RSI em 51.86 \u00e9 estritamente neutro, sem exaust\u00e3o. Price action mostra recupera\u00e7\u00e3o recente (\u00faltima vela fechou no topo em 62.855 com ~150pts de ganho), mas pre\u00e7o permanece dentro do range lateral 62.535-62.946 das \u00faltimas 20 velas. Sem confirma\u00e7\u00e3o de rompimento e sem dados de tend\u00eancia de maior prazo, entrar agora seria prematuro.",
+    "confidence": 0.2
+  },
+  "1786929300": {
+    "decision": "BUY",
+    "reason": "Pre\u00e7o (63121.72) acima da EMA200 (63061.15), respeitando regra de tend\u00eancia. RSI 60.77 em zona de momentum positivo sem sobrecompra. Price Action mostra recupera\u00e7\u00e3o agressiva nas \u00faltimas 3 velas, com sequ\u00eancia de topos e fundos ascendentes (62716\u219263192). \u00daltimas velas com pavios superiores indicam press\u00e3o compradora. EMA20 (62974) cruzando em dire\u00e7\u00e3o \u00e0 EMA200, sinalizando poss\u00edvel golden cross em forma\u00e7\u00e3o.",
+    "confidence": 0.68
+  }
+}

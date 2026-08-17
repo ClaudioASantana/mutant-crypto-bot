@@ -66,4 +66,4 @@ async def explain_signal(signal: Signal, risk_evaluation: str) -> str:
 if __name__ == "__main__":
     test_signal = Signal(type=SignalType.CALL, reason="9 velas de baixa seguidas")
     print("Testando o Agente...")
-    print(explain_signal(test_signal, "Risco OK. Gale permitido até nível 1."))
+    print(explain_signal(test_signal, "Risco OK."))

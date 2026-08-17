@@ -1,5 +1,5 @@
 import pandas as pd
-import pandas_ta as ta
+import pandas_ta  # noqa: F401  (registra o accessor df.ta usado em apply_indicators)
 from typing import List
 from app.models.market import Candle
 
@@ -27,6 +27,7 @@ def apply_indicators(df: pd.DataFrame):
         return df
     # EMA + MACD
     df.ta.ema(length=9, append=True)
+    df.ta.ema(length=20, append=True)
     df.ta.ema(length=21, append=True)
     df.ta.macd(fast=12, slow=26, signal=9, append=True)
     
@@ -290,23 +291,322 @@ def eval_wyckoff_smc(df: pd.DataFrame) -> str:
         
     return "NONE"
 
-def eval_consecutive(df: pd.DataFrame, num_candles: int = 3) -> str:
+def _is_bullish_candle(candle) -> bool:
+    return candle["close"] > candle["open"]
+
+def _is_bearish_candle(candle) -> bool:
+    return candle["close"] < candle["open"]
+
+def _get_candle_body_range(candle):
+    return abs(candle["close"] - candle["open"])
+
+def _get_midpoint(candle):
+    return (candle["high"] + candle["low"]) / 2
+
+def _get_candle_body_midpoint(candle):
+    return (candle["open"] + candle["close"]) / 2
+
+def _check_confluence_filters(df: pd.DataFrame, direction: str) -> bool:
     """
-    3 Velas Consecutivas:
-    Entra a favor da tendência quando houver N velas seguidas da mesma cor.
+    Aplica filtros de volume e EMA para validar sinais de 3 velas.
+    - Volume: Última vela deve ter volume > 1.0 * volume médio das últimas 20.
+    - EMA: Para CALL, preço deve estar acima da EMA 20. Para PUT, abaixo da EMA 20.
     """
-    if df.empty or len(df) < num_candles: return "NONE"
-    
-    last_n = df.iloc[-num_candles:]
-    is_all_bullish = all((row["close"] > row["open"]) for idx, row in last_n.iterrows())
-    is_all_bearish = all((row["close"] < row["open"]) for idx, row in last_n.iterrows())
-    
-    if is_all_bearish:
-        return "CALL"
-    if is_all_bullish:
-        return "PUT"
-        
+    if len(df) < 21: # Mínimo para EMA20 e volume médio
+        return False
+
+    # Filtro de Volume
+    last_volume = df["volume"].iloc[-1]
+    avg_volume = df["volume"].iloc[-21:-1].mean() # Últimas 20 velas, excluindo a atual
+    if last_volume < avg_volume * 1.0: # Apenas 1x a média, pode ajustar se for muito restritivo
+        # print(f"DEBUG: Volume filtro falhou: {last_volume} vs {avg_volume}")
+        return False
+
+    # Filtro de EMA (Média Móvel Exponencial de 20 períodos)
+    # Garante que a EMA_20 esteja calculada
+    if "EMA_20" not in df.columns or df["EMA_20"].isnull().iloc[-1]:
+        # Se a EMA_20 não estiver calculada, não podemos usar este filtro.
+        # Poderíamos adicionar aqui a lógica para calcular se necessário,
+        # ou apenas ignorar o filtro para evitar erros, mas para robustez, vamos falhar.
+        # Ou simplesmente garantir que apply_indicators seja chamado antes.
+        # Para este contexto, presumimos que apply_indicators já foi chamado.
+        return False
+
+    last_close = df["close"].iloc[-1]
+    ema_20 = df["EMA_20"].iloc[-1]
+
+    if direction == "CALL":
+        if last_close < ema_20:
+            # print(f"DEBUG: EMA filtro CALL falhou: {last_close} vs {ema_20}")
+            return False
+    elif direction == "PUT":
+        if last_close > ema_20:
+            # print(f"DEBUG: EMA filtro PUT falhou: {last_close} vs {ema_20}")
+            return False
+
+    # Filtro de Localização (Suporte/Resistência)
+    # Usamos Bollinger Bands e Donchian Channel como proxy de S/R
+    bb_upper = df["BBU_20_2.0_2.0"].iloc[-1]
+    bb_lower = df["BBL_20_2.0_2.0"].iloc[-1]
+    dc_upper = df["DCU_20_20"].iloc[-1]
+    dc_lower = df["DCL_20_20"].iloc[-1]
+
+    last_low = df["low"].iloc[-1]
+    last_high = df["high"].iloc[-1]
+
+    if direction == "CALL": # Esperamos que o preço esteja perto de um suporte
+        # A mínima da vela deve tocar a banda inferior de BB ou o canal inferior de Donchian
+        if not (last_low <= bb_lower or last_low <= dc_lower):
+            return False
+        # Confirmação de rejeição: fechamento não pode estar "afundado" no suporte
+        candle_range = last_high - last_low
+        if candle_range > 0 and last_close < last_low + candle_range * 0.2:
+            return False
+
+    elif direction == "PUT": # Esperamos que o preço esteja perto de uma resistência
+        # A máxima da vela deve tocar a banda superior de BB ou o canal superior de Donchian
+        if not (last_high >= bb_upper or last_high >= dc_upper):
+            return False
+        # Confirmação de rejeição: fechamento não pode estar "estourado" na resistência
+        candle_range = last_high - last_low
+        if candle_range > 0 and last_close > last_high - candle_range * 0.2:
+            return False
+
+    return True
+
+def eval_three_white_soldiers(df: pd.DataFrame) -> str:
+    """
+    Detects Three White Soldiers pattern.
+    Structure: Three consecutive long bullish candles with progressively higher closes.
+               Each opens within the previous candle's body, minimal upper shadows.
+    Filters:
+    - Volume: Third candle has above average volume.
+    - EMA: Price (last close) is above EMA 20.
+    """
+    if len(df) < 3:
+        return "NONE"
+
+    c1, c2, c3 = df.iloc[-3], df.iloc[-2], df.iloc[-1]
+
+    # All three must be bullish
+    if not (_is_bullish_candle(c1) and _is_bullish_candle(c2) and _is_bullish_candle(c3)):
+        return "NONE"
+
+    # Progressively higher closes
+    if not (c3["close"] > c2["close"] > c1["close"]):
+        return "NONE"
+
+    # Opens within previous body
+    if not (c1["open"] <= c2["open"] <= c1["close"] and c2["open"] <= c3["open"] <= c2["close"]):
+        return "NONE"
+
+    # Apply confluence filters
+    if not _check_confluence_filters(df, "CALL"):
+        return "NONE"
+
+    return "CALL"
+
+def eval_three_black_crows(df: pd.DataFrame) -> str:
+    """
+    Detects Three Black Crows pattern.
+    Structure: Three consecutive long bearish candles with progressively lower closes.
+               Each opens within the previous candle's body, minimal lower shadows.
+    """
+    if len(df) < 3:
+        return "NONE"
+
+    c1, c2, c3 = df.iloc[-3], df.iloc[-2], df.iloc[-1]
+
+    # All three must be bearish
+    if not (_is_bearish_candle(c1) and _is_bearish_candle(c2) and _is_bearish_candle(c3)):
+        return "NONE"
+
+    # Progressively lower closes
+    if not (c3["close"] < c2["close"] < c1["close"]):
+        return "NONE"
+
+    # Opens within previous body
+    if not (c1["open"] >= c2["open"] >= c1["close"] and c2["open"] >= c3["open"] >= c2["close"]):
+        return "NONE"
+
+    # Aplica filtros de confluência (volume + EMA 20)
+    if not _check_confluence_filters(df, "PUT"):
+        return "NONE"
+
+    return "PUT"
+
+def eval_morning_star(df: pd.DataFrame) -> str:
+    """
+    Detects Morning Star pattern.
+    Structure: Bearish candle, small body candle (Doji/Spinning Top) with gap down,
+               bullish candle closing above 50% of the first candle.
+    """
+    if len(df) < 3:
+        return "NONE"
+
+    c1, c2, c3 = df.iloc[-3], df.iloc[-2], df.iloc[-1]
+
+    # 1. First candle is long bearish
+    if not _is_bearish_candle(c1):
+        return "NONE"
+    # To be "long", the body should be substantial. Let's say, at least 50% of its high-low range.
+    if _get_candle_body_range(c1) / (c1["high"] - c1["low"] + 1e-9) < 0.5:
+        return "NONE"
+
+    # 2. Second candle is small body (Doji or Spinning Top) and gaps down
+    body_c2_ratio = _get_candle_body_range(c2) / (c2["high"] - c2["low"] + 1e-9)
+    if body_c2_ratio > 0.5 or body_c2_ratio == 0: # Body too large or is a perfect Doji (which can be good, but we want small, not zero)
+        return "NONE"
+
+    # Gap down check
+    if not (c2["open"] < c1["close"] and c2["close"] < c1["close"]):
+        return "NONE"
+
+    # 3. Third candle is bullish and closes above the midpoint of the first candle
+    if not _is_bullish_candle(c3):
+        return "NONE"
+
+    midpoint_c1_body = _get_candle_body_midpoint(c1) # Using body midpoint as per wiki for validation
+    if c3["close"] <= midpoint_c1_body:
+        return "NONE"
+
+    # Aplica filtros de confluência (volume + EMA 20)
+    if not _check_confluence_filters(df, "CALL"):
+        return "NONE"
+
+    return "CALL"
+
+def eval_evening_star(df: pd.DataFrame) -> str:
+    """
+    Detects Evening Star pattern.
+    Structure: Bullish candle, small body candle (Doji/Spinning Top) with gap up,
+               bearish candle closing below 50% of the first candle.
+    """
+    if len(df) < 3:
+        return "NONE"
+
+    c1, c2, c3 = df.iloc[-3], df.iloc[-2], df.iloc[-1]
+
+    # 1. First candle is long bullish
+    if not _is_bullish_candle(c1):
+        return "NONE"
+    # To be "long", the body should be substantial.
+    if _get_candle_body_range(c1) / (c1["high"] - c1["low"] + 1e-9) < 0.5:
+        return "NONE"
+
+    # 2. Second candle is small body (Doji or Spinning Top) and gaps up
+    body_c2_ratio = _get_candle_body_range(c2) / (c2["high"] - c2["low"] + 1e-9)
+    if body_c2_ratio > 0.5 or body_c2_ratio == 0: # Body too large or is a perfect Doji
+        return "NONE"
+
+    # Gap up check
+    if not (c2["open"] > c1["close"] and c2["close"] > c1["close"]):
+        return "NONE"
+
+    # 3. Third candle is bearish and closes below the midpoint of the first candle
+    if not _is_bearish_candle(c3):
+        return "NONE"
+
+    midpoint_c1_body = _get_candle_body_midpoint(c1)
+    if c3["close"] >= midpoint_c1_body:
+        return "NONE"
+
+    # Aplica filtros de confluência (volume + EMA 20)
+    if not _check_confluence_filters(df, "PUT"):
+        return "NONE"
+
+    return "PUT"
+
+def eval_three_bar_play(df: pd.DataFrame) -> str:
+    """
+    Detects 3 Bar Play pattern (continuation).
+    Structure: Igniting bar (strong directional), Resting bar (small, inside), Trigger bar (breaks resting bar).
+    """
+    if len(df) < 3:
+        return "NONE"
+
+    c1, c2, c3 = df.iloc[-3], df.iloc[-2], df.iloc[-1] # c1=Igniting, c2=Resting, c3=Trigger
+
+    # For Igniting bar (c1), we need a strong directional candle.
+    # Let's define strong as body being at least 70% of the candle's total range.
+    is_c1_strong_bull = _is_bullish_candle(c1) and (_get_candle_body_range(c1) / (c1["high"] - c1["low"] + 1e-9) > 0.7)
+    is_c1_strong_bear = _is_bearish_candle(c1) and (_get_candle_body_range(c1) / (c1["high"] - c1["low"] + 1e-9) > 0.7)
+
+    if is_c1_strong_bull: # Bullish 3 Bar Play
+        # Resting bar (c2) must be small and within the upper half of c1's body
+        # Small body: body_c2_ratio < 0.5
+        # Inside c1: c2 high < c1 high AND c2 low > c1 low
+        # Closes in upper half of c1: c2 close > c1_body_midpoint
+        if not (
+            c2["high"] < c1["high"] and c2["low"] > c1["low"] and # c2 is inside c1
+            _get_candle_body_range(c2) / (c2["high"] - c2["low"] + 1e-9) < 0.5 and # Small body
+            c2["close"] > _get_candle_body_midpoint(c1) # Closes in upper half of c1's body
+        ):
+            return "NONE"
+
+        # Trigger bar (c3) breaks above c2's high
+        if c3["close"] > c2["high"]:
+            return "CALL"
+
+    elif is_c1_strong_bear: # Bearish 3 Bar Play
+        # Resting bar (c2) must be small and within the lower half of c1's body
+        # Small body: body_c2_ratio < 0.5
+        # Inside c1: c2 high < c1 high AND c2 low > c1 low
+        # Closes in lower half of c1: c2 close < c1_body_midpoint
+        if not (
+            c2["low"] > c1["low"] and c2["high"] < c1["high"] and # c2 is inside c1
+            _get_candle_body_range(c2) / (c2["high"] - c2["low"] + 1e-9) < 0.5 and # Small body
+            c2["close"] < _get_candle_body_midpoint(c1) # Closes in lower half of c1's body
+        ):
+            return "NONE"
+
+        # Trigger bar (c3) breaks below c2's low
+        if c3["close"] < c2["low"]:
+            return "PUT"
+
     return "NONE"
+
+def eval_three_candles_composite(df: pd.DataFrame) -> str:
+    """
+    Composite evaluation for various 3-candle patterns.
+    This function will be called as "3 Velas" strategy.
+    It prioritizes continuation over reversal if both are present in the same candle context.
+    """
+    if len(df) < 3:
+        return "NONE"
+
+    # Check for continuation first (3 Bar Play is a strong continuation signal)
+    signal = eval_three_bar_play(df)
+    if signal != "NONE":
+        return signal
+
+    # Then check for reversals
+    signal = eval_three_white_soldiers(df)
+    if signal != "NONE":
+        return signal
+
+    signal = eval_three_black_crows(df)
+    if signal != "NONE":
+        return signal
+
+    signal = eval_morning_star(df)
+    if signal != "NONE":
+        return signal
+
+    signal = eval_evening_star(df)
+    if signal != "NONE":
+        return signal
+
+    return "NONE"
+
+
+def eval_consecutive(df: pd.DataFrame) -> str:
+    """
+    Evaluates for specific 3-candle patterns (composite strategy from the wiki).
+    This function acts as the entry point for the new 3-candle composite logic
+    when the strategy is named "3 Velas".
+    """
+    return eval_three_candles_composite(df)
 
 def eval_pin_bar(df: pd.DataFrame) -> str:
     """
@@ -316,41 +616,125 @@ def eval_pin_bar(df: pd.DataFrame) -> str:
     - Exige Volume Institucional: Volume da vela deve ser > 1.5x a média de volume recente.
     """
     if df.empty or len(df) < 20: return "NONE"
-    
+
     last = df.iloc[-1]
-    
+
     open_p = last["open"]
     close_p = last["close"]
     high_p = last["high"]
     low_p = last["low"]
     curr_vol = last["volume"]
-    
+
     # Médias e Bandas
     avg_vol = df["volume"].iloc[-20:-1].mean()
     lower_band = last.get("BBL_20_2.0_2.0", 0)
     upper_band = last.get("BBU_20_2.0_2.0", 999999)
-    
+
     body = abs(close_p - open_p)
     if body == 0:
         body = 0.000001
-        
+
     lower_wick = min(open_p, close_p) - low_p
     upper_wick = high_p - max(open_p, close_p)
-    
+
     # Bullish Pin Bar (Martelo)
     if lower_wick >= (2.0 * body) and upper_wick <= max(body, lower_wick * 0.25):
         # Contexto: Mínima próxima da banda inferior (1% de folga)
         if low_p <= (lower_band * 1.01) and curr_vol >= (1.1 * avg_vol):
             return "CALL"
-        
+
     # Bearish Pin Bar (Estrela Cadente)
     if upper_wick >= (2.0 * body) and lower_wick <= max(body, upper_wick * 0.25):
         # Contexto: Máxima próxima da banda superior (1% de folga)
         if high_p >= (upper_band * 0.99) and curr_vol >= (1.1 * avg_vol):
             return "PUT"
-        
+
     return "NONE"
 
+def eval_rsi_ema_confluence(df: pd.DataFrame) -> str:
+    """
+    Estratégia de Confluência RSI + EMA (Trend-Pullback):
+    Opera a favor da tendência de curto prazo, entrando apenas em retrocessos
+    (pullbacks) que o RSI mostra serem saudáveis — não sobrecomprados/sobrevendidos.
+
+    Confluência exigida para CALL:
+      - EMA_21 em alta (atual > anterior) → tendência bullish.
+      - Preço acima da EMA_21 → momentum a favor da compra.
+      - RSI_14 em zona de retrocesso (40–65) e subindo → impulso saudável.
+
+    Confluência exigida para PUT (espelho):
+      - EMA_21 em queda (atual < anterior) → tendência bearish.
+      - Preço abaixo da EMA_21 → momentum a favor da venda.
+      - RSI_14 em zona de retrocesso (35–60) e caindo → impulso saudável.
+
+    Retorna "CALL", "PUT" ou "NONE".
+    """
+    if df.empty or len(df) < 25:
+        return "NONE"
+
+    last = df.iloc[-1]
+    prev = df.iloc[-2]
+
+    ema21 = last.get("EMA_21", None)
+    ema21_prev = prev.get("EMA_21", None)
+    rsi = last.get("RSI_14", None)
+    rsi_prev = prev.get("RSI_14", None)
+
+    if pd.isna(ema21) or pd.isna(ema21_prev) or pd.isna(rsi) or pd.isna(rsi_prev):
+        return "NONE"
+
+    close = last["close"]
+
+    # Filtros de Volume Institucional (mínimo 1.2x a média de 50)
+    avg_vol = df["volume"].iloc[-51:-1].mean()
+    if last["volume"] < avg_vol * 1.2:
+        return "NONE"
+
+    # CALL: tendência de alta forte + pullback em zona de respiro específica
+    # Exigimos inclinação na EMA (diferença positiva significativa)
+    ema_slope = (ema21 - ema21_prev)
+    if ema21 > ema21_prev and ema_slope > (ema21 * 0.0001) and close > ema21 and 40 <= rsi <= 60 and rsi > rsi_prev:
+        return "CALL"
+
+    # PUT: tendência de baixa forte + pullback em zona de respiro específica
+    if ema21 < ema21_prev and ema_slope < -(ema21 * 0.0001) and close < ema21 and 40 <= rsi <= 60 and rsi < rsi_prev:
+        return "PUT"
+
+    return "NONE"
+
+def eval_mean_reversion_exhaustion(df: pd.DataFrame) -> str:
+    """
+    Estratégia de Mean Reversion (Exaustão):
+    Focada em capturar reversões após movimentos climáticos.
+
+    Lógica:
+    - Identifica 'Candle Climático': Tamanho do corpo > 2x a média das últimas 10 velas.
+    - RSI Extremo: < 20 (sobrevendido) para CALL ou > 80 (sobrecomprado) para PUT.
+    - Gatilho: Reversão imediata na próxima vela.
+    """
+    if len(df) < 20: return "NONE"
+
+    last = df.iloc[-1]
+    prev = df.iloc[-2]
+
+    # Candle climático é o anterior
+    prev_body = abs(prev["close"] - prev["open"])
+    last_10 = df.iloc[-11:-1]  # 10 velas anteriores (sem a atual)
+    avg_body = (abs(last_10["close"] - last_10["open"])).mean()
+
+    rsi = prev.get("RSI_14", 50)
+
+    is_climactic = prev_body > (avg_body * 2.0) if avg_body > 0 else False
+
+    # CALL: Queda climática + RSI sobrevendido, com reversão na vela atual
+    if is_climactic and prev["close"] < prev["open"] and rsi < 20 and last["close"] > last["open"]:
+        return "CALL"
+
+    # PUT: Alta climática + RSI sobrecomprado, com reversão na vela atual
+    if is_climactic and prev["close"] > prev["open"] and rsi > 80 and last["close"] < last["open"]:
+        return "PUT"
+
+    return "NONE"
 
 def eval_abcd(df: pd.DataFrame) -> str:
     """
@@ -361,16 +745,16 @@ def eval_abcd(df: pd.DataFrame) -> str:
     - Validação: EMA 21 deve estar inclinada na direção da operação.
     """
     if df.empty or len(df) < 6: return "NONE"
-    
-    c4 = df.iloc[-5] # A (Início do movimento)
+
+    # c4 = df.iloc[-5] # A (Início do movimento)
     c3 = df.iloc[-4] # B (Suporte/Resistência a ser manipulada)
-    c2 = df.iloc[-3] # C (Respiro / Correção complexa)
+    # c2 = df.iloc[-3] # C (Respiro / Correção complexa)
     c1 = df.iloc[-2] # D (O Falso Rompimento)
     c0 = df.iloc[-1] # Candle Gatilho (Atual)
-    
+
     ema21_atual = c0.get("EMA_21", 0)
     ema21_prev = c1.get("EMA_21", 0)
-    
+
     # Condição para CALL (Stop Run de Fundo)
     # 1. Inércia de Alta (EMA 21 apontando pra cima)
     tendencia_alta = (ema21_atual > ema21_prev) and (ema21_atual > 0)
@@ -378,10 +762,10 @@ def eval_abcd(df: pd.DataFrame) -> str:
     manipulacao_fundo = c1["low"] < c3["low"]
     # 3. Gatilho (Vela atual fecha acima da máxima da vela que violou o fundo)
     gatilho_compra = c0["close"] > c1["high"]
-    
+
     if tendencia_alta and manipulacao_fundo and gatilho_compra:
         return "CALL"
-        
+
     # Condição para PUT (Stop Run de Topo)
     # 1. Inércia de Baixa (EMA 21 apontando pra baixo)
     tendencia_baixa = (ema21_atual < ema21_prev) and (ema21_atual > 0)
@@ -389,8 +773,14 @@ def eval_abcd(df: pd.DataFrame) -> str:
     manipulacao_topo = c1["high"] > c3["high"]
     # 3. Gatilho (Vela atual fecha abaixo da mínima da vela que violou o topo)
     gatilho_venda = c0["close"] < c1["low"]
-    
+
     if tendencia_baixa and manipulacao_topo and gatilho_venda:
         return "PUT"
-        
+
     return "NONE"
+
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Filtros de Qualidade de Sinal (Fase 1)
+# ─────────────────────────────────────────────────────────────────────────────

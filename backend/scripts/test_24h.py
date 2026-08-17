@@ -28,8 +28,6 @@ async def run_24h_test():
     ai_filter = AIFilter()
     # Usamos symbol "TEST_BTC" para não sobrescrever a carteira real do bot
     trader = PaperTrader(symbol="TEST_BTC", initial_balance=200.0, leverage=10)
-    trader.position_sizing_mode = "gale"
-    trader.max_gale = 2
     trader.stake_initial = 10.0
     trader.daily_stop_gain = 50.0
     
