@@ -55,25 +55,57 @@ news_filter = NewsFilter()
 
 # --- SWARM STATE ---
 bots: dict[str, BotInstance] = {}
-active_symbols = ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT"]
+from app.models.personality import Personality
+
+# Define active portfolios - each symbol has multiple personalities
+active_portfolios = {
+    "BTC/USDT": [
+        Personality(name="Cirurgiao_M15", strategy="Wyckoff_SMC", timeframe=900, risk_config={"sl_multiplier": 1.5, "tp_multiplier": 8.0}),
+        Personality(name="Trabalhador_M5", strategy="SMC", timeframe=300, risk_config={"sl_multiplier": 1.5, "tp_multiplier": 3.0}),
+    ],
+    "ETH/USDT": [
+        Personality(name="Cirurgiao_M15", strategy="Wyckoff_SMC", timeframe=900, risk_config={"sl_multiplier": 1.5, "tp_multiplier": 8.0}),
+        Personality(name="Trabalhador_M5", strategy="SMC", timeframe=300, risk_config={"sl_multiplier": 1.5, "tp_multiplier": 3.0}),
+    ],
+    "SOL/USDT": [
+        Personality(name="Cirurgiao_M15", strategy="Wyckoff_SMC", timeframe=900, risk_config={"sl_multiplier": 1.5, "tp_multiplier": 8.0}),
+        Personality(name="Trabalhador_M5", strategy="SMC", timeframe=300, risk_config={"sl_multiplier": 1.5, "tp_multiplier": 3.0}),
+    ],
+    "BNB/USDT": [
+        Personality(name="Cirurgiao_M15", strategy="Wyckoff_SMC", timeframe=900, risk_config={"sl_multiplier": 1.5, "tp_multiplier": 8.0}),
+        Personality(name="Trabalhador_M5", strategy="SMC", timeframe=300, risk_config={"sl_multiplier": 1.5, "tp_multiplier": 3.0}),
+    ]
+}
+
+# Get active symbols from portfolio keys
+active_symbols = list(active_portfolios.keys())
 
 watching_symbol = "BTC/USDT" # Global state for what the frontend is watching (for backward compatibility of /status)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("Iniciando o ENXAME (Swarm)... Levantando 4 bots simultâneos!")
-    
+    logger.info("Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!")
+
+    # Initialize MarketDataProvider
+    from app.services.market_data_provider import MarketDataProvider
+    market_provider = MarketDataProvider()
+
     for sym in active_symbols:
-        bot = BotInstance(symbol=sym, token="", news_filter=news_filter, manager=manager, swarm_bots=bots)
+        # Create BotInstance with personalities for this symbol
+        personalities = active_portfolios[sym]
+        bot = BotInstance(symbol=sym, token="", news_filter=news_filter, manager=manager, personalities=personalities, swarm_bots=bots)
         bots[sym] = bot
         asyncio.create_task(bot.start())
+        # Start Binance client via MarketDataProvider
+        await market_provider.start_client_for_symbol(sym)
 
-    
+
     yield
     # Shutdown
     logger.info("Desligando o ENXAME...")
     for bot in bots.values():
         bot.stop()
+    await market_provider.stop_all_clients()
 
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(lifespan=lifespan)
@@ -93,7 +125,12 @@ async def websocket_endpoint(websocket: WebSocket):
     
     if watching_symbol in bots:
         b = bots[watching_symbol]
-        await websocket.send_json({"event": "simulator", "symbol": watching_symbol, "data": b.paper_trader.get_state()})
+        # Send state for all personalities
+        for p_name, trader in b.paper_traders.items():
+            state = trader.get_state()
+            state["personality_name"] = p_name # Add personality name to state
+            await websocket.send_json({"event": "simulator", "symbol": watching_symbol, "data": state})
+
     await websocket.send_json({"event": "active_symbol", "data": watching_symbol})
     
     try:
@@ -109,36 +146,39 @@ async def websocket_endpoint(websocket: WebSocket):
                         await manager.broadcast({"event": "active_symbol", "data": new_sym})
                         # Mandar o estado mais recente desse bot pro frontend
                         b = bots[new_sym]
-                        
+
                         # Fetch history and map to lightweight-charts format
-                        active_b = b.get_active_builder()
-                        history_payload = []
-                        seen_times = set()
-                        sorted_candles = sorted(active_b.closed_candles, key=lambda x: x.epoch)
-                        for c in sorted_candles:
-                            if c.epoch not in seen_times:
-                                history_payload.append({
-                                    "time": c.epoch,
-                                    "open": c.open,
-                                    "high": c.high,
-                                    "low": c.low,
-                                    "close": c.close
-                                })
-                                seen_times.add(c.epoch)
-                            
-                        await websocket.send_json({"event": "simulator", "symbol": new_sym, "data": b.paper_trader.get_state()})
-                        await websocket.send_json({"event": "catalog", "symbol": new_sym, "data": {"catalog": b.global_catalog, "active_config": b.active_config, "auto_optimize": b.auto_optimize}})
-                        await websocket.send_json({"event": "chart_history", "symbol": new_sym, "data": history_payload})
-                elif cmd.get("command") == "SET_CONFIG":
-                    target_symbol = cmd.get("symbol", watching_symbol)
-                    if target_symbol in bots:
-                        b = bots[target_symbol]
-                        b.active_config["timeframe"] = cmd.get("timeframe", 300)
-                        b.active_config["strategy"] = cmd.get("strategy", "3 Velas")
-                        b.active_config["rsi_oversold"] = cmd.get("rsi_oversold", 30)
-                        b.active_config["rsi_overbought"] = cmd.get("rsi_overbought", 70)
-                        logger.info(f"[{target_symbol}] Configuração local alterada: M{b.active_config['timeframe']//60} / {b.active_config['strategy']} / RSI {b.active_config['rsi_oversold']}-{b.active_config['rsi_overbought']}")
-                        await manager.broadcast({"event": "simulator", "symbol": target_symbol, "data": b.paper_trader.get_state()})
+                        # Find the personality with the smallest timeframe to display its history
+                        first_personality = b.personalities.get(next(iter(b.personalities))) if b.personalities else None
+                        if first_personality:
+                            active_b = b.get_builder_for_timeframe(first_personality.timeframe)
+                            history_payload = []
+                            seen_times = set()
+                            sorted_candles = sorted(active_b.closed_candles, key=lambda x: x.epoch)
+                            for c in sorted_candles:
+                                if c.epoch not in seen_times:
+                                    history_payload.append({
+                                        "time": c.epoch,
+                                        "open": c.open,
+                                        "high": c.high,
+                                        "low": c.low,
+                                        "close": c.close
+                                    })
+                                    seen_times.add(c.epoch)
+                            await websocket.send_json({"event": "chart_history", "symbol": new_sym, "data": history_payload})
+
+                        for p_name, trader in b.paper_traders.items():
+                             state = trader.get_state()
+                             state["personality_name"] = p_name
+                             await websocket.send_json({"event": "simulator", "symbol": new_sym, "data": state})
+
+                        # TODO: active_config is deprecated, catalog should not send it.
+                        await websocket.send_json({"event": "catalog", "symbol": new_sym, "data": {"catalog": b.global_catalog, "auto_optimize": b.auto_optimize}})
+
+                # elif cmd.get("command") == "SET_CONFIG":
+                #     # TODO: This needs to be refactored to target a specific personality
+                #     logger.warning("SET_CONFIG command is temporarily disabled due to multi-personality architecture.")
+
                 elif cmd.get("command") == "TOGGLE_AUTO_OPTIMIZE":
                     target_symbol = manager.active_connections.get(websocket, watching_symbol)
                     if target_symbol in bots:
@@ -161,24 +201,45 @@ async def websocket_endpoint(websocket: WebSocket):
 def get_status():
     if watching_symbol not in bots:
         return {"status": "running_swarm", "bots_active": len(bots)}
-    
+
     b = bots[watching_symbol]
+
+    # Collect states from all personalities
+    personalities_states = {}
+    for p_name, trader in b.paper_traders.items():
+        personalities_states[p_name] = trader.get_state()
+
+    # Get the builder for the first personality's timeframe (for backward compatibility)
+    first_personality = b.personalities.get(next(iter(b.personalities))) if b.personalities else None
+    current_candle = None
+    closed_candles_count = 0
+    if first_personality:
+        builder = b.get_builder_for_timeframe(first_personality.timeframe)
+        if builder:
+            current_candle = builder.current_candle
+            closed_candles_count = len(builder.closed_candles)
+
     return {
         "status": "running",
         "watched_symbol": watching_symbol,
-        "current_candle": b.get_active_builder().current_candle,
-        "closed_candles_count": len(b.get_active_builder().closed_candles),
-        "active_config": b.active_config,
+        "current_candle": current_candle,
+        "closed_candles_count": closed_candles_count,
+        "personalities": personalities_states,
         "auto_optimize": b.auto_optimize,
-        "simulator": b.paper_trader.get_state(),
         "news_status": news_filter.check_safety(int(time.time()))
     }
 
 @app.get("/portfolio")
 def get_portfolio():
-    # Retorna o saldo global somado de todos os bots
-    total_balance = sum(b.paper_trader.balance for b in bots.values())
-    total_pnl = sum(b.paper_trader.get_pnl() for b in bots.values())
+    # Retorna o saldo global somado de todos os bots e todas as suas personalidades
+    total_balance = 0.0
+    total_pnl = 0.0
+
+    for bot in bots.values():
+        for trader in bot.paper_traders.values():
+            total_balance += trader.balance
+            total_pnl += trader.get_pnl()
+
     return {
         "total_balance": total_balance,
         "total_pnl": total_pnl,
@@ -190,19 +251,22 @@ def get_chart_history(symbol: str):
     history_payload = []
     if symbol in bots:
         b = bots[symbol]
-        active_b = b.get_active_builder()
-        seen_times = set()
-        for c in sorted(active_b.closed_candles, key=lambda x: x.epoch):
-            if c.epoch not in seen_times:
-                history_payload.append({
-                    "time": c.epoch,
-                    "open": c.open,
-                    "high": c.high,
-                    "low": c.low,
-                    "close": c.close
-                })
-                seen_times.add(c.epoch)
-            
+        # Use the timeframe of the first personality for chart history
+        first_personality = b.personalities.get(next(iter(b.personalities))) if b.personalities else None
+        if first_personality:
+            active_b = b.get_builder_for_timeframe(first_personality.timeframe)
+            seen_times = set()
+            for c in sorted(active_b.closed_candles, key=lambda x: x.epoch):
+                if c.epoch not in seen_times:
+                    history_payload.append({
+                        "time": c.epoch,
+                        "open": c.open,
+                        "high": c.high,
+                        "low": c.low,
+                        "close": c.close
+                    })
+                    seen_times.add(c.epoch)
+
     return {"data": history_payload[-200:]}
 
 from pydantic import BaseModel
@@ -384,12 +448,16 @@ class RiskSettingsRequest(BaseModel):
 @app.get("/api/risk_settings")
 def get_risk_settings():
     if bots:
+        # Pega o primeiro bot e a primeira personalidade para compatibilidade com o frontend
         b = list(bots.values())[0]
-        return {
-            "stake_initial": b.paper_trader.stake_initial,
-            "daily_stop_loss": b.paper_trader.daily_stop_loss,
-            "daily_stop_gain": b.paper_trader.daily_stop_gain
-        }
+        if b.personalities:
+            first_personality_name = next(iter(b.personalities.keys()))
+            first_trader = b.paper_traders[first_personality_name]
+            return {
+                "stake_initial": first_trader.stake_initial,
+                "daily_stop_loss": first_trader.daily_stop_loss,
+                "daily_stop_gain": first_trader.daily_stop_gain
+            }
     return {
         "stake_initial": 10.0,
         "daily_stop_loss": 50.0,
@@ -403,9 +471,10 @@ def set_risk_settings(req: RiskSettingsRequest):
         "daily_stop_loss": req.daily_stop_loss,
         "daily_stop_gain": req.daily_stop_gain
     }
-    for b in bots.values():
-        b.paper_trader.stake_initial = req.stake_initial
-        b.paper_trader.daily_stop_loss = req.daily_stop_loss
-        b.paper_trader.daily_stop_gain = req.daily_stop_gain
-        b.paper_trader.save_state()
+    for bot in bots.values():
+        for trader in bot.paper_traders.values():
+            trader.stake_initial = req.stake_initial
+            trader.daily_stop_loss = req.daily_stop_loss
+            trader.daily_stop_gain = req.daily_stop_gain
+            trader.save_state()
     return {"status": "ok", "settings": settings}

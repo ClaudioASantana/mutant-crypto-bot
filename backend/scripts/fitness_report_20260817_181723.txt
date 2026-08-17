@@ -1,0 +1,6 @@
+FITNESS BACKTEST - BTCUSDT | 7 dias | 17/08/2026 18:17:23
+============================================================
+ESTATICO Cirurgiao: trades=6 pnl=$-7.00
+ESTATICO Trabalhador: trades=38 pnl=$2.23
+DINAMICO: trades=6 pnl=$-7.00 trocas=1
+VEREDITO: ❌ Deixou a desejar vs melhor estatico (delta $-9.23)
