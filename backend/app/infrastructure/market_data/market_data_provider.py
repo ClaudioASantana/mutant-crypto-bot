@@ -3,10 +3,11 @@ import logging
 from typing import Dict, List, Callable
 from app.infrastructure.market_data.binance_client import BinanceClient
 from app.domain.entities.market import Tick
+from app.domain.services.market_data_interface import AbstractMarketDataProvider
 
 logger = logging.getLogger(__name__)
 
-class MarketDataProvider:
+class MarketDataProvider(AbstractMarketDataProvider):
     _instance = None
     _initialized = False
 

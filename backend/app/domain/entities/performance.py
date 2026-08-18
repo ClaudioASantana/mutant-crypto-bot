@@ -47,6 +47,17 @@ class PersonalityPerformance(BaseModel):
 
         return round(wr_score + pnl_score - loss_penalty, 2)
 
+    def record_trade(self, is_win: bool, pnl: float) -> None:
+        """Registra o resultado de um trade e atualiza as métricas de performance."""
+        self.trades_count += 1
+        self.total_pnl += pnl
+        if is_win:
+            self.wins += 1
+            self.consecutive_losses = 0
+        else:
+            self.losses += 1
+            self.consecutive_losses += 1
+
     def reset_performance(self):
         self.wins = 0
         self.losses = 0

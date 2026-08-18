@@ -6,7 +6,6 @@ Ela implementa o contrato (Port) definido na camada de DOMÍNIO.
 import json
 import os
 import logging
-from abc import ABC, abstractmethod
 
 from app.domain.repositories.paper_trader_repository import AbstractPaperTraderRepository
 

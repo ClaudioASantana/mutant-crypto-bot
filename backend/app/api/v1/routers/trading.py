@@ -15,6 +15,8 @@ from app.core.state import bots, watching_symbol
 from app.api.v1.schemas.trading import (
     AdvancedBacktestRequest, OptimizeRequest, RiskSettingsRequest
 )
+from app.application.dtos.personality_dto import PersonalityStateDTO, TradeDTO, RiskSettingsDTO
+from app.application.dtos.backtest_dto import BacktestRequestDTO
 # Importa os novos serviços de aplicação
 from app.application.services.optimization_service import OptimizationService
 from app.application.services.backtest_service import BacktestService
@@ -30,10 +32,24 @@ def get_status():
 
     b = bots[watching_symbol]
 
-    # Collect states from all personalities
+    # Collect states from all personalities using DTOs
     personalities_states = {}
     for p_name, trader in b.paper_traders.items():
-        personalities_states[p_name] = trader.get_state()
+        state_dict = trader.get_state()
+
+        # Convert to DTO for validation and clearer structure
+        risk_dict = state_dict.pop('risk')
+        risk_settings = RiskSettingsDTO(**risk_dict)
+        pending_trades = [TradeDTO(**trade) for trade in state_dict.pop('pending')]
+        history_trades = [TradeDTO(**trade) for trade in state_dict.pop('history')]
+        personality_state_dto = PersonalityStateDTO(
+            risk=risk_settings,
+            pending=pending_trades,
+            history=history_trades,
+            **state_dict
+        )
+        # Convert back to dictionary for API response
+        personalities_states[p_name] = personality_state_dto.dict()
 
     # Get the builder for the first personality's timeframe (for backward compatibility)
     first_personality = b.personalities.get(next(iter(b.personalities))) if b.personalities else None
@@ -103,9 +119,15 @@ async def api_optimize(req: OptimizeRequest):
 
 @router.post("/api/backtest_advanced")
 async def api_backtest_advanced(req: AdvancedBacktestRequest):
-    # Delega a lógica complexa para o serviço de aplicação
+    # Converte schema da API para DTO da camada Application
+    dto = BacktestRequestDTO(
+        symbol=req.symbol,
+        timeframe=req.timeframe,
+        limit=req.limit,
+        strategy=req.strategy
+    )
     backtest_service = BacktestService()
-    return await backtest_service.execute(req)
+    return await backtest_service.execute(dto)
 
 @router.get("/api/risk_settings")
 def get_risk_settings():

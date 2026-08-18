@@ -1,11 +1,12 @@
 import logging
 import asyncio
-from app.infrastructure.market_data.deriv_client import DerivClient
+
+from app.domain.services.trade_executor_interface import AbstractTradeExecutor
 
 logger = logging.getLogger(__name__)
 
-class DerivExecutor:
-    def __init__(self, deriv_client: DerivClient):
+class DerivExecutor(AbstractTradeExecutor):
+    def __init__(self, deriv_client):
         self.deriv_client = deriv_client
 
     async def execute_entry(self, symbol: str, direction: str, stake_amount: float, duration_unit: str = "m", duration: int = 5):

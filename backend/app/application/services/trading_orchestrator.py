@@ -4,16 +4,19 @@ import time
 from typing import List, Dict
 from app.domain.entities.personality import Personality
 from app.domain.entities.performance import PersonalityPerformance
-from app.infrastructure.market_data.market_data_provider import MarketDataProvider
+from app.domain.services.market_data_interface import AbstractMarketDataProvider
 from app.application.services.candle_builder import CandleBuilder
 from app.application.services.simulator import PaperTrader
-from app.infrastructure.repositories.json_paper_trader_repository import JsonPaperTraderRepository
+from app.domain.repositories.paper_trader_repository import AbstractPaperTraderRepository
 from app.domain.services.personality_selector_service import PersonalitySelectorService
 from app.domain.services.trading_decision_service import TradingDecisionService
 from app.application.services.cataloger import calculate_win_rate
 from app.application.services.technical_analysis import (
     candles_to_df, apply_indicators
 )
+from app.application.dtos.personality_dto import PersonalityStateDTO, RiskSettingsDTO, TradeDTO
+from app.application.dtos.performance_dto import PersonalityPerformanceDTO
+from app.application.dtos.trade_dto import TradeResultDTO, TradingSignalDTO
 from app.domain.entities.market import Tick, AccountState, CandleDirection
 from app.domain.services.news_filter_interface import AbstractNewsFilter
 from app.domain.services.ia_filter_interface import AbstractAIFilter
@@ -30,7 +33,16 @@ SELECTOR_HYSTERESIS = 5.0                # Margem de fitness para trocar a perso
 
 
 class TradingOrchestrator:
-    def __init__(self, symbol: str, token: str, news_filter: AbstractNewsFilter, manager, personalities: List[Personality], ai_filter: AbstractAIFilter, swarm_bots: dict = None):
+    def __init__(self,
+                 symbol: str,
+                 token: str,
+                 news_filter: AbstractNewsFilter,
+                 manager,
+                 personalities: List[Personality],
+                 ai_filter: AbstractAIFilter,
+                 market_provider: AbstractMarketDataProvider,
+                 repository: AbstractPaperTraderRepository,
+                 swarm_bots: dict = None):
         self.symbol = symbol
         self.token = token
         self.news_filter = news_filter
@@ -38,8 +50,8 @@ class TradingOrchestrator:
         self.swarm_bots = swarm_bots or {}
         self.personalities = {p.name: p for p in personalities}  # Dict for fast lookup
 
-        # Subscribe to MarketDataProvider instead of creating own client
-        self.market_provider = MarketDataProvider()
+        # Dependências injetadas (Dependency Inversion Principle)
+        self.market_provider = market_provider
         self.market_provider.subscribe(self.symbol, self.on_tick)
 
         # Initialize builders
@@ -49,7 +61,7 @@ class TradingOrchestrator:
 
         # Create one PaperTrader per personality with unique state files
         self.paper_traders: Dict[str, PaperTrader] = {}
-        self.paper_trader_repository = JsonPaperTraderRepository("data") # Shared repository instance
+        self.paper_trader_repository = repository
         for personality in personalities:
             state_filename = f"simulator_state_{self.symbol.replace('/', '_')}_{personality.name}_{personality.timeframe//60}m.json"
             trader = PaperTrader(
@@ -229,7 +241,7 @@ class TradingOrchestrator:
                     stake_initial=trader.stake_initial
                 )
 
-                decision = await self.trading_decision_service.evaluate(
+                decision: TradingSignalDTO = await self.trading_decision_service.evaluate(
                     personality=personality,
                     account_state=account_state,
                     df_candles=df,
@@ -281,12 +293,46 @@ class TradingOrchestrator:
 
     async def broadcast_state(self):
         # Broadcast combined state of all personalities
+        personalities_state = {}
+        for name, trader in self.paper_traders.items():
+            state_dict = trader.get_state()
+            # Convert the state dictionary to PersonalityStateDTO
+            risk_dict = state_dict.pop('risk')
+            risk_settings = RiskSettingsDTO(**risk_dict)
+            pending_trades = [TradeDTO(**trade) for trade in state_dict.pop('pending')]
+            history_trades = [TradeDTO(**trade) for trade in state_dict.pop('history')]
+            personality_state_dto = PersonalityStateDTO(
+                risk=risk_settings,
+                pending=pending_trades,
+                history=history_trades,
+                **state_dict
+            )
+            personalities_state[name] = personality_state_dto.dict()
+
+        performances_state = {}
+        for name, perf in self.performance_trackers.items():
+            # Create PersonalityPerformanceDTO from PersonalityPerformance entity
+            perf_dto = PersonalityPerformanceDTO(
+                personality_name=perf.personality_name,
+                symbol=perf.symbol,
+                wins=perf.wins,
+                losses=perf.losses,
+                total_pnl=perf.total_pnl,
+                trades_count=perf.trades_count,
+                consecutive_losses=perf.consecutive_losses,
+                win_rate=perf.win_rate,
+                fitness=perf.fitness,
+                last_trade_epoch=perf.last_trade_epoch,
+                last_update=perf.last_update
+            )
+            performances_state[name] = perf_dto.dict()
+
         combined_state = {
-            "personalities": {name: trader.get_state() for name, trader in self.paper_traders.items()},
+            "personalities": personalities_state,
             "risk": {"atr": self.last_atr_cache},  # Store ATR for all timeframes
             "selector": {
                 "active_personality": self.active_personality_name,
-                "performances": {name: perf.model_dump() for name, perf in self.performance_trackers.items()}
+                "performances": performances_state
             }
         }
         await self.manager.broadcast({"event": "simulator", "symbol": self.symbol, "data": combined_state})

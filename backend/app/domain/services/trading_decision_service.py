@@ -6,28 +6,17 @@ análise técnica e de IA até a avaliação de risco e cálculo de parâmetros.
 """
 import logging
 from typing import Optional
-from pydantic import BaseModel
 
 from app.domain.entities.personality import Personality
 from app.domain.entities.market import AccountState, Signal, SignalType
 from app.domain.services.ia_filter_interface import AbstractAIFilter
-from app.application.services.risk import evaluate_risk
+from app.domain.services.risk_service import evaluate_risk
 # Importa o registro de estratégias
 from app.domain.services.strategy_registry import StrategyRegistry
-
 from app.domain.services.news_filter_interface import AbstractNewsFilter
+from app.application.dtos.trade_dto import TradingSignalDTO
 
 logger = logging.getLogger(__name__)
-
-class TradeDecision(BaseModel):
-    """Objeto que representa uma decisão de trade aprovada."""
-    direction: SignalType
-    entry_price: float
-    sl_price: float
-    tp_price: float
-    atr: float
-    reason: str
-    strategy_info: str
 
 class TradingDecisionService:
     def __init__(self, news_filter: AbstractNewsFilter, ai_filter: AbstractAIFilter):
@@ -39,10 +28,10 @@ class TradingDecisionService:
                  account_state: AccountState,
                  df_candles, # pandas DataFrame com velas
                  tick, # Tick atual
-                 atr: float) -> Optional[TradeDecision]:
+                 atr: float) -> Optional[TradingSignalDTO]:
         """
         Avalia se um trade deve ser aberto para uma dada personalidade.
-        Retorna um objeto TradeDecision se o trade for aprovado, senao None.
+        Retorna um objeto TradingSignalDTO se o trade for aprovado, senao None.
         """
 
         # 1. Filtro de Segurança de Notícias (macro)
@@ -85,7 +74,7 @@ class TradingDecisionService:
 
         strategy_info = f"M{personality.timeframe//60}/{personality.strategy} (Conf: {ai_decision['confidence']:.2f})"
 
-        return TradeDecision(
+        return TradingSignalDTO(
             direction=signal_type,
             entry_price=tick.quote,
             sl_price=sl_price,

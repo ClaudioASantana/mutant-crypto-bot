@@ -9,7 +9,7 @@ import logging
 import asyncio
 import math
 
-from app.api.v1.schemas.trading import AdvancedBacktestRequest
+from app.application.dtos.backtest_dto import BacktestRequestDTO
 from scripts.optimizer import download_history
 from app.application.services.cataloger import calculate_win_rate
 
@@ -20,7 +20,7 @@ class BacktestService:
     Serviço para executar e gerenciar backtests avançados.
     """
 
-    async def execute(self, req: AdvancedBacktestRequest) -> dict:
+    async def execute(self, req: BacktestRequestDTO) -> dict:
         """
         Executa um backtest avançado conforme a requisição.
 

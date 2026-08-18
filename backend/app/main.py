@@ -2,58 +2,26 @@ import asyncio
 import logging
 import json
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 
 from app.application.services.trading_orchestrator import TradingOrchestrator
 from app.infrastructure.services.news_filter import NewsFilter
+from app.infrastructure.market_data.market_data_provider import MarketDataProvider
+from app.infrastructure.repositories.json_paper_trader_repository import JsonPaperTraderRepository
+from app.infrastructure.ai_filter_openai import OpenAIFilter
+from app.infrastructure.config_loader import ConfigurationLoader
+from app.infrastructure.websocket.connection_manager import ConnectionManager
 from app.api.v1.routers.trading import router as trading_router
 from app.core.state import bots, watching_symbol, set_watching_symbol
-from app.infrastructure.ai_filter_openai import OpenAIFilter
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class ConnectionManager:
-    def __init__(self):
-        self.active_connections: dict[WebSocket, str] = {}
-
-    async def connect(self, websocket: WebSocket):
-        await websocket.accept()
-        # Associa o websocket ao símbolo atualmente assistido
-        self.active_connections[websocket] = watching_symbol
-
-    def set_watched_symbol(self, websocket: WebSocket, symbol: str):
-        if websocket in self.active_connections:
-            self.active_connections[websocket] = symbol
-
-    def disconnect(self, websocket: WebSocket):
-        if websocket in self.active_connections:
-            del self.active_connections[websocket]
-
-    async def broadcast(self, message: dict):
-        try:
-            msg_str = json.dumps(message)
-        except Exception as e:
-            logger.error(f"Falha ao serializar mensagem para broadcast: {e}")
-            return
-
-        msg_symbol = message.get("symbol")
-        # Itera sobre uma cópia para evitar problemas de concorrência
-        for connection, watched_symbol_conn in list(self.active_connections.items()):
-            if msg_symbol and msg_symbol != watched_symbol_conn:
-                continue
-            try:
-                await connection.send_text(msg_str)
-            except Exception:
-                # A conexão pode ter caído, a desconexão será tratada no endpoint
-                pass
-
+# Instâncias de infraestrutura (escopo de módulo — usadas pelo lifespan e WS endpoint)
 manager = ConnectionManager()
-news_filter = NewsFilter()
-
-from app.infrastructure.config_loader import ConfigurationLoader
 
 # Carrega a configuração dos portfólios a partir do arquivo JSON
 config_loader = ConfigurationLoader()
@@ -63,9 +31,12 @@ active_symbols = list(active_portfolios.keys())
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!")
-    from app.infrastructure.market_data.market_data_provider import MarketDataProvider
+
+    # Composition Root: instancia as implementações concretas (infraestrutura)
     market_provider = MarketDataProvider()
-    ai_filter = OpenAIFilter()  # Instancia a implementação concreta
+    repository = JsonPaperTraderRepository("data")
+    news_filter = NewsFilter()
+    ai_filter = OpenAIFilter()
 
     for sym in active_symbols:
         personalities = active_portfolios[sym]
@@ -75,7 +46,9 @@ async def lifespan(app: FastAPI):
             news_filter=news_filter,
             manager=manager,
             personalities=personalities,
-            ai_filter=ai_filter,  # Injeta a dependência
+            ai_filter=ai_filter,
+            market_provider=market_provider,
+            repository=repository,
             swarm_bots=bots
         )
         bots[sym] = bot
@@ -88,7 +61,6 @@ async def lifespan(app: FastAPI):
         bot.stop()
     await market_provider.stop_all_clients()
 
-from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
@@ -103,7 +75,7 @@ app.include_router(trading_router)
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    await manager.connect(websocket)
+    await manager.connect(websocket, watching_symbol)
 
     # Envia estado inicial para o símbolo assistido
     if watching_symbol in bots:
