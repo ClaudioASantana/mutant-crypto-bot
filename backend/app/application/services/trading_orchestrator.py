@@ -15,8 +15,8 @@ from app.application.services.technical_analysis import (
     candles_to_df, apply_indicators
 )
 from app.domain.entities.market import Tick, AccountState, CandleDirection
-from app.application.services.news import NewsFilter
-from app.application.services.ai_filter import AIFilter
+from app.domain.services.news_filter_interface import AbstractNewsFilter
+from app.domain.services.ia_filter_interface import AbstractAIFilter
 from app.application.services.journal import TradeJournal
 
 logger = logging.getLogger(__name__)
@@ -29,8 +29,8 @@ SELECTOR_MAX_CONSECUTIVE_LOSSES = 4      # Apos 4 perdas seguidas, personalidade
 SELECTOR_HYSTERESIS = 5.0                # Margem de fitness para trocar a personalidade ativa
 
 
-class BotInstance:
-    def __init__(self, symbol: str, token: str, news_filter: NewsFilter, manager, personalities: List[Personality], swarm_bots: dict = None):
+class TradingOrchestrator:
+    def __init__(self, symbol: str, token: str, news_filter: AbstractNewsFilter, manager, personalities: List[Personality], ai_filter: AbstractAIFilter, swarm_bots: dict = None):
         self.symbol = symbol
         self.token = token
         self.news_filter = news_filter
@@ -62,7 +62,7 @@ class BotInstance:
             trader.position_sizing_mode = "volatility_adjusted"
             self.paper_traders[personality.name] = trader
 
-        self.ai_filter = AIFilter()
+        self.ai_filter = ai_filter
         self.journal = TradeJournal()
         self.live_qty = 0
         self.active_trade_ids = {}  # Track active trade IDs per personality
@@ -278,7 +278,6 @@ class BotInstance:
     def stop(self):
         # Unsubscribe from MarketDataProvider
         self.market_provider.unsubscribe(self.symbol, self.on_tick)
-        self.journal.close()
 
     async def broadcast_state(self):
         # Broadcast combined state of all personalities

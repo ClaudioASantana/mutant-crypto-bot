@@ -7,6 +7,11 @@ após a refatoração.
 import sys
 import os
 import pandas as pd
+import logging
+
+# Configurar logging para DEBUG
+logging.basicConfig(level=logging.DEBUG)
+log = logging.getLogger()
 
 # Adicionar o caminho do backend ao sys.path
 backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -18,7 +23,7 @@ from app.domain.services.trading_decision_service import TradingDecisionService
 from app.application.services.news import NewsFilter
 from app.application.services.ai_filter import AIFilter
 
-class MockAIFilter(AIFilter):
+class MockAIFilter:
     """Mock do AI Filter que sempre aprova decisões de compra (CALL)."""
     async def make_decision(self, df_candles, strategy_name):
         return {
@@ -28,29 +33,35 @@ class MockAIFilter(AIFilter):
         }
 
 def create_mock_candles():
-    """Cria um DataFrame de velas mock para teste."""
-    # Criar 50 velas de exemplo com um padrão de 3 velas bullish no final
+    """Cria um DataFrame de velas mock para teste, com um padrão de Wyckoff SMC no final."""
     epochs = [1609459200 + i*60 for i in range(50)]
-    opens = [10000 + i*2 for i in range(50)]
-    highs = [10010 + i*2 for i in range(50)]
-    lows = [9990 + i*2 for i in range(50)]
-    closes = [10005 + i*2 for i in range(50)]
+    base_price = 10000
 
-    # Modificar as últimas 3 velas para formar um padrão de 3 velas bullish
-    closes[-3] = opens[-3] - 50
-    lows[-3] = closes[-3] - 10
-    opens[-2] = closes[-3]
-    closes[-2] = opens[-2] + 10
-    highs[-2] = opens[-2] + 20
-    lows[-2] = opens[-2] - 20
-    opens[-1] = closes[-2]
-    closes[-1] = opens[-1] + 80
-    highs[-1] = closes[-1] + 10
-    lows[-1] = opens[-1] - 10
+    # Dados base
+    opens = [base_price + i*2 for i in range(50)]
+    highs = [base_price + 10 + i*2 for i in range(50)]
+    lows = [base_price - 10 + i*2 for i in range(50)]
+    closes = [base_price + 5 + i*2 for i in range(50)]
+    volumes = [100 + i for i in range(50)]
 
-    df = pd.DataFrame({'open': opens, 'high': highs, 'low': lows, 'close': closes})
+    # Criar um padrão de Wyckoff SMC (reteste de rompimento)
+    # 1. Rompimento recente do canal Donchian superior
+    dcu = [base_price + 10 + i*2 - 5 for i in range(50)] # Canal Donchian superior
+    closes[-3] = dcu[-3] + 10 # Rompe o canal
+
+    # 2. Reteste e reação na última vela
+    lows[-1] = dcu[-2] - 2 # Mínima toca a resistência rompida
+    closes[-1] = dcu[-2] + 5 # Fechamento acima da resistência
+
+    df = pd.DataFrame({
+        'open': opens, 'high': highs, 'low': lows, 'close': closes, 'volume': volumes
+    })
     df.index = pd.to_datetime(epochs, unit='s')
-    df['ATRr_14'] = 50.0
+
+    # Adicionar Donchian Channel, ATR e Volume mock
+    df['DCU_20_20'] = dcu
+    df['DCL_20_20'] = [base_price - 10 + i*2 - 5 for i in range(50)]
+    df['ATRr_14'] = 10.0
 
     return df
 
@@ -82,7 +93,6 @@ async def test_trading_decision():
     trading_service = TradingDecisionService(news_filter, mock_ai_filter)
 
     # Testar a avaliação
-    # A avaliação do AI filter agora é assíncrona, então precisamos de um loop de eventos
     decision = await trading_service.evaluate(
         personality=personality,
         account_state=account_state,

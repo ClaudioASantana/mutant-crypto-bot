@@ -1,0 +1,82 @@
+{
+  "BTC/USDT": [
+    {
+      "name": "Cirurgiao_M15",
+      "strategy": "Wyckoff_SMC",
+      "timeframe": 900,
+      "risk_config": {
+        "sl_multiplier": 1.5,
+        "tp_multiplier": 8.0
+      }
+    },
+    {
+      "name": "Trabalhador_M5",
+      "strategy": "SMC",
+      "timeframe": 300,
+      "risk_config": {
+        "sl_multiplier": 1.5,
+        "tp_multiplier": 3.0
+      }
+    }
+  ],
+  "ETH/USDT": [
+    {
+      "name": "Cirurgiao_M15",
+      "strategy": "Wyckoff_SMC",
+      "timeframe": 900,
+      "risk_config": {
+        "sl_multiplier": 1.5,
+        "tp_multiplier": 8.0
+      }
+    },
+    {
+      "name": "Trabalhador_M5",
+      "strategy": "SMC",
+      "timeframe": 300,
+      "risk_config": {
+        "sl_multiplier": 1.5,
+        "tp_multiplier": 3.0
+      }
+    }
+  ],
+  "SOL/USDT": [
+    {
+      "name": "Cirurgiao_M15",
+      "strategy": "Wyckoff_SMC",
+      "timeframe": 900,
+      "risk_config": {
+        "sl_multiplier": 1.5,
+        "tp_multiplier": 8.0
+      }
+    },
+    {
+      "name": "Trabalhador_M5",
+      "strategy": "SMC",
+      "timeframe": 300,
+      "risk_config": {
+        "sl_multiplier": 1.5,
+        "tp_multiplier": 3.0
+      }
+    }
+  ],
+  "BNB/USDT": [
+    {
+      "name": "Cirurgiao_M15",
+      "strategy": "Wyckoff_SMC",
+      "timeframe": 900,
+      "risk_config": {
+        "sl_multiplier": 1.5,
+        "tp_multiplier": 8.0
+      }
+    },
+    {
+      "name": "Trabalhador_M5",
+      "strategy": "SMC",
+      "timeframe": 300,
+      "risk_config": {
+        "sl_multiplier": 1.5,
+        "tp_multiplier": 3.0
+      }
+    }
+  ]
+}

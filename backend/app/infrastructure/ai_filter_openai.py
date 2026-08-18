@@ -2,13 +2,18 @@ import os
 import logging
 import json
 import asyncio
-from typing import List
+from typing import Dict
 from openai import AsyncOpenAI
 import pandas as pd
 
+from app.domain.services.ia_filter_interface import AbstractAIFilter
+
 logger = logging.getLogger(__name__)
 
-class AIFilter:
+
+class OpenAIFilter(AbstractAIFilter):
+    """Implementação concreta do filtro de IA utilizando a API da OpenAI/Manifest."""
+
     def __init__(self):
         self.api_key = os.getenv("MANIFEST_API_KEY", os.getenv("OPENAI_API_KEY"))
         self.base_url = os.getenv("MANIFEST_BASE_URL", "https://api.openai.com/v1")

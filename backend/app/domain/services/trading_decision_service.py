@@ -10,9 +10,12 @@ from pydantic import BaseModel
 
 from app.domain.entities.personality import Personality
 from app.domain.entities.market import AccountState, Signal, SignalType
-from app.application.services.ai_filter import AIFilter
+from app.domain.services.ia_filter_interface import AbstractAIFilter
 from app.application.services.risk import evaluate_risk
-from app.application.services.technical_analysis import eval_three_candles_composite
+# Importa o registro de estratégias
+from app.domain.services.strategy_registry import StrategyRegistry
+
+from app.domain.services.news_filter_interface import AbstractNewsFilter
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +30,7 @@ class TradeDecision(BaseModel):
     strategy_info: str
 
 class TradingDecisionService:
-    def __init__(self, news_filter, ai_filter: AIFilter):
+    def __init__(self, news_filter: AbstractNewsFilter, ai_filter: AbstractAIFilter):
         self.news_filter = news_filter
         self.ai_filter = ai_filter
 
@@ -46,23 +49,30 @@ class TradingDecisionService:
         if not self.news_filter.check_safety(tick.epoch)["safe"]:
             return None
 
-        # 2. Avaliação de Estratégia + Confirmação de 3 Velas
-        signal_type = eval_three_candles_composite(df_candles, require_confluence=True)
+        # 2. Avaliação de Estratégia
+        strategy_func = StrategyRegistry.get(personality.strategy)
+        if not strategy_func:
+            logger.warning(f"Estratégia '{personality.strategy}' não encontrada no STRATEGY_MAP.")
+            return None
+
+        signal_type = strategy_func(df_candles)
 
         if not signal_type or signal_type == "NONE":
             return None
 
         # 3. Filtro de IA
         ai_decision = await self.ai_filter.make_decision(df_candles, personality.strategy)
-        if ai_decision["decision"] == "BUY" and signal_type == SignalType.CALL and ai_decision["confidence"] >= 0.7:
+        if ai_decision["decision"] == "BUY" and signal_type == "CALL" and ai_decision["confidence"] >= 0.7:
             pass # Aprovado
-        elif ai_decision["decision"] == "SELL" and signal_type == SignalType.PUT and ai_decision["confidence"] >= 0.7:
+        elif ai_decision["decision"] == "SELL" and signal_type == "PUT" and ai_decision["confidence"] >= 0.7:
             pass # Aprovado
         else:
             return None
 
+        signal_type = SignalType(signal_type)
+
         # 4. Avaliação de Risco da Conta
-        signal = Signal(type=signal_type, reason=ai_decision["reason"] + " | 3V-Confirmed")
+        signal = Signal(type=signal_type, reason=ai_decision["reason"])
         risk_eval = evaluate_risk(signal, account_state)
         if risk_eval.decision != "APPROVED":
             return None

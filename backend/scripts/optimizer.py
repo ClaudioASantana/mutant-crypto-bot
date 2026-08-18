@@ -7,8 +7,13 @@ from dotenv import load_dotenv
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from app.models.market import Candle, CandleDirection
-from app.engines.indicators import calculate_rsi
+import sys
+import os
+# Adiciona o diretório 'backend' ao path para permitir imports do pacote 'app'
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from app.domain.entities.market import Candle, CandleDirection
+from app.application.services.indicators import calculate_rsi
 
 load_dotenv()
 

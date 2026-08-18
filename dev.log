@@ -1,0 +1,664 @@
+
+> mutant-crypto-bot-root@1.0.0 dev
+> concurrently --kill-others-on-fail --names FRONT,BACK --prefix-colors cyan,yellow "npm run dev:frontend" "npm run dev:backend"
+
+[FRONT] 
+[FRONT] > mutant-crypto-bot-root@1.0.0 dev:frontend
+[FRONT] > cd frontend && ./node_modules/.bin/next dev --turbopack --port 3000 < /dev/null
+[FRONT] 
+[BACK] 
+[BACK] > mutant-crypto-bot-root@1.0.0 dev:backend
+[BACK] > cd backend && PYTHONPATH=. ./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload < /dev/null
+[BACK] 
+[BACK] INFO:     Will watch for changes in these directories: ['/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend']
+[BACK] INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+[BACK] INFO:     Started reloader process [1574985] using WatchFiles
+[FRONT] ▲ Next.js 16.3.0 (Turbopack)
+[FRONT] - Local:         http://localhost:3000
+[FRONT] - Network:       http://192.168.1.9:3000
+[FRONT] ✓ Ready in 235ms
+[FRONT] ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+[FRONT]  We detected multiple lockfiles and selected the directory of /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/package-lock.json as the root directory.
+[FRONT]  To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+[FRONT]    See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+[FRONT]  Detected additional lockfiles: 
+[FRONT]    * /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/frontend/package-lock.json
+[FRONT] 
+[FRONT] ✓ Running next.config.ts took 35ms
+[FRONT] 
+[BACK] INFO:     Started server process [1574994]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+[BACK] INFO:app.application.services.optimization_service:[BTC/USDT] Baixando histórico para otimização...
+[BACK] INFO:     127.0.0.1:34396 - "POST /api/optimize HTTP/1.1" 200 OK
+[BACK] INFO:app.application.services.backtest_service:[BTC/USDT] Baixando histórico para backtest avançado...
+[BACK] INFO:     127.0.0.1:45210 - "POST /api/backtest_advanced HTTP/1.1" 200 OK
+[BACK] WARNING:  WatchFiles detected changes in 'app/domain/services/strategy_registry.py'. Reloading...
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1574994]
+[BACK] INFO:     Started server process [1578209]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1578209]
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Started server process [1579406]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1579406]
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Started server process [1579538]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1579538]
+[BACK] WARNING:ccxt.base.exchange:binanceusdm requires to release all resources with an explicit call to the .close() coroutine. If you are using the exchange instance with async coroutines, add `await exchange.close()` to your code into a place when you're done with the exchange and don't need the exchange instance anymore (at the end of your async coroutine).
+[BACK] WARNING:ccxt.base.exchange:binanceusdm requires to release all resources with an explicit call to the .close() coroutine. If you are using the exchange instance with async coroutines, add `await exchange.close()` to your code into a place when you're done with the exchange and don't need the exchange instance anymore (at the end of your async coroutine).
+[BACK] WARNING:ccxt.base.exchange:binanceusdm requires to release all resources with an explicit call to the .close() coroutine. If you are using the exchange instance with async coroutines, add `await exchange.close()` to your code into a place when you're done with the exchange and don't need the exchange instance anymore (at the end of your async coroutine).
+[BACK] ERROR:asyncio:Unclosed client session
+[BACK] client_session: <aiohttp.client.ClientSession object at 0x74ef34a90170>
+[BACK] ERROR:asyncio:Unclosed client session
+[BACK] client_session: <aiohttp.client.ClientSession object at 0x74ef34a90800>
+[BACK] ERROR:asyncio:Unclosed client session
+[BACK] client_session: <aiohttp.client.ClientSession object at 0x74ef34a90d70>
+[BACK] ERROR:asyncio:Unclosed client session
+[BACK] client_session: <aiohttp.client.ClientSession object at 0x74ef34a912e0>
+[BACK] WARNING:ccxt.base.exchange:binanceusdm requires to release all resources with an explicit call to the .close() coroutine. If you are using the exchange instance with async coroutines, add `await exchange.close()` to your code into a place when you're done with the exchange and don't need the exchange instance anymore (at the end of your async coroutine).
+[BACK] INFO:     Started server process [1579561]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1579561]
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Started server process [1579732]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1579732]
+[BACK] WARNING:  WatchFiles detected changes in 'app/application/services/technical_analysis.py'. Reloading...
+[BACK] INFO:     Started server process [1580124]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py:160: RuntimeWarning: divide by zero encountered in scalar divide
+[BACK]   profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
+[BACK] INFO:httpx:HTTP Request: POST http://192.168.1.4:3000/v1/chat/completions "HTTP/1.1 200 OK"
+[BACK] WARNING:  WatchFiles detected changes in 'app/domain/services/trading_decision_service.py'. Reloading...
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1580124]
+[BACK] Process SpawnProcess-12:
+[BACK] Traceback (most recent call last):
+[BACK]   File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+[BACK]     self.run()
+[BACK]   File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+[BACK]     self._target(*self._args, **self._kwargs)
+[BACK]   File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/uvicorn/_subprocess.py", line 78, in subprocess_started
+[BACK]     target(sockets=sockets)
+[BACK]   File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/uvicorn/server.py", line 62, in run
+[BACK]     return asyncio.run(self.serve(sockets=sockets))
+[BACK]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[BACK]   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+[BACK]     return runner.run(main)
+[BACK]            ^^^^^^^^^^^^^^^^
+[BACK]   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+[BACK]     return self._loop.run_until_complete(task)
+[BACK]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[BACK]   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+[BACK]   File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/uvicorn/server.py", line 69, in serve
+[BACK]     config.load()
+[BACK]   File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/uvicorn/config.py", line 458, in load
+[BACK]     self.loaded_app = import_from_string(self.app)
+[BACK]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[BACK]   File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/uvicorn/importer.py", line 21, in import_from_string
+[BACK]     module = importlib.import_module(module_str)
+[BACK]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[BACK]   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[BACK]     return _bootstrap._gcd_import(name[level:], package, level)
+[BACK]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[BACK]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[BACK]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[BACK]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[BACK]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[BACK]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[BACK]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[BACK]   File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/main.py", line 8, in <module>
+[BACK]     from app.application.services.trading_orchestrator import TradingOrchestrator
+[BACK]   File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 12, in <module>
+[BACK]     from app.domain.services.trading_decision_service import TradingDecisionService
+[BACK]   File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/domain/services/trading_decision_service.py", line 32, in <module>
+[BACK]     "Wyckoff_SMC": eval_wyckoff_smc,
+[BACK]                    ^^^^^^^^^^^^^^^^
+[BACK] NameError: name 'eval_wyckoff_smc' is not defined
+[BACK] WARNING:  WatchFiles detected changes in 'app/domain/services/trading_decision_service.py'. Reloading...
+[BACK] INFO:     Started server process [1868020]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+[BACK] WARNING:  WatchFiles detected changes in 'app/domain/services/trading_decision_service.py'. Reloading...
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1868020]
+[BACK] INFO:     Started server process [1868109]
+[BACK] INFO:     Waiting for application startup.
+[BACK] INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+[BACK] INFO:     Application startup complete.
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+[BACK] INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+[BACK] INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+[BACK] Terminated
+[BACK] INFO:     Shutting down
+[BACK] INFO:     Waiting for application shutdown.
+[BACK] INFO:app.main:Desligando o ENXAME...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BTC/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para ETH/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para SOL/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback removido para BNB/USDT.
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BTC/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para ETH/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para SOL/USDT...
+[BACK] INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Parando cliente Binance para BNB/USDT...
+[BACK] INFO:     Application shutdown complete.
+[BACK] INFO:     Finished server process [1868109]
+[BACK] INFO:     Stopping reloader process [1574985]
+[BACK] npm run dev:backend exited with code 143
+--> Sending SIGTERM to other processes..
+[FRONT] [?25h
+[FRONT] npm run dev:frontend exited with code SIGTERM

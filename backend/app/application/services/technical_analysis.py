@@ -2,6 +2,7 @@ import pandas as pd
 import pandas_ta  # noqa: F401  (registra o accessor df.ta usado em apply_indicators)
 from typing import List
 from app.domain.entities.market import Candle
+from app.domain.services.strategy_registry import register_strategy
 
 def candles_to_df(candles: List[Candle]) -> pd.DataFrame:
     data = []
@@ -154,6 +155,7 @@ def check_signal_quality(df_m1: pd.DataFrame, df_m5: pd.DataFrame, direction: st
 # Estratégias de Sinal
 # ─────────────────────────────────────────────────────────────────────────────
 
+@register_strategy("EMA+MACD")
 def eval_ema_macd(df: pd.DataFrame) -> str:
     """ EMA 9 cruza EMA 21 + MACD > 0 """
     if df.empty or len(df) < 30: return "NONE"
@@ -168,6 +170,7 @@ def eval_ema_macd(df: pd.DataFrame) -> str:
     if p_ema9 >= p_ema21 and ema9 < ema21 and macd < 0: return "PUT"
     return "NONE"
 
+@register_strategy("Bollinger")
 def eval_bollinger(df: pd.DataFrame) -> str:
     if df.empty or len(df) < 20: return "NONE"
     last = df.iloc[-1]
@@ -178,6 +181,7 @@ def eval_bollinger(df: pd.DataFrame) -> str:
     if close < lower and lower > 0: return "PUT"
     return "NONE"
 
+@register_strategy("VWAP")
 def eval_vwap(df: pd.DataFrame) -> str:
     if df.empty or len(df) < 10: return "NONE"
     vwap_col = [c for c in df.columns if "VWAP" in c]
@@ -191,6 +195,7 @@ def eval_vwap(df: pd.DataFrame) -> str:
     if p_close >= prev_vwap and close < last_vwap: return "PUT"
     return "NONE"
 
+@register_strategy("SuperTrend")
 def eval_supertrend(df: pd.DataFrame) -> str:
     """ SuperTrend strategy """
     if df.empty or len(df) < 15: return "NONE"
@@ -211,6 +216,7 @@ def eval_supertrend(df: pd.DataFrame) -> str:
         
     return "NONE"
 
+@register_strategy("SMC")
 def eval_smc(df: pd.DataFrame) -> str:
     """ SMC 2.0 - Detecção de Fair Value Gap (FVG) """
     if df.empty or len(df) < 5: return "NONE"
@@ -262,6 +268,7 @@ def eval_wyckoff_bollinger(df: pd.DataFrame) -> str:
         
     return "NONE"
 
+@register_strategy("Wyckoff_SMC")
 def eval_wyckoff_smc(df: pd.DataFrame) -> str:
     """
     Reteste Wyckoff com SMC (Donchian):
@@ -540,6 +547,7 @@ def eval_three_bar_play(df: pd.DataFrame, require_confluence: bool = True) -> st
 
     return "NONE"
 
+@register_strategy("3 Velas")
 def eval_three_candles_composite(df: pd.DataFrame, require_confluence: bool = True) -> str:
     """
     Composite evaluation for various 3-candle patterns.
@@ -583,6 +591,7 @@ def eval_consecutive(df: pd.DataFrame) -> str:
     """
     return eval_three_candles_composite(df)
 
+@register_strategy("Pin Bar")
 def eval_pin_bar(df: pd.DataFrame) -> str:
     """
     Estratégia Pin Bar (Martelo / Estrela Cadente) Elite:

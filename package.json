@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "concurrently --kill-others-on-fail --names FRONT,BACK --prefix-colors cyan,yellow \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "cd frontend && next dev --turbopack --port 3000 < /dev/null",
-    "dev:backend": "cd backend && ./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload < /dev/null"
+    "dev:frontend": "cd frontend && ./node_modules/.bin/next dev --turbopack --port 3000 < /dev/null",
+    "dev:backend": "cd backend && PYTHONPATH=. ./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload < /dev/null"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

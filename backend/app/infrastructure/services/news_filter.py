@@ -1,8 +1,10 @@
 import time
-from typing import Dict, Optional
-from datetime import datetime
+from typing import Dict
 
-class NewsFilter:
+from app.domain.services.news_filter_interface import AbstractNewsFilter
+
+
+class NewsFilter(AbstractNewsFilter):
     def __init__(self, block_minutes_before=5, block_minutes_after=5):
         # Para a demo, vamos usar apenas 5 minutos de bloqueio pra podermos testar mais rápido
         self.block_before = block_minutes_before * 60
