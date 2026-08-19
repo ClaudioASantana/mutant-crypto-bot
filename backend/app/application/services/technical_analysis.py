@@ -218,77 +218,40 @@ def eval_supertrend(df: pd.DataFrame) -> str:
 
     return "NONE"
 
-@register_strategy("BB_MA_MACD")
-def eval_bb_ma_macd(df: pd.DataFrame) -> str:
-    """
-    Estratégia do usuário: Bollinger Bands + Média Móvel 15 + MACD.
-    CALL:
-      - Fechamento acima da linha do meio (BBM) das Bollinger.
-      - Fechamento acima da EMA 15.
-      - MACD (linha azul/fast) cruza acima da linha de sinal (laranja/slow).
-    PUT: o contrário.
-    """
-    if df.empty or len(df) < 30:
-        return "NONE"
-
-    last = df.iloc[-1]
-    prev = df.iloc[-2]
-
-    close = last["close"]
-    bbm = last.get("BBM_20_2.0_2.0", 0)
-    ema15 = last.get("EMA_15", 0)
-
-    macd_last = last.get("MACD_12_26_9", 0)
-    macd_signal_last = last.get("MACDs_12_26_9", 0)
-    macd_prev = prev.get("MACD_12_26_9", 0)
-    macd_signal_prev = prev.get("MACDs_12_26_9", 0)
-
-    if bbm == 0 or ema15 == 0:
-        return "NONE"
-
-    # CALL: preço acima de BBM e EMA15, MACD cruza acima do sinal
-    if (
-        close > bbm
-        and close > ema15
-        and macd_prev <= macd_signal_prev
-        and macd_last > macd_signal_last
-    ):
-        return "CALL"
-
-    # PUT: preço abaixo de BBM e EMA15, MACD cruza abaixo do sinal
-    if (
-        close < bbm
-        and close < ema15
-        and macd_prev >= macd_signal_prev
-        and macd_last < macd_signal_last
-    ):
-        return "PUT"
-
-    return "NONE"
-
-
 @register_strategy("SMC")
 def eval_smc(df: pd.DataFrame) -> str:
-    """ SMC 2.0 - Detecção de Fair Value Gap (FVG) """
-    if df.empty or len(df) < 5: return "NONE"
-    
-    # Pega as últimas 3 velas fechadas para buscar um FVG
-    c1 = df.iloc[-3]
-    c2 = df.iloc[-2]
-    c3 = df.iloc[-1]
-    
-    # Bullish FVG: A mínima da vela 3 é MAIOR que a máxima da vela 1
-    # A vela 2 é um candle direcional forte (bullish)
-    if c1["high"] < c3["low"] and c2["close"] > c2["open"]:
-        # Se a FVG formou, a zona entre c1.high e c3.low é suporte.
-        # Nós operamos o rompimento do momento (CALL).
+    """
+    SMC 3.0 - Detecção de Fair Value Gap (FVG) com Contexto de Mercado.
+    - Filtros: Estrutura de Mercado (Higher Highs/Lows), Volume Institucional, RSI e EMA20.
+    """
+    if len(df) < 55:
+        return "NONE"
+
+    # Contexto de mercado
+    structure = _get_market_structure(df)
+    trend = _get_market_trend(structure)
+
+    # Detectar FVG nas últimas 3 velas
+    c1, c2, c3 = df.iloc[-3], df.iloc[-2], df.iloc[-1]
+    is_bullish_fvg = c1["high"] < c3["low"] and c2["close"] > c2["open"]
+    is_bearish_fvg = c1["low"] > c3["high"] and c2["close"] < c2["open"]
+
+    # Volume do candle de ignição (c2)
+    avg_vol = df["volume"].iloc[-21:-1].mean()
+    volume_ok = c2["volume"] > (avg_vol * 1.2)
+
+    # Confluência: EMA 20 e RSI
+    ema20 = df["EMA_20"].iloc[-1]
+    rsi = df["RSI_14"].iloc[-1]
+
+    # CALL: FVG Bullish + Tendência Bullish/Range + Filtros
+    if is_bullish_fvg and trend != "BEARISH" and volume_ok and 25 < rsi < 70 and c2["close"] > ema20:
         return "CALL"
-        
-    # Bearish FVG: A máxima da vela 3 é MENOR que a mínima da vela 1
-    # A vela 2 é direcional forte (bearish)
-    if c1["low"] > c3["high"] and c2["close"] < c2["open"]:
+
+    # PUT: FVG Bearish + Tendência Bearish/Range + Filtros
+    if is_bearish_fvg and trend != "BULLISH" and volume_ok and 30 < rsi < 75 and c2["close"] < ema20:
         return "PUT"
-        
+
     return "NONE"
 
 def eval_wyckoff_bollinger(df: pd.DataFrame) -> str:
@@ -353,67 +316,84 @@ def _is_bullish_candle(candle) -> bool:
     return candle["close"] > candle["open"]
 
 
-@register_strategy("Rompimento")
-def eval_momentum_breakout(df: pd.DataFrame) -> str:
-    """
-    Estratégia de Rompimento de Inércia (Momentum Breakout) v2:
-    1. Consolidação prévia: as últimas 5 velas devem estar em range < 1.5x ATR.
-    2. Rompimento de Donchian(20) com volume institucional (>= 1.8x média).
-    3. Candle de força com rejeição mínima (pavio oposto < 30% do range).
-    4. Alinhamento com EMA 20 e EMA 50.
-    """
-    if len(df) < 55:
-        return "NONE"
-
-    last = df.iloc[-1]
-
-    atr = last.get("ATRr_14", last["close"] * 0.01)
-    avg_vol = df["volume"].iloc[-21:-1].mean()
-    dcu = df["high"].iloc[-21:-1].max()
-    dcl = df["low"].iloc[-21:-1].min()
-    ema_20 = last.get("EMA_20", 0)
-    ema_50 = last.get("EMA_50", 0)
-
-    body = abs(last["close"] - last["open"])
-    range_candle = last["high"] - last["low"]
-    if range_candle == 0:
-        return "NONE"
-
-    upper_wick = last["high"] - max(last["open"], last["close"])
-    lower_wick = min(last["open"], last["close"]) - last["low"]
-
-    # Consolidação prévia
-    consolidation = df.iloc[-6:-1]
-    consolidation_range = consolidation["high"].max() - consolidation["low"].min()
-    has_consolidation = consolidation_range <= (atr * 1.5)
-
-    strong_body = body > (atr * 1.2)
-    high_volume = last["volume"] > (avg_vol * 1.8)
-
-    if (
-        last["close"] > dcu
-        and strong_body
-        and high_volume
-        and (upper_wick / range_candle) < 0.30
-        and last["close"] > ema_20 > ema_50
-        and has_consolidation
-    ):
-        return "CALL"
-
-    if (
-        last["close"] < dcl
-        and strong_body
-        and high_volume
-        and (lower_wick / range_candle) < 0.30
-        and last["close"] < ema_20 < ema_50
-        and has_consolidation
-    ):
-        return "PUT"
-
-    return "NONE"
-
 def _is_bearish_candle(candle) -> bool:
     return candle["close"] < candle["open"]
+
+def _detect_swing_high(df: pd.DataFrame, index: int, lookback: int = 2, lookforward: int = 2) -> bool:
+    """
+    Detecta um Swing High no `index` dado.
+    Um Swing High é um ponto onde o preço [`high`] é o maior dentro de
+    `lookback` velas anteriores e `lookforward` velas seguintes.
+    """
+    if index < lookback or index + lookforward >= len(df):
+        return False
+    window = df.iloc[index - lookback: index + lookforward + 1]
+    return bool(df.iloc[index]["high"] == window["high"].max())
+
+def _detect_swing_low(df: pd.DataFrame, index: int, lookback: int = 2, lookforward: int = 2) -> bool:
+    """
+    Detecta um Swing Low no `index` dado.
+    Um Swing Low é um ponto onde o preço [`low`] é o menor dentro de
+    `lookback` velas anteriores e `lookforward` velas seguintes.
+    """
+    if index < lookback or index + lookforward >= len(df):
+        return False
+    window = df.iloc[index - lookback: index + lookforward + 1]
+    return bool(df.iloc[index]["low"] == window["low"].min())
+
+def _get_market_structure(df: pd.DataFrame, num_candles: int = 50) -> list:
+    """
+    Constrói uma lista de swings (pontos de estrutura de mercado) sobre as
+    últimas `num_candles` velas.
+    Cada elemento é um dict: {"index": int, "type": "high"|"low", "price": float}.
+    """
+    structure = []
+    start = max(2, len(df) - num_candles)
+    end = len(df) - 3  # Garante 2 velas de confirmação à frente
+    for i in range(start, end):
+        if _detect_swing_high(df, i):
+            structure.append({"index": i, "type": "high", "price": df.iloc[i]["high"]})
+        elif _detect_swing_low(df, i):
+            structure.append({"index": i, "type": "low", "price": df.iloc[i]["low"]})
+    return structure
+
+def _get_market_trend(structure: list) -> str:
+    """
+    Determina a tendência dominante baseada na sequência de swings.
+    - "BULLISH": Higher Highs (HH) e Higher Lows (HL).
+    - "BEARISH": Lower Lows (LL) e Lower Highs (LH).
+    - "RANGE": Ambíguo / lateral.
+    """
+    highs = [s for s in structure if s["type"] == "high"]
+    lows = [s for s in structure if s["type"] == "low"]
+
+    if len(highs) < 2 or len(lows) < 2:
+        return "RANGE"
+
+    # Verifica se os highs estão subindo (Higher Highs)
+    highs_prices = [h["price"] for h in highs]
+    higher_high_sequence = highs_prices[-1] > highs_prices[-2]
+
+    # Verifica se os lows estão subindo (Higher Lows)
+    lows_prices = [l["price"] for l in lows]
+    higher_low_sequence = lows_prices[-1] > lows_prices[-2]
+
+    # Verifica se os lows estão caindo (Lower Lows)
+    lower_low_sequence = lows_prices[-1] < lows_prices[-2]
+
+    # Verifica se os highs estão caindo (Lower Highs)
+    lower_high_sequence = highs_prices[-1] < highs_prices[-2]
+
+    if higher_high_sequence and higher_low_sequence:
+        return "BULLISH"
+    if lower_low_sequence and lower_high_sequence:
+        return "BEARISH"
+    # Prioriza o alinhamento da última direção se apenas um confirma
+    if higher_high_sequence and not lower_high_sequence:
+        return "BULLISH"
+    if lower_low_sequence and not higher_low_sequence:
+        return "BEARISH"
+    return "RANGE"
 
 def _get_candle_body_range(candle):
     return abs(candle["close"] - candle["open"])

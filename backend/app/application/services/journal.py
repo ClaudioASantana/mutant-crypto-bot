@@ -22,6 +22,8 @@ class TradeJournal:
                         direction TEXT,
                         strategy TEXT,
                         ai_reason TEXT,
+                        ai_confidence REAL,
+                        ai_context TEXT,
                         entry_time INTEGER,
                         entry_price REAL,
                         atr REAL,
@@ -35,20 +37,32 @@ class TradeJournal:
                     )
                 """)
                 conn.commit()
+                
+                # Migrações seguras para BDs já existentes
+                try:
+                    cursor.execute("ALTER TABLE trades ADD COLUMN ai_confidence REAL")
+                except sqlite3.OperationalError:
+                    pass
+                try:
+                    cursor.execute("ALTER TABLE trades ADD COLUMN ai_context TEXT")
+                except sqlite3.OperationalError:
+                    pass
+                conn.commit()
         except Exception as e:
             logger.error(f"Erro ao inicializar o banco de dados do Trade Journal: {e}")
 
     def log_entry(self, trade_id: str, symbol: str, direction: str, strategy: str, ai_reason: str, 
+                  ai_confidence: float, ai_context: str,
                   entry_time: int, entry_price: float, atr: float, rsi: float, margin: float, leverage: int):
         try:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
                     INSERT INTO trades (
-                        id, symbol, direction, strategy, ai_reason, entry_time, entry_price, 
+                        id, symbol, direction, strategy, ai_reason, ai_confidence, ai_context, entry_time, entry_price, 
                         atr, rsi, margin, leverage, status, exit_time, exit_price, net_pnl
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'OPEN', NULL, NULL, NULL)
-                """, (trade_id, symbol, direction, strategy, ai_reason, entry_time, entry_price, atr, rsi, margin, leverage))
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'OPEN', NULL, NULL, NULL)
+                """, (trade_id, symbol, direction, strategy, ai_reason, ai_confidence, ai_context, entry_time, entry_price, atr, rsi, margin, leverage))
                 conn.commit()
                 logger.info(f"📔 [Journal] Entrada registrada: Trade ID {trade_id}")
         except Exception as e:

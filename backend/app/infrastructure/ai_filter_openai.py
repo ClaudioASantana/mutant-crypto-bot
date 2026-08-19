@@ -36,33 +36,52 @@ class OpenAIFilter(AbstractAIFilter):
         try:
             recent = df.iloc[-20:]
             last_row = df.iloc[-1]
+            
+            # Extração de features para compressão de contexto
+            first_open = recent.iloc[0]['open']
+            last_close = last_row['close']
+            period_return = ((last_close - first_open) / first_open) * 100
+            max_high = recent['high'].max()
+            min_low = recent['low'].min()
+            
             context_str = (
-                "Últimas 20 velas (O, H, L, C):\n" +
-                "\n".join([f"- O:{r['open']:.2f} H:{r['high']:.2f} L:{r['low']:.2f} C:{r['close']:.2f}" for _, r in recent.iterrows()]) +
-                f"\nIndicadores: RSI:{last_row.get('RSI_14', 50):.2f} | "
+                f"Resumo das últimas 20 velas:\n"
+                f"- Abertura (Vela 1): {first_open:.2f}\n"
+                f"- Fechamento Atual: {last_close:.2f} (Variação: {period_return:.2f}%)\n"
+                f"- Máxima (Resistência Local): {max_high:.2f}\n"
+                f"- Mínima (Suporte Local): {min_low:.2f}\n"
+                f"Indicadores Atuais: RSI:{last_row.get('RSI_14', 50):.2f} | "
                 f"EMA20:{last_row.get('EMA_20', 0):.2f} | EMA50:{last_row.get('EMA_50', 0):.2f} | "
                 f"EMA200:{last_row.get('EMA_200', 0):.2f} | ATR:{last_row.get('ATRr_14', 0):.2f}"
             )
 
             prompt = (
-                f"Voce é um especialista em trading de cripto. Analise o contexto: '{strategy_name}'.\n"
+                f"Analise o contexto para a estratégia: '{strategy_name}'.\n"
                 f"{context_str}\n"
                 f"REGRA RÍGIDA DE TENDÊNCIA (EMA200):\n"
-                f"1. Se o Preço < EMA200, NUNCA dê BUY. Priorize apenas SELL.\n"
-                f"2. Se o Preço > EMA200, NUNCA dê SELL. Priorize apenas BUY.\n"
-                f"Analise o Price Action e RSI. Se o sinal violar a tendência da EMA200, dê WAIT.\n"
-                f"Responda APENAS no formato JSON: \n"
-                f"{{\"decision\": \"BUY\" | \"SELL\" | \"WAIT\", \"reason\": \"sua justificativa curta\", \"confidence\": 0.0-1.0}}"
+                f"1. Se o Fechamento Atual < EMA200, NUNCA dê BUY. Priorize apenas SELL.\n"
+                f"2. Se o Fechamento Atual > EMA200, NUNCA dê SELL. Priorize apenas BUY.\n"
+                f"Analise o Price Action e RSI. Se o sinal violar a tendência da EMA200, dê WAIT."
             )
 
             # O modelo de raciocínio (mimo-v2.5-pro) às vezes gasta todos os tokens
             # no raciocínio e devolve content vazio. Tentamos de novo (com uma
             # pequena espera) antes de desistir.
             content = ""
+            # Configuração de Few-Shot Prompting
+            few_shot_messages = [
+                {"role": "system", "content": "Você é um AI Gate rigoroso para trading quantitativo. Responda APENAS em JSON no formato: {\"decision\": \"BUY\"|\"SELL\"|\"WAIT\", \"reason\": \"justificativa curta\", \"confidence\": 0.0-1.0}"},
+                {"role": "user", "content": "Contexto: Fechamento Atual: 60000 | EMA200: 62000. Decisão sugerida: BUY."},
+                {"role": "assistant", "content": "{\"decision\": \"WAIT\", \"reason\": \"Veto: Preço abaixo da EMA200 proíbe operações de BUY.\", \"confidence\": 0.95}"},
+                {"role": "user", "content": "Contexto: Fechamento Atual: 65000 | EMA200: 62000 | RSI: 45. Decisão sugerida: BUY."},
+                {"role": "assistant", "content": "{\"decision\": \"BUY\", \"reason\": \"Aprovado: Preço acima da EMA200 e RSI favorável.\", \"confidence\": 0.85}"},
+                {"role": "user", "content": prompt}
+            ]
+
             for attempt in range(3):
                 response = await self.client.chat.completions.create(
                     model=self.model,
-                    messages=[{"role": "system", "content": "Você é um bot de trading preciso."}, {"role": "user", "content": prompt}],
+                    messages=few_shot_messages,
                     temperature=0.0,
                     max_tokens=1024
                 )
@@ -96,7 +115,8 @@ class OpenAIFilter(AbstractAIFilter):
                 "decision": decision,
                 "reason": str(result.get("reason", "")),
                 "confidence": confidence,
+                "context": context_str
             }
         except Exception as e:
             logger.error(f"Erro na decisão da IA: {e}")
-            return {"decision": "WAIT", "reason": "Erro na IA", "confidence": 0.0}
+            return {"decision": "WAIT", "reason": "Erro na IA", "confidence": 0.0, "context": ""}

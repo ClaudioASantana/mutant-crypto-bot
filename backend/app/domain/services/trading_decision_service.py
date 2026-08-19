@@ -82,5 +82,7 @@ class TradingDecisionService:
             tp_price=tp_price,
             atr=atr,
             reason=signal.reason,
-            strategy_info=strategy_info
+            strategy_info=strategy_info,
+            ai_confidence=ai_decision["confidence"],
+            ai_context=ai_decision.get("context", "")
         )

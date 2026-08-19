@@ -14,6 +14,8 @@ class TradingSignalDTO(BaseModel):
     atr: float
     reason: str
     strategy_info: str
+    ai_confidence: float = 0.0
+    ai_context: str = ""
 
 
 class TradeDTO(BaseModel):

@@ -269,6 +269,7 @@ class TradingOrchestrator:
                     self.journal.log_entry(
                         t_id, self.symbol, decision.direction.value,
                         decision.strategy_info, decision.reason,
+                        decision.ai_confidence, decision.ai_context,
                         tick.epoch, decision.entry_price, decision.atr,
                         50.0, trader.get_current_margin_usdt(), trader.leverage
                     )

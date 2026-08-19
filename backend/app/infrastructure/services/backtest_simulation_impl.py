@@ -16,8 +16,7 @@ from app.infrastructure.services.paper_trader_executor import PaperTrader
 from app.application.services.technical_analysis import (
     candles_to_df, apply_indicators,
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend, eval_pin_bar,
-    eval_abcd, eval_consecutive, eval_rsi_ema_confluence, eval_mean_reversion_exhaustion,
-    eval_bb_ma_macd
+    eval_abcd, eval_consecutive, eval_rsi_ema_confluence, eval_mean_reversion_exhaustion
 )
 
 class BacktestSimulatorImpl(AbstractBacktestSimulator):
@@ -99,5 +98,5 @@ class BacktestSimulatorImpl(AbstractBacktestSimulator):
             "EMA+MACD": eval_ema_macd, "Bollinger": eval_bollinger, "VWAP": eval_vwap,
             "SMC": eval_smc, "SuperTrend": eval_supertrend, "Pin Bar": eval_pin_bar,
             "ABCD": eval_abcd, "3 Velas": eval_consecutive, "RSI+EMA": eval_rsi_ema_confluence,
-            "Exaustão": eval_mean_reversion_exhaustion, "BB_MA_MACD": eval_bb_ma_macd
+            "Exaustão": eval_mean_reversion_exhaustion
         }.get(name)
