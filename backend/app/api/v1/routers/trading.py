@@ -15,11 +15,9 @@ from app.core.state import bots, watching_symbol
 from app.api.v1.schemas.trading import (
     AdvancedBacktestRequest, OptimizeRequest, RiskSettingsRequest
 )
-from app.application.dtos.personality_dto import PersonalityStateDTO, TradeDTO, RiskSettingsDTO
 from app.application.dtos.backtest_dto import BacktestRequestDTO
 # Importa os novos serviços de aplicação
 from app.application.services.optimization_service import OptimizationService
-from app.application.services.backtest_service import BacktestService
 
 logger = logging.getLogger(__name__)
 
@@ -35,19 +33,7 @@ def get_status():
     # Collect states from all personalities using DTOs
     personalities_states = {}
     for p_name, trader in b.paper_traders.items():
-        state_dict = trader.get_state()
-
-        # Convert to DTO for validation and clearer structure
-        risk_dict = state_dict.pop('risk')
-        risk_settings = RiskSettingsDTO(**risk_dict)
-        pending_trades = [TradeDTO(**trade) for trade in state_dict.pop('pending')]
-        history_trades = [TradeDTO(**trade) for trade in state_dict.pop('history')]
-        personality_state_dto = PersonalityStateDTO(
-            risk=risk_settings,
-            pending=pending_trades,
-            history=history_trades,
-            **state_dict
-        )
+        personality_state_dto = b._build_personality_state_dto(trader)
         # Convert back to dictionary for API response
         personalities_states[p_name] = personality_state_dto.dict()
 
@@ -126,8 +112,8 @@ async def api_backtest_advanced(req: AdvancedBacktestRequest):
         limit=req.limit,
         strategy=req.strategy
     )
-    backtest_service = BacktestService()
-    return await backtest_service.execute(dto)
+    # Usa o backtest_service injetado pelo main.py
+    return await router.backtest_service.execute(dto)
 
 @router.get("/api/risk_settings")
 def get_risk_settings():

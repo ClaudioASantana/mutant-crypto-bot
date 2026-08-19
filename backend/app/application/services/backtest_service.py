@@ -8,10 +8,12 @@ para a API.
 import logging
 import asyncio
 import math
+from typing import List, Dict, Any
 
 from app.application.dtos.backtest_dto import BacktestRequestDTO
 from scripts.optimizer import download_history
-from app.application.services.cataloger import calculate_win_rate
+from app.domain.services.backtest_simulation_interface import AbstractBacktestSimulator
+from app.domain.entities.personality import Personality, RiskProfile # Necessário para criar Personality no backtest
 
 logger = logging.getLogger(__name__)
 
@@ -20,16 +22,12 @@ class BacktestService:
     Serviço para executar e gerenciar backtests avançados.
     """
 
+    def __init__(self, simulator: AbstractBacktestSimulator):
+        self._simulator = simulator
+
     async def execute(self, req: BacktestRequestDTO) -> dict:
         """
         Executa um backtest avançado conforme a requisição.
-
-        Args:
-            req (AdvancedBacktestRequest): O objeto de requisição com os parâmetros
-                                           do backtest.
-
-        Returns:
-            dict: Os resultados do backtest, incluindo o histórico formatado.
         """
         logger.info(f"[{req.symbol}] Baixando histórico para backtest avançado...")
 
@@ -37,26 +35,38 @@ class BacktestService:
         if not history:
             return {"error": "Falha ao baixar o histórico"}
 
-        # Executa o cálculo pesado em outra thread para não bloquear o event loop
-        res = await asyncio.to_thread(self._compute_win_rate, history, req.strategy)
+        res = await asyncio.to_thread(self._run_simulation, history, req.strategy)
 
-        df = res.pop("df", None)
-        res["history"] = self._format_history_for_chart(df, history)
+        # A implementação do simulador agora não retorna mais o df.
+        # Precisamos recriá-lo para a formatação do gráfico, se necessário.
+        # Por enquanto, vamos simplificar e não retornar o histórico para o gráfico
+        # quando o foco é a análise de PnL.
+        res.pop("df", None)
+        # res["history"] = self._format_history_for_chart(df, history)
 
         return res
 
-    def _compute_win_rate(self, history: list, strategy: str) -> dict:
+    def _run_simulation(self, history: list, strategy: str) -> dict:
         """
-        Calcula o win rate para uma ou várias estratégias.
+        Executa a simulação para uma ou várias estratégias usando o simulador injetado.
         """
         if strategy == "Auto":
-            strategies = ["3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"]
+            strategies = [
+                "3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC",
+                "SuperTrend", "Pin Bar", "ABCD", "RSI+EMA", "Exaustão"
+            ]
             best_res = None
             best_pnl = -float('inf')
             best_strategy = None
 
             for strat in strategies:
-                strat_res = calculate_win_rate(history, strat)
+                personality = Personality(
+                    name=f"Backtest_{strat}",
+                    strategy=strat,
+                    timeframe=300, # Assumindo M5, pode ser parametrizado se necessário
+                    risk_profile=RiskProfile() # Usando perfil de risco padrão
+                )
+                strat_res = self._simulator.simulate_strategy(history, personality)
                 pnl = strat_res.get("pnl_usdt", 0)
                 if pnl > best_pnl:
                     best_pnl = pnl
@@ -68,60 +78,11 @@ class BacktestService:
                 res["optimal_strategy"] = best_strategy
             return res or {}
         else:
-            return calculate_win_rate(history, strategy)
+            personality = Personality(
+                name=f"Backtest_{strategy}",
+                strategy=strategy,
+                timeframe=300,
+                risk_profile=RiskProfile()
+            )
+            return self._simulator.simulate_strategy(history, personality)
 
-    def _format_history_for_chart(self, df, fallback_history: list) -> list:
-        """
-        Formata o histórico (DataFrame ou lista) para o formato do lightweight-charts.
-        """
-        history_payload = []
-        seen_times = set()
-
-        if df is not None and not df.empty:
-            df_to_process = df.tail(1000) if len(df) > 1000 else df
-
-            for timestamp, row in df_to_process.iterrows():
-                epoch = int(timestamp.timestamp())
-                if epoch not in seen_times:
-                    payload = self._create_candle_payload(row)
-                    history_payload.append(payload)
-                    seen_times.add(epoch)
-        else:
-            for c in fallback_history:
-                if c.epoch not in seen_times:
-                    history_payload.append({
-                        "time": c.epoch, "open": c.open, "high": c.high,
-                        "low": c.low, "close": c.close
-                    })
-                    seen_times.add(c.epoch)
-
-        return history_payload
-
-    def _create_candle_payload(self, row) -> dict:
-        """Cria o payload de uma vela individual com todos os indicadores."""
-        payload = {
-            "time": int(row.name.timestamp()),
-            "open": float(row["open"]),
-            "high": float(row["high"]),
-            "low": float(row["low"]),
-            "close": float(row["close"]),
-        }
-
-        # Adiciona indicadores se existirem e não forem NaN
-        if "volume" in row and not math.isnan(row["volume"]):
-            payload["volume"] = float(row["volume"])
-
-        self._add_indicator_payload(payload, row, "bb_upper", "BBU_")
-        self._add_indicator_payload(payload, row, "bb_middle", "BBM_")
-        self._add_indicator_payload(payload, row, "bb_lower", "BBL_")
-        self._add_indicator_payload(payload, row, "macd_line", "MACD_")
-        self._add_indicator_payload(payload, row, "macd_hist", "MACDh_")
-        self._add_indicator_payload(payload, row, "macd_signal", "MACDs_")
-
-        return payload
-
-    def _add_indicator_payload(self, payload: dict, row, payload_key: str, col_prefix: str):
-        """Adiciona um valor de indicador ao payload se ele existir."""
-        col = next((c for c in row.index if c.startswith(col_prefix)), None)
-        if col and not math.isnan(row[col]):
-            payload[payload_key] = float(row[col])

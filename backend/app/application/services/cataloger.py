@@ -1,16 +1,32 @@
+import math
+import uuid
 from typing import List
-from app.domain.entities.market import Candle
+from app.domain.entities.market import Candle, CandleDirection, Tick, SignalType, Signal, RiskDecision, RiskEvaluation
 from app.application.services.technical_analysis import (
     candles_to_df, apply_indicators,
     eval_ema_macd, eval_bollinger, eval_vwap, eval_smc, eval_supertrend, eval_pin_bar,
     eval_abcd, eval_consecutive, eval_rsi_ema_confluence, eval_mean_reversion_exhaustion
 )
 
-def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict:
+# Novas importações para a simulação com PaperTrader e RiskManager
+from app.infrastructure.services.paper_trader_executor import PaperTrader
+from app.infrastructure.services.risk_manager import RiskManager
+from app.domain.entities.personality import Personality, RiskProfile
+from app.domain.repositories.paper_trader_repository import AbstractPaperTraderRepository
+
+
+
+
+def calculate_win_rate(
+    closed_candles: List[Candle],
+    strategy_name: str,
+    sl_multiplier: float = 1.5,
+    tp_multiplier: float = 3.0,
+) -> dict:
     """
     Simula entradas usando a estratégia técnica sobre o histórico de velas.
     Retorna o total de sinais gerados e a % de vitoria (Win Rate).
-    Para simplificar o backtest no painel, consideramos WIN se a próxima vela fechar 
+    Para simplificar o backtest no painel, consideramos WIN se a próxima vela fechar
     a favor da direção do sinal.
     """
     if len(closed_candles) < 50:
@@ -20,12 +36,13 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
     df = candles_to_df(closed_candles)
     df = apply_indicators(df)
 
+    # Inicialização das variáveis de contagem
     signals_generated = 0
     wins = 0
     losses = 0
     pnl_usdt = 0.0
     trades = []
-    
+
     # Mapeamento da estratégia
     strategy_func = None
     if strategy_name == "EMA+MACD":
@@ -51,130 +68,99 @@ def calculate_win_rate(closed_candles: List[Candle], strategy_name: str) -> dict
     else:
         return {"signals": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "pnl_usdt": 0.0}
 
-    # Padrão Crypto Futures Default Risco 1:2
-    tp_multiplier = 3.0
-    sl_multiplier = 1.5
-    stake = 100.0
-    leverage = 10
+    # SIMULAÇÃO AVANÇADA COM RISKMANAGER E PAPERTRADER
+    # ====================================================
+
+    # Cria uma instância do RiskManager real
+    risk_manager = RiskManager()
+
+    # Cria uma personalidade de backtest que usa os parâmetros de SL/TP
+    backtest_personality = Personality(
+        name="Backtest",
+        strategy=strategy_name,
+        timeframe=300, # Fixo em M5 para este exemplo
+        risk_profile=RiskProfile(
+            sl_multiplier=sl_multiplier,
+            tp_multiplier=tp_multiplier,
+            leverage=10,
+            position_sizing_mode="fixed",
+            risk_percent=5.0, # Risco fixo de 5% da banca por trade
+            max_trade_duration_minutes=240 # 4 horas
+        )
+    )
+
+    # Cria um PaperTrader com um repositório em memória, isolado para este backtest
+    trader = PaperTrader(
+        symbol="BTC/USDT_BACKTEST",
+        identity=f"backtest_{strategy_name}_{uuid.uuid4()}",
+        repository=InMemoryPaperTraderRepository(),
+        risk_manager=risk_manager,
+        initial_balance=200.0, # Banca inicial para o backtest
+        leverage=10,
+        position_sizing_mode="fixed"
+    )
 
     for i in range(50, len(df) - 1):
         sub_df = df.iloc[:i+1]
-        
-        signal = strategy_func(sub_df)
-        
-        if signal != "NONE":
+        signal_direction_str = strategy_func(sub_df)
+
+        # Só processa se não houver trade aberto no simulador
+        if signal_direction_str != "NONE" and not trader.open_positions:
             signals_generated += 1
             entry_price = df.iloc[i]["close"]
-            
-            # Dynamic Target calculation using ATR (Default)
+            entry_epoch = int(df.index[i].timestamp())
             atr_val = df.iloc[i].get("ATRr_14", entry_price * 0.005)
 
-            if strategy_name == "3 Velas":
-                #Wiki: SL na Barra 2 (resting bar), TP = amplitude da Barra 1 (igniting bar)
-                c1 = df.iloc[i-2] # Igniting
-                c2 = df.iloc[i-1] # Resting
+            # Usar o RiskManager para calcular SL/TP
+            sl_tp_prices = risk_manager.calculate_sl_tp(
+                backtest_personality,
+                entry_price,
+                atr_val,
+                SignalType(signal_direction_str)
+            )
 
-                igniting_body = abs(c1["close"] - c1["open"])
-                if signal == "CALL":
-                    sl_price = c2["low"]
-                    tp_price = entry_price + igniting_body
-                else:
-                    sl_price = c2["high"]
-                    tp_price = entry_price - igniting_body
-            else:
-                if signal == "CALL":
-                    sl_price = entry_price - (atr_val * sl_multiplier)
-                    tp_price = entry_price + (atr_val * tp_multiplier)
-                else:
-                    sl_price = entry_price + (atr_val * sl_multiplier)
-                    tp_price = entry_price - (atr_val * tp_multiplier)
-                
-            trade_won = False
-            trade_closed = False
-            
-            # Variáveis para Trailing Stop (DESATIVADO)
-            # highest_reached = entry_price
-            # lowest_reached = entry_price
+            # Abrir o trade no simulador
+            trader.open_trade(
+                direction=signal_direction_str,
+                tf=300,
+                current_epoch=entry_epoch,
+                current_price=entry_price,
+                sl_price=sl_tp_prices["sl_price"],
+                tp_price=sl_tp_prices["tp_price"],
+                atr=atr_val,
+                personality=backtest_personality
+            )
 
-            for j in range(i+1, len(df)):
-                c_high = df['high'].iloc[j]
-                c_low = df['low'].iloc[j]
-                c_close = df['close'].iloc[j]
+            # Loop de simulação do trade
+            for j in range(i + 1, len(df)):
+                current_candle = df.iloc[j]
+                current_price = current_candle["close"] # Usamos o fechamento como preço corrente
+                current_epoch = int(df.index[j].timestamp())
 
-                current_time = int(df.index[j].timestamp())
-                entry_time = int(df.index[i].timestamp())
-                duration_seconds = current_time - entry_time
-                hit_time_stop = duration_seconds >= (240 * 60) # 4 hours
+                finished_trades = trader.check_positions(
+                    current_epoch,
+                    current_price,
+                    backtest_personality
+                )
 
-                if hit_time_stop:
-                    trade_won = False
-                    trade_closed = True
-                    exit_price = c_close
+                if finished_trades:
+                    # O trade foi fechado, podemos sair do loop de simulação
                     break
 
-                if signal == "CALL":
-                    # Trailing Stop removido. Apenas SL e TP fixos.
-                    if c_low <= sl_price:
-                        trade_won = False
-                        trade_closed = True
-                        break
-                    elif c_high >= tp_price:
-                        trade_won = True
-                        trade_closed = True
-                        break
-                else: # PUT
-                    if c_high >= sl_price:
-                        trade_won = False
-                        trade_closed = True
-                        break
-                    elif c_low <= tp_price:
-                        trade_won = True
-                        trade_closed = True
-                        break
-                        
-            if trade_closed:
-                fee = stake * leverage * 0.001
-                
-                if hit_time_stop:
-                    # Treat TIME_STOP like a partial close at current price
-                    profit = (stake * leverage * ((exit_price - entry_price) / entry_price)) if signal == "CALL" else (stake * leverage * ((entry_price - exit_price) / entry_price))
-                    profit -= fee
-                    pnl_usdt += profit
-                    if profit > 0:
-                        wins += 1
-                    else:
-                        losses += 1
-                elif trade_won:
-                    wins += 1
-                    # Calcula o lucro baseado no preço de saída (aproximado pelo TP ou SL móvel)
-                    exit_price = tp_price if signal == "CALL" and c_high >= tp_price else sl_price
-                    if signal == "PUT":
-                        exit_price = tp_price if c_low <= tp_price else sl_price
-                    
-                    profit = (stake * leverage * (abs(entry_price - exit_price) / entry_price)) - fee
-                    pnl_usdt += profit
-                else:
-                    losses += 1
-                    exit_price = sl_price
-                    # Perda no SL original ou parcial
-                    profit = -(stake * leverage * (abs(entry_price - sl_price) / entry_price)) - fee
-                    pnl_usdt += profit
-                    
-                entry_time = int(df.index[i].timestamp())
-                exit_time = int(df.index[j].timestamp())
-                trades.append({
-                    "entry_time": entry_time,
-                    "entry_price": float(entry_price),
-                    "exit_time": exit_time,
-                    "exit_price": float(exit_price),
-                    "signal": signal,
-                    "profit": float(profit)
-                })
-                
+    # Após o loop, coletar os resultados do trader
+    final_state = trader.get_state()
+    # Atualizar as variáveis de contagem com os resultados do trader
+    signals_generated = len(final_state["history"])
+    wins = sum(1 for t in final_state["history"] if t["status"] == "WIN")
+    losses = sum(1 for t in final_state["history"] if t["status"] == "LOSS")
+    trades = final_state["history"]
+    # O PNL já está calculado no trader
+    pnl_usdt = final_state["pnl"]
+
     win_rate = 0.0
     if wins + losses > 0:
         win_rate = round((wins / (wins + losses)) * 100, 2)
-        
+
     return {
         "signals": signals_generated,
         "wins": wins,

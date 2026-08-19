@@ -1,13 +1,11 @@
 import asyncio
 import logging
 import time
-from typing import List, Dict
+from typing import List, Dict, Callable
 from app.domain.entities.personality import Personality
 from app.domain.entities.performance import PersonalityPerformance
 from app.domain.services.market_data_interface import AbstractMarketDataProvider
 from app.application.services.candle_builder import CandleBuilder
-from app.application.services.simulator import PaperTrader
-from app.domain.repositories.paper_trader_repository import AbstractPaperTraderRepository
 from app.domain.services.personality_selector_service import PersonalitySelectorService
 from app.domain.services.trading_decision_service import TradingDecisionService
 from app.application.services.cataloger import calculate_win_rate
@@ -16,10 +14,12 @@ from app.application.services.technical_analysis import (
 )
 from app.application.dtos.personality_dto import PersonalityStateDTO, RiskSettingsDTO, TradeDTO
 from app.application.dtos.performance_dto import PersonalityPerformanceDTO
-from app.application.dtos.trade_dto import TradeResultDTO, TradingSignalDTO
+from app.application.dtos.trade_dto import TradingSignalDTO
 from app.domain.entities.market import Tick, AccountState, CandleDirection
 from app.domain.services.news_filter_interface import AbstractNewsFilter
 from app.domain.services.ia_filter_interface import AbstractAIFilter
+from app.domain.services.trade_executor_interface import AbstractTradeExecutor
+from app.domain.services.risk_manager_interface import AbstractRiskManager
 from app.application.services.journal import TradeJournal
 
 logger = logging.getLogger(__name__)
@@ -41,7 +41,8 @@ class TradingOrchestrator:
                  personalities: List[Personality],
                  ai_filter: AbstractAIFilter,
                  market_provider: AbstractMarketDataProvider,
-                 repository: AbstractPaperTraderRepository,
+                 trade_executor_factory: Callable[..., AbstractTradeExecutor],
+                 risk_manager: AbstractRiskManager,
                  swarm_bots: dict = None):
         self.symbol = symbol
         self.token = token
@@ -59,19 +60,18 @@ class TradingOrchestrator:
         self.builder_m5 = CandleBuilder(300)
         self.builder_m15 = CandleBuilder(900)
 
-        # Create one PaperTrader per personality with unique state files
-        self.paper_traders: Dict[str, PaperTrader] = {}
-        self.paper_trader_repository = repository
+        # Create one TradeExecutor per personality with unique state files
+        self.paper_traders: Dict[str, AbstractTradeExecutor] = {}
         for personality in personalities:
             state_filename = f"simulator_state_{self.symbol.replace('/', '_')}_{personality.name}_{personality.timeframe//60}m.json"
-            trader = PaperTrader(
+            trader = trade_executor_factory(
                 symbol=self.symbol,
                 identity=state_filename,
-                repository=self.paper_trader_repository,
                 initial_balance=200.0,
-                leverage=10
+                leverage=10,
+                position_sizing_mode=personality.risk_profile.position_sizing_mode,
+                risk_manager=risk_manager
             )
-            trader.position_sizing_mode = "volatility_adjusted"
             self.paper_traders[personality.name] = trader
 
         self.ai_filter = ai_filter
@@ -94,7 +94,7 @@ class TradingOrchestrator:
         )
 
         # Serviço de decisão de trade (injetado)
-        self.trading_decision_service = TradingDecisionService(self.news_filter, self.ai_filter)
+        self.trading_decision_service = TradingDecisionService(self.news_filter, self.ai_filter, risk_manager)
 
 
         self.auto_optimize = False
@@ -176,7 +176,8 @@ class TradingOrchestrator:
             asyncio.create_task(self.broadcast_catalog())
             # Check positions for all paper traders whenever a candle closes
             for p_name, trader in self.paper_traders.items():
-                finished_trades = trader.check_positions(tick.epoch, tick.quote)
+                personality = self.personalities[p_name]
+                finished_trades = trader.check_positions(tick.epoch, tick.quote, personality)
                 if finished_trades:
                     # Update journal and broadcast state for the specific personality
                     for trade in finished_trades:
@@ -258,7 +259,8 @@ class TradingOrchestrator:
                         current_price=decision.entry_price,
                         sl_price=decision.sl_price,
                         tp_price=decision.tp_price,
-                        atr=decision.atr
+                        atr=decision.atr,
+                        personality=personality
                     )
 
                     # Registrar trade e atualizar estado
@@ -291,22 +293,34 @@ class TradingOrchestrator:
         # Unsubscribe from MarketDataProvider
         self.market_provider.unsubscribe(self.symbol, self.on_tick)
 
+    def _build_personality_state_dto(self, trader) -> PersonalityStateDTO:
+        """
+        Constrói um PersonalityStateDTO a partir do estado bruto de um TradeExecutor.
+
+        Args:
+            trader: Instância de AbstractTradeExecutor.
+
+        Returns:
+            PersonalityStateDTO preenchido com os dados do trader.
+        """
+        state_dict = trader.get_state()
+        # Convert the state dictionary to PersonalityStateDTO
+        risk_dict = state_dict.pop('risk')
+        risk_settings = RiskSettingsDTO(**risk_dict)
+        pending_trades = [TradeDTO(**trade) for trade in state_dict.pop('pending')]
+        history_trades = [TradeDTO(**trade) for trade in state_dict.pop('history')]
+        return PersonalityStateDTO(
+            risk=risk_settings,
+            pending=pending_trades,
+            history=history_trades,
+            **state_dict
+        )
+
     async def broadcast_state(self):
         # Broadcast combined state of all personalities
         personalities_state = {}
         for name, trader in self.paper_traders.items():
-            state_dict = trader.get_state()
-            # Convert the state dictionary to PersonalityStateDTO
-            risk_dict = state_dict.pop('risk')
-            risk_settings = RiskSettingsDTO(**risk_dict)
-            pending_trades = [TradeDTO(**trade) for trade in state_dict.pop('pending')]
-            history_trades = [TradeDTO(**trade) for trade in state_dict.pop('history')]
-            personality_state_dto = PersonalityStateDTO(
-                risk=risk_settings,
-                pending=pending_trades,
-                history=history_trades,
-                **state_dict
-            )
+            personality_state_dto = self._build_personality_state_dto(trader)
             personalities_state[name] = personality_state_dto.dict()
 
         performances_state = {}

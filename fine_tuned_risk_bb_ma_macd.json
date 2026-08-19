@@ -1,0 +1,650 @@
+[
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 1.0,
+    "pnl": -37.44,
+    "wr": 52.48,
+    "dd": 18.86,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 3.0,
+    "pnl": -37.76,
+    "wr": 16.93,
+    "dd": 18.88,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 2.5,
+    "pnl": -37.77,
+    "wr": 20.5,
+    "dd": 18.89,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 3.0,
+    "pnl": -37.82,
+    "wr": 14.86,
+    "dd": 18.91,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 3.0,
+    "pnl": -37.95,
+    "wr": 18.95,
+    "dd": 19.0,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 1.0,
+    "pnl": -38.04,
+    "wr": 48.76,
+    "dd": 19.15,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 1.2,
+    "pnl": -38.06,
+    "wr": 44.37,
+    "dd": 19.1,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 3.0,
+    "pnl": -38.09,
+    "wr": 18.0,
+    "dd": 19.07,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 2.5,
+    "pnl": -38.16,
+    "wr": 22.75,
+    "dd": 19.08,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 1.5,
+    "pnl": -38.2,
+    "wr": 37.84,
+    "dd": 19.33,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 1.8,
+    "pnl": -38.23,
+    "wr": 31.98,
+    "dd": 19.45,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 1.0,
+    "pnl": -38.36,
+    "wr": 56.31,
+    "dd": 19.25,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 2.0,
+    "pnl": -38.47,
+    "wr": 27.93,
+    "dd": 19.31,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 1.2,
+    "pnl": -38.65,
+    "wr": 40.9,
+    "dd": 19.39,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 2.5,
+    "pnl": -38.65,
+    "wr": 25.51,
+    "dd": 19.35,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 2.5,
+    "pnl": -38.7,
+    "wr": 24.55,
+    "dd": 19.37,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 2.5,
+    "pnl": -38.77,
+    "wr": 18.43,
+    "dd": 19.39,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 4.0,
+    "pnl": -38.78,
+    "wr": 9.26,
+    "dd": 19.39,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 3.0,
+    "pnl": -38.79,
+    "wr": 17.61,
+    "dd": 19.42,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 3.0,
+    "pnl": -38.8,
+    "wr": 13.26,
+    "dd": 19.4,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 4.0,
+    "pnl": -38.84,
+    "wr": 7.88,
+    "dd": 19.42,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 2.0,
+    "pnl": -38.91,
+    "wr": 30.63,
+    "dd": 19.46,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 1.5,
+    "pnl": -38.93,
+    "wr": 34.83,
+    "dd": 19.67,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 1.0,
+    "pnl": -38.93,
+    "wr": 61.68,
+    "dd": 19.5,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 1.8,
+    "pnl": -38.97,
+    "wr": 34.91,
+    "dd": 19.72,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 1.2,
+    "pnl": -39.01,
+    "wr": 47.97,
+    "dd": 19.51,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 1.5,
+    "pnl": -39.13,
+    "wr": 41.22,
+    "dd": 19.71,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 1.8,
+    "pnl": -39.16,
+    "wr": 28.99,
+    "dd": 19.81,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 3.0,
+    "pnl": -39.19,
+    "wr": 19.72,
+    "dd": 19.62,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.5,
+    "tp": 5.0,
+    "pnl": -39.27,
+    "wr": 5.64,
+    "dd": 19.64,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 4.0,
+    "pnl": -39.29,
+    "wr": 10.05,
+    "dd": 19.65,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 2.0,
+    "pnl": -39.31,
+    "wr": 33.18,
+    "dd": 19.68,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 4.0,
+    "pnl": -39.32,
+    "wr": 9.57,
+    "dd": 19.66,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 2.0,
+    "pnl": -39.35,
+    "wr": 34.17,
+    "dd": 19.7,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 1.0,
+    "pnl": -39.37,
+    "wr": 62.95,
+    "dd": 19.72,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.2,
+    "tp": 5.0,
+    "pnl": -39.39,
+    "wr": 4.5,
+    "dd": 19.69,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 2.5,
+    "pnl": -39.42,
+    "wr": 24.1,
+    "dd": 19.73,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 1.8,
+    "pnl": -39.44,
+    "wr": 37.73,
+    "dd": 19.86,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 2.0,
+    "pnl": -39.56,
+    "wr": 25.39,
+    "dd": 19.78,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 1.0,
+    "pnl": -39.61,
+    "wr": 59.68,
+    "dd": 19.85,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 1.2,
+    "pnl": -39.62,
+    "wr": 52.61,
+    "dd": 19.81,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 5.0,
+    "pnl": -39.77,
+    "wr": 6.39,
+    "dd": 19.89,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 5.0,
+    "pnl": -39.78,
+    "wr": 5.92,
+    "dd": 19.89,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 1.8,
+    "pnl": -39.79,
+    "wr": 38.95,
+    "dd": 20.04,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.0,
+    "tp": 1.5,
+    "pnl": -39.8,
+    "wr": 44.67,
+    "dd": 19.92,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 4.0,
+    "pnl": -39.85,
+    "wr": 6.97,
+    "dd": 19.93,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 2.5,
+    "pnl": -39.88,
+    "wr": 26.54,
+    "dd": 19.96,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 4.0,
+    "pnl": -39.97,
+    "wr": 9.48,
+    "dd": 19.99,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 1.2,
+    "pnl": -39.99,
+    "wr": 53.86,
+    "dd": 20.0,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.0,
+    "tp": 5.0,
+    "pnl": -40.03,
+    "wr": 4.49,
+    "dd": 20.01,
+    "trades": 445
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 2.0,
+    "pnl": -40.12,
+    "wr": 32.43,
+    "dd": 20.08,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.2,
+    "tp": 1.5,
+    "pnl": -40.18,
+    "wr": 45.91,
+    "dd": 20.11,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 1.2,
+    "pnl": -40.22,
+    "wr": 50.9,
+    "dd": 20.11,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 1.8,
+    "pnl": -40.22,
+    "wr": 36.71,
+    "dd": 20.31,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 1.5,
+    "pnl": -40.35,
+    "wr": 43.47,
+    "dd": 20.29,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 1.8,
+    "tp": 5.0,
+    "pnl": -40.42,
+    "wr": 5.87,
+    "dd": 20.21,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 1.0,
+    "pnl": -40.55,
+    "wr": 65.07,
+    "dd": 20.32,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 2.0,
+    "pnl": -40.58,
+    "wr": 35.47,
+    "dd": 20.31,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 4.0,
+    "pnl": -40.7,
+    "wr": 10.09,
+    "dd": 20.35,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 3.0,
+    "pnl": -40.87,
+    "wr": 21.21,
+    "dd": 20.46,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 1.8,
+    "pnl": -41.03,
+    "wr": 40.27,
+    "dd": 20.57,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 1.2,
+    "pnl": -41.1,
+    "wr": 55.94,
+    "dd": 20.55,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 5.0,
+    "pnl": -41.16,
+    "wr": 6.42,
+    "dd": 20.58,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 2.5,
+    "tp": 1.5,
+    "pnl": -41.39,
+    "wr": 47.49,
+    "dd": 20.72,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 2.5,
+    "pnl": -41.69,
+    "wr": 28.14,
+    "dd": 20.87,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 2.0,
+    "pnl": -42.38,
+    "wr": 37.67,
+    "dd": 21.21,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 1.0,
+    "pnl": -42.44,
+    "wr": 68.45,
+    "dd": 21.26,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 4.0,
+    "pnl": -42.45,
+    "wr": 10.96,
+    "dd": 21.23,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 5.0,
+    "pnl": -42.71,
+    "wr": 7.23,
+    "dd": 21.36,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 1.8,
+    "pnl": -42.79,
+    "wr": 42.56,
+    "dd": 21.4,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 1.2,
+    "pnl": -42.93,
+    "wr": 59.16,
+    "dd": 21.47,
+    "trades": 444
+  },
+  {
+    "strategy": "BB_MA_MACD",
+    "sl": 3.0,
+    "tp": 1.5,
+    "pnl": -43.4,
+    "wr": 50.12,
+    "dd": 21.7,
+    "trades": 444
+  }
+]

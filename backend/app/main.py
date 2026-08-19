@@ -1,9 +1,12 @@
 import asyncio
 import logging
 import json
+# pyrefly: ignore [missing-import]
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+# pyrefly: ignore [missing-import]
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+# pyrefly: ignore [missing-import]
 from dotenv import load_dotenv
 
 from app.application.services.trading_orchestrator import TradingOrchestrator
@@ -11,14 +14,29 @@ from app.infrastructure.services.news_filter import NewsFilter
 from app.infrastructure.market_data.market_data_provider import MarketDataProvider
 from app.infrastructure.repositories.json_paper_trader_repository import JsonPaperTraderRepository
 from app.infrastructure.ai_filter_openai import OpenAIFilter
-from app.infrastructure.config_loader import ConfigurationLoader
+from app.infrastructure.config_loader import ConfigurationLoader, ServiceResolver
 from app.infrastructure.websocket.connection_manager import ConnectionManager
 from app.api.v1.routers.trading import router as trading_router
 from app.core.state import bots, watching_symbol, set_watching_symbol
+from app.infrastructure.services.paper_trader_executor import PaperTrader
+from app.infrastructure.services.risk_manager import RiskManager
+from app.infrastructure.repositories.in_memory_paper_trader_repository import InMemoryPaperTraderRepository
+from app.infrastructure.services.backtest_simulation_impl import BacktestSimulatorImpl
+from app.application.services.backtest_service import BacktestService
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# --- Registro de Implementações Concretas ---
+ServiceResolver.register("JsonPaperTraderRepository", JsonPaperTraderRepository)
+ServiceResolver.register("NewsFilter", NewsFilter)
+ServiceResolver.register("OpenAIFilter", OpenAIFilter)
+ServiceResolver.register("MarketDataProvider", MarketDataProvider)
+ServiceResolver.register("PaperTrader", PaperTrader)
+ServiceResolver.register("RiskManager", RiskManager)
+ServiceResolver.register("BacktestSimulator", BacktestSimulatorImpl)
+# ---------------------------------------------
 
 # Instâncias de infraestrutura (escopo de módulo — usadas pelo lifespan e WS endpoint)
 manager = ConnectionManager()
@@ -28,15 +46,26 @@ config_loader = ConfigurationLoader()
 active_portfolios = config_loader.load_portfolios_from_json("config/portfolios.json")
 active_symbols = list(active_portfolios.keys())
 
+# Carrega e constrói os serviços de infraestrutura
+service_configs = config_loader.load_service_configs_from_json("config/services.json")
+services = config_loader.build_services(service_configs)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!")
 
-    # Composition Root: instancia as implementações concretas (infraestrutura)
-    market_provider = MarketDataProvider()
-    repository = JsonPaperTraderRepository("data")
-    news_filter = NewsFilter()
-    ai_filter = OpenAIFilter()
+    # Composition Root: usa os serviços instanciados via configuração
+    market_provider = services["market_data_provider"]
+    repository = services["paper_trader_repository"]
+    news_filter = services["news_filter"]
+    ai_filter = services["ai_filter"]
+    risk_manager = services["risk_manager"]
+    TradeExecutorImpl = ServiceResolver.get(service_configs["trade_executor"]["implementation"])
+
+    # Factory para o Trade Executor
+    def trade_executor_factory(**kwargs):
+        return TradeExecutorImpl(repository=repository, **kwargs)
 
     for sym in active_symbols:
         personalities = active_portfolios[sym]
@@ -48,12 +77,33 @@ async def lifespan(app: FastAPI):
             personalities=personalities,
             ai_filter=ai_filter,
             market_provider=market_provider,
-            repository=repository,
+            trade_executor_factory=trade_executor_factory,
+            risk_manager=risk_manager,
             swarm_bots=bots
         )
         bots[sym] = bot
         asyncio.create_task(bot.start())
         await market_provider.start_client_for_symbol(sym)
+
+    # Injeta o BacktestService no app state para uso pelas rotas da API
+    # Factory para criar PaperTrader com repositório em memória para backtesting
+    def backtest_trader_factory(identity: str):
+        return PaperTrader(
+            symbol="BTC/USDT_BACKTEST",
+            identity=identity,
+            repository=InMemoryPaperTraderRepository(),
+            risk_manager=risk_manager,
+            initial_balance=200.0,
+            leverage=10,
+            position_sizing_mode="fixed"
+        )
+
+    backtest_simulator = BacktestSimulatorImpl(risk_manager, backtest_trader_factory)
+    backtest_service = BacktestService(backtest_simulator)
+
+    # Injeta o backtest_service no router. Uma abordagem mais robusta usaria
+    # o sistema de dependências do FastAPI com Depends().
+    trading_router.backtest_service = backtest_service
 
     yield
     logger.info("Desligando o ENXAME...")

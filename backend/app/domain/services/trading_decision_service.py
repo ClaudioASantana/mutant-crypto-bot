@@ -10,18 +10,19 @@ from typing import Optional
 from app.domain.entities.personality import Personality
 from app.domain.entities.market import AccountState, Signal, SignalType
 from app.domain.services.ia_filter_interface import AbstractAIFilter
-from app.domain.services.risk_service import evaluate_risk
 # Importa o registro de estratégias
 from app.domain.services.strategy_registry import StrategyRegistry
 from app.domain.services.news_filter_interface import AbstractNewsFilter
+from app.domain.services.risk_manager_interface import AbstractRiskManager
 from app.application.dtos.trade_dto import TradingSignalDTO
 
 logger = logging.getLogger(__name__)
 
 class TradingDecisionService:
-    def __init__(self, news_filter: AbstractNewsFilter, ai_filter: AbstractAIFilter):
+    def __init__(self, news_filter: AbstractNewsFilter, ai_filter: AbstractAIFilter, risk_manager: AbstractRiskManager):
         self.news_filter = news_filter
         self.ai_filter = ai_filter
+        self.risk_manager = risk_manager
 
     async def evaluate(self,
                  personality: Personality,
@@ -60,9 +61,9 @@ class TradingDecisionService:
 
         signal_type = SignalType(signal_type)
 
-        # 4. Avaliação de Risco da Conta
+        # 4. Avaliação de Risco da Conta (usando o RiskManager injetado)
         signal = Signal(type=signal_type, reason=ai_decision["reason"])
-        risk_eval = evaluate_risk(signal, account_state)
+        risk_eval = self.risk_manager.evaluate_pre_trade_risk(signal, account_state, personality)
         if risk_eval.decision != "APPROVED":
             return None
 

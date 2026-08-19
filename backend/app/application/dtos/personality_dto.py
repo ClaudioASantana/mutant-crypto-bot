@@ -1,7 +1,18 @@
+"""
+DTOs relacionados à entidade Personality.
+
+Usados para transferir dados de estado e configuração de uma personalidade
+entre as camadas da aplicação, principalmente para a API.
+"""
 from pydantic import BaseModel
-from typing import List, Dict, Any, Optional
+from typing import List
+
+from app.application.dtos.trade_dto import TradeDTO
+
 
 class RiskSettingsDTO(BaseModel):
+    """DTO para as configurações de risco de uma personalidade."""
+
     consecutive_losses: int
     next_margin: float
     stop_loss: float
@@ -13,24 +24,13 @@ class RiskSettingsDTO(BaseModel):
     risk_percent: float
     max_trade_duration_minutes: int
 
-class TradeDTO(BaseModel):
-    id: str
-    direction: str
-    entry_price: float
-    margin: float
-    qty: float
-    sl: float
-    tp: float
-    entry_epoch: int
-    status: str
-    pnl: float
-    atr: float
-    highest_reached: float
-    lowest_reached: float
-    exit_price: Optional[float] = None
-    exit_epoch: Optional[int] = None
 
 class PersonalityStateDTO(BaseModel):
+    """
+    DTO que representa o estado completo e atual de uma personalidade.
+    Agrega o saldo, PnL, trades e configurações de risco.
+    """
+
     balance: float
     pnl: float
     pending: List[TradeDTO]

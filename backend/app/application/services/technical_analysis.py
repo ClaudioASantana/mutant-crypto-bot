@@ -28,8 +28,10 @@ def apply_indicators(df: pd.DataFrame):
         return df
     # EMA + MACD
     df.ta.ema(length=9, append=True)
+    df.ta.ema(length=15, append=True)
     df.ta.ema(length=20, append=True)
     df.ta.ema(length=21, append=True)
+    df.ta.ema(length=50, append=True)
     df.ta.macd(fast=12, slow=26, signal=9, append=True)
     
     # Bollinger
@@ -213,8 +215,57 @@ def eval_supertrend(df: pd.DataFrame) -> str:
         return "CALL"
     if prev_dir > 0 and last_dir < 0:
         return "PUT"
-        
+
     return "NONE"
+
+@register_strategy("BB_MA_MACD")
+def eval_bb_ma_macd(df: pd.DataFrame) -> str:
+    """
+    Estratégia do usuário: Bollinger Bands + Média Móvel 15 + MACD.
+    CALL:
+      - Fechamento acima da linha do meio (BBM) das Bollinger.
+      - Fechamento acima da EMA 15.
+      - MACD (linha azul/fast) cruza acima da linha de sinal (laranja/slow).
+    PUT: o contrário.
+    """
+    if df.empty or len(df) < 30:
+        return "NONE"
+
+    last = df.iloc[-1]
+    prev = df.iloc[-2]
+
+    close = last["close"]
+    bbm = last.get("BBM_20_2.0_2.0", 0)
+    ema15 = last.get("EMA_15", 0)
+
+    macd_last = last.get("MACD_12_26_9", 0)
+    macd_signal_last = last.get("MACDs_12_26_9", 0)
+    macd_prev = prev.get("MACD_12_26_9", 0)
+    macd_signal_prev = prev.get("MACDs_12_26_9", 0)
+
+    if bbm == 0 or ema15 == 0:
+        return "NONE"
+
+    # CALL: preço acima de BBM e EMA15, MACD cruza acima do sinal
+    if (
+        close > bbm
+        and close > ema15
+        and macd_prev <= macd_signal_prev
+        and macd_last > macd_signal_last
+    ):
+        return "CALL"
+
+    # PUT: preço abaixo de BBM e EMA15, MACD cruza abaixo do sinal
+    if (
+        close < bbm
+        and close < ema15
+        and macd_prev >= macd_signal_prev
+        and macd_last < macd_signal_last
+    ):
+        return "PUT"
+
+    return "NONE"
+
 
 @register_strategy("SMC")
 def eval_smc(df: pd.DataFrame) -> str:
@@ -300,6 +351,66 @@ def eval_wyckoff_smc(df: pd.DataFrame) -> str:
 
 def _is_bullish_candle(candle) -> bool:
     return candle["close"] > candle["open"]
+
+
+@register_strategy("Rompimento")
+def eval_momentum_breakout(df: pd.DataFrame) -> str:
+    """
+    Estratégia de Rompimento de Inércia (Momentum Breakout) v2:
+    1. Consolidação prévia: as últimas 5 velas devem estar em range < 1.5x ATR.
+    2. Rompimento de Donchian(20) com volume institucional (>= 1.8x média).
+    3. Candle de força com rejeição mínima (pavio oposto < 30% do range).
+    4. Alinhamento com EMA 20 e EMA 50.
+    """
+    if len(df) < 55:
+        return "NONE"
+
+    last = df.iloc[-1]
+
+    atr = last.get("ATRr_14", last["close"] * 0.01)
+    avg_vol = df["volume"].iloc[-21:-1].mean()
+    dcu = df["high"].iloc[-21:-1].max()
+    dcl = df["low"].iloc[-21:-1].min()
+    ema_20 = last.get("EMA_20", 0)
+    ema_50 = last.get("EMA_50", 0)
+
+    body = abs(last["close"] - last["open"])
+    range_candle = last["high"] - last["low"]
+    if range_candle == 0:
+        return "NONE"
+
+    upper_wick = last["high"] - max(last["open"], last["close"])
+    lower_wick = min(last["open"], last["close"]) - last["low"]
+
+    # Consolidação prévia
+    consolidation = df.iloc[-6:-1]
+    consolidation_range = consolidation["high"].max() - consolidation["low"].min()
+    has_consolidation = consolidation_range <= (atr * 1.5)
+
+    strong_body = body > (atr * 1.2)
+    high_volume = last["volume"] > (avg_vol * 1.8)
+
+    if (
+        last["close"] > dcu
+        and strong_body
+        and high_volume
+        and (upper_wick / range_candle) < 0.30
+        and last["close"] > ema_20 > ema_50
+        and has_consolidation
+    ):
+        return "CALL"
+
+    if (
+        last["close"] < dcl
+        and strong_body
+        and high_volume
+        and (lower_wick / range_candle) < 0.30
+        and last["close"] < ema_20 < ema_50
+        and has_consolidation
+    ):
+        return "PUT"
+
+    return "NONE"
 
 def _is_bearish_candle(candle) -> bool:
     return candle["close"] < candle["open"]

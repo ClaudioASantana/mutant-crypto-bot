@@ -1,0 +1,186 @@
+{
+  "SuperTrend": [
+    {
+      "strategy": "SuperTrend",
+      "sl": 1.5,
+      "tp": 1.0,
+      "pnl": -16.56,
+      "wr": 62.0,
+      "dd": 1.78,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 1.8,
+      "tp": 1.0,
+      "pnl": -16.67,
+      "wr": 66.0,
+      "dd": 1.57,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 1.8,
+      "tp": 1.5,
+      "pnl": -16.73,
+      "wr": 48.0,
+      "dd": 1.65,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 1.5,
+      "tp": 1.5,
+      "pnl": -16.74,
+      "wr": 44.0,
+      "dd": 1.86,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 1.8,
+      "tp": 1.2,
+      "pnl": -16.92,
+      "wr": 60.0,
+      "dd": 1.56,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 1.5,
+      "tp": 1.2,
+      "pnl": -16.93,
+      "wr": 56.0,
+      "dd": 1.76,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 2.0,
+      "tp": 1.0,
+      "pnl": -16.99,
+      "wr": 68.0,
+      "dd": 1.51,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 2.0,
+      "tp": 1.5,
+      "pnl": -17.05,
+      "wr": 50.0,
+      "dd": 1.57,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 2.0,
+      "tp": 1.2,
+      "pnl": -17.22,
+      "wr": 62.0,
+      "dd": 1.5,
+      "trades": 50
+    },
+    {
+      "strategy": "SuperTrend",
+      "sl": 1.5,
+      "tp": 2.5,
+      "pnl": -17.45,
+      "wr": 26.0,
+      "dd": 1.88,
+      "trades": 50
+    }
+  ],
+  "Exaust\u00e3o": [
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 2.0,
+      "tp": 2.5,
+      "pnl": -0.03,
+      "wr": 57.14,
+      "dd": 0.53,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 2.2,
+      "tp": 2.5,
+      "pnl": -0.03,
+      "wr": 57.14,
+      "dd": 0.53,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 1.5,
+      "tp": 2.5,
+      "pnl": -0.23,
+      "wr": 50.0,
+      "dd": 0.53,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 1.8,
+      "tp": 2.5,
+      "pnl": -0.23,
+      "wr": 50.0,
+      "dd": 0.53,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 2.0,
+      "tp": 2.0,
+      "pnl": -0.34,
+      "wr": 71.43,
+      "dd": 0.47,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 2.2,
+      "tp": 2.0,
+      "pnl": -0.34,
+      "wr": 71.43,
+      "dd": 0.47,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 2.0,
+      "tp": 1.8,
+      "pnl": -0.4,
+      "wr": 71.43,
+      "dd": 0.5,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 2.2,
+      "tp": 1.8,
+      "pnl": -0.4,
+      "wr": 71.43,
+      "dd": 0.5,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 1.2,
+      "tp": 2.5,
+      "pnl": -0.43,
+      "wr": 40.0,
+      "dd": 0.56,
+      "trades": 15
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "sl": 2.0,
+      "tp": 1.5,
+      "pnl": -0.46,
+      "wr": 71.43,
+      "dd": 0.5,
+      "trades": 15
+    }
+  ]
+}

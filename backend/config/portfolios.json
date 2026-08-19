@@ -6,7 +6,8 @@
       "timeframe": 900,
       "risk_config": {
         "sl_multiplier": 1.5,
-        "tp_multiplier": 8.0
+        "tp_multiplier": 8.0,
+        "position_sizing_mode": "volatility_adjusted"
       }
     },
     {
@@ -15,7 +16,18 @@
       "timeframe": 300,
       "risk_config": {
         "sl_multiplier": 1.5,
-        "tp_multiplier": 3.0
+        "tp_multiplier": 3.0,
+        "position_sizing_mode": "volatility_adjusted"
+      }
+    },
+    {
+      "name": "Exaustao_M5",
+      "strategy": "Exaustão",
+      "timeframe": 300,
+      "risk_config": {
+        "sl_multiplier": 2.0,
+        "tp_multiplier": 2.5,
+        "position_sizing_mode": "fixed"
       }
     }
   ],
@@ -26,7 +38,8 @@
       "timeframe": 900,
       "risk_config": {
         "sl_multiplier": 1.5,
-        "tp_multiplier": 8.0
+        "tp_multiplier": 8.0,
+        "position_sizing_mode": "volatility_adjusted"
       }
     },
     {
@@ -35,7 +48,8 @@
       "timeframe": 300,
       "risk_config": {
         "sl_multiplier": 1.5,
-        "tp_multiplier": 3.0
+        "tp_multiplier": 3.0,
+        "position_sizing_mode": "volatility_adjusted"
       }
     }
   ],
@@ -46,7 +60,8 @@
       "timeframe": 900,
       "risk_config": {
         "sl_multiplier": 1.5,
-        "tp_multiplier": 8.0
+        "tp_multiplier": 8.0,
+        "position_sizing_mode": "volatility_adjusted"
       }
     },
     {
@@ -55,7 +70,8 @@
       "timeframe": 300,
       "risk_config": {
         "sl_multiplier": 1.5,
-        "tp_multiplier": 3.0
+        "tp_multiplier": 3.0,
+        "position_sizing_mode": "volatility_adjusted"
       }
     }
   ],
@@ -66,7 +82,8 @@
       "timeframe": 900,
       "risk_config": {
         "sl_multiplier": 1.5,
-        "tp_multiplier": 8.0
+        "tp_multiplier": 8.0,
+        "position_sizing_mode": "volatility_adjusted"
       }
     },
     {
@@ -75,7 +92,8 @@
       "timeframe": 300,
       "risk_config": {
         "sl_multiplier": 1.5,
-        "tp_multiplier": 3.0
+        "tp_multiplier": 3.0,
+        "position_sizing_mode": "volatility_adjusted"
       }
     }
   ]

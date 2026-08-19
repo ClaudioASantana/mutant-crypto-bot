@@ -1,0 +1,218 @@
+[
+  {
+    "sl_multiplier": 1.5,
+    "tp_multiplier": 1.5,
+    "signals": 50,
+    "wins": 22,
+    "losses": 28,
+    "win_rate": 44.0,
+    "pnl_usdt": -16.74
+  },
+  {
+    "sl_multiplier": 2.0,
+    "tp_multiplier": 1.5,
+    "signals": 50,
+    "wins": 25,
+    "losses": 25,
+    "win_rate": 50.0,
+    "pnl_usdt": -17.05
+  },
+  {
+    "sl_multiplier": 2.5,
+    "tp_multiplier": 1.5,
+    "signals": 50,
+    "wins": 25,
+    "losses": 25,
+    "win_rate": 50.0,
+    "pnl_usdt": -17.33
+  },
+  {
+    "sl_multiplier": 1.5,
+    "tp_multiplier": 2.0,
+    "signals": 50,
+    "wins": 18,
+    "losses": 32,
+    "win_rate": 36.0,
+    "pnl_usdt": -17.53
+  },
+  {
+    "sl_multiplier": 1.5,
+    "tp_multiplier": 4.0,
+    "signals": 50,
+    "wins": 8,
+    "losses": 42,
+    "win_rate": 16.0,
+    "pnl_usdt": -17.56
+  },
+  {
+    "sl_multiplier": 2.0,
+    "tp_multiplier": 2.0,
+    "signals": 50,
+    "wins": 20,
+    "losses": 30,
+    "win_rate": 40.0,
+    "pnl_usdt": -17.82
+  },
+  {
+    "sl_multiplier": 2.0,
+    "tp_multiplier": 4.0,
+    "signals": 50,
+    "wins": 8,
+    "losses": 42,
+    "win_rate": 16.0,
+    "pnl_usdt": -17.93
+  },
+  {
+    "sl_multiplier": 2.5,
+    "tp_multiplier": 2.0,
+    "signals": 50,
+    "wins": 20,
+    "losses": 30,
+    "win_rate": 40.0,
+    "pnl_usdt": -17.93
+  },
+  {
+    "sl_multiplier": 1.5,
+    "tp_multiplier": 3.0,
+    "signals": 50,
+    "wins": 11,
+    "losses": 39,
+    "win_rate": 22.0,
+    "pnl_usdt": -17.94
+  },
+  {
+    "sl_multiplier": 2.5,
+    "tp_multiplier": 4.0,
+    "signals": 50,
+    "wins": 8,
+    "losses": 42,
+    "win_rate": 16.0,
+    "pnl_usdt": -17.98
+  },
+  {
+    "sl_multiplier": 2.0,
+    "tp_multiplier": 3.0,
+    "signals": 50,
+    "wins": 12,
+    "losses": 38,
+    "win_rate": 24.0,
+    "pnl_usdt": -18.34
+  },
+  {
+    "sl_multiplier": 2.5,
+    "tp_multiplier": 3.0,
+    "signals": 50,
+    "wins": 12,
+    "losses": 38,
+    "win_rate": 24.0,
+    "pnl_usdt": -18.36
+  },
+  {
+    "sl_multiplier": 1.5,
+    "tp_multiplier": 6.0,
+    "signals": 50,
+    "wins": 5,
+    "losses": 45,
+    "win_rate": 10.0,
+    "pnl_usdt": -18.47
+  },
+  {
+    "sl_multiplier": 1.5,
+    "tp_multiplier": 5.0,
+    "signals": 50,
+    "wins": 6,
+    "losses": 44,
+    "win_rate": 12.0,
+    "pnl_usdt": -18.57
+  },
+  {
+    "sl_multiplier": 2.0,
+    "tp_multiplier": 6.0,
+    "signals": 50,
+    "wins": 5,
+    "losses": 45,
+    "win_rate": 10.0,
+    "pnl_usdt": -18.87
+  },
+  {
+    "sl_multiplier": 2.5,
+    "tp_multiplier": 6.0,
+    "signals": 50,
+    "wins": 5,
+    "losses": 45,
+    "win_rate": 10.0,
+    "pnl_usdt": -18.91
+  },
+  {
+    "sl_multiplier": 2.0,
+    "tp_multiplier": 5.0,
+    "signals": 50,
+    "wins": 6,
+    "losses": 44,
+    "win_rate": 12.0,
+    "pnl_usdt": -18.98
+  },
+  {
+    "sl_multiplier": 2.5,
+    "tp_multiplier": 5.0,
+    "signals": 50,
+    "wins": 6,
+    "losses": 44,
+    "win_rate": 12.0,
+    "pnl_usdt": -19.05
+  },
+  {
+    "sl_multiplier": 1.0,
+    "tp_multiplier": 1.5,
+    "signals": 50,
+    "wins": 18,
+    "losses": 32,
+    "win_rate": 36.0,
+    "pnl_usdt": -19.13
+  },
+  {
+    "sl_multiplier": 1.0,
+    "tp_multiplier": 2.0,
+    "signals": 50,
+    "wins": 15,
+    "losses": 35,
+    "win_rate": 30.0,
+    "pnl_usdt": -19.71
+  },
+  {
+    "sl_multiplier": 1.0,
+    "tp_multiplier": 4.0,
+    "signals": 50,
+    "wins": 6,
+    "losses": 44,
+    "win_rate": 12.0,
+    "pnl_usdt": -19.78
+  },
+  {
+    "sl_multiplier": 1.0,
+    "tp_multiplier": 3.0,
+    "signals": 50,
+    "wins": 9,
+    "losses": 41,
+    "win_rate": 18.0,
+    "pnl_usdt": -19.97
+  },
+  {
+    "sl_multiplier": 1.0,
+    "tp_multiplier": 5.0,
+    "signals": 50,
+    "wins": 5,
+    "losses": 45,
+    "win_rate": 10.0,
+    "pnl_usdt": -20.52
+  },
+  {
+    "sl_multiplier": 1.0,
+    "tp_multiplier": 6.0,
+    "signals": 50,
+    "wins": 4,
+    "losses": 46,
+    "win_rate": 8.0,
+    "pnl_usdt": -20.63
+  }
+]

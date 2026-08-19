@@ -1,0 +1,82 @@
+[
+  {
+    "strategy": "Exaust\u00e3o",
+    "signals": 15,
+    "wins": 8,
+    "losses": 7,
+    "win_rate": 53.33,
+    "pnl_usdt": -2.01
+  },
+  {
+    "strategy": "RSI+EMA",
+    "signals": 116,
+    "wins": 41,
+    "losses": 75,
+    "win_rate": 35.34,
+    "pnl_usdt": -94.35
+  },
+  {
+    "strategy": "SuperTrend",
+    "signals": 218,
+    "wins": 80,
+    "losses": 137,
+    "win_rate": 36.87,
+    "pnl_usdt": -206.02
+  },
+  {
+    "strategy": "EMA+MACD",
+    "signals": 332,
+    "wins": 118,
+    "losses": 213,
+    "win_rate": 35.65,
+    "pnl_usdt": -285.71
+  },
+  {
+    "strategy": "Pin Bar",
+    "signals": 464,
+    "wins": 153,
+    "losses": 310,
+    "win_rate": 33.05,
+    "pnl_usdt": -412.99
+  },
+  {
+    "strategy": "3 Velas",
+    "signals": 438,
+    "wins": 287,
+    "losses": 151,
+    "win_rate": 65.53,
+    "pnl_usdt": -458.47
+  },
+  {
+    "strategy": "VWAP",
+    "signals": 478,
+    "wins": 163,
+    "losses": 315,
+    "win_rate": 34.1,
+    "pnl_usdt": -459.48
+  },
+  {
+    "strategy": "Bollinger",
+    "signals": 964,
+    "wins": 348,
+    "losses": 615,
+    "win_rate": 36.14,
+    "pnl_usdt": -952.82
+  },
+  {
+    "strategy": "ABCD",
+    "signals": 1224,
+    "wins": 434,
+    "losses": 786,
+    "win_rate": 35.57,
+    "pnl_usdt": -1127.42
+  },
+  {
+    "strategy": "SMC",
+    "signals": 2730,
+    "wins": 971,
+    "losses": 1755,
+    "win_rate": 35.62,
+    "pnl_usdt": -2522.21
+  }
+]
