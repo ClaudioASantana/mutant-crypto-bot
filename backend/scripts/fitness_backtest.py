@@ -25,8 +25,8 @@ spec.loader.exec_module(db)
 fetch_klines   = db.fetch_klines
 STRATEGIES     = db.STRATEGIES
 
-from app.models.performance import PersonalityPerformance
-from app.engines.technical_analysis import (
+from app.domain.entities.performance import PersonalityPerformance
+from app.application.services.technical_analysis import (
     apply_indicators, eval_three_candles_composite
 )
 

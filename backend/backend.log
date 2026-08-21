@@ -1,0 +1,454 @@
+INFO:sentence_transformers.base.model:No device provided, using cpu
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+INFO:sentence_transformers.base.model:Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 5226.52it/s]
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/rag/chroma_trade_history.py:24: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  self.vectorstore = Chroma(
+INFO:app.rag.chroma_trade_history:ChromaTradeHistory inicializado na coleção 'trade_history'.
+INFO:     Started server process [3380708]
+INFO:     Waiting for application startup.
+INFO:app.main:Iniciando o ENXAME (Swarm)... Levantando bots com personalidades!
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BTC/USDT.
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BTC/USDT...
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para ETH/USDT.
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para ETH/USDT...
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para SOL/USDT.
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para SOL/USDT...
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Callback registrado para BNB/USDT.
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Iniciando cliente Binance para BNB/USDT...
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BTC/USDT já está ativo.
+INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Baixando historico...
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para ETH/USDT já está ativo.
+INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Baixando historico...
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para SOL/USDT já está ativo.
+INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Baixando historico...
+INFO:app.infrastructure.market_data.market_data_provider:[MarketDataProvider] Cliente Binance para BNB/USDT já está ativo.
+INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Baixando historico...
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/ethusdt@trade
+INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/bnbusdt@trade
+INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/solusdt@trade
+INFO:app.infrastructure.market_data.binance_client:[ETH/USDT] Binance WS Conectado!
+INFO:app.infrastructure.market_data.binance_client:[BNB/USDT] Binance WS Conectado!
+INFO:app.infrastructure.market_data.binance_client:[SOL/USDT] Binance WS Conectado!
+INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Conectando ao websocket da Binance (testnet): wss://stream.binancefuture.com/ws/btcusdt@trade
+INFO:app.infrastructure.market_data.binance_client:[BTC/USDT] Binance WS Conectado!
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-46674' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-46682' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-46687' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-46690' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-47861' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-47870' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-47879' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-47881' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-48995' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-48999' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-49007' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-49020' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-49749' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-49752' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-49755' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-49765' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-50801' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-50809' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-50812' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-50819' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-51634' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-51637' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-51645' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-51654' coro=<TradingOrchestrator.broadcast_catalog() done, defined at /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py:133> exception=NameError("name 'InMemoryPaperTraderRepository' is not defined")>
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/trading_orchestrator.py", line 137, in broadcast_catalog
+    stats = await asyncio.to_thread(calculate_win_rate, b.closed_candles, strategy_name)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/app/application/services/cataloger.py", line 96, in calculate_win_rate
+    repository=InMemoryPaperTraderRepository(),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'InMemoryPaperTraderRepository' is not defined. Did you mean: 'AbstractPaperTraderRepository'?

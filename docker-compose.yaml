@@ -1,4 +1,31 @@
 services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    command: redis-server --requirepass "mutant_redis_dev"
+
+  celery_worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    environment:
+      - CELERY_BROKER_URL=redis://:mutant_redis_dev@redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://:mutant_redis_dev@redis:6379/0
+      - OPENAI_BASE_URL=http://host.docker.internal:8080/v1
+    command: ["celery", "-A", "app.infrastructure.queue.celery_app.celery_app", "worker", "--loglevel=info"]
+    depends_on:
+      - redis
+    restart: unless-stopped
+    volumes:
+      - mutant-chromadb:/app/chroma_db
+      - ./backend/data:/app/data
+
   backend:
     build:
       context: ./backend
@@ -7,6 +34,9 @@ services:
       - ./backend/.env
     environment:
     - CHROMA_DB_DIR=chroma_db
+    - CELERY_BROKER_URL=redis://:mutant_redis_dev@redis:6379/0
+    - CELERY_RESULT_BACKEND=redis://:mutant_redis_dev@redis:6379/0
+    - OPENAI_BASE_URL=http://host.docker.internal:8080/v1
     labels:
     - traefik.enable=true
     - traefik.http.routers.mutant-backend.rule=Host(`dev-api.mutante.grupocin.com.br`)
@@ -37,3 +67,4 @@ services:
     restart: unless-stopped
 volumes:
   mutant-chromadb: null
+  redis_data: null

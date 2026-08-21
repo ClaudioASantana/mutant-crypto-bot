@@ -21,7 +21,26 @@ async def run_backtest_14d():
         strategy="Auto"
     )
 
-    service = BacktestService()
+    from app.infrastructure.services.backtest_simulation_impl import BacktestSimulatorImpl
+    from app.infrastructure.services.risk_manager import RiskManager
+    from app.infrastructure.repositories.in_memory_paper_trader_repository import InMemoryPaperTraderRepository
+    from app.infrastructure.services.paper_trader_executor import PaperTrader
+    
+    risk_manager = RiskManager()
+    
+    def backtest_trader_factory(identity: str):
+        return PaperTrader(
+            symbol="BTC/USDT_BACKTEST",
+            identity=identity,
+            repository=InMemoryPaperTraderRepository(),
+            risk_manager=risk_manager,
+            initial_balance=200.0,
+            leverage=10,
+            position_sizing_mode="fixed"
+        )
+        
+    simulator = BacktestSimulatorImpl(risk_manager, backtest_trader_factory)
+    service = BacktestService(simulator)
     print(f"Executando backtest de 14 dias para {req.symbol}...")
     result = await service.execute(req)
 

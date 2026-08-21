@@ -43,9 +43,19 @@ class JsonPaperTraderRepository(AbstractPaperTraderRepository):
 
     def save(self, identity: str, state: dict) -> None:
         file_path = self._get_file_path(identity)
+        tmp_file_path = file_path + ".tmp"
         try:
-            with open(file_path, "w") as f:
+            with open(tmp_file_path, "w") as f:
                 json.dump(state, f, indent=4)
-            logger.info(f"✅ [PaperTraderRepo] Estado '{identity}' salvo em '{file_path}'.")
+                f.flush()
+                os.fsync(f.fileno())
+            # Atomic replace guarantees the file is never left in a corrupted/half-written state
+            os.replace(tmp_file_path, file_path)
+            logger.info(f"✅ [PaperTraderRepo] Estado '{identity}' salvo em '{file_path}' (Atômico).")
         except Exception as e:
             logger.error(f"Erro ao salvar estado '{identity}' em '{file_path}': {e}")
+            if os.path.exists(tmp_file_path):
+                try:
+                    os.remove(tmp_file_path)
+                except OSError:
+                    pass

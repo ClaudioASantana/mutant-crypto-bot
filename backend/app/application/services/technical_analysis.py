@@ -179,8 +179,32 @@ def eval_bollinger(df: pd.DataFrame) -> str:
     close = last["close"]
     upper = last.get("BBU_20_2.0_2.0", 0)
     lower = last.get("BBL_20_2.0_2.0", 0)
-    if close > upper and upper > 0: return "CALL"
-    if close < lower and lower > 0: return "PUT"
+    if upper > 0 and close >= upper: return "PUT"
+    if lower > 0 and close <= lower: return "CALL"
+    return "NONE"
+
+@register_strategy("Momentum Breakout")
+def eval_momentum_breakout(df: pd.DataFrame) -> str:
+    """ 
+    Rompimento de Bandas de Bollinger alinhado com a força do RSI.
+    Ideal para tendências fortes (Bull/Bear Runs) e contra-indicado para lateralização.
+    """
+    if df.empty or len(df) < 20: return "NONE"
+    
+    last = df.iloc[-1]
+    close = last["close"]
+    upper = last.get("BBU_20_2.0_2.0", 0)
+    lower = last.get("BBL_20_2.0_2.0", 0)
+    rsi = last.get("RSI_14", 50)
+    
+    # Comprar (CALL) quando o preço estoura a banda de cima com força compradora (RSI > 60)
+    if upper > 0 and close >= upper and rsi > 60:
+        return "CALL"
+        
+    # Vender (PUT) quando o preço fura a banda de baixo com força vendedora (RSI < 40)
+    if lower > 0 and close <= lower and rsi < 40:
+        return "PUT"
+        
     return "NONE"
 
 @register_strategy("VWAP")

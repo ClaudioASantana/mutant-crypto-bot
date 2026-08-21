@@ -17,6 +17,7 @@ from app.infrastructure.ai_filter_openai import OpenAIFilter
 from app.infrastructure.config_loader import ConfigurationLoader, ServiceResolver
 from app.infrastructure.websocket.connection_manager import ConnectionManager
 from app.api.v1.routers.trading import router as trading_router
+from app.api.v1.routers.cqrs_router import router as cqrs_router
 from app.core.state import bots, watching_symbol, set_watching_symbol
 from app.infrastructure.services.paper_trader_executor import PaperTrader
 from app.infrastructure.services.risk_manager import RiskManager
@@ -122,6 +123,7 @@ app.add_middleware(
 )
 
 app.include_router(trading_router)
+app.include_router(cqrs_router)
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):

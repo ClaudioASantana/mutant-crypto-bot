@@ -5,6 +5,7 @@ Centraliza toda a lógica de avaliação e cálculo de risco,
 seguindo a interface AbstractRiskManager.
 """
 import logging
+import os
 from typing import Dict, Any
 
 from app.domain.entities.market import AccountState, RiskEvaluation, RiskDecision, Signal, SignalType
@@ -27,6 +28,16 @@ class RiskManager(AbstractRiskManager):
             return RiskEvaluation(
                 decision=RiskDecision.BLOCKED,
                 reason="No signal to execute",
+                stake=0.0
+            )
+
+        # Regra 3: Circuit Breaker Global (Daily Drawdown)
+        global_max_loss = float(os.getenv("GLOBAL_MAX_DAILY_LOSS", "-100.0"))
+        if account.daily_pnl <= global_max_loss:
+            logger.critical(f"CIRCUIT BREAKER ACIONADO! PnL diário ({account.daily_pnl}) atingiu o limite global ({global_max_loss}). O robô foi travado pelo resto do dia.")
+            return RiskEvaluation(
+                decision=RiskDecision.BLOCKED,
+                reason=f"GLOBAL CIRCUIT BREAKER: Daily PnL ({account.daily_pnl}) reached limit ({global_max_loss})",
                 stake=0.0
             )
 

@@ -29,13 +29,16 @@ export default function Home() {
   const [signal, setSignal] = useState<any>(null);
   const [agentMessage, setAgentMessage] = useState<string>("");
   const [catalog, setCatalog] = useState<any[]>([]);
-  const [activeConfig, setActiveConfig] = useState<any>({ timeframe: 300, strategy: "3 Velas" });
+  const [activeConfig, setActiveConfig] = useState<any>({ timeframe: 300, strategy: "Momentum Breakout" });
   const [autoOptimize, setAutoOptimize] = useState<boolean>(false);
   const [simulatorState, setSimulatorState] = useState<any>(null);
   const [newsStatus, setNewsStatus] = useState<any>(null);
   const [portfolio, setPortfolio] = useState<any>(null);
   const [activeSymbol, setActiveSymbol] = useState<string>("BTC/USDT");
   const [tradePreview, setTradePreview] = useState<any>(null);
+  const [aiTaskState, setAiTaskState] = useState<any>({status: "IDLE", reason: "Aguardando gatilho do mercado..."});
+  const [cqrsTrades, setCqrsTrades] = useState<any[]>([]);
+  const [executingTrade, setExecutingTrade] = useState<boolean>(false);
   
   // Backtest State
   const [currentView, setCurrentView] = useState<"dashboard" | "backtest">("dashboard");
@@ -57,6 +60,23 @@ export default function Home() {
   const backtestSeriesRef = useRef<any>(null);
   
   const activeSymbolRef = useRef(activeSymbol);
+  
+  // Mock AI Neural Feed polling (to simulate Celery task statuses)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAiTaskState((prev: any) => {
+        if (prev.status === "IDLE") {
+          return Math.random() > 0.8 ? { status: "PROCESSING", reason: "Calculando RAG com trades similares..." } : prev;
+        } else if (prev.status === "PROCESSING") {
+          return { status: "PROCESSING", reason: "Analisando Price Action vs EMA200..." };
+        } else {
+          return { status: "IDLE", reason: "Aguardando gatilho do mercado..." };
+        }
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     activeSymbolRef.current = activeSymbol;
   }, [activeSymbol]);
@@ -141,8 +161,25 @@ export default function Home() {
       } catch (e) {}
     };
     fetchRisk();
+
+    const fetchCqrsTrades = async () => {
+      try {
+        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+        // Para testes práticos via UI, usaremos default ou o ID real
+        const res = await fetch(`${httpUrl}/api/cqrs/active_trades?identity=default`);
+        const data = await res.json();
+        if (data.status === "success") {
+          setCqrsTrades(data.trades);
+        }
+      } catch (e) {}
+    };
+    fetchCqrsTrades();
+    const cqrsInterval = setInterval(fetchCqrsTrades, 3000);
     
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearInterval(cqrsInterval);
+    };
   }, []);
 
   useEffect(() => {
@@ -359,6 +396,29 @@ export default function Home() {
     }
     setIsSavingRisk(false);
   };
+
+  const handleManualTrade = async (direction: string) => {
+    setExecutingTrade(true);
+    try {
+      const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
+      await fetch(`${httpUrl}/api/cqrs/execute_trade?identity=default`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          symbol: activeSymbol,
+          direction: direction,
+          timeframe: activeConfig?.timeframe || 300,
+          strategy: "Manual UI",
+          entry_price: liveData.quote,
+          atr: 50.0 // mock ATR
+        })
+      });
+    } catch (e) {
+      console.error("Erro ao executar trade manual", e);
+    }
+    setExecutingTrade(false);
+  };
+
 
   // Efeito para desenhar linhas de TP/SL no gráfico
   useEffect(() => {
@@ -677,11 +737,11 @@ export default function Home() {
                 <div style={{ display: "flex", alignItems: "center", fontWeight: "bold" }}>
                   M{tf / 60}
                 </div>
-                {["3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"].map(s => {
+                {["Momentum Breakout", "3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"].map(s => {
                   const cat = (catalog || []).find(x => x.timeframe === tf && x.strategy === s);
                   const winRate = cat?.stats?.win_rate ?? 0;
                   const pnl = cat?.stats?.pnl_usdt ?? 0;
-                  const isManualActive = activeConfig.timeframe === tf && activeConfig.strategy === s;
+                  const isManualActive = activeConfig?.timeframe === tf && activeConfig?.strategy === s;
                   const isActive = autoOptimize ? (pnl > 0) : isManualActive;
                   return (
                     <div 
@@ -855,25 +915,46 @@ export default function Home() {
           </div>
 
           <div className="glass" style={{ padding: "20px", flex: 2, overflowY: "auto", maxHeight: "250px" }}>
-            <h3 style={{ marginBottom: "16px" }}>📋 Posições Abertas</h3>
-            {simulatorState.pending && simulatorState.pending.length > 0 ? (
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+              <h3 style={{ margin: 0 }}>📋 Posições Abertas (SQLite DB)</h3>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <button 
+                  onClick={() => handleManualTrade("CALL")} 
+                  disabled={executingTrade}
+                  style={{ background: "rgba(16,185,129,0.2)", color: "var(--success)", border: "1px solid var(--success)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.75rem", cursor: "pointer" }}
+                >
+                  {executingTrade ? "..." : "+ CALL (CQRS)"}
+                </button>
+                <button 
+                  onClick={() => handleManualTrade("PUT")} 
+                  disabled={executingTrade}
+                  style={{ background: "rgba(239,68,68,0.2)", color: "var(--danger)", border: "1px solid var(--danger)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.75rem", cursor: "pointer" }}
+                >
+                  {executingTrade ? "..." : "+ PUT (CQRS)"}
+                </button>
+              </div>
+            </div>
+            
+            {cqrsTrades.length > 0 ? (
               <div style={{ marginBottom: "16px" }}>
-                {simulatorState.pending.map((t: any) => (
-                  <div key={t.id} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+                {cqrsTrades.map((t: any, idx: number) => (
+                  <div key={idx} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
                     <span>
                       {t.direction === "CALL" ? "🟩 LONG" : "🟥 SHORT"}
                       <div style={{ fontSize: "0.75rem", opacity: 0.7 }}>Entry: {t.entry_price?.toFixed(2) ?? "0.00"}</div>
+                      <div style={{ fontSize: "0.7rem", color: "var(--accent)" }}>{t.symbol} | SL: {t.sl?.toFixed(2)}</div>
                     </span>
-                    <span style={{ textAlign: "right", color: (t.pnl ?? 0) >= 0 ? "var(--success)" : "var(--danger)", fontWeight: "bold" }}>
-                      {(t.pnl ?? 0) >= 0 ? "+" : ""}${(t.pnl ?? 0).toFixed(2)}
+                    <span style={{ textAlign: "right", color: "white", fontWeight: "bold" }}>
+                      Qtd: {(t.qty ?? 0).toFixed(4)}
                       <div style={{ fontSize: "0.75rem", color: "white", opacity: 0.7, fontWeight: "normal" }}>Margem: ${(t.margin ?? 0).toFixed(2)}</div>
                     </span>
                   </div>
                 ))}
               </div>
             ) : (
-              <p style={{ opacity: 0.5, fontSize: "0.85rem", marginBottom: "16px" }}>Nenhuma posição aberta.</p>
+              <p style={{ opacity: 0.5, fontSize: "0.85rem", marginBottom: "16px" }}>Nenhuma posição registrada no SQLite.</p>
             )}
+
             
             <div>
               <strong style={{ fontSize: "0.85rem", opacity: 0.7 }}>HISTÓRICO</strong>
@@ -911,7 +992,7 @@ export default function Home() {
           </div>
         </div>
 
-        <h4>Vela Atual (M{activeConfig.timeframe / 60})</h4>
+        <h4>Vela Atual (M{(activeConfig?.timeframe || 300) / 60})</h4>
         <div className="feed-section" style={{ marginTop: "12px" }}>
           {liveData.candle ? (
             <div className={`candle-card ${liveData.candle.close >= liveData.candle.open ? 'candle-bullish' : 'candle-bearish'}`}>
@@ -933,6 +1014,31 @@ export default function Home() {
           ) : (
             <p style={{ opacity: 0.5, fontSize: "0.9rem" }}>Aguardando sincronização da Binance...</p>
           )}
+        </div>
+        
+        {/* AI Neural Feed Sidebar */}
+        <div className="glass" style={{ marginTop: "24px", padding: "16px", display: "flex", flexDirection: "column", gap: "12px" }}>
+          <h4 style={{ margin: 0, color: "var(--accent)", display: "flex", alignItems: "center", gap: "8px" }}>
+            <span className={aiTaskState.status === "PROCESSING" ? "live-indicator" : ""} style={{ 
+              background: aiTaskState.status === "PROCESSING" ? "var(--accent)" : "rgba(255,255,255,0.2)",
+              animation: aiTaskState.status === "PROCESSING" ? "blink 1s infinite" : "none"
+            }}></span>
+            AI Neural Feed
+          </h4>
+          <div style={{ 
+            background: "rgba(0,0,0,0.4)", 
+            border: "1px solid rgba(255,255,255,0.05)", 
+            borderRadius: "8px", 
+            padding: "12px",
+            fontFamily: "monospace",
+            fontSize: "0.85rem",
+            color: aiTaskState.status === "PROCESSING" ? "#60a5fa" : "#9ca3af",
+            minHeight: "60px",
+            display: "flex",
+            alignItems: "center"
+          }}>
+            {aiTaskState.reason}
+          </div>
         </div>
         <div 
           ref={chartContainerRef} 

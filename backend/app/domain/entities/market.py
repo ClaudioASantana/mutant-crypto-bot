@@ -50,8 +50,18 @@ class RiskEvaluation(BaseModel):
 
 class AccountState(BaseModel):
     balance: float
-    daily_pnl: float
+    daily_pnl: float = 0.0
     highest_daily_pnl: float = 0.0
     daily_stop_loss: float
     daily_stop_gain: float
     stake_initial: float
+
+    def record_trade_result(self, pnl: float) -> None:
+        """
+        [DDD] Regra de negócio: Atualiza o estado da conta com o resultado de um trade.
+        Mantém o tracking do highest_daily_pnl para o Trailing Stop Diário Global.
+        """
+        self.balance += pnl
+        self.daily_pnl += pnl
+        if self.daily_pnl > self.highest_daily_pnl:
+            self.highest_daily_pnl = self.daily_pnl

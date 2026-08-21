@@ -20,7 +20,7 @@ from datetime import datetime, timezone, timedelta
 # Adicionar o backend ao path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from app.engines.technical_analysis import (
+from app.application.services.technical_analysis import (
     apply_indicators, eval_ema_macd, eval_bollinger, eval_vwap, eval_smc,
     check_rsi_filter, check_volume_filter, check_trend_filter, check_mtf_alignment,
     eval_wyckoff_bollinger, eval_wyckoff_smc

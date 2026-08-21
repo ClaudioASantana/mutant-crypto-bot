@@ -1,0 +1,4572 @@
+{
+  "summary": {
+    "M15": {
+      "SMC": {
+        "strategy": "SMC",
+        "timeframe": "M15",
+        "signals": 12,
+        "trades": 9,
+        "wins": 4,
+        "losses": 5,
+        "win_rate": 44.44,
+        "net_pnl": 11.97,
+        "profit_factor": 3.62,
+        "max_drawdown_pct": 0.7,
+        "expectancy_usd": 1.33,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-15 15:30:00+00:00",
+            "exit_time": "2026-08-15 18:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63115.59,
+            "exit_price": 63064.083990431755,
+            "win": false,
+            "gross_pnl": -0.8160584345047239,
+            "net_pnl": -1.616058434504724
+          },
+          {
+            "entry_time": "2026-08-15 19:15:00+00:00",
+            "exit_time": "2026-08-16 01:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63101.31,
+            "exit_price": 63060.96618790543,
+            "win": false,
+            "gross_pnl": -0.6393498343309321,
+            "net_pnl": -1.439349834330932
+          },
+          {
+            "entry_time": "2026-08-16 09:45:00+00:00",
+            "exit_time": "2026-08-16 12:00:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62992.69,
+            "exit_price": 63022.850123422104,
+            "win": false,
+            "gross_pnl": -0.47878767238074144,
+            "net_pnl": -1.2787876723807414
+          },
+          {
+            "entry_time": "2026-08-16 14:30:00+00:00",
+            "exit_time": "2026-08-16 16:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63100.89,
+            "exit_price": 63156.75436235338,
+            "win": true,
+            "gross_pnl": 0.8853181366123198,
+            "net_pnl": 0.0853181366123198
+          },
+          {
+            "entry_time": "2026-08-17 13:45:00+00:00",
+            "exit_time": "2026-08-17 15:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63672.36,
+            "exit_price": 64005.94596434084,
+            "win": true,
+            "gross_pnl": 5.239101618674733,
+            "net_pnl": 4.439101618674733
+          }
+        ]
+      },
+      "Bollinger": {
+        "strategy": "Bollinger",
+        "timeframe": "M15",
+        "signals": 53,
+        "trades": 17,
+        "wins": 7,
+        "losses": 10,
+        "win_rate": 41.18,
+        "net_pnl": 4.44,
+        "profit_factor": 1.82,
+        "max_drawdown_pct": 1.44,
+        "expectancy_usd": 0.26,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-15 08:45:00+00:00",
+            "exit_time": "2026-08-15 09:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62935.72,
+            "exit_price": 63009.42280972447,
+            "win": false,
+            "gross_pnl": -1.1710807427716607,
+            "net_pnl": -1.9710807427716608
+          },
+          {
+            "entry_time": "2026-08-15 15:30:00+00:00",
+            "exit_time": "2026-08-15 18:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63115.59,
+            "exit_price": 63064.083990431755,
+            "win": false,
+            "gross_pnl": -0.8160584345047239,
+            "net_pnl": -1.616058434504724
+          },
+          {
+            "entry_time": "2026-08-15 21:15:00+00:00",
+            "exit_time": "2026-08-15 23:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63154.97,
+            "exit_price": 63118.85569216523,
+            "win": false,
+            "gross_pnl": -0.5718363548391215,
+            "net_pnl": -1.3718363548391217
+          },
+          {
+            "entry_time": "2026-08-16 09:30:00+00:00",
+            "exit_time": "2026-08-16 13:00:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63000.0,
+            "exit_price": 63027.837055993026,
+            "win": false,
+            "gross_pnl": -0.44185803163533804,
+            "net_pnl": -1.241858031635338
+          },
+          {
+            "entry_time": "2026-08-16 14:30:00+00:00",
+            "exit_time": "2026-08-16 16:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63100.89,
+            "exit_price": 63156.75436235338,
+            "win": true,
+            "gross_pnl": 0.8853181366123198,
+            "net_pnl": 0.0853181366123198
+          }
+        ]
+      },
+      "EMA+MACD": {
+        "strategy": "EMA+MACD",
+        "timeframe": "M15",
+        "signals": 24,
+        "trades": 9,
+        "wins": 2,
+        "losses": 7,
+        "win_rate": 22.22,
+        "net_pnl": -12.02,
+        "profit_factor": 0.6,
+        "max_drawdown_pct": 1.75,
+        "expectancy_usd": -1.34,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-15 13:45:00+00:00",
+            "exit_time": "2026-08-15 14:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63060.35,
+            "exit_price": 63004.17143842896,
+            "win": false,
+            "gross_pnl": -0.89086980283236,
+            "net_pnl": -1.6908698028323599
+          },
+          {
+            "entry_time": "2026-08-16 02:45:00+00:00",
+            "exit_time": "2026-08-16 05:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63121.91,
+            "exit_price": 63073.95718206093,
+            "win": false,
+            "gross_pnl": -0.7596857880104758,
+            "net_pnl": -1.559685788010476
+          },
+          {
+            "entry_time": "2026-08-17 01:30:00+00:00",
+            "exit_time": "2026-08-17 02:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63214.0,
+            "exit_price": 63045.02033812781,
+            "win": false,
+            "gross_pnl": -2.673136676561971,
+            "net_pnl": -3.473136676561971
+          },
+          {
+            "entry_time": "2026-08-18 01:45:00+00:00",
+            "exit_time": "2026-08-18 06:15:00+00:00",
+            "direction": "PUT",
+            "entry_price": 64200.06,
+            "exit_price": 64338.253957212924,
+            "win": false,
+            "gross_pnl": -2.1525518389379505,
+            "net_pnl": -2.952551838937951
+          },
+          {
+            "entry_time": "2026-08-18 06:15:00+00:00",
+            "exit_time": "2026-08-18 07:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 64339.11,
+            "exit_price": 64212.114013241124,
+            "win": false,
+            "gross_pnl": -1.9738536445231651,
+            "net_pnl": -2.7738536445231654
+          }
+        ]
+      },
+      "VWAP": {
+        "strategy": "VWAP",
+        "timeframe": "M15",
+        "signals": 31,
+        "trades": 18,
+        "wins": 9,
+        "losses": 9,
+        "win_rate": 50.0,
+        "net_pnl": -0.62,
+        "profit_factor": 1.96,
+        "max_drawdown_pct": 0.81,
+        "expectancy_usd": -0.03,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 23:15:00+00:00",
+            "exit_time": "2026-08-15 03:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62948.11,
+            "exit_price": 63170.85127824658,
+            "win": true,
+            "gross_pnl": 3.5384903255487137,
+            "net_pnl": 2.738490325548714
+          },
+          {
+            "entry_time": "2026-08-15 06:00:00+00:00",
+            "exit_time": "2026-08-15 06:45:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63037.76,
+            "exit_price": 63109.07301809146,
+            "win": false,
+            "gross_pnl": -1.1312746216150371,
+            "net_pnl": -1.9312746216150372
+          },
+          {
+            "entry_time": "2026-08-15 08:00:00+00:00",
+            "exit_time": "2026-08-15 09:00:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63061.88,
+            "exit_price": 62922.120123000495,
+            "win": true,
+            "gross_pnl": 2.216233911826004,
+            "net_pnl": 1.4162339118260039
+          },
+          {
+            "entry_time": "2026-08-15 13:00:00+00:00",
+            "exit_time": "2026-08-15 14:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63073.14,
+            "exit_price": 63014.05910653121,
+            "win": false,
+            "gross_pnl": -0.9367044905135279,
+            "net_pnl": -1.736704490513528
+          },
+          {
+            "entry_time": "2026-08-15 15:15:00+00:00",
+            "exit_time": "2026-08-15 22:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63073.55,
+            "exit_price": 63173.74371291621,
+            "win": true,
+            "gross_pnl": 1.588521859261301,
+            "net_pnl": 0.788521859261301
+          }
+        ]
+      },
+      "SuperTrend": {
+        "strategy": "SuperTrend",
+        "timeframe": "M15",
+        "signals": 14,
+        "trades": 11,
+        "wins": 4,
+        "losses": 7,
+        "win_rate": 36.36,
+        "net_pnl": -10.18,
+        "profit_factor": 0.86,
+        "max_drawdown_pct": 1.53,
+        "expectancy_usd": -0.93,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-15 08:45:00+00:00",
+            "exit_time": "2026-08-15 09:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62935.72,
+            "exit_price": 63009.42280972447,
+            "win": false,
+            "gross_pnl": -1.1710807427716607,
+            "net_pnl": -1.9710807427716608
+          },
+          {
+            "entry_time": "2026-08-15 15:30:00+00:00",
+            "exit_time": "2026-08-15 18:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63115.59,
+            "exit_price": 63064.083990431755,
+            "win": false,
+            "gross_pnl": -0.8160584345047239,
+            "net_pnl": -1.616058434504724
+          },
+          {
+            "entry_time": "2026-08-16 02:30:00+00:00",
+            "exit_time": "2026-08-16 04:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63151.58,
+            "exit_price": 63104.09119606561,
+            "win": false,
+            "gross_pnl": -0.7519812478863271,
+            "net_pnl": -1.551981247886327
+          },
+          {
+            "entry_time": "2026-08-16 05:30:00+00:00",
+            "exit_time": "2026-08-16 09:45:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63053.27,
+            "exit_price": 62978.74832577373,
+            "win": true,
+            "gross_pnl": 1.1818843689829839,
+            "net_pnl": 0.38188436898298384
+          },
+          {
+            "entry_time": "2026-08-16 13:00:00+00:00",
+            "exit_time": "2026-08-16 15:30:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63063.34,
+            "exit_price": 63122.85891108946,
+            "win": true,
+            "gross_pnl": 0.9437957312356813,
+            "net_pnl": 0.14379573123568123
+          }
+        ]
+      },
+      "Wyckoff_SMC": {
+        "strategy": "Wyckoff_SMC",
+        "timeframe": "M15",
+        "signals": 32,
+        "trades": 11,
+        "wins": 5,
+        "losses": 6,
+        "win_rate": 45.45,
+        "net_pnl": -0.4,
+        "profit_factor": 2.19,
+        "max_drawdown_pct": 0.62,
+        "expectancy_usd": -0.04,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-15 08:45:00+00:00",
+            "exit_time": "2026-08-15 09:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62935.72,
+            "exit_price": 63009.42280972447,
+            "win": false,
+            "gross_pnl": -1.1710807427716607,
+            "net_pnl": -1.9710807427716608
+          },
+          {
+            "entry_time": "2026-08-15 16:15:00+00:00",
+            "exit_time": "2026-08-15 17:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63121.59,
+            "exit_price": 63070.63863774729,
+            "win": false,
+            "gross_pnl": -0.8071938975667177,
+            "net_pnl": -1.6071938975667177
+          },
+          {
+            "entry_time": "2026-08-15 21:30:00+00:00",
+            "exit_time": "2026-08-15 23:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63168.17,
+            "exit_price": 63131.57099986771,
+            "win": false,
+            "gross_pnl": -0.5793899068516021,
+            "net_pnl": -1.379389906851602
+          },
+          {
+            "entry_time": "2026-08-16 09:45:00+00:00",
+            "exit_time": "2026-08-16 12:00:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62992.69,
+            "exit_price": 63022.850123422104,
+            "win": false,
+            "gross_pnl": -0.47878767238074144,
+            "net_pnl": -1.2787876723807414
+          },
+          {
+            "entry_time": "2026-08-16 15:00:00+00:00",
+            "exit_time": "2026-08-16 16:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63110.25,
+            "exit_price": 63162.485751212866,
+            "win": true,
+            "gross_pnl": 0.82769044985348,
+            "net_pnl": 0.027690449853479904
+          }
+        ]
+      },
+      "Wyckoff_Bbands": {
+        "strategy": "Wyckoff_Bbands",
+        "timeframe": "M15",
+        "signals": 38,
+        "trades": 6,
+        "wins": 3,
+        "losses": 3,
+        "win_rate": 50.0,
+        "net_pnl": 9.08,
+        "profit_factor": 3.16,
+        "max_drawdown_pct": 0.74,
+        "expectancy_usd": 1.51,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-15 21:30:00+00:00",
+            "exit_time": "2026-08-15 23:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63168.17,
+            "exit_price": 63131.57099986771,
+            "win": false,
+            "gross_pnl": -0.5793899068516021,
+            "net_pnl": -1.379389906851602
+          },
+          {
+            "entry_time": "2026-08-17 02:30:00+00:00",
+            "exit_time": "2026-08-17 06:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63256.69,
+            "exit_price": 63625.72322718303,
+            "win": true,
+            "gross_pnl": 5.833900369795299,
+            "net_pnl": 5.033900369795299
+          },
+          {
+            "entry_time": "2026-08-17 23:45:00+00:00",
+            "exit_time": "2026-08-18 00:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 64532.1,
+            "exit_price": 64386.976961333756,
+            "win": false,
+            "gross_pnl": -2.248850396411132,
+            "net_pnl": -3.048850396411132
+          },
+          {
+            "entry_time": "2026-08-18 14:30:00+00:00",
+            "exit_time": "2026-08-19 00:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 64786.0,
+            "exit_price": 64552.4696179138,
+            "win": false,
+            "gross_pnl": -3.604642701914036,
+            "net_pnl": -4.404642701914036
+          },
+          {
+            "entry_time": "2026-08-19 01:30:00+00:00",
+            "exit_time": "2026-08-19 06:00:00+00:00",
+            "direction": "PUT",
+            "entry_price": 64415.72,
+            "exit_price": 64173.27436110691,
+            "win": true,
+            "gross_pnl": 3.7637651010202497,
+            "net_pnl": 2.9637651010202495
+          }
+        ]
+      },
+      "3 Velas": {
+        "strategy": "3 Velas",
+        "timeframe": "M15",
+        "signals": 28,
+        "trades": 16,
+        "wins": 7,
+        "losses": 9,
+        "win_rate": 43.75,
+        "net_pnl": 12.76,
+        "profit_factor": 2.35,
+        "max_drawdown_pct": 1.23,
+        "expectancy_usd": 0.8,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-15 07:00:00+00:00",
+            "exit_time": "2026-08-15 07:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63134.83,
+            "exit_price": 63061.67106622995,
+            "win": false,
+            "gross_pnl": -1.158772958920611,
+            "net_pnl": -1.958772958920611
+          },
+          {
+            "entry_time": "2026-08-15 21:15:00+00:00",
+            "exit_time": "2026-08-15 23:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63154.97,
+            "exit_price": 63118.85569216523,
+            "win": false,
+            "gross_pnl": -0.5718363548391215,
+            "net_pnl": -1.3718363548391217
+          },
+          {
+            "entry_time": "2026-08-16 17:30:00+00:00",
+            "exit_time": "2026-08-16 19:15:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63126.0,
+            "exit_price": 63191.14713300294,
+            "win": false,
+            "gross_pnl": -1.0320174413544032,
+            "net_pnl": -1.8320174413544033
+          },
+          {
+            "entry_time": "2026-08-16 21:30:00+00:00",
+            "exit_time": "2026-08-16 22:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62939.59,
+            "exit_price": 62754.516922591254,
+            "win": true,
+            "gross_pnl": 2.9404874961648524,
+            "net_pnl": 2.1404874961648526
+          },
+          {
+            "entry_time": "2026-08-17 01:30:00+00:00",
+            "exit_time": "2026-08-17 02:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63214.0,
+            "exit_price": 63045.02033812781,
+            "win": false,
+            "gross_pnl": -2.673136676561971,
+            "net_pnl": -3.473136676561971
+          }
+        ]
+      },
+      "Pin Bar": {
+        "strategy": "Pin Bar",
+        "timeframe": "M15",
+        "signals": 26,
+        "trades": 25,
+        "wins": 4,
+        "losses": 21,
+        "win_rate": 16.0,
+        "net_pnl": -75.73,
+        "profit_factor": 0.12,
+        "max_drawdown_pct": 7.57,
+        "expectancy_usd": -3.03,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 20:00:00+00:00",
+            "exit_time": "2026-08-15 02:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62974.76,
+            "exit_price": 63132.51106510744,
+            "win": false,
+            "gross_pnl": -2.504988746403175,
+            "net_pnl": -3.3049887464031746
+          },
+          {
+            "entry_time": "2026-08-15 05:45:00+00:00",
+            "exit_time": "2026-08-15 08:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63089.0,
+            "exit_price": 63018.84290359381,
+            "win": false,
+            "gross_pnl": -1.1120337365656494,
+            "net_pnl": -1.9120337365656495
+          },
+          {
+            "entry_time": "2026-08-15 14:00:00+00:00",
+            "exit_time": "2026-08-15 14:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63055.01,
+            "exit_price": 63000.06919282689,
+            "win": false,
+            "gross_pnl": -0.871315493774541,
+            "net_pnl": -1.6713154937745411
+          },
+          {
+            "entry_time": "2026-08-15 14:15:00+00:00",
+            "exit_time": "2026-08-15 21:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63040.0,
+            "exit_price": 63154.512927607204,
+            "win": true,
+            "gross_pnl": 1.816512176510214,
+            "net_pnl": 1.0165121765102139
+          },
+          {
+            "entry_time": "2026-08-16 01:15:00+00:00",
+            "exit_time": "2026-08-16 02:15:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63059.68,
+            "exit_price": 63090.6602966854,
+            "win": false,
+            "gross_pnl": -0.4912853456502911,
+            "net_pnl": -1.291285345650291
+          }
+        ]
+      },
+      "RSI+EMA": {
+        "strategy": "RSI+EMA",
+        "timeframe": "M15",
+        "signals": 5,
+        "trades": 5,
+        "wins": 3,
+        "losses": 2,
+        "win_rate": 60.0,
+        "net_pnl": 6.49,
+        "profit_factor": 3.88,
+        "max_drawdown_pct": 0.52,
+        "expectancy_usd": 1.3,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-17 01:00:00+00:00",
+            "exit_time": "2026-08-17 02:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63054.68,
+            "exit_price": 63385.05897901715,
+            "win": true,
+            "gross_pnl": 5.2395631698892196,
+            "net_pnl": 4.43956316988922
+          },
+          {
+            "entry_time": "2026-08-17 13:30:00+00:00",
+            "exit_time": "2026-08-17 15:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63655.83,
+            "exit_price": 63984.153346213214,
+            "win": true,
+            "gross_pnl": 5.157789101378649,
+            "net_pnl": 4.357789101378649
+          },
+          {
+            "entry_time": "2026-08-18 04:00:00+00:00",
+            "exit_time": "2026-08-18 05:00:00+00:00",
+            "direction": "PUT",
+            "entry_price": 64148.0,
+            "exit_price": 64274.01461070578,
+            "win": false,
+            "gross_pnl": -1.9644355351028995,
+            "net_pnl": -2.7644355351028995
+          },
+          {
+            "entry_time": "2026-08-19 08:00:00+00:00",
+            "exit_time": "2026-08-19 08:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 64262.0,
+            "exit_price": 64370.13698912796,
+            "win": false,
+            "gross_pnl": -1.682751690391849,
+            "net_pnl": -2.482751690391849
+          },
+          {
+            "entry_time": "2026-08-19 08:30:00+00:00",
+            "exit_time": "2026-08-19 12:30:00+00:00",
+            "direction": "CALL",
+            "entry_price": 64450.12,
+            "exit_price": 64690.94460370027,
+            "win": true,
+            "gross_pnl": 3.736604426807401,
+            "net_pnl": 2.936604426807401
+          }
+        ]
+      },
+      "Exaust\u00e3o": {
+        "strategy": "Exaust\u00e3o",
+        "timeframe": "M15",
+        "signals": 1,
+        "trades": 1,
+        "wins": 1,
+        "losses": 0,
+        "win_rate": 100.0,
+        "net_pnl": 0.91,
+        "profit_factor": 99.0,
+        "max_drawdown_pct": 0.0,
+        "expectancy_usd": 0.91,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-16 16:30:00+00:00",
+            "exit_time": "2026-08-16 17:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63290.01,
+            "exit_price": 63181.957619730354,
+            "win": true,
+            "gross_pnl": 1.707258069158908,
+            "net_pnl": 0.907258069158908
+          }
+        ]
+      },
+      "ABCD": {
+        "strategy": "ABCD",
+        "timeframe": "M15",
+        "signals": 40,
+        "trades": 19,
+        "wins": 13,
+        "losses": 6,
+        "win_rate": 68.42,
+        "net_pnl": 40.85,
+        "profit_factor": 7.48,
+        "max_drawdown_pct": 0.52,
+        "expectancy_usd": 2.15,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 22:00:00+00:00",
+            "exit_time": "2026-08-14 23:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62833.33,
+            "exit_price": 62958.06399209207,
+            "win": false,
+            "gross_pnl": -1.9851564781314517,
+            "net_pnl": -2.7851564781314515
+          },
+          {
+            "entry_time": "2026-08-14 23:30:00+00:00",
+            "exit_time": "2026-08-15 23:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63008.89,
+            "exit_price": 63086.01,
+            "win": "True",
+            "gross_pnl": 1.2239542705799549,
+            "net_pnl": 0.42395427057995483
+          },
+          {
+            "entry_time": "2026-08-16 01:00:00+00:00",
+            "exit_time": "2026-08-16 01:45:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63052.25,
+            "exit_price": 63082.55570412274,
+            "win": false,
+            "gross_pnl": -0.48064429299091854,
+            "net_pnl": -1.2806442929909185
+          },
+          {
+            "entry_time": "2026-08-16 02:30:00+00:00",
+            "exit_time": "2026-08-16 04:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63151.58,
+            "exit_price": 63104.09119606561,
+            "win": false,
+            "gross_pnl": -0.7519812478863271,
+            "net_pnl": -1.551981247886327
+          },
+          {
+            "entry_time": "2026-08-16 04:45:00+00:00",
+            "exit_time": "2026-08-16 09:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63090.01,
+            "exit_price": 63013.610143797516,
+            "win": true,
+            "gross_pnl": 1.2109659865719828,
+            "net_pnl": 0.4109659865719828
+          }
+        ]
+      }
+    },
+    "M5": {
+      "SMC": {
+        "strategy": "SMC",
+        "timeframe": "M5",
+        "signals": 68,
+        "trades": 49,
+        "wins": 24,
+        "losses": 25,
+        "win_rate": 48.98,
+        "net_pnl": -0.19,
+        "profit_factor": 2.41,
+        "max_drawdown_pct": 1.73,
+        "expectancy_usd": -0.0,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 08:00:00+00:00",
+            "exit_time": "2026-08-14 08:20:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62926.0,
+            "exit_price": 62768.91437498597,
+            "win": true,
+            "gross_pnl": 2.4963548455968563,
+            "net_pnl": 1.6963548455968562
+          },
+          {
+            "entry_time": "2026-08-14 12:10:00+00:00",
+            "exit_time": "2026-08-14 12:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62824.77,
+            "exit_price": 62904.30832761018,
+            "win": false,
+            "gross_pnl": -1.2660345212594597,
+            "net_pnl": -2.0660345212594597
+          },
+          {
+            "entry_time": "2026-08-15 04:15:00+00:00",
+            "exit_time": "2026-08-15 05:35:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63125.83,
+            "exit_price": 63093.94549593378,
+            "win": false,
+            "gross_pnl": -0.5050944132729812,
+            "net_pnl": -1.3050944132729811
+          },
+          {
+            "entry_time": "2026-08-15 11:50:00+00:00",
+            "exit_time": "2026-08-15 12:35:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63025.2,
+            "exit_price": 62978.99343439295,
+            "win": true,
+            "gross_pnl": 0.7331442916015833,
+            "net_pnl": -0.0668557083984167
+          },
+          {
+            "entry_time": "2026-08-15 13:50:00+00:00",
+            "exit_time": "2026-08-15 14:20:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63048.09,
+            "exit_price": 63022.150015150524,
+            "win": false,
+            "gross_pnl": -0.4114317317062617,
+            "net_pnl": -1.2114317317062617
+          }
+        ]
+      },
+      "Bollinger": {
+        "strategy": "Bollinger",
+        "timeframe": "M5",
+        "signals": 140,
+        "trades": 55,
+        "wins": 20,
+        "losses": 35,
+        "win_rate": 36.36,
+        "net_pnl": -37.74,
+        "profit_factor": 1.13,
+        "max_drawdown_pct": 4.56,
+        "expectancy_usd": -0.69,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 12:05:00+00:00",
+            "exit_time": "2026-08-14 12:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62803.67,
+            "exit_price": 62882.33435281097,
+            "win": false,
+            "gross_pnl": -1.2525438849508435,
+            "net_pnl": -2.0525438849508433
+          },
+          {
+            "entry_time": "2026-08-14 13:00:00+00:00",
+            "exit_time": "2026-08-14 13:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62716.01,
+            "exit_price": 62803.47330524688,
+            "win": false,
+            "gross_pnl": -1.3945929475883112,
+            "net_pnl": -2.194592947588311
+          },
+          {
+            "entry_time": "2026-08-14 15:30:00+00:00",
+            "exit_time": "2026-08-14 16:25:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62902.9,
+            "exit_price": 63156.82928012677,
+            "win": true,
+            "gross_pnl": 4.0368453620860985,
+            "net_pnl": 3.2368453620860986
+          },
+          {
+            "entry_time": "2026-08-14 17:55:00+00:00",
+            "exit_time": "2026-08-14 19:15:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63013.69,
+            "exit_price": 62833.27611717839,
+            "win": true,
+            "gross_pnl": 2.8630902716792037,
+            "net_pnl": 2.0630902716792034
+          },
+          {
+            "entry_time": "2026-08-14 22:10:00+00:00",
+            "exit_time": "2026-08-14 22:45:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62833.33,
+            "exit_price": 62889.79677154102,
+            "win": false,
+            "gross_pnl": -0.8986754568159575,
+            "net_pnl": -1.6986754568159577
+          }
+        ]
+      },
+      "EMA+MACD": {
+        "strategy": "EMA+MACD",
+        "timeframe": "M5",
+        "signals": 65,
+        "trades": 36,
+        "wins": 8,
+        "losses": 28,
+        "win_rate": 22.22,
+        "net_pnl": -50.41,
+        "profit_factor": 0.49,
+        "max_drawdown_pct": 5.38,
+        "expectancy_usd": -1.4,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 10:30:00+00:00",
+            "exit_time": "2026-08-14 10:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62920.0,
+            "exit_price": 62844.52661898644,
+            "win": false,
+            "gross_pnl": -1.199513366394764,
+            "net_pnl": -1.999513366394764
+          },
+          {
+            "entry_time": "2026-08-14 12:05:00+00:00",
+            "exit_time": "2026-08-14 12:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62803.67,
+            "exit_price": 62882.33435281097,
+            "win": false,
+            "gross_pnl": -1.2525438849508435,
+            "net_pnl": -2.0525438849508433
+          },
+          {
+            "entry_time": "2026-08-14 20:05:00+00:00",
+            "exit_time": "2026-08-14 20:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63020.74,
+            "exit_price": 62948.93428984478,
+            "win": false,
+            "gross_pnl": -1.1393980799847567,
+            "net_pnl": -1.9393980799847568
+          },
+          {
+            "entry_time": "2026-08-15 03:45:00+00:00",
+            "exit_time": "2026-08-15 04:10:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63064.35,
+            "exit_price": 63092.56314846387,
+            "win": false,
+            "gross_pnl": -0.447370796081684,
+            "net_pnl": -1.247370796081684
+          },
+          {
+            "entry_time": "2026-08-15 05:40:00+00:00",
+            "exit_time": "2026-08-15 06:50:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63075.07,
+            "exit_price": 63099.41707886553,
+            "win": false,
+            "gross_pnl": -0.3860016146717275,
+            "net_pnl": -1.1860016146717276
+          }
+        ]
+      },
+      "VWAP": {
+        "strategy": "VWAP",
+        "timeframe": "M5",
+        "signals": 64,
+        "trades": 39,
+        "wins": 9,
+        "losses": 30,
+        "win_rate": 23.08,
+        "net_pnl": -42.89,
+        "profit_factor": 0.59,
+        "max_drawdown_pct": 4.6,
+        "expectancy_usd": -1.1,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 18:45:00+00:00",
+            "exit_time": "2026-08-14 19:45:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62895.8,
+            "exit_price": 62987.4581229695,
+            "win": false,
+            "gross_pnl": -1.4573011706584582,
+            "net_pnl": -2.257301170658458
+          },
+          {
+            "entry_time": "2026-08-14 20:30:00+00:00",
+            "exit_time": "2026-08-14 22:15:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62939.78,
+            "exit_price": 62806.22474013558,
+            "win": true,
+            "gross_pnl": 2.121953077440385,
+            "net_pnl": 1.3219530774403851
+          },
+          {
+            "entry_time": "2026-08-14 23:20:00+00:00",
+            "exit_time": "2026-08-14 23:35:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62956.8,
+            "exit_price": 62908.164163932095,
+            "win": false,
+            "gross_pnl": -0.772527130792985,
+            "net_pnl": -1.572527130792985
+          },
+          {
+            "entry_time": "2026-08-14 23:35:00+00:00",
+            "exit_time": "2026-08-15 02:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62980.0,
+            "exit_price": 63085.228802362384,
+            "win": true,
+            "gross_pnl": 1.67082887206072,
+            "net_pnl": 0.87082887206072
+          },
+          {
+            "entry_time": "2026-08-15 06:10:00+00:00",
+            "exit_time": "2026-08-15 06:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63037.76,
+            "exit_price": 63066.449993849805,
+            "win": false,
+            "gross_pnl": -0.4551239423768024,
+            "net_pnl": -1.2551239423768026
+          }
+        ]
+      },
+      "SuperTrend": {
+        "strategy": "SuperTrend",
+        "timeframe": "M5",
+        "signals": 45,
+        "trades": 34,
+        "wins": 15,
+        "losses": 19,
+        "win_rate": 44.12,
+        "net_pnl": -16.01,
+        "profit_factor": 1.6,
+        "max_drawdown_pct": 2.66,
+        "expectancy_usd": -0.47,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 23:35:00+00:00",
+            "exit_time": "2026-08-15 02:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62980.0,
+            "exit_price": 63085.228802362384,
+            "win": true,
+            "gross_pnl": 1.67082887206072,
+            "net_pnl": 0.87082887206072
+          },
+          {
+            "entry_time": "2026-08-15 05:35:00+00:00",
+            "exit_time": "2026-08-15 05:55:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63066.01,
+            "exit_price": 63090.04916185519,
+            "win": false,
+            "gross_pnl": -0.38117461141409703,
+            "net_pnl": -1.181174611414097
+          },
+          {
+            "entry_time": "2026-08-15 06:50:00+00:00",
+            "exit_time": "2026-08-15 07:05:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63128.42,
+            "exit_price": 63097.52883429142,
+            "win": false,
+            "gross_pnl": -0.4893384898367062,
+            "net_pnl": -1.2893384898367062
+          },
+          {
+            "entry_time": "2026-08-15 09:50:00+00:00",
+            "exit_time": "2026-08-15 10:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63042.46,
+            "exit_price": 63014.16048125084,
+            "win": false,
+            "gross_pnl": -0.44889616853722886,
+            "net_pnl": -1.2488961685372288
+          },
+          {
+            "entry_time": "2026-08-15 12:55:00+00:00",
+            "exit_time": "2026-08-15 14:20:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63050.13,
+            "exit_price": 63024.314666255654,
+            "win": false,
+            "gross_pnl": -0.40944140391690964,
+            "net_pnl": -1.2094414039169097
+          }
+        ]
+      },
+      "Wyckoff_SMC": {
+        "strategy": "Wyckoff_SMC",
+        "timeframe": "M5",
+        "signals": 119,
+        "trades": 34,
+        "wins": 14,
+        "losses": 20,
+        "win_rate": 41.18,
+        "net_pnl": -24.54,
+        "profit_factor": 1.08,
+        "max_drawdown_pct": 2.48,
+        "expectancy_usd": -0.72,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 13:00:00+00:00",
+            "exit_time": "2026-08-14 13:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62716.01,
+            "exit_price": 62803.47330524688,
+            "win": false,
+            "gross_pnl": -1.3945929475883112,
+            "net_pnl": -2.194592947588311
+          },
+          {
+            "entry_time": "2026-08-14 14:15:00+00:00",
+            "exit_time": "2026-08-14 14:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62598.01,
+            "exit_price": 62730.00755627114,
+            "win": false,
+            "gross_pnl": -2.108654193178675,
+            "net_pnl": -2.908654193178675
+          },
+          {
+            "entry_time": "2026-08-14 15:30:00+00:00",
+            "exit_time": "2026-08-14 16:25:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62902.9,
+            "exit_price": 63156.82928012677,
+            "win": true,
+            "gross_pnl": 4.0368453620860985,
+            "net_pnl": 3.2368453620860986
+          },
+          {
+            "entry_time": "2026-08-14 18:45:00+00:00",
+            "exit_time": "2026-08-14 19:45:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62895.8,
+            "exit_price": 62987.4581229695,
+            "win": false,
+            "gross_pnl": -1.4573011706584582,
+            "net_pnl": -2.257301170658458
+          },
+          {
+            "entry_time": "2026-08-14 23:40:00+00:00",
+            "exit_time": "2026-08-15 02:30:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63008.89,
+            "exit_price": 63118.50174505079,
+            "win": true,
+            "gross_pnl": 1.739623488856702,
+            "net_pnl": 0.9396234888567019
+          }
+        ]
+      },
+      "Wyckoff_Bbands": {
+        "strategy": "Wyckoff_Bbands",
+        "timeframe": "M5",
+        "signals": 91,
+        "trades": 26,
+        "wins": 9,
+        "losses": 17,
+        "win_rate": 34.62,
+        "net_pnl": -12.03,
+        "profit_factor": 1.31,
+        "max_drawdown_pct": 2.35,
+        "expectancy_usd": -0.46,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 13:00:00+00:00",
+            "exit_time": "2026-08-14 13:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62716.01,
+            "exit_price": 62803.47330524688,
+            "win": false,
+            "gross_pnl": -1.3945929475883112,
+            "net_pnl": -2.194592947588311
+          },
+          {
+            "entry_time": "2026-08-14 15:30:00+00:00",
+            "exit_time": "2026-08-14 16:25:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62902.9,
+            "exit_price": 63156.82928012677,
+            "win": true,
+            "gross_pnl": 4.0368453620860985,
+            "net_pnl": 3.2368453620860986
+          },
+          {
+            "entry_time": "2026-08-15 05:45:00+00:00",
+            "exit_time": "2026-08-15 05:55:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63068.96,
+            "exit_price": 63092.87943037514,
+            "win": false,
+            "gross_pnl": -0.3792583606126189,
+            "net_pnl": -1.179258360612619
+          },
+          {
+            "entry_time": "2026-08-15 12:10:00+00:00",
+            "exit_time": "2026-08-15 12:55:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62986.37,
+            "exit_price": 63008.30217904393,
+            "win": false,
+            "gross_pnl": -0.34820516000410956,
+            "net_pnl": -1.1482051600041097
+          },
+          {
+            "entry_time": "2026-08-15 15:30:00+00:00",
+            "exit_time": "2026-08-15 16:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63097.4,
+            "exit_price": 63073.16251730619,
+            "win": false,
+            "gross_pnl": -0.3841280733248962,
+            "net_pnl": -1.1841280733248962
+          }
+        ]
+      },
+      "3 Velas": {
+        "strategy": "3 Velas",
+        "timeframe": "M5",
+        "signals": 62,
+        "trades": 34,
+        "wins": 17,
+        "losses": 17,
+        "win_rate": 50.0,
+        "net_pnl": 2.26,
+        "profit_factor": 2.05,
+        "max_drawdown_pct": 1.23,
+        "expectancy_usd": 0.07,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 12:05:00+00:00",
+            "exit_time": "2026-08-14 12:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62803.67,
+            "exit_price": 62882.33435281097,
+            "win": false,
+            "gross_pnl": -1.2525438849508435,
+            "net_pnl": -2.0525438849508433
+          },
+          {
+            "entry_time": "2026-08-14 15:30:00+00:00",
+            "exit_time": "2026-08-14 16:25:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62902.9,
+            "exit_price": 63156.82928012677,
+            "win": true,
+            "gross_pnl": 4.0368453620860985,
+            "net_pnl": 3.2368453620860986
+          },
+          {
+            "entry_time": "2026-08-15 06:50:00+00:00",
+            "exit_time": "2026-08-15 07:05:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63128.42,
+            "exit_price": 63097.52883429142,
+            "win": false,
+            "gross_pnl": -0.4893384898367062,
+            "net_pnl": -1.2893384898367062
+          },
+          {
+            "entry_time": "2026-08-15 07:30:00+00:00",
+            "exit_time": "2026-08-15 08:50:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63076.54,
+            "exit_price": 63000.65751538064,
+            "win": true,
+            "gross_pnl": 1.203022306222887,
+            "net_pnl": 0.40302230622288704
+          },
+          {
+            "entry_time": "2026-08-15 12:10:00+00:00",
+            "exit_time": "2026-08-15 12:55:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62986.37,
+            "exit_price": 63008.30217904393,
+            "win": false,
+            "gross_pnl": -0.34820516000410956,
+            "net_pnl": -1.1482051600041097
+          }
+        ]
+      },
+      "Pin Bar": {
+        "strategy": "Pin Bar",
+        "timeframe": "M5",
+        "signals": 58,
+        "trades": 56,
+        "wins": 17,
+        "losses": 39,
+        "win_rate": 30.36,
+        "net_pnl": -44.41,
+        "profit_factor": 1.01,
+        "max_drawdown_pct": 5.07,
+        "expectancy_usd": -0.79,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 08:30:00+00:00",
+            "exit_time": "2026-08-14 13:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62799.99,
+            "exit_price": 62702.69001523146,
+            "win": false,
+            "gross_pnl": -1.5493630614994536,
+            "net_pnl": -2.349363061499454
+          },
+          {
+            "entry_time": "2026-08-14 13:00:00+00:00",
+            "exit_time": "2026-08-14 13:05:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62716.01,
+            "exit_price": 62628.546694753124,
+            "win": false,
+            "gross_pnl": -1.3945929475883112,
+            "net_pnl": -2.194592947588311
+          },
+          {
+            "entry_time": "2026-08-14 13:10:00+00:00",
+            "exit_time": "2026-08-14 14:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62688.43,
+            "exit_price": 62588.16618067999,
+            "win": false,
+            "gross_pnl": -1.5993991127232081,
+            "net_pnl": -2.3993991127232084
+          },
+          {
+            "entry_time": "2026-08-14 15:00:00+00:00",
+            "exit_time": "2026-08-14 15:20:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62641.99,
+            "exit_price": 62773.36925574625,
+            "win": false,
+            "gross_pnl": -2.0973033542876136,
+            "net_pnl": -2.8973033542876134
+          },
+          {
+            "entry_time": "2026-08-14 22:15:00+00:00",
+            "exit_time": "2026-08-14 23:20:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62834.48,
+            "exit_price": 62946.73757571903,
+            "win": true,
+            "gross_pnl": 1.786560113476358,
+            "net_pnl": 0.986560113476358
+          }
+        ]
+      },
+      "RSI+EMA": {
+        "strategy": "RSI+EMA",
+        "timeframe": "M5",
+        "signals": 12,
+        "trades": 12,
+        "wins": 3,
+        "losses": 9,
+        "win_rate": 25.0,
+        "net_pnl": -20.04,
+        "profit_factor": 0.56,
+        "max_drawdown_pct": 2.44,
+        "expectancy_usd": -1.67,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 13:45:00+00:00",
+            "exit_time": "2026-08-14 14:35:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62670.01,
+            "exit_price": 62792.863145801006,
+            "win": false,
+            "gross_pnl": -1.960317954329413,
+            "net_pnl": -2.760317954329413
+          },
+          {
+            "entry_time": "2026-08-14 14:35:00+00:00",
+            "exit_time": "2026-08-14 14:55:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62784.23,
+            "exit_price": 62649.79587711734,
+            "win": false,
+            "gross_pnl": -2.1412084353453045,
+            "net_pnl": -2.9412084353453043
+          },
+          {
+            "entry_time": "2026-08-14 14:55:00+00:00",
+            "exit_time": "2026-08-14 15:20:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62620.01,
+            "exit_price": 62751.96342926519,
+            "win": false,
+            "gross_pnl": -2.1072086904040397,
+            "net_pnl": -2.9072086904040395
+          },
+          {
+            "entry_time": "2026-08-17 00:40:00+00:00",
+            "exit_time": "2026-08-17 00:50:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62947.84,
+            "exit_price": 62848.26938336107,
+            "win": false,
+            "gross_pnl": -1.5817956047249309,
+            "net_pnl": -2.381795604724931
+          },
+          {
+            "entry_time": "2026-08-17 14:10:00+00:00",
+            "exit_time": "2026-08-17 15:05:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63699.42,
+            "exit_price": 63925.217780897045,
+            "win": true,
+            "gross_pnl": 3.5447384120145258,
+            "net_pnl": 2.7447384120145255
+          }
+        ]
+      },
+      "Exaust\u00e3o": {
+        "strategy": "Exaust\u00e3o",
+        "timeframe": "M5",
+        "signals": 4,
+        "trades": 3,
+        "wins": 1,
+        "losses": 2,
+        "win_rate": 33.33,
+        "net_pnl": -5.48,
+        "profit_factor": 0.45,
+        "max_drawdown_pct": 0.59,
+        "expectancy_usd": -1.83,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-16 16:20:00+00:00",
+            "exit_time": "2026-08-16 16:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63317.91,
+            "exit_price": 63353.021529150385,
+            "win": false,
+            "gross_pnl": -0.554527607597615,
+            "net_pnl": -1.354527607597615
+          },
+          {
+            "entry_time": "2026-08-16 22:40:00+00:00",
+            "exit_time": "2026-08-16 23:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62790.0,
+            "exit_price": 62949.79100177781,
+            "win": true,
+            "gross_pnl": 2.544847934031091,
+            "net_pnl": 1.744847934031091
+          },
+          {
+            "entry_time": "2026-08-21 01:20:00+00:00",
+            "exit_time": "2026-08-21 01:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 74501.59,
+            "exit_price": 74879.2098629841,
+            "win": false,
+            "gross_pnl": -5.0686148172691246,
+            "net_pnl": -5.868614817269124
+          }
+        ]
+      },
+      "ABCD": {
+        "strategy": "ABCD",
+        "timeframe": "M5",
+        "signals": 164,
+        "trades": 83,
+        "wins": 30,
+        "losses": 53,
+        "win_rate": 36.14,
+        "net_pnl": -58.43,
+        "profit_factor": 1.12,
+        "max_drawdown_pct": 7.04,
+        "expectancy_usd": -0.7,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 07:30:00+00:00",
+            "exit_time": "2026-08-14 08:20:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63021.04,
+            "exit_price": 62867.738667371006,
+            "win": true,
+            "gross_pnl": 2.4325420943385687,
+            "net_pnl": 1.6325420943385687
+          },
+          {
+            "entry_time": "2026-08-14 10:30:00+00:00",
+            "exit_time": "2026-08-14 10:45:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62920.0,
+            "exit_price": 62844.52661898644,
+            "win": false,
+            "gross_pnl": -1.199513366394764,
+            "net_pnl": -1.999513366394764
+          },
+          {
+            "entry_time": "2026-08-14 11:50:00+00:00",
+            "exit_time": "2026-08-14 12:00:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62926.46,
+            "exit_price": 62852.88294305266,
+            "win": false,
+            "gross_pnl": -1.1692546656420664,
+            "net_pnl": -1.9692546656420664
+          },
+          {
+            "entry_time": "2026-08-14 13:00:00+00:00",
+            "exit_time": "2026-08-14 13:30:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62716.01,
+            "exit_price": 62803.47330524688,
+            "win": false,
+            "gross_pnl": -1.3945929475883112,
+            "net_pnl": -2.194592947588311
+          },
+          {
+            "entry_time": "2026-08-14 13:35:00+00:00",
+            "exit_time": "2026-08-14 14:35:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62656.0,
+            "exit_price": 62777.24740578105,
+            "win": false,
+            "gross_pnl": -1.9351284119804462,
+            "net_pnl": -2.735128411980446
+          }
+        ]
+      }
+    },
+    "M1": {
+      "SMC": {
+        "strategy": "SMC",
+        "timeframe": "M1",
+        "signals": 495,
+        "trades": 153,
+        "wins": 63,
+        "losses": 90,
+        "win_rate": 41.18,
+        "net_pnl": -102.24,
+        "profit_factor": 1.41,
+        "max_drawdown_pct": 10.64,
+        "expectancy_usd": -0.67,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 04:01:00+00:00",
+            "exit_time": "2026-08-14 04:02:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63298.93,
+            "exit_price": 63318.47591355501,
+            "win": false,
+            "gross_pnl": -0.3087874242899808,
+            "net_pnl": -1.108787424289981
+          },
+          {
+            "entry_time": "2026-08-14 04:17:00+00:00",
+            "exit_time": "2026-08-14 04:19:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63450.19,
+            "exit_price": 63429.18945509538,
+            "win": false,
+            "gross_pnl": -0.3309768639719136,
+            "net_pnl": -1.1309768639719135
+          },
+          {
+            "entry_time": "2026-08-14 04:29:00+00:00",
+            "exit_time": "2026-08-14 04:35:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63423.5,
+            "exit_price": 63400.62853402001,
+            "win": false,
+            "gross_pnl": -0.36061500831691706,
+            "net_pnl": -1.160615008316917
+          },
+          {
+            "entry_time": "2026-08-14 05:06:00+00:00",
+            "exit_time": "2026-08-14 05:10:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63362.52,
+            "exit_price": 63340.10526514155,
+            "win": true,
+            "gross_pnl": 0.35375384152089784,
+            "net_pnl": -0.4462461584791022
+          },
+          {
+            "entry_time": "2026-08-14 05:16:00+00:00",
+            "exit_time": "2026-08-14 05:17:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63327.99,
+            "exit_price": 63340.91165839608,
+            "win": false,
+            "gross_pnl": -0.20404340002075863,
+            "net_pnl": -1.0040434000207588
+          }
+        ]
+      },
+      "Bollinger": {
+        "strategy": "Bollinger",
+        "timeframe": "M1",
+        "signals": 959,
+        "trades": 137,
+        "wins": 58,
+        "losses": 79,
+        "win_rate": 42.34,
+        "net_pnl": -82.12,
+        "profit_factor": 1.53,
+        "max_drawdown_pct": 8.46,
+        "expectancy_usd": -0.6,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 04:05:00+00:00",
+            "exit_time": "2026-08-14 04:16:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63390.0,
+            "exit_price": 63439.64747095193,
+            "win": true,
+            "gross_pnl": 0.783206672218514,
+            "net_pnl": -0.01679332778148601
+          },
+          {
+            "entry_time": "2026-08-14 05:08:00+00:00",
+            "exit_time": "2026-08-14 05:15:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63345.62,
+            "exit_price": 63320.75586637206,
+            "win": true,
+            "gross_pnl": 0.39251543560454116,
+            "net_pnl": -0.4074845643954589
+          },
+          {
+            "entry_time": "2026-08-14 05:23:00+00:00",
+            "exit_time": "2026-08-14 05:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63300.0,
+            "exit_price": 63319.81446517734,
+            "win": false,
+            "gross_pnl": -0.3130247263402848,
+            "net_pnl": -1.1130247263402848
+          },
+          {
+            "entry_time": "2026-08-14 05:55:00+00:00",
+            "exit_time": "2026-08-14 05:56:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63395.75,
+            "exit_price": 63381.805441721815,
+            "win": false,
+            "gross_pnl": -0.21996045915040927,
+            "net_pnl": -1.0199604591504092
+          },
+          {
+            "entry_time": "2026-08-14 07:32:00+00:00",
+            "exit_time": "2026-08-14 07:38:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63041.66,
+            "exit_price": 63001.9850220994,
+            "win": true,
+            "gross_pnl": 0.6293453868538024,
+            "net_pnl": -0.17065461314619768
+          }
+        ]
+      },
+      "EMA+MACD": {
+        "strategy": "EMA+MACD",
+        "timeframe": "M1",
+        "signals": 358,
+        "trades": 62,
+        "wins": 31,
+        "losses": 31,
+        "win_rate": 50.0,
+        "net_pnl": -30.51,
+        "profit_factor": 2.37,
+        "max_drawdown_pct": 3.68,
+        "expectancy_usd": -0.49,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 03:29:00+00:00",
+            "exit_time": "2026-08-14 03:35:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63464.0,
+            "exit_price": 63418.04576693065,
+            "win": true,
+            "gross_pnl": 0.7240992226987139,
+            "net_pnl": -0.07590077730128619
+          },
+          {
+            "entry_time": "2026-08-14 05:35:00+00:00",
+            "exit_time": "2026-08-14 05:55:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63341.99,
+            "exit_price": 63379.24156724288,
+            "win": true,
+            "gross_pnl": 0.5881022563845146,
+            "net_pnl": -0.2118977436154854
+          },
+          {
+            "entry_time": "2026-08-14 07:32:00+00:00",
+            "exit_time": "2026-08-14 07:38:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63041.66,
+            "exit_price": 63001.9850220994,
+            "win": true,
+            "gross_pnl": 0.6293453868538024,
+            "net_pnl": -0.17065461314619768
+          },
+          {
+            "entry_time": "2026-08-14 09:20:00+00:00",
+            "exit_time": "2026-08-14 09:28:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62891.41,
+            "exit_price": 62873.98986792215,
+            "win": false,
+            "gross_pnl": -0.2769874626415918,
+            "net_pnl": -1.0769874626415918
+          },
+          {
+            "entry_time": "2026-08-14 11:12:00+00:00",
+            "exit_time": "2026-08-14 11:21:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62857.08,
+            "exit_price": 62915.247578006325,
+            "win": true,
+            "gross_pnl": 0.9253942118584463,
+            "net_pnl": 0.12539421185844624
+          }
+        ]
+      },
+      "VWAP": {
+        "strategy": "VWAP",
+        "timeframe": "M1",
+        "signals": 156,
+        "trades": 45,
+        "wins": 18,
+        "losses": 27,
+        "win_rate": 40.0,
+        "net_pnl": -29.85,
+        "profit_factor": 1.58,
+        "max_drawdown_pct": 3.61,
+        "expectancy_usd": -0.66,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 03:26:00+00:00",
+            "exit_time": "2026-08-14 03:31:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63492.35,
+            "exit_price": 63448.3186228756,
+            "win": true,
+            "gross_pnl": 0.6934910603308334,
+            "net_pnl": -0.10650893966916664
+          },
+          {
+            "entry_time": "2026-08-14 04:18:00+00:00",
+            "exit_time": "2026-08-14 04:24:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63433.02,
+            "exit_price": 63390.33755946284,
+            "win": true,
+            "gross_pnl": 0.6728741676993935,
+            "net_pnl": -0.1271258323006066
+          },
+          {
+            "entry_time": "2026-08-14 18:46:00+00:00",
+            "exit_time": "2026-08-14 19:00:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62940.01,
+            "exit_price": 62888.101055925996,
+            "win": true,
+            "gross_pnl": 0.8247368259713699,
+            "net_pnl": 0.024736825971369836
+          },
+          {
+            "entry_time": "2026-08-14 19:41:00+00:00",
+            "exit_time": "2026-08-14 19:58:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62974.0,
+            "exit_price": 62946.94943998834,
+            "win": false,
+            "gross_pnl": -0.42955124355542607,
+            "net_pnl": -1.229551243555426
+          },
+          {
+            "entry_time": "2026-08-14 19:59:00+00:00",
+            "exit_time": "2026-08-14 20:04:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62968.05,
+            "exit_price": 63007.080748088614,
+            "win": true,
+            "gross_pnl": 0.6198500364647038,
+            "net_pnl": -0.18014996353529622
+          }
+        ]
+      },
+      "SuperTrend": {
+        "strategy": "SuperTrend",
+        "timeframe": "M1",
+        "signals": 382,
+        "trades": 100,
+        "wins": 53,
+        "losses": 47,
+        "win_rate": 53.0,
+        "net_pnl": -60.52,
+        "profit_factor": 2.06,
+        "max_drawdown_pct": 6.51,
+        "expectancy_usd": -0.61,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 03:26:00+00:00",
+            "exit_time": "2026-08-14 03:31:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63492.35,
+            "exit_price": 63448.3186228756,
+            "win": true,
+            "gross_pnl": 0.6934910603308334,
+            "net_pnl": -0.10650893966916664
+          },
+          {
+            "entry_time": "2026-08-14 04:02:00+00:00",
+            "exit_time": "2026-08-14 04:05:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63341.99,
+            "exit_price": 63387.518839459306,
+            "win": true,
+            "gross_pnl": 0.7187781668891058,
+            "net_pnl": -0.08122183311089426
+          },
+          {
+            "entry_time": "2026-08-14 04:24:00+00:00",
+            "exit_time": "2026-08-14 04:26:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63380.0,
+            "exit_price": 63398.76263324173,
+            "win": false,
+            "gross_pnl": -0.29603397352047334,
+            "net_pnl": -1.0960339735204734
+          },
+          {
+            "entry_time": "2026-08-14 04:28:00+00:00",
+            "exit_time": "2026-08-14 04:34:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63428.99,
+            "exit_price": 63405.44957509847,
+            "win": false,
+            "gross_pnl": -0.371130375897936,
+            "net_pnl": -1.1711303758979361
+          },
+          {
+            "entry_time": "2026-08-14 05:01:00+00:00",
+            "exit_time": "2026-08-14 05:04:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63396.34,
+            "exit_price": 63386.005634026886,
+            "win": false,
+            "gross_pnl": -0.16301202834597134,
+            "net_pnl": -0.9630120283459713
+          }
+        ]
+      },
+      "Wyckoff_SMC": {
+        "strategy": "Wyckoff_SMC",
+        "timeframe": "M1",
+        "signals": 874,
+        "trades": 109,
+        "wins": 40,
+        "losses": 69,
+        "win_rate": 36.7,
+        "net_pnl": -86.76,
+        "profit_factor": 1.01,
+        "max_drawdown_pct": 8.68,
+        "expectancy_usd": -0.8,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 04:09:00+00:00",
+            "exit_time": "2026-08-14 04:16:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63400.01,
+            "exit_price": 63441.34214019831,
+            "win": true,
+            "gross_pnl": 0.6519263987230418,
+            "net_pnl": -0.14807360127695823
+          },
+          {
+            "entry_time": "2026-08-14 05:08:00+00:00",
+            "exit_time": "2026-08-14 05:15:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63345.62,
+            "exit_price": 63320.75586637206,
+            "win": true,
+            "gross_pnl": 0.39251543560454116,
+            "net_pnl": -0.4074845643954589
+          },
+          {
+            "entry_time": "2026-08-14 05:24:00+00:00",
+            "exit_time": "2026-08-14 05:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63286.68,
+            "exit_price": 63306.50843195039,
+            "win": false,
+            "gross_pnl": -0.3133112994770355,
+            "net_pnl": -1.1133112994770356
+          },
+          {
+            "entry_time": "2026-08-14 05:55:00+00:00",
+            "exit_time": "2026-08-14 05:56:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63395.75,
+            "exit_price": 63381.805441721815,
+            "win": false,
+            "gross_pnl": -0.21996045915040927,
+            "net_pnl": -1.0199604591504092
+          },
+          {
+            "entry_time": "2026-08-14 07:26:00+00:00",
+            "exit_time": "2026-08-14 07:32:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63110.0,
+            "exit_price": 63091.53346598842,
+            "win": false,
+            "gross_pnl": -0.2926086834349953,
+            "net_pnl": -1.0926086834349953
+          }
+        ]
+      },
+      "Wyckoff_Bbands": {
+        "strategy": "Wyckoff_Bbands",
+        "timeframe": "M1",
+        "signals": 407,
+        "trades": 53,
+        "wins": 20,
+        "losses": 33,
+        "win_rate": 37.74,
+        "net_pnl": -29.59,
+        "profit_factor": 1.56,
+        "max_drawdown_pct": 2.96,
+        "expectancy_usd": -0.56,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 05:24:00+00:00",
+            "exit_time": "2026-08-14 05:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63286.68,
+            "exit_price": 63306.50843195039,
+            "win": false,
+            "gross_pnl": -0.3133112994770355,
+            "net_pnl": -1.1133112994770356
+          },
+          {
+            "entry_time": "2026-08-14 12:10:00+00:00",
+            "exit_time": "2026-08-14 12:15:00+00:00",
+            "direction": "PUT",
+            "entry_price": 62793.35,
+            "exit_price": 62825.65536779213,
+            "win": false,
+            "gross_pnl": -0.5144711628243174,
+            "net_pnl": -1.3144711628243173
+          },
+          {
+            "entry_time": "2026-08-14 14:32:00+00:00",
+            "exit_time": "2026-08-14 14:51:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62744.75,
+            "exit_price": 62684.0271885128,
+            "win": false,
+            "gross_pnl": -0.9677751762051447,
+            "net_pnl": -1.7677751762051448
+          },
+          {
+            "entry_time": "2026-08-14 15:24:00+00:00",
+            "exit_time": "2026-08-14 15:25:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62774.68,
+            "exit_price": 62737.171515155525,
+            "win": false,
+            "gross_pnl": -0.5975097737571083,
+            "net_pnl": -1.3975097737571085
+          },
+          {
+            "entry_time": "2026-08-14 16:11:00+00:00",
+            "exit_time": "2026-08-14 16:13:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63086.01,
+            "exit_price": 63038.438264351345,
+            "win": false,
+            "gross_pnl": -0.7540774198377201,
+            "net_pnl": -1.55407741983772
+          }
+        ]
+      },
+      "3 Velas": {
+        "strategy": "3 Velas",
+        "timeframe": "M1",
+        "signals": 373,
+        "trades": 109,
+        "wins": 40,
+        "losses": 69,
+        "win_rate": 36.7,
+        "net_pnl": -85.55,
+        "profit_factor": 1.04,
+        "max_drawdown_pct": 8.56,
+        "expectancy_usd": -0.78,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 03:26:00+00:00",
+            "exit_time": "2026-08-14 03:31:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63492.35,
+            "exit_price": 63448.3186228756,
+            "win": true,
+            "gross_pnl": 0.6934910603308334,
+            "net_pnl": -0.10650893966916664
+          },
+          {
+            "entry_time": "2026-08-14 04:09:00+00:00",
+            "exit_time": "2026-08-14 04:16:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63400.01,
+            "exit_price": 63441.34214019831,
+            "win": true,
+            "gross_pnl": 0.6519263987230418,
+            "net_pnl": -0.14807360127695823
+          },
+          {
+            "entry_time": "2026-08-14 04:28:00+00:00",
+            "exit_time": "2026-08-14 04:34:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63428.99,
+            "exit_price": 63405.44957509847,
+            "win": false,
+            "gross_pnl": -0.371130375897936,
+            "net_pnl": -1.1711303758979361
+          },
+          {
+            "entry_time": "2026-08-14 05:05:00+00:00",
+            "exit_time": "2026-08-14 05:08:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63373.59,
+            "exit_price": 63352.00797784475,
+            "win": true,
+            "gross_pnl": 0.3405523050729718,
+            "net_pnl": -0.45944769492702825
+          },
+          {
+            "entry_time": "2026-08-14 05:24:00+00:00",
+            "exit_time": "2026-08-14 05:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63286.68,
+            "exit_price": 63306.50843195039,
+            "win": false,
+            "gross_pnl": -0.3133112994770355,
+            "net_pnl": -1.1133112994770356
+          }
+        ]
+      },
+      "Pin Bar": {
+        "strategy": "Pin Bar",
+        "timeframe": "M1",
+        "signals": 330,
+        "trades": 124,
+        "wins": 62,
+        "losses": 62,
+        "win_rate": 50.0,
+        "net_pnl": -72.52,
+        "profit_factor": 1.72,
+        "max_drawdown_pct": 8.02,
+        "expectancy_usd": -0.58,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 03:22:00+00:00",
+            "exit_time": "2026-08-14 03:26:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63552.15,
+            "exit_price": 63509.36803040472,
+            "win": true,
+            "gross_pnl": 0.6731789498117451,
+            "net_pnl": -0.12682105018825496
+          },
+          {
+            "entry_time": "2026-08-14 04:09:00+00:00",
+            "exit_time": "2026-08-14 04:16:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63400.01,
+            "exit_price": 63420.67607009916,
+            "win": false,
+            "gross_pnl": -0.3259631993615783,
+            "net_pnl": -1.1259631993615784
+          },
+          {
+            "entry_time": "2026-08-14 05:10:00+00:00",
+            "exit_time": "2026-08-14 05:15:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63343.18,
+            "exit_price": 63330.91704443081,
+            "win": false,
+            "gross_pnl": -0.1935955152423547,
+            "net_pnl": -0.9935955152423548
+          },
+          {
+            "entry_time": "2026-08-14 06:24:00+00:00",
+            "exit_time": "2026-08-14 06:38:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63226.46,
+            "exit_price": 63181.50946283622,
+            "win": true,
+            "gross_pnl": 0.7109450246586443,
+            "net_pnl": -0.08905497534135576
+          },
+          {
+            "entry_time": "2026-08-14 06:43:00+00:00",
+            "exit_time": "2026-08-14 06:46:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63180.53,
+            "exit_price": 63202.89600091657,
+            "win": false,
+            "gross_pnl": -0.3540014766664467,
+            "net_pnl": -1.1540014766664468
+          }
+        ]
+      },
+      "RSI+EMA": {
+        "strategy": "RSI+EMA",
+        "timeframe": "M1",
+        "signals": 23,
+        "trades": 8,
+        "wins": 4,
+        "losses": 4,
+        "win_rate": 50.0,
+        "net_pnl": 0.76,
+        "profit_factor": 2.03,
+        "max_drawdown_pct": 0.39,
+        "expectancy_usd": 0.09,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-17 17:35:00+00:00",
+            "exit_time": "2026-08-17 17:38:00+00:00",
+            "direction": "PUT",
+            "entry_price": 64111.08,
+            "exit_price": 64171.286304809764,
+            "win": false,
+            "gross_pnl": -0.9390935983259447,
+            "net_pnl": -1.7390935983259448
+          },
+          {
+            "entry_time": "2026-08-19 13:43:00+00:00",
+            "exit_time": "2026-08-19 14:05:00+00:00",
+            "direction": "CALL",
+            "entry_price": 65026.0,
+            "exit_price": 65224.000873314566,
+            "win": true,
+            "gross_pnl": 3.044949302041737,
+            "net_pnl": 2.2449493020417366
+          },
+          {
+            "entry_time": "2026-08-19 21:49:00+00:00",
+            "exit_time": "2026-08-19 22:01:00+00:00",
+            "direction": "CALL",
+            "entry_price": 69826.0,
+            "exit_price": 69608.60209008212,
+            "win": false,
+            "gross_pnl": -3.1134235086913646,
+            "net_pnl": -3.9134235086913645
+          },
+          {
+            "entry_time": "2026-08-19 22:01:00+00:00",
+            "exit_time": "2026-08-19 22:23:00+00:00",
+            "direction": "PUT",
+            "entry_price": 69597.78,
+            "exit_price": 69243.45246761857,
+            "win": true,
+            "gross_pnl": 5.091075209316022,
+            "net_pnl": 4.2910752093160225
+          },
+          {
+            "entry_time": "2026-08-20 11:07:00+00:00",
+            "exit_time": "2026-08-20 11:08:00+00:00",
+            "direction": "PUT",
+            "entry_price": 71870.01,
+            "exit_price": 71968.92939498274,
+            "win": false,
+            "gross_pnl": -1.3763653989020717,
+            "net_pnl": -2.176365398902072
+          }
+        ]
+      },
+      "Exaust\u00e3o": {
+        "strategy": "Exaust\u00e3o",
+        "timeframe": "M1",
+        "signals": 47,
+        "trades": 5,
+        "wins": 4,
+        "losses": 1,
+        "win_rate": 80.0,
+        "net_pnl": -3.38,
+        "profit_factor": 2.75,
+        "max_drawdown_pct": 0.34,
+        "expectancy_usd": -0.68,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 03:39:00+00:00",
+            "exit_time": "2026-08-14 03:48:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63369.22,
+            "exit_price": 63346.875503270174,
+            "win": false,
+            "gross_pnl": -0.3526080442496747,
+            "net_pnl": -1.1526080442496747
+          },
+          {
+            "entry_time": "2026-08-14 04:01:00+00:00",
+            "exit_time": "2026-08-14 04:02:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63298.93,
+            "exit_price": 63338.021827110024,
+            "win": true,
+            "gross_pnl": 0.6175748485799616,
+            "net_pnl": -0.18242515142003846
+          },
+          {
+            "entry_time": "2026-08-15 11:46:00+00:00",
+            "exit_time": "2026-08-15 11:47:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63030.01,
+            "exit_price": 63018.83634104933,
+            "win": true,
+            "gross_pnl": 0.17727522097281995,
+            "net_pnl": -0.6227247790271802
+          },
+          {
+            "entry_time": "2026-08-15 16:08:00+00:00",
+            "exit_time": "2026-08-15 16:09:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63076.05,
+            "exit_price": 63083.032625227315,
+            "win": true,
+            "gross_pnl": 0.11070168831612605,
+            "net_pnl": -0.689298311683874
+          },
+          {
+            "entry_time": "2026-08-16 11:28:00+00:00",
+            "exit_time": "2026-08-16 11:33:00+00:00",
+            "direction": "CALL",
+            "entry_price": 62981.95,
+            "exit_price": 62986.085534555845,
+            "win": true,
+            "gross_pnl": 0.06566221839507508,
+            "net_pnl": -0.734337781604925
+          }
+        ]
+      },
+      "ABCD": {
+        "strategy": "ABCD",
+        "timeframe": "M1",
+        "signals": 791,
+        "trades": 251,
+        "wins": 113,
+        "losses": 138,
+        "win_rate": 45.02,
+        "net_pnl": -136.44,
+        "profit_factor": 1.75,
+        "max_drawdown_pct": 14.61,
+        "expectancy_usd": -0.54,
+        "trade_samples": [
+          {
+            "entry_time": "2026-08-14 03:57:00+00:00",
+            "exit_time": "2026-08-14 03:58:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63340.01,
+            "exit_price": 63312.19410348872,
+            "win": true,
+            "gross_pnl": 0.43915207009410967,
+            "net_pnl": -0.3608479299058904
+          },
+          {
+            "entry_time": "2026-08-14 04:12:00+00:00",
+            "exit_time": "2026-08-14 04:16:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63406.27,
+            "exit_price": 63441.354927848275,
+            "win": true,
+            "gross_pnl": 0.5533353065600344,
+            "net_pnl": -0.24666469343996567
+          },
+          {
+            "entry_time": "2026-08-14 04:26:00+00:00",
+            "exit_time": "2026-08-14 04:56:00+00:00",
+            "direction": "CALL",
+            "entry_price": 63401.99,
+            "exit_price": 63380.550306031364,
+            "win": false,
+            "gross_pnl": -0.33815490599954273,
+            "net_pnl": -1.1381549059995428
+          },
+          {
+            "entry_time": "2026-08-14 05:03:00+00:00",
+            "exit_time": "2026-08-14 05:06:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63387.01,
+            "exit_price": 63365.548542352495,
+            "win": true,
+            "gross_pnl": 0.33857816684375713,
+            "net_pnl": -0.4614218331562429
+          },
+          {
+            "entry_time": "2026-08-14 05:23:00+00:00",
+            "exit_time": "2026-08-14 05:25:00+00:00",
+            "direction": "PUT",
+            "entry_price": 63300.0,
+            "exit_price": 63319.81446517734,
+            "win": false,
+            "gross_pnl": -0.3130247263402848,
+            "net_pnl": -1.1130247263402848
+          }
+        ]
+      }
+    }
+  },
+  "ranking": [
+    {
+      "strategy": "ABCD",
+      "timeframe": "M15",
+      "signals": 40,
+      "trades": 19,
+      "wins": 13,
+      "losses": 6,
+      "win_rate": 68.42,
+      "net_pnl": 40.85,
+      "profit_factor": 7.48,
+      "max_drawdown_pct": 0.52,
+      "expectancy_usd": 2.15,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 22:00:00+00:00",
+          "exit_time": "2026-08-14 23:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62833.33,
+          "exit_price": 62958.06399209207,
+          "win": false,
+          "gross_pnl": -1.9851564781314517,
+          "net_pnl": -2.7851564781314515
+        },
+        {
+          "entry_time": "2026-08-14 23:30:00+00:00",
+          "exit_time": "2026-08-15 23:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63008.89,
+          "exit_price": 63086.01,
+          "win": "True",
+          "gross_pnl": 1.2239542705799549,
+          "net_pnl": 0.42395427057995483
+        },
+        {
+          "entry_time": "2026-08-16 01:00:00+00:00",
+          "exit_time": "2026-08-16 01:45:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63052.25,
+          "exit_price": 63082.55570412274,
+          "win": false,
+          "gross_pnl": -0.48064429299091854,
+          "net_pnl": -1.2806442929909185
+        },
+        {
+          "entry_time": "2026-08-16 02:30:00+00:00",
+          "exit_time": "2026-08-16 04:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63151.58,
+          "exit_price": 63104.09119606561,
+          "win": false,
+          "gross_pnl": -0.7519812478863271,
+          "net_pnl": -1.551981247886327
+        },
+        {
+          "entry_time": "2026-08-16 04:45:00+00:00",
+          "exit_time": "2026-08-16 09:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63090.01,
+          "exit_price": 63013.610143797516,
+          "win": true,
+          "gross_pnl": 1.2109659865719828,
+          "net_pnl": 0.4109659865719828
+        }
+      ]
+    },
+    {
+      "strategy": "3 Velas",
+      "timeframe": "M15",
+      "signals": 28,
+      "trades": 16,
+      "wins": 7,
+      "losses": 9,
+      "win_rate": 43.75,
+      "net_pnl": 12.76,
+      "profit_factor": 2.35,
+      "max_drawdown_pct": 1.23,
+      "expectancy_usd": 0.8,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-15 07:00:00+00:00",
+          "exit_time": "2026-08-15 07:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63134.83,
+          "exit_price": 63061.67106622995,
+          "win": false,
+          "gross_pnl": -1.158772958920611,
+          "net_pnl": -1.958772958920611
+        },
+        {
+          "entry_time": "2026-08-15 21:15:00+00:00",
+          "exit_time": "2026-08-15 23:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63154.97,
+          "exit_price": 63118.85569216523,
+          "win": false,
+          "gross_pnl": -0.5718363548391215,
+          "net_pnl": -1.3718363548391217
+        },
+        {
+          "entry_time": "2026-08-16 17:30:00+00:00",
+          "exit_time": "2026-08-16 19:15:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63126.0,
+          "exit_price": 63191.14713300294,
+          "win": false,
+          "gross_pnl": -1.0320174413544032,
+          "net_pnl": -1.8320174413544033
+        },
+        {
+          "entry_time": "2026-08-16 21:30:00+00:00",
+          "exit_time": "2026-08-16 22:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62939.59,
+          "exit_price": 62754.516922591254,
+          "win": true,
+          "gross_pnl": 2.9404874961648524,
+          "net_pnl": 2.1404874961648526
+        },
+        {
+          "entry_time": "2026-08-17 01:30:00+00:00",
+          "exit_time": "2026-08-17 02:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63214.0,
+          "exit_price": 63045.02033812781,
+          "win": false,
+          "gross_pnl": -2.673136676561971,
+          "net_pnl": -3.473136676561971
+        }
+      ]
+    },
+    {
+      "strategy": "SMC",
+      "timeframe": "M15",
+      "signals": 12,
+      "trades": 9,
+      "wins": 4,
+      "losses": 5,
+      "win_rate": 44.44,
+      "net_pnl": 11.97,
+      "profit_factor": 3.62,
+      "max_drawdown_pct": 0.7,
+      "expectancy_usd": 1.33,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-15 15:30:00+00:00",
+          "exit_time": "2026-08-15 18:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63115.59,
+          "exit_price": 63064.083990431755,
+          "win": false,
+          "gross_pnl": -0.8160584345047239,
+          "net_pnl": -1.616058434504724
+        },
+        {
+          "entry_time": "2026-08-15 19:15:00+00:00",
+          "exit_time": "2026-08-16 01:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63101.31,
+          "exit_price": 63060.96618790543,
+          "win": false,
+          "gross_pnl": -0.6393498343309321,
+          "net_pnl": -1.439349834330932
+        },
+        {
+          "entry_time": "2026-08-16 09:45:00+00:00",
+          "exit_time": "2026-08-16 12:00:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62992.69,
+          "exit_price": 63022.850123422104,
+          "win": false,
+          "gross_pnl": -0.47878767238074144,
+          "net_pnl": -1.2787876723807414
+        },
+        {
+          "entry_time": "2026-08-16 14:30:00+00:00",
+          "exit_time": "2026-08-16 16:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63100.89,
+          "exit_price": 63156.75436235338,
+          "win": true,
+          "gross_pnl": 0.8853181366123198,
+          "net_pnl": 0.0853181366123198
+        },
+        {
+          "entry_time": "2026-08-17 13:45:00+00:00",
+          "exit_time": "2026-08-17 15:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63672.36,
+          "exit_price": 64005.94596434084,
+          "win": true,
+          "gross_pnl": 5.239101618674733,
+          "net_pnl": 4.439101618674733
+        }
+      ]
+    },
+    {
+      "strategy": "Wyckoff_Bbands",
+      "timeframe": "M15",
+      "signals": 38,
+      "trades": 6,
+      "wins": 3,
+      "losses": 3,
+      "win_rate": 50.0,
+      "net_pnl": 9.08,
+      "profit_factor": 3.16,
+      "max_drawdown_pct": 0.74,
+      "expectancy_usd": 1.51,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-15 21:30:00+00:00",
+          "exit_time": "2026-08-15 23:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63168.17,
+          "exit_price": 63131.57099986771,
+          "win": false,
+          "gross_pnl": -0.5793899068516021,
+          "net_pnl": -1.379389906851602
+        },
+        {
+          "entry_time": "2026-08-17 02:30:00+00:00",
+          "exit_time": "2026-08-17 06:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63256.69,
+          "exit_price": 63625.72322718303,
+          "win": true,
+          "gross_pnl": 5.833900369795299,
+          "net_pnl": 5.033900369795299
+        },
+        {
+          "entry_time": "2026-08-17 23:45:00+00:00",
+          "exit_time": "2026-08-18 00:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 64532.1,
+          "exit_price": 64386.976961333756,
+          "win": false,
+          "gross_pnl": -2.248850396411132,
+          "net_pnl": -3.048850396411132
+        },
+        {
+          "entry_time": "2026-08-18 14:30:00+00:00",
+          "exit_time": "2026-08-19 00:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 64786.0,
+          "exit_price": 64552.4696179138,
+          "win": false,
+          "gross_pnl": -3.604642701914036,
+          "net_pnl": -4.404642701914036
+        },
+        {
+          "entry_time": "2026-08-19 01:30:00+00:00",
+          "exit_time": "2026-08-19 06:00:00+00:00",
+          "direction": "PUT",
+          "entry_price": 64415.72,
+          "exit_price": 64173.27436110691,
+          "win": true,
+          "gross_pnl": 3.7637651010202497,
+          "net_pnl": 2.9637651010202495
+        }
+      ]
+    },
+    {
+      "strategy": "RSI+EMA",
+      "timeframe": "M15",
+      "signals": 5,
+      "trades": 5,
+      "wins": 3,
+      "losses": 2,
+      "win_rate": 60.0,
+      "net_pnl": 6.49,
+      "profit_factor": 3.88,
+      "max_drawdown_pct": 0.52,
+      "expectancy_usd": 1.3,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-17 01:00:00+00:00",
+          "exit_time": "2026-08-17 02:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63054.68,
+          "exit_price": 63385.05897901715,
+          "win": true,
+          "gross_pnl": 5.2395631698892196,
+          "net_pnl": 4.43956316988922
+        },
+        {
+          "entry_time": "2026-08-17 13:30:00+00:00",
+          "exit_time": "2026-08-17 15:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63655.83,
+          "exit_price": 63984.153346213214,
+          "win": true,
+          "gross_pnl": 5.157789101378649,
+          "net_pnl": 4.357789101378649
+        },
+        {
+          "entry_time": "2026-08-18 04:00:00+00:00",
+          "exit_time": "2026-08-18 05:00:00+00:00",
+          "direction": "PUT",
+          "entry_price": 64148.0,
+          "exit_price": 64274.01461070578,
+          "win": false,
+          "gross_pnl": -1.9644355351028995,
+          "net_pnl": -2.7644355351028995
+        },
+        {
+          "entry_time": "2026-08-19 08:00:00+00:00",
+          "exit_time": "2026-08-19 08:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 64262.0,
+          "exit_price": 64370.13698912796,
+          "win": false,
+          "gross_pnl": -1.682751690391849,
+          "net_pnl": -2.482751690391849
+        },
+        {
+          "entry_time": "2026-08-19 08:30:00+00:00",
+          "exit_time": "2026-08-19 12:30:00+00:00",
+          "direction": "CALL",
+          "entry_price": 64450.12,
+          "exit_price": 64690.94460370027,
+          "win": true,
+          "gross_pnl": 3.736604426807401,
+          "net_pnl": 2.936604426807401
+        }
+      ]
+    },
+    {
+      "strategy": "Bollinger",
+      "timeframe": "M15",
+      "signals": 53,
+      "trades": 17,
+      "wins": 7,
+      "losses": 10,
+      "win_rate": 41.18,
+      "net_pnl": 4.44,
+      "profit_factor": 1.82,
+      "max_drawdown_pct": 1.44,
+      "expectancy_usd": 0.26,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-15 08:45:00+00:00",
+          "exit_time": "2026-08-15 09:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62935.72,
+          "exit_price": 63009.42280972447,
+          "win": false,
+          "gross_pnl": -1.1710807427716607,
+          "net_pnl": -1.9710807427716608
+        },
+        {
+          "entry_time": "2026-08-15 15:30:00+00:00",
+          "exit_time": "2026-08-15 18:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63115.59,
+          "exit_price": 63064.083990431755,
+          "win": false,
+          "gross_pnl": -0.8160584345047239,
+          "net_pnl": -1.616058434504724
+        },
+        {
+          "entry_time": "2026-08-15 21:15:00+00:00",
+          "exit_time": "2026-08-15 23:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63154.97,
+          "exit_price": 63118.85569216523,
+          "win": false,
+          "gross_pnl": -0.5718363548391215,
+          "net_pnl": -1.3718363548391217
+        },
+        {
+          "entry_time": "2026-08-16 09:30:00+00:00",
+          "exit_time": "2026-08-16 13:00:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63000.0,
+          "exit_price": 63027.837055993026,
+          "win": false,
+          "gross_pnl": -0.44185803163533804,
+          "net_pnl": -1.241858031635338
+        },
+        {
+          "entry_time": "2026-08-16 14:30:00+00:00",
+          "exit_time": "2026-08-16 16:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63100.89,
+          "exit_price": 63156.75436235338,
+          "win": true,
+          "gross_pnl": 0.8853181366123198,
+          "net_pnl": 0.0853181366123198
+        }
+      ]
+    },
+    {
+      "strategy": "3 Velas",
+      "timeframe": "M5",
+      "signals": 62,
+      "trades": 34,
+      "wins": 17,
+      "losses": 17,
+      "win_rate": 50.0,
+      "net_pnl": 2.26,
+      "profit_factor": 2.05,
+      "max_drawdown_pct": 1.23,
+      "expectancy_usd": 0.07,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 12:05:00+00:00",
+          "exit_time": "2026-08-14 12:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62803.67,
+          "exit_price": 62882.33435281097,
+          "win": false,
+          "gross_pnl": -1.2525438849508435,
+          "net_pnl": -2.0525438849508433
+        },
+        {
+          "entry_time": "2026-08-14 15:30:00+00:00",
+          "exit_time": "2026-08-14 16:25:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62902.9,
+          "exit_price": 63156.82928012677,
+          "win": true,
+          "gross_pnl": 4.0368453620860985,
+          "net_pnl": 3.2368453620860986
+        },
+        {
+          "entry_time": "2026-08-15 06:50:00+00:00",
+          "exit_time": "2026-08-15 07:05:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63128.42,
+          "exit_price": 63097.52883429142,
+          "win": false,
+          "gross_pnl": -0.4893384898367062,
+          "net_pnl": -1.2893384898367062
+        },
+        {
+          "entry_time": "2026-08-15 07:30:00+00:00",
+          "exit_time": "2026-08-15 08:50:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63076.54,
+          "exit_price": 63000.65751538064,
+          "win": true,
+          "gross_pnl": 1.203022306222887,
+          "net_pnl": 0.40302230622288704
+        },
+        {
+          "entry_time": "2026-08-15 12:10:00+00:00",
+          "exit_time": "2026-08-15 12:55:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62986.37,
+          "exit_price": 63008.30217904393,
+          "win": false,
+          "gross_pnl": -0.34820516000410956,
+          "net_pnl": -1.1482051600041097
+        }
+      ]
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "timeframe": "M15",
+      "signals": 1,
+      "trades": 1,
+      "wins": 1,
+      "losses": 0,
+      "win_rate": 100.0,
+      "net_pnl": 0.91,
+      "profit_factor": 99.0,
+      "max_drawdown_pct": 0.0,
+      "expectancy_usd": 0.91,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-16 16:30:00+00:00",
+          "exit_time": "2026-08-16 17:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63290.01,
+          "exit_price": 63181.957619730354,
+          "win": true,
+          "gross_pnl": 1.707258069158908,
+          "net_pnl": 0.907258069158908
+        }
+      ]
+    },
+    {
+      "strategy": "RSI+EMA",
+      "timeframe": "M1",
+      "signals": 23,
+      "trades": 8,
+      "wins": 4,
+      "losses": 4,
+      "win_rate": 50.0,
+      "net_pnl": 0.76,
+      "profit_factor": 2.03,
+      "max_drawdown_pct": 0.39,
+      "expectancy_usd": 0.09,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-17 17:35:00+00:00",
+          "exit_time": "2026-08-17 17:38:00+00:00",
+          "direction": "PUT",
+          "entry_price": 64111.08,
+          "exit_price": 64171.286304809764,
+          "win": false,
+          "gross_pnl": -0.9390935983259447,
+          "net_pnl": -1.7390935983259448
+        },
+        {
+          "entry_time": "2026-08-19 13:43:00+00:00",
+          "exit_time": "2026-08-19 14:05:00+00:00",
+          "direction": "CALL",
+          "entry_price": 65026.0,
+          "exit_price": 65224.000873314566,
+          "win": true,
+          "gross_pnl": 3.044949302041737,
+          "net_pnl": 2.2449493020417366
+        },
+        {
+          "entry_time": "2026-08-19 21:49:00+00:00",
+          "exit_time": "2026-08-19 22:01:00+00:00",
+          "direction": "CALL",
+          "entry_price": 69826.0,
+          "exit_price": 69608.60209008212,
+          "win": false,
+          "gross_pnl": -3.1134235086913646,
+          "net_pnl": -3.9134235086913645
+        },
+        {
+          "entry_time": "2026-08-19 22:01:00+00:00",
+          "exit_time": "2026-08-19 22:23:00+00:00",
+          "direction": "PUT",
+          "entry_price": 69597.78,
+          "exit_price": 69243.45246761857,
+          "win": true,
+          "gross_pnl": 5.091075209316022,
+          "net_pnl": 4.2910752093160225
+        },
+        {
+          "entry_time": "2026-08-20 11:07:00+00:00",
+          "exit_time": "2026-08-20 11:08:00+00:00",
+          "direction": "PUT",
+          "entry_price": 71870.01,
+          "exit_price": 71968.92939498274,
+          "win": false,
+          "gross_pnl": -1.3763653989020717,
+          "net_pnl": -2.176365398902072
+        }
+      ]
+    },
+    {
+      "strategy": "SMC",
+      "timeframe": "M5",
+      "signals": 68,
+      "trades": 49,
+      "wins": 24,
+      "losses": 25,
+      "win_rate": 48.98,
+      "net_pnl": -0.19,
+      "profit_factor": 2.41,
+      "max_drawdown_pct": 1.73,
+      "expectancy_usd": -0.0,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 08:00:00+00:00",
+          "exit_time": "2026-08-14 08:20:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62926.0,
+          "exit_price": 62768.91437498597,
+          "win": true,
+          "gross_pnl": 2.4963548455968563,
+          "net_pnl": 1.6963548455968562
+        },
+        {
+          "entry_time": "2026-08-14 12:10:00+00:00",
+          "exit_time": "2026-08-14 12:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62824.77,
+          "exit_price": 62904.30832761018,
+          "win": false,
+          "gross_pnl": -1.2660345212594597,
+          "net_pnl": -2.0660345212594597
+        },
+        {
+          "entry_time": "2026-08-15 04:15:00+00:00",
+          "exit_time": "2026-08-15 05:35:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63125.83,
+          "exit_price": 63093.94549593378,
+          "win": false,
+          "gross_pnl": -0.5050944132729812,
+          "net_pnl": -1.3050944132729811
+        },
+        {
+          "entry_time": "2026-08-15 11:50:00+00:00",
+          "exit_time": "2026-08-15 12:35:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63025.2,
+          "exit_price": 62978.99343439295,
+          "win": true,
+          "gross_pnl": 0.7331442916015833,
+          "net_pnl": -0.0668557083984167
+        },
+        {
+          "entry_time": "2026-08-15 13:50:00+00:00",
+          "exit_time": "2026-08-15 14:20:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63048.09,
+          "exit_price": 63022.150015150524,
+          "win": false,
+          "gross_pnl": -0.4114317317062617,
+          "net_pnl": -1.2114317317062617
+        }
+      ]
+    },
+    {
+      "strategy": "Wyckoff_SMC",
+      "timeframe": "M15",
+      "signals": 32,
+      "trades": 11,
+      "wins": 5,
+      "losses": 6,
+      "win_rate": 45.45,
+      "net_pnl": -0.4,
+      "profit_factor": 2.19,
+      "max_drawdown_pct": 0.62,
+      "expectancy_usd": -0.04,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-15 08:45:00+00:00",
+          "exit_time": "2026-08-15 09:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62935.72,
+          "exit_price": 63009.42280972447,
+          "win": false,
+          "gross_pnl": -1.1710807427716607,
+          "net_pnl": -1.9710807427716608
+        },
+        {
+          "entry_time": "2026-08-15 16:15:00+00:00",
+          "exit_time": "2026-08-15 17:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63121.59,
+          "exit_price": 63070.63863774729,
+          "win": false,
+          "gross_pnl": -0.8071938975667177,
+          "net_pnl": -1.6071938975667177
+        },
+        {
+          "entry_time": "2026-08-15 21:30:00+00:00",
+          "exit_time": "2026-08-15 23:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63168.17,
+          "exit_price": 63131.57099986771,
+          "win": false,
+          "gross_pnl": -0.5793899068516021,
+          "net_pnl": -1.379389906851602
+        },
+        {
+          "entry_time": "2026-08-16 09:45:00+00:00",
+          "exit_time": "2026-08-16 12:00:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62992.69,
+          "exit_price": 63022.850123422104,
+          "win": false,
+          "gross_pnl": -0.47878767238074144,
+          "net_pnl": -1.2787876723807414
+        },
+        {
+          "entry_time": "2026-08-16 15:00:00+00:00",
+          "exit_time": "2026-08-16 16:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63110.25,
+          "exit_price": 63162.485751212866,
+          "win": true,
+          "gross_pnl": 0.82769044985348,
+          "net_pnl": 0.027690449853479904
+        }
+      ]
+    },
+    {
+      "strategy": "VWAP",
+      "timeframe": "M15",
+      "signals": 31,
+      "trades": 18,
+      "wins": 9,
+      "losses": 9,
+      "win_rate": 50.0,
+      "net_pnl": -0.62,
+      "profit_factor": 1.96,
+      "max_drawdown_pct": 0.81,
+      "expectancy_usd": -0.03,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 23:15:00+00:00",
+          "exit_time": "2026-08-15 03:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62948.11,
+          "exit_price": 63170.85127824658,
+          "win": true,
+          "gross_pnl": 3.5384903255487137,
+          "net_pnl": 2.738490325548714
+        },
+        {
+          "entry_time": "2026-08-15 06:00:00+00:00",
+          "exit_time": "2026-08-15 06:45:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63037.76,
+          "exit_price": 63109.07301809146,
+          "win": false,
+          "gross_pnl": -1.1312746216150371,
+          "net_pnl": -1.9312746216150372
+        },
+        {
+          "entry_time": "2026-08-15 08:00:00+00:00",
+          "exit_time": "2026-08-15 09:00:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63061.88,
+          "exit_price": 62922.120123000495,
+          "win": true,
+          "gross_pnl": 2.216233911826004,
+          "net_pnl": 1.4162339118260039
+        },
+        {
+          "entry_time": "2026-08-15 13:00:00+00:00",
+          "exit_time": "2026-08-15 14:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63073.14,
+          "exit_price": 63014.05910653121,
+          "win": false,
+          "gross_pnl": -0.9367044905135279,
+          "net_pnl": -1.736704490513528
+        },
+        {
+          "entry_time": "2026-08-15 15:15:00+00:00",
+          "exit_time": "2026-08-15 22:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63073.55,
+          "exit_price": 63173.74371291621,
+          "win": true,
+          "gross_pnl": 1.588521859261301,
+          "net_pnl": 0.788521859261301
+        }
+      ]
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "timeframe": "M1",
+      "signals": 47,
+      "trades": 5,
+      "wins": 4,
+      "losses": 1,
+      "win_rate": 80.0,
+      "net_pnl": -3.38,
+      "profit_factor": 2.75,
+      "max_drawdown_pct": 0.34,
+      "expectancy_usd": -0.68,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 03:39:00+00:00",
+          "exit_time": "2026-08-14 03:48:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63369.22,
+          "exit_price": 63346.875503270174,
+          "win": false,
+          "gross_pnl": -0.3526080442496747,
+          "net_pnl": -1.1526080442496747
+        },
+        {
+          "entry_time": "2026-08-14 04:01:00+00:00",
+          "exit_time": "2026-08-14 04:02:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63298.93,
+          "exit_price": 63338.021827110024,
+          "win": true,
+          "gross_pnl": 0.6175748485799616,
+          "net_pnl": -0.18242515142003846
+        },
+        {
+          "entry_time": "2026-08-15 11:46:00+00:00",
+          "exit_time": "2026-08-15 11:47:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63030.01,
+          "exit_price": 63018.83634104933,
+          "win": true,
+          "gross_pnl": 0.17727522097281995,
+          "net_pnl": -0.6227247790271802
+        },
+        {
+          "entry_time": "2026-08-15 16:08:00+00:00",
+          "exit_time": "2026-08-15 16:09:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63076.05,
+          "exit_price": 63083.032625227315,
+          "win": true,
+          "gross_pnl": 0.11070168831612605,
+          "net_pnl": -0.689298311683874
+        },
+        {
+          "entry_time": "2026-08-16 11:28:00+00:00",
+          "exit_time": "2026-08-16 11:33:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62981.95,
+          "exit_price": 62986.085534555845,
+          "win": true,
+          "gross_pnl": 0.06566221839507508,
+          "net_pnl": -0.734337781604925
+        }
+      ]
+    },
+    {
+      "strategy": "Exaust\u00e3o",
+      "timeframe": "M5",
+      "signals": 4,
+      "trades": 3,
+      "wins": 1,
+      "losses": 2,
+      "win_rate": 33.33,
+      "net_pnl": -5.48,
+      "profit_factor": 0.45,
+      "max_drawdown_pct": 0.59,
+      "expectancy_usd": -1.83,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-16 16:20:00+00:00",
+          "exit_time": "2026-08-16 16:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63317.91,
+          "exit_price": 63353.021529150385,
+          "win": false,
+          "gross_pnl": -0.554527607597615,
+          "net_pnl": -1.354527607597615
+        },
+        {
+          "entry_time": "2026-08-16 22:40:00+00:00",
+          "exit_time": "2026-08-16 23:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62790.0,
+          "exit_price": 62949.79100177781,
+          "win": true,
+          "gross_pnl": 2.544847934031091,
+          "net_pnl": 1.744847934031091
+        },
+        {
+          "entry_time": "2026-08-21 01:20:00+00:00",
+          "exit_time": "2026-08-21 01:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 74501.59,
+          "exit_price": 74879.2098629841,
+          "win": false,
+          "gross_pnl": -5.0686148172691246,
+          "net_pnl": -5.868614817269124
+        }
+      ]
+    },
+    {
+      "strategy": "SuperTrend",
+      "timeframe": "M15",
+      "signals": 14,
+      "trades": 11,
+      "wins": 4,
+      "losses": 7,
+      "win_rate": 36.36,
+      "net_pnl": -10.18,
+      "profit_factor": 0.86,
+      "max_drawdown_pct": 1.53,
+      "expectancy_usd": -0.93,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-15 08:45:00+00:00",
+          "exit_time": "2026-08-15 09:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62935.72,
+          "exit_price": 63009.42280972447,
+          "win": false,
+          "gross_pnl": -1.1710807427716607,
+          "net_pnl": -1.9710807427716608
+        },
+        {
+          "entry_time": "2026-08-15 15:30:00+00:00",
+          "exit_time": "2026-08-15 18:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63115.59,
+          "exit_price": 63064.083990431755,
+          "win": false,
+          "gross_pnl": -0.8160584345047239,
+          "net_pnl": -1.616058434504724
+        },
+        {
+          "entry_time": "2026-08-16 02:30:00+00:00",
+          "exit_time": "2026-08-16 04:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63151.58,
+          "exit_price": 63104.09119606561,
+          "win": false,
+          "gross_pnl": -0.7519812478863271,
+          "net_pnl": -1.551981247886327
+        },
+        {
+          "entry_time": "2026-08-16 05:30:00+00:00",
+          "exit_time": "2026-08-16 09:45:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63053.27,
+          "exit_price": 62978.74832577373,
+          "win": true,
+          "gross_pnl": 1.1818843689829839,
+          "net_pnl": 0.38188436898298384
+        },
+        {
+          "entry_time": "2026-08-16 13:00:00+00:00",
+          "exit_time": "2026-08-16 15:30:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63063.34,
+          "exit_price": 63122.85891108946,
+          "win": true,
+          "gross_pnl": 0.9437957312356813,
+          "net_pnl": 0.14379573123568123
+        }
+      ]
+    },
+    {
+      "strategy": "EMA+MACD",
+      "timeframe": "M15",
+      "signals": 24,
+      "trades": 9,
+      "wins": 2,
+      "losses": 7,
+      "win_rate": 22.22,
+      "net_pnl": -12.02,
+      "profit_factor": 0.6,
+      "max_drawdown_pct": 1.75,
+      "expectancy_usd": -1.34,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-15 13:45:00+00:00",
+          "exit_time": "2026-08-15 14:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63060.35,
+          "exit_price": 63004.17143842896,
+          "win": false,
+          "gross_pnl": -0.89086980283236,
+          "net_pnl": -1.6908698028323599
+        },
+        {
+          "entry_time": "2026-08-16 02:45:00+00:00",
+          "exit_time": "2026-08-16 05:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63121.91,
+          "exit_price": 63073.95718206093,
+          "win": false,
+          "gross_pnl": -0.7596857880104758,
+          "net_pnl": -1.559685788010476
+        },
+        {
+          "entry_time": "2026-08-17 01:30:00+00:00",
+          "exit_time": "2026-08-17 02:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63214.0,
+          "exit_price": 63045.02033812781,
+          "win": false,
+          "gross_pnl": -2.673136676561971,
+          "net_pnl": -3.473136676561971
+        },
+        {
+          "entry_time": "2026-08-18 01:45:00+00:00",
+          "exit_time": "2026-08-18 06:15:00+00:00",
+          "direction": "PUT",
+          "entry_price": 64200.06,
+          "exit_price": 64338.253957212924,
+          "win": false,
+          "gross_pnl": -2.1525518389379505,
+          "net_pnl": -2.952551838937951
+        },
+        {
+          "entry_time": "2026-08-18 06:15:00+00:00",
+          "exit_time": "2026-08-18 07:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 64339.11,
+          "exit_price": 64212.114013241124,
+          "win": false,
+          "gross_pnl": -1.9738536445231651,
+          "net_pnl": -2.7738536445231654
+        }
+      ]
+    },
+    {
+      "strategy": "Wyckoff_Bbands",
+      "timeframe": "M5",
+      "signals": 91,
+      "trades": 26,
+      "wins": 9,
+      "losses": 17,
+      "win_rate": 34.62,
+      "net_pnl": -12.03,
+      "profit_factor": 1.31,
+      "max_drawdown_pct": 2.35,
+      "expectancy_usd": -0.46,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 13:00:00+00:00",
+          "exit_time": "2026-08-14 13:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62716.01,
+          "exit_price": 62803.47330524688,
+          "win": false,
+          "gross_pnl": -1.3945929475883112,
+          "net_pnl": -2.194592947588311
+        },
+        {
+          "entry_time": "2026-08-14 15:30:00+00:00",
+          "exit_time": "2026-08-14 16:25:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62902.9,
+          "exit_price": 63156.82928012677,
+          "win": true,
+          "gross_pnl": 4.0368453620860985,
+          "net_pnl": 3.2368453620860986
+        },
+        {
+          "entry_time": "2026-08-15 05:45:00+00:00",
+          "exit_time": "2026-08-15 05:55:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63068.96,
+          "exit_price": 63092.87943037514,
+          "win": false,
+          "gross_pnl": -0.3792583606126189,
+          "net_pnl": -1.179258360612619
+        },
+        {
+          "entry_time": "2026-08-15 12:10:00+00:00",
+          "exit_time": "2026-08-15 12:55:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62986.37,
+          "exit_price": 63008.30217904393,
+          "win": false,
+          "gross_pnl": -0.34820516000410956,
+          "net_pnl": -1.1482051600041097
+        },
+        {
+          "entry_time": "2026-08-15 15:30:00+00:00",
+          "exit_time": "2026-08-15 16:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63097.4,
+          "exit_price": 63073.16251730619,
+          "win": false,
+          "gross_pnl": -0.3841280733248962,
+          "net_pnl": -1.1841280733248962
+        }
+      ]
+    },
+    {
+      "strategy": "SuperTrend",
+      "timeframe": "M5",
+      "signals": 45,
+      "trades": 34,
+      "wins": 15,
+      "losses": 19,
+      "win_rate": 44.12,
+      "net_pnl": -16.01,
+      "profit_factor": 1.6,
+      "max_drawdown_pct": 2.66,
+      "expectancy_usd": -0.47,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 23:35:00+00:00",
+          "exit_time": "2026-08-15 02:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62980.0,
+          "exit_price": 63085.228802362384,
+          "win": true,
+          "gross_pnl": 1.67082887206072,
+          "net_pnl": 0.87082887206072
+        },
+        {
+          "entry_time": "2026-08-15 05:35:00+00:00",
+          "exit_time": "2026-08-15 05:55:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63066.01,
+          "exit_price": 63090.04916185519,
+          "win": false,
+          "gross_pnl": -0.38117461141409703,
+          "net_pnl": -1.181174611414097
+        },
+        {
+          "entry_time": "2026-08-15 06:50:00+00:00",
+          "exit_time": "2026-08-15 07:05:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63128.42,
+          "exit_price": 63097.52883429142,
+          "win": false,
+          "gross_pnl": -0.4893384898367062,
+          "net_pnl": -1.2893384898367062
+        },
+        {
+          "entry_time": "2026-08-15 09:50:00+00:00",
+          "exit_time": "2026-08-15 10:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63042.46,
+          "exit_price": 63014.16048125084,
+          "win": false,
+          "gross_pnl": -0.44889616853722886,
+          "net_pnl": -1.2488961685372288
+        },
+        {
+          "entry_time": "2026-08-15 12:55:00+00:00",
+          "exit_time": "2026-08-15 14:20:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63050.13,
+          "exit_price": 63024.314666255654,
+          "win": false,
+          "gross_pnl": -0.40944140391690964,
+          "net_pnl": -1.2094414039169097
+        }
+      ]
+    },
+    {
+      "strategy": "RSI+EMA",
+      "timeframe": "M5",
+      "signals": 12,
+      "trades": 12,
+      "wins": 3,
+      "losses": 9,
+      "win_rate": 25.0,
+      "net_pnl": -20.04,
+      "profit_factor": 0.56,
+      "max_drawdown_pct": 2.44,
+      "expectancy_usd": -1.67,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 13:45:00+00:00",
+          "exit_time": "2026-08-14 14:35:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62670.01,
+          "exit_price": 62792.863145801006,
+          "win": false,
+          "gross_pnl": -1.960317954329413,
+          "net_pnl": -2.760317954329413
+        },
+        {
+          "entry_time": "2026-08-14 14:35:00+00:00",
+          "exit_time": "2026-08-14 14:55:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62784.23,
+          "exit_price": 62649.79587711734,
+          "win": false,
+          "gross_pnl": -2.1412084353453045,
+          "net_pnl": -2.9412084353453043
+        },
+        {
+          "entry_time": "2026-08-14 14:55:00+00:00",
+          "exit_time": "2026-08-14 15:20:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62620.01,
+          "exit_price": 62751.96342926519,
+          "win": false,
+          "gross_pnl": -2.1072086904040397,
+          "net_pnl": -2.9072086904040395
+        },
+        {
+          "entry_time": "2026-08-17 00:40:00+00:00",
+          "exit_time": "2026-08-17 00:50:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62947.84,
+          "exit_price": 62848.26938336107,
+          "win": false,
+          "gross_pnl": -1.5817956047249309,
+          "net_pnl": -2.381795604724931
+        },
+        {
+          "entry_time": "2026-08-17 14:10:00+00:00",
+          "exit_time": "2026-08-17 15:05:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63699.42,
+          "exit_price": 63925.217780897045,
+          "win": true,
+          "gross_pnl": 3.5447384120145258,
+          "net_pnl": 2.7447384120145255
+        }
+      ]
+    },
+    {
+      "strategy": "Wyckoff_SMC",
+      "timeframe": "M5",
+      "signals": 119,
+      "trades": 34,
+      "wins": 14,
+      "losses": 20,
+      "win_rate": 41.18,
+      "net_pnl": -24.54,
+      "profit_factor": 1.08,
+      "max_drawdown_pct": 2.48,
+      "expectancy_usd": -0.72,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 13:00:00+00:00",
+          "exit_time": "2026-08-14 13:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62716.01,
+          "exit_price": 62803.47330524688,
+          "win": false,
+          "gross_pnl": -1.3945929475883112,
+          "net_pnl": -2.194592947588311
+        },
+        {
+          "entry_time": "2026-08-14 14:15:00+00:00",
+          "exit_time": "2026-08-14 14:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62598.01,
+          "exit_price": 62730.00755627114,
+          "win": false,
+          "gross_pnl": -2.108654193178675,
+          "net_pnl": -2.908654193178675
+        },
+        {
+          "entry_time": "2026-08-14 15:30:00+00:00",
+          "exit_time": "2026-08-14 16:25:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62902.9,
+          "exit_price": 63156.82928012677,
+          "win": true,
+          "gross_pnl": 4.0368453620860985,
+          "net_pnl": 3.2368453620860986
+        },
+        {
+          "entry_time": "2026-08-14 18:45:00+00:00",
+          "exit_time": "2026-08-14 19:45:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62895.8,
+          "exit_price": 62987.4581229695,
+          "win": false,
+          "gross_pnl": -1.4573011706584582,
+          "net_pnl": -2.257301170658458
+        },
+        {
+          "entry_time": "2026-08-14 23:40:00+00:00",
+          "exit_time": "2026-08-15 02:30:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63008.89,
+          "exit_price": 63118.50174505079,
+          "win": true,
+          "gross_pnl": 1.739623488856702,
+          "net_pnl": 0.9396234888567019
+        }
+      ]
+    },
+    {
+      "strategy": "Wyckoff_Bbands",
+      "timeframe": "M1",
+      "signals": 407,
+      "trades": 53,
+      "wins": 20,
+      "losses": 33,
+      "win_rate": 37.74,
+      "net_pnl": -29.59,
+      "profit_factor": 1.56,
+      "max_drawdown_pct": 2.96,
+      "expectancy_usd": -0.56,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 05:24:00+00:00",
+          "exit_time": "2026-08-14 05:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63286.68,
+          "exit_price": 63306.50843195039,
+          "win": false,
+          "gross_pnl": -0.3133112994770355,
+          "net_pnl": -1.1133112994770356
+        },
+        {
+          "entry_time": "2026-08-14 12:10:00+00:00",
+          "exit_time": "2026-08-14 12:15:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62793.35,
+          "exit_price": 62825.65536779213,
+          "win": false,
+          "gross_pnl": -0.5144711628243174,
+          "net_pnl": -1.3144711628243173
+        },
+        {
+          "entry_time": "2026-08-14 14:32:00+00:00",
+          "exit_time": "2026-08-14 14:51:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62744.75,
+          "exit_price": 62684.0271885128,
+          "win": false,
+          "gross_pnl": -0.9677751762051447,
+          "net_pnl": -1.7677751762051448
+        },
+        {
+          "entry_time": "2026-08-14 15:24:00+00:00",
+          "exit_time": "2026-08-14 15:25:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62774.68,
+          "exit_price": 62737.171515155525,
+          "win": false,
+          "gross_pnl": -0.5975097737571083,
+          "net_pnl": -1.3975097737571085
+        },
+        {
+          "entry_time": "2026-08-14 16:11:00+00:00",
+          "exit_time": "2026-08-14 16:13:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63086.01,
+          "exit_price": 63038.438264351345,
+          "win": false,
+          "gross_pnl": -0.7540774198377201,
+          "net_pnl": -1.55407741983772
+        }
+      ]
+    },
+    {
+      "strategy": "VWAP",
+      "timeframe": "M1",
+      "signals": 156,
+      "trades": 45,
+      "wins": 18,
+      "losses": 27,
+      "win_rate": 40.0,
+      "net_pnl": -29.85,
+      "profit_factor": 1.58,
+      "max_drawdown_pct": 3.61,
+      "expectancy_usd": -0.66,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 03:26:00+00:00",
+          "exit_time": "2026-08-14 03:31:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63492.35,
+          "exit_price": 63448.3186228756,
+          "win": true,
+          "gross_pnl": 0.6934910603308334,
+          "net_pnl": -0.10650893966916664
+        },
+        {
+          "entry_time": "2026-08-14 04:18:00+00:00",
+          "exit_time": "2026-08-14 04:24:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63433.02,
+          "exit_price": 63390.33755946284,
+          "win": true,
+          "gross_pnl": 0.6728741676993935,
+          "net_pnl": -0.1271258323006066
+        },
+        {
+          "entry_time": "2026-08-14 18:46:00+00:00",
+          "exit_time": "2026-08-14 19:00:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62940.01,
+          "exit_price": 62888.101055925996,
+          "win": true,
+          "gross_pnl": 0.8247368259713699,
+          "net_pnl": 0.024736825971369836
+        },
+        {
+          "entry_time": "2026-08-14 19:41:00+00:00",
+          "exit_time": "2026-08-14 19:58:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62974.0,
+          "exit_price": 62946.94943998834,
+          "win": false,
+          "gross_pnl": -0.42955124355542607,
+          "net_pnl": -1.229551243555426
+        },
+        {
+          "entry_time": "2026-08-14 19:59:00+00:00",
+          "exit_time": "2026-08-14 20:04:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62968.05,
+          "exit_price": 63007.080748088614,
+          "win": true,
+          "gross_pnl": 0.6198500364647038,
+          "net_pnl": -0.18014996353529622
+        }
+      ]
+    },
+    {
+      "strategy": "EMA+MACD",
+      "timeframe": "M1",
+      "signals": 358,
+      "trades": 62,
+      "wins": 31,
+      "losses": 31,
+      "win_rate": 50.0,
+      "net_pnl": -30.51,
+      "profit_factor": 2.37,
+      "max_drawdown_pct": 3.68,
+      "expectancy_usd": -0.49,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 03:29:00+00:00",
+          "exit_time": "2026-08-14 03:35:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63464.0,
+          "exit_price": 63418.04576693065,
+          "win": true,
+          "gross_pnl": 0.7240992226987139,
+          "net_pnl": -0.07590077730128619
+        },
+        {
+          "entry_time": "2026-08-14 05:35:00+00:00",
+          "exit_time": "2026-08-14 05:55:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63341.99,
+          "exit_price": 63379.24156724288,
+          "win": true,
+          "gross_pnl": 0.5881022563845146,
+          "net_pnl": -0.2118977436154854
+        },
+        {
+          "entry_time": "2026-08-14 07:32:00+00:00",
+          "exit_time": "2026-08-14 07:38:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63041.66,
+          "exit_price": 63001.9850220994,
+          "win": true,
+          "gross_pnl": 0.6293453868538024,
+          "net_pnl": -0.17065461314619768
+        },
+        {
+          "entry_time": "2026-08-14 09:20:00+00:00",
+          "exit_time": "2026-08-14 09:28:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62891.41,
+          "exit_price": 62873.98986792215,
+          "win": false,
+          "gross_pnl": -0.2769874626415918,
+          "net_pnl": -1.0769874626415918
+        },
+        {
+          "entry_time": "2026-08-14 11:12:00+00:00",
+          "exit_time": "2026-08-14 11:21:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62857.08,
+          "exit_price": 62915.247578006325,
+          "win": true,
+          "gross_pnl": 0.9253942118584463,
+          "net_pnl": 0.12539421185844624
+        }
+      ]
+    },
+    {
+      "strategy": "Bollinger",
+      "timeframe": "M5",
+      "signals": 140,
+      "trades": 55,
+      "wins": 20,
+      "losses": 35,
+      "win_rate": 36.36,
+      "net_pnl": -37.74,
+      "profit_factor": 1.13,
+      "max_drawdown_pct": 4.56,
+      "expectancy_usd": -0.69,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 12:05:00+00:00",
+          "exit_time": "2026-08-14 12:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62803.67,
+          "exit_price": 62882.33435281097,
+          "win": false,
+          "gross_pnl": -1.2525438849508435,
+          "net_pnl": -2.0525438849508433
+        },
+        {
+          "entry_time": "2026-08-14 13:00:00+00:00",
+          "exit_time": "2026-08-14 13:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62716.01,
+          "exit_price": 62803.47330524688,
+          "win": false,
+          "gross_pnl": -1.3945929475883112,
+          "net_pnl": -2.194592947588311
+        },
+        {
+          "entry_time": "2026-08-14 15:30:00+00:00",
+          "exit_time": "2026-08-14 16:25:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62902.9,
+          "exit_price": 63156.82928012677,
+          "win": true,
+          "gross_pnl": 4.0368453620860985,
+          "net_pnl": 3.2368453620860986
+        },
+        {
+          "entry_time": "2026-08-14 17:55:00+00:00",
+          "exit_time": "2026-08-14 19:15:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63013.69,
+          "exit_price": 62833.27611717839,
+          "win": true,
+          "gross_pnl": 2.8630902716792037,
+          "net_pnl": 2.0630902716792034
+        },
+        {
+          "entry_time": "2026-08-14 22:10:00+00:00",
+          "exit_time": "2026-08-14 22:45:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62833.33,
+          "exit_price": 62889.79677154102,
+          "win": false,
+          "gross_pnl": -0.8986754568159575,
+          "net_pnl": -1.6986754568159577
+        }
+      ]
+    },
+    {
+      "strategy": "VWAP",
+      "timeframe": "M5",
+      "signals": 64,
+      "trades": 39,
+      "wins": 9,
+      "losses": 30,
+      "win_rate": 23.08,
+      "net_pnl": -42.89,
+      "profit_factor": 0.59,
+      "max_drawdown_pct": 4.6,
+      "expectancy_usd": -1.1,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 18:45:00+00:00",
+          "exit_time": "2026-08-14 19:45:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62895.8,
+          "exit_price": 62987.4581229695,
+          "win": false,
+          "gross_pnl": -1.4573011706584582,
+          "net_pnl": -2.257301170658458
+        },
+        {
+          "entry_time": "2026-08-14 20:30:00+00:00",
+          "exit_time": "2026-08-14 22:15:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62939.78,
+          "exit_price": 62806.22474013558,
+          "win": true,
+          "gross_pnl": 2.121953077440385,
+          "net_pnl": 1.3219530774403851
+        },
+        {
+          "entry_time": "2026-08-14 23:20:00+00:00",
+          "exit_time": "2026-08-14 23:35:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62956.8,
+          "exit_price": 62908.164163932095,
+          "win": false,
+          "gross_pnl": -0.772527130792985,
+          "net_pnl": -1.572527130792985
+        },
+        {
+          "entry_time": "2026-08-14 23:35:00+00:00",
+          "exit_time": "2026-08-15 02:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62980.0,
+          "exit_price": 63085.228802362384,
+          "win": true,
+          "gross_pnl": 1.67082887206072,
+          "net_pnl": 0.87082887206072
+        },
+        {
+          "entry_time": "2026-08-15 06:10:00+00:00",
+          "exit_time": "2026-08-15 06:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63037.76,
+          "exit_price": 63066.449993849805,
+          "win": false,
+          "gross_pnl": -0.4551239423768024,
+          "net_pnl": -1.2551239423768026
+        }
+      ]
+    },
+    {
+      "strategy": "Pin Bar",
+      "timeframe": "M5",
+      "signals": 58,
+      "trades": 56,
+      "wins": 17,
+      "losses": 39,
+      "win_rate": 30.36,
+      "net_pnl": -44.41,
+      "profit_factor": 1.01,
+      "max_drawdown_pct": 5.07,
+      "expectancy_usd": -0.79,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 08:30:00+00:00",
+          "exit_time": "2026-08-14 13:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62799.99,
+          "exit_price": 62702.69001523146,
+          "win": false,
+          "gross_pnl": -1.5493630614994536,
+          "net_pnl": -2.349363061499454
+        },
+        {
+          "entry_time": "2026-08-14 13:00:00+00:00",
+          "exit_time": "2026-08-14 13:05:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62716.01,
+          "exit_price": 62628.546694753124,
+          "win": false,
+          "gross_pnl": -1.3945929475883112,
+          "net_pnl": -2.194592947588311
+        },
+        {
+          "entry_time": "2026-08-14 13:10:00+00:00",
+          "exit_time": "2026-08-14 14:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62688.43,
+          "exit_price": 62588.16618067999,
+          "win": false,
+          "gross_pnl": -1.5993991127232081,
+          "net_pnl": -2.3993991127232084
+        },
+        {
+          "entry_time": "2026-08-14 15:00:00+00:00",
+          "exit_time": "2026-08-14 15:20:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62641.99,
+          "exit_price": 62773.36925574625,
+          "win": false,
+          "gross_pnl": -2.0973033542876136,
+          "net_pnl": -2.8973033542876134
+        },
+        {
+          "entry_time": "2026-08-14 22:15:00+00:00",
+          "exit_time": "2026-08-14 23:20:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62834.48,
+          "exit_price": 62946.73757571903,
+          "win": true,
+          "gross_pnl": 1.786560113476358,
+          "net_pnl": 0.986560113476358
+        }
+      ]
+    },
+    {
+      "strategy": "EMA+MACD",
+      "timeframe": "M5",
+      "signals": 65,
+      "trades": 36,
+      "wins": 8,
+      "losses": 28,
+      "win_rate": 22.22,
+      "net_pnl": -50.41,
+      "profit_factor": 0.49,
+      "max_drawdown_pct": 5.38,
+      "expectancy_usd": -1.4,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 10:30:00+00:00",
+          "exit_time": "2026-08-14 10:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62920.0,
+          "exit_price": 62844.52661898644,
+          "win": false,
+          "gross_pnl": -1.199513366394764,
+          "net_pnl": -1.999513366394764
+        },
+        {
+          "entry_time": "2026-08-14 12:05:00+00:00",
+          "exit_time": "2026-08-14 12:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62803.67,
+          "exit_price": 62882.33435281097,
+          "win": false,
+          "gross_pnl": -1.2525438849508435,
+          "net_pnl": -2.0525438849508433
+        },
+        {
+          "entry_time": "2026-08-14 20:05:00+00:00",
+          "exit_time": "2026-08-14 20:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63020.74,
+          "exit_price": 62948.93428984478,
+          "win": false,
+          "gross_pnl": -1.1393980799847567,
+          "net_pnl": -1.9393980799847568
+        },
+        {
+          "entry_time": "2026-08-15 03:45:00+00:00",
+          "exit_time": "2026-08-15 04:10:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63064.35,
+          "exit_price": 63092.56314846387,
+          "win": false,
+          "gross_pnl": -0.447370796081684,
+          "net_pnl": -1.247370796081684
+        },
+        {
+          "entry_time": "2026-08-15 05:40:00+00:00",
+          "exit_time": "2026-08-15 06:50:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63075.07,
+          "exit_price": 63099.41707886553,
+          "win": false,
+          "gross_pnl": -0.3860016146717275,
+          "net_pnl": -1.1860016146717276
+        }
+      ]
+    },
+    {
+      "strategy": "ABCD",
+      "timeframe": "M5",
+      "signals": 164,
+      "trades": 83,
+      "wins": 30,
+      "losses": 53,
+      "win_rate": 36.14,
+      "net_pnl": -58.43,
+      "profit_factor": 1.12,
+      "max_drawdown_pct": 7.04,
+      "expectancy_usd": -0.7,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 07:30:00+00:00",
+          "exit_time": "2026-08-14 08:20:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63021.04,
+          "exit_price": 62867.738667371006,
+          "win": true,
+          "gross_pnl": 2.4325420943385687,
+          "net_pnl": 1.6325420943385687
+        },
+        {
+          "entry_time": "2026-08-14 10:30:00+00:00",
+          "exit_time": "2026-08-14 10:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62920.0,
+          "exit_price": 62844.52661898644,
+          "win": false,
+          "gross_pnl": -1.199513366394764,
+          "net_pnl": -1.999513366394764
+        },
+        {
+          "entry_time": "2026-08-14 11:50:00+00:00",
+          "exit_time": "2026-08-14 12:00:00+00:00",
+          "direction": "CALL",
+          "entry_price": 62926.46,
+          "exit_price": 62852.88294305266,
+          "win": false,
+          "gross_pnl": -1.1692546656420664,
+          "net_pnl": -1.9692546656420664
+        },
+        {
+          "entry_time": "2026-08-14 13:00:00+00:00",
+          "exit_time": "2026-08-14 13:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62716.01,
+          "exit_price": 62803.47330524688,
+          "win": false,
+          "gross_pnl": -1.3945929475883112,
+          "net_pnl": -2.194592947588311
+        },
+        {
+          "entry_time": "2026-08-14 13:35:00+00:00",
+          "exit_time": "2026-08-14 14:35:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62656.0,
+          "exit_price": 62777.24740578105,
+          "win": false,
+          "gross_pnl": -1.9351284119804462,
+          "net_pnl": -2.735128411980446
+        }
+      ]
+    },
+    {
+      "strategy": "SuperTrend",
+      "timeframe": "M1",
+      "signals": 382,
+      "trades": 100,
+      "wins": 53,
+      "losses": 47,
+      "win_rate": 53.0,
+      "net_pnl": -60.52,
+      "profit_factor": 2.06,
+      "max_drawdown_pct": 6.51,
+      "expectancy_usd": -0.61,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 03:26:00+00:00",
+          "exit_time": "2026-08-14 03:31:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63492.35,
+          "exit_price": 63448.3186228756,
+          "win": true,
+          "gross_pnl": 0.6934910603308334,
+          "net_pnl": -0.10650893966916664
+        },
+        {
+          "entry_time": "2026-08-14 04:02:00+00:00",
+          "exit_time": "2026-08-14 04:05:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63341.99,
+          "exit_price": 63387.518839459306,
+          "win": true,
+          "gross_pnl": 0.7187781668891058,
+          "net_pnl": -0.08122183311089426
+        },
+        {
+          "entry_time": "2026-08-14 04:24:00+00:00",
+          "exit_time": "2026-08-14 04:26:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63380.0,
+          "exit_price": 63398.76263324173,
+          "win": false,
+          "gross_pnl": -0.29603397352047334,
+          "net_pnl": -1.0960339735204734
+        },
+        {
+          "entry_time": "2026-08-14 04:28:00+00:00",
+          "exit_time": "2026-08-14 04:34:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63428.99,
+          "exit_price": 63405.44957509847,
+          "win": false,
+          "gross_pnl": -0.371130375897936,
+          "net_pnl": -1.1711303758979361
+        },
+        {
+          "entry_time": "2026-08-14 05:01:00+00:00",
+          "exit_time": "2026-08-14 05:04:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63396.34,
+          "exit_price": 63386.005634026886,
+          "win": false,
+          "gross_pnl": -0.16301202834597134,
+          "net_pnl": -0.9630120283459713
+        }
+      ]
+    },
+    {
+      "strategy": "Pin Bar",
+      "timeframe": "M1",
+      "signals": 330,
+      "trades": 124,
+      "wins": 62,
+      "losses": 62,
+      "win_rate": 50.0,
+      "net_pnl": -72.52,
+      "profit_factor": 1.72,
+      "max_drawdown_pct": 8.02,
+      "expectancy_usd": -0.58,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 03:22:00+00:00",
+          "exit_time": "2026-08-14 03:26:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63552.15,
+          "exit_price": 63509.36803040472,
+          "win": true,
+          "gross_pnl": 0.6731789498117451,
+          "net_pnl": -0.12682105018825496
+        },
+        {
+          "entry_time": "2026-08-14 04:09:00+00:00",
+          "exit_time": "2026-08-14 04:16:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63400.01,
+          "exit_price": 63420.67607009916,
+          "win": false,
+          "gross_pnl": -0.3259631993615783,
+          "net_pnl": -1.1259631993615784
+        },
+        {
+          "entry_time": "2026-08-14 05:10:00+00:00",
+          "exit_time": "2026-08-14 05:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63343.18,
+          "exit_price": 63330.91704443081,
+          "win": false,
+          "gross_pnl": -0.1935955152423547,
+          "net_pnl": -0.9935955152423548
+        },
+        {
+          "entry_time": "2026-08-14 06:24:00+00:00",
+          "exit_time": "2026-08-14 06:38:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63226.46,
+          "exit_price": 63181.50946283622,
+          "win": true,
+          "gross_pnl": 0.7109450246586443,
+          "net_pnl": -0.08905497534135576
+        },
+        {
+          "entry_time": "2026-08-14 06:43:00+00:00",
+          "exit_time": "2026-08-14 06:46:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63180.53,
+          "exit_price": 63202.89600091657,
+          "win": false,
+          "gross_pnl": -0.3540014766664467,
+          "net_pnl": -1.1540014766664468
+        }
+      ]
+    },
+    {
+      "strategy": "Pin Bar",
+      "timeframe": "M15",
+      "signals": 26,
+      "trades": 25,
+      "wins": 4,
+      "losses": 21,
+      "win_rate": 16.0,
+      "net_pnl": -75.73,
+      "profit_factor": 0.12,
+      "max_drawdown_pct": 7.57,
+      "expectancy_usd": -3.03,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 20:00:00+00:00",
+          "exit_time": "2026-08-15 02:30:00+00:00",
+          "direction": "PUT",
+          "entry_price": 62974.76,
+          "exit_price": 63132.51106510744,
+          "win": false,
+          "gross_pnl": -2.504988746403175,
+          "net_pnl": -3.3049887464031746
+        },
+        {
+          "entry_time": "2026-08-15 05:45:00+00:00",
+          "exit_time": "2026-08-15 08:45:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63089.0,
+          "exit_price": 63018.84290359381,
+          "win": false,
+          "gross_pnl": -1.1120337365656494,
+          "net_pnl": -1.9120337365656495
+        },
+        {
+          "entry_time": "2026-08-15 14:00:00+00:00",
+          "exit_time": "2026-08-15 14:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63055.01,
+          "exit_price": 63000.06919282689,
+          "win": false,
+          "gross_pnl": -0.871315493774541,
+          "net_pnl": -1.6713154937745411
+        },
+        {
+          "entry_time": "2026-08-15 14:15:00+00:00",
+          "exit_time": "2026-08-15 21:15:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63040.0,
+          "exit_price": 63154.512927607204,
+          "win": true,
+          "gross_pnl": 1.816512176510214,
+          "net_pnl": 1.0165121765102139
+        },
+        {
+          "entry_time": "2026-08-16 01:15:00+00:00",
+          "exit_time": "2026-08-16 02:15:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63059.68,
+          "exit_price": 63090.6602966854,
+          "win": false,
+          "gross_pnl": -0.4912853456502911,
+          "net_pnl": -1.291285345650291
+        }
+      ]
+    },
+    {
+      "strategy": "Bollinger",
+      "timeframe": "M1",
+      "signals": 959,
+      "trades": 137,
+      "wins": 58,
+      "losses": 79,
+      "win_rate": 42.34,
+      "net_pnl": -82.12,
+      "profit_factor": 1.53,
+      "max_drawdown_pct": 8.46,
+      "expectancy_usd": -0.6,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 04:05:00+00:00",
+          "exit_time": "2026-08-14 04:16:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63390.0,
+          "exit_price": 63439.64747095193,
+          "win": true,
+          "gross_pnl": 0.783206672218514,
+          "net_pnl": -0.01679332778148601
+        },
+        {
+          "entry_time": "2026-08-14 05:08:00+00:00",
+          "exit_time": "2026-08-14 05:15:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63345.62,
+          "exit_price": 63320.75586637206,
+          "win": true,
+          "gross_pnl": 0.39251543560454116,
+          "net_pnl": -0.4074845643954589
+        },
+        {
+          "entry_time": "2026-08-14 05:23:00+00:00",
+          "exit_time": "2026-08-14 05:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63300.0,
+          "exit_price": 63319.81446517734,
+          "win": false,
+          "gross_pnl": -0.3130247263402848,
+          "net_pnl": -1.1130247263402848
+        },
+        {
+          "entry_time": "2026-08-14 05:55:00+00:00",
+          "exit_time": "2026-08-14 05:56:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63395.75,
+          "exit_price": 63381.805441721815,
+          "win": false,
+          "gross_pnl": -0.21996045915040927,
+          "net_pnl": -1.0199604591504092
+        },
+        {
+          "entry_time": "2026-08-14 07:32:00+00:00",
+          "exit_time": "2026-08-14 07:38:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63041.66,
+          "exit_price": 63001.9850220994,
+          "win": true,
+          "gross_pnl": 0.6293453868538024,
+          "net_pnl": -0.17065461314619768
+        }
+      ]
+    },
+    {
+      "strategy": "3 Velas",
+      "timeframe": "M1",
+      "signals": 373,
+      "trades": 109,
+      "wins": 40,
+      "losses": 69,
+      "win_rate": 36.7,
+      "net_pnl": -85.55,
+      "profit_factor": 1.04,
+      "max_drawdown_pct": 8.56,
+      "expectancy_usd": -0.78,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 03:26:00+00:00",
+          "exit_time": "2026-08-14 03:31:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63492.35,
+          "exit_price": 63448.3186228756,
+          "win": true,
+          "gross_pnl": 0.6934910603308334,
+          "net_pnl": -0.10650893966916664
+        },
+        {
+          "entry_time": "2026-08-14 04:09:00+00:00",
+          "exit_time": "2026-08-14 04:16:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63400.01,
+          "exit_price": 63441.34214019831,
+          "win": true,
+          "gross_pnl": 0.6519263987230418,
+          "net_pnl": -0.14807360127695823
+        },
+        {
+          "entry_time": "2026-08-14 04:28:00+00:00",
+          "exit_time": "2026-08-14 04:34:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63428.99,
+          "exit_price": 63405.44957509847,
+          "win": false,
+          "gross_pnl": -0.371130375897936,
+          "net_pnl": -1.1711303758979361
+        },
+        {
+          "entry_time": "2026-08-14 05:05:00+00:00",
+          "exit_time": "2026-08-14 05:08:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63373.59,
+          "exit_price": 63352.00797784475,
+          "win": true,
+          "gross_pnl": 0.3405523050729718,
+          "net_pnl": -0.45944769492702825
+        },
+        {
+          "entry_time": "2026-08-14 05:24:00+00:00",
+          "exit_time": "2026-08-14 05:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63286.68,
+          "exit_price": 63306.50843195039,
+          "win": false,
+          "gross_pnl": -0.3133112994770355,
+          "net_pnl": -1.1133112994770356
+        }
+      ]
+    },
+    {
+      "strategy": "Wyckoff_SMC",
+      "timeframe": "M1",
+      "signals": 874,
+      "trades": 109,
+      "wins": 40,
+      "losses": 69,
+      "win_rate": 36.7,
+      "net_pnl": -86.76,
+      "profit_factor": 1.01,
+      "max_drawdown_pct": 8.68,
+      "expectancy_usd": -0.8,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 04:09:00+00:00",
+          "exit_time": "2026-08-14 04:16:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63400.01,
+          "exit_price": 63441.34214019831,
+          "win": true,
+          "gross_pnl": 0.6519263987230418,
+          "net_pnl": -0.14807360127695823
+        },
+        {
+          "entry_time": "2026-08-14 05:08:00+00:00",
+          "exit_time": "2026-08-14 05:15:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63345.62,
+          "exit_price": 63320.75586637206,
+          "win": true,
+          "gross_pnl": 0.39251543560454116,
+          "net_pnl": -0.4074845643954589
+        },
+        {
+          "entry_time": "2026-08-14 05:24:00+00:00",
+          "exit_time": "2026-08-14 05:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63286.68,
+          "exit_price": 63306.50843195039,
+          "win": false,
+          "gross_pnl": -0.3133112994770355,
+          "net_pnl": -1.1133112994770356
+        },
+        {
+          "entry_time": "2026-08-14 05:55:00+00:00",
+          "exit_time": "2026-08-14 05:56:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63395.75,
+          "exit_price": 63381.805441721815,
+          "win": false,
+          "gross_pnl": -0.21996045915040927,
+          "net_pnl": -1.0199604591504092
+        },
+        {
+          "entry_time": "2026-08-14 07:26:00+00:00",
+          "exit_time": "2026-08-14 07:32:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63110.0,
+          "exit_price": 63091.53346598842,
+          "win": false,
+          "gross_pnl": -0.2926086834349953,
+          "net_pnl": -1.0926086834349953
+        }
+      ]
+    },
+    {
+      "strategy": "SMC",
+      "timeframe": "M1",
+      "signals": 495,
+      "trades": 153,
+      "wins": 63,
+      "losses": 90,
+      "win_rate": 41.18,
+      "net_pnl": -102.24,
+      "profit_factor": 1.41,
+      "max_drawdown_pct": 10.64,
+      "expectancy_usd": -0.67,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 04:01:00+00:00",
+          "exit_time": "2026-08-14 04:02:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63298.93,
+          "exit_price": 63318.47591355501,
+          "win": false,
+          "gross_pnl": -0.3087874242899808,
+          "net_pnl": -1.108787424289981
+        },
+        {
+          "entry_time": "2026-08-14 04:17:00+00:00",
+          "exit_time": "2026-08-14 04:19:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63450.19,
+          "exit_price": 63429.18945509538,
+          "win": false,
+          "gross_pnl": -0.3309768639719136,
+          "net_pnl": -1.1309768639719135
+        },
+        {
+          "entry_time": "2026-08-14 04:29:00+00:00",
+          "exit_time": "2026-08-14 04:35:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63423.5,
+          "exit_price": 63400.62853402001,
+          "win": false,
+          "gross_pnl": -0.36061500831691706,
+          "net_pnl": -1.160615008316917
+        },
+        {
+          "entry_time": "2026-08-14 05:06:00+00:00",
+          "exit_time": "2026-08-14 05:10:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63362.52,
+          "exit_price": 63340.10526514155,
+          "win": true,
+          "gross_pnl": 0.35375384152089784,
+          "net_pnl": -0.4462461584791022
+        },
+        {
+          "entry_time": "2026-08-14 05:16:00+00:00",
+          "exit_time": "2026-08-14 05:17:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63327.99,
+          "exit_price": 63340.91165839608,
+          "win": false,
+          "gross_pnl": -0.20404340002075863,
+          "net_pnl": -1.0040434000207588
+        }
+      ]
+    },
+    {
+      "strategy": "ABCD",
+      "timeframe": "M1",
+      "signals": 791,
+      "trades": 251,
+      "wins": 113,
+      "losses": 138,
+      "win_rate": 45.02,
+      "net_pnl": -136.44,
+      "profit_factor": 1.75,
+      "max_drawdown_pct": 14.61,
+      "expectancy_usd": -0.54,
+      "trade_samples": [
+        {
+          "entry_time": "2026-08-14 03:57:00+00:00",
+          "exit_time": "2026-08-14 03:58:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63340.01,
+          "exit_price": 63312.19410348872,
+          "win": true,
+          "gross_pnl": 0.43915207009410967,
+          "net_pnl": -0.3608479299058904
+        },
+        {
+          "entry_time": "2026-08-14 04:12:00+00:00",
+          "exit_time": "2026-08-14 04:16:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63406.27,
+          "exit_price": 63441.354927848275,
+          "win": true,
+          "gross_pnl": 0.5533353065600344,
+          "net_pnl": -0.24666469343996567
+        },
+        {
+          "entry_time": "2026-08-14 04:26:00+00:00",
+          "exit_time": "2026-08-14 04:56:00+00:00",
+          "direction": "CALL",
+          "entry_price": 63401.99,
+          "exit_price": 63380.550306031364,
+          "win": false,
+          "gross_pnl": -0.33815490599954273,
+          "net_pnl": -1.1381549059995428
+        },
+        {
+          "entry_time": "2026-08-14 05:03:00+00:00",
+          "exit_time": "2026-08-14 05:06:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63387.01,
+          "exit_price": 63365.548542352495,
+          "win": true,
+          "gross_pnl": 0.33857816684375713,
+          "net_pnl": -0.4614218331562429
+        },
+        {
+          "entry_time": "2026-08-14 05:23:00+00:00",
+          "exit_time": "2026-08-14 05:25:00+00:00",
+          "direction": "PUT",
+          "entry_price": 63300.0,
+          "exit_price": 63319.81446517734,
+          "win": false,
+          "gross_pnl": -0.3130247263402848,
+          "net_pnl": -1.1130247263402848
+        }
+      ]
+    }
+  ]
+}

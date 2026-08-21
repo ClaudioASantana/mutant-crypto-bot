@@ -52,7 +52,7 @@ class BacktestService:
         """
         if strategy == "Auto":
             strategies = [
-                "3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC",
+                "Momentum Breakout", "3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC",
                 "SuperTrend", "Pin Bar", "ABCD", "RSI+EMA", "Exaustão"
             ]
             best_res = None
