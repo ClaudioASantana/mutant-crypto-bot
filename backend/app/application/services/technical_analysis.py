@@ -186,23 +186,26 @@ def eval_bollinger(df: pd.DataFrame) -> str:
 @register_strategy("Momentum Breakout")
 def eval_momentum_breakout(df: pd.DataFrame) -> str:
     """ 
-    Rompimento de Bandas de Bollinger alinhado com a força do RSI.
-    Ideal para tendências fortes (Bull/Bear Runs) e contra-indicado para lateralização.
+    Estratégia Agressiva de Momentum: 
+    Cruza as EMAs curtas a favor da tendência macro e exige força no RSI.
     """
-    if df.empty or len(df) < 20: return "NONE"
+    if df.empty or len(df) < 50: return "NONE"
     
     last = df.iloc[-1]
     close = last["close"]
-    upper = last.get("BBU_20_2.0_2.0", 0)
-    lower = last.get("BBL_20_2.0_2.0", 0)
+    ema9 = last.get("EMA_9", 0)
+    ema21 = last.get("EMA_21", 0)
+    ema50 = last.get("EMA_50", 0)
     rsi = last.get("RSI_14", 50)
     
-    # Comprar (CALL) quando o preço estoura a banda de cima com força compradora (RSI > 60)
-    if upper > 0 and close >= upper and rsi > 60:
+    # Comprar (CALL) quando a tendência de curto prazo (EMA9 > EMA21) 
+    # está acima da tendência média (EMA50) e o momentum é forte (RSI > 55)
+    if ema9 > ema21 and close > ema50 and rsi > 55:
         return "CALL"
         
-    # Vender (PUT) quando o preço fura a banda de baixo com força vendedora (RSI < 40)
-    if lower > 0 and close <= lower and rsi < 40:
+    # Vender (PUT) quando a tendência de curto prazo é de baixa
+    # e está abaixo da média (EMA50) com momentum fraco (RSI < 45)
+    if ema9 < ema21 and close < ema50 and rsi < 45:
         return "PUT"
         
     return "NONE"

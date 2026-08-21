@@ -737,7 +737,7 @@ export default function Home() {
                 <div style={{ display: "flex", alignItems: "center", fontWeight: "bold" }}>
                   M{tf / 60}
                 </div>
-                {["Momentum Breakout", "3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC", "SuperTrend", "Pin Bar"].map(s => {
+                {["Momentum Breakout"].map(s => {
                   const cat = (catalog || []).find(x => x.timeframe === tf && x.strategy === s);
                   const winRate = cat?.stats?.win_rate ?? 0;
                   const pnl = cat?.stats?.pnl_usdt ?? 0;

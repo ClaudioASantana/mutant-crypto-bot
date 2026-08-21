@@ -52,8 +52,7 @@ class BacktestService:
         """
         if strategy == "Auto":
             strategies = [
-                "Momentum Breakout", "3 Velas", "EMA+MACD", "Bollinger", "VWAP", "SMC",
-                "SuperTrend", "Pin Bar", "ABCD", "RSI+EMA", "Exaustão"
+                "Momentum Breakout"
             ]
             best_res = None
             best_pnl = -float('inf')
