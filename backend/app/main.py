@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import json
+import secrets
 # pyrefly: ignore [missing-import]
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 # pyrefly: ignore [missing-import]
@@ -9,10 +10,12 @@ from contextlib import asynccontextmanager
 # pyrefly: ignore [missing-import]
 from dotenv import load_dotenv
 
+from app.core.operational_config import load_operational_config
 from app.application.services.trading_orchestrator import TradingOrchestrator
 from app.infrastructure.services.news_filter import NewsFilter
 from app.infrastructure.market_data.market_data_provider import MarketDataProvider
 from app.infrastructure.repositories.json_paper_trader_repository import JsonPaperTraderRepository
+from app.infrastructure.repositories.sqlalchemy_paper_trader_repository import SqlAlchemyPaperTraderRepository
 from app.infrastructure.ai_filter_openai import OpenAIFilter
 from app.infrastructure.config_loader import ConfigurationLoader, ServiceResolver
 from app.infrastructure.websocket.connection_manager import ConnectionManager
@@ -31,6 +34,7 @@ logger = logging.getLogger(__name__)
 
 # --- Registro de Implementações Concretas ---
 ServiceResolver.register("JsonPaperTraderRepository", JsonPaperTraderRepository)
+ServiceResolver.register("SqlAlchemyPaperTraderRepository", SqlAlchemyPaperTraderRepository)
 ServiceResolver.register("NewsFilter", NewsFilter)
 ServiceResolver.register("OpenAIFilter", OpenAIFilter)
 ServiceResolver.register("MarketDataProvider", MarketDataProvider)
@@ -114,6 +118,12 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+# Configuração operacional única carregada uma única vez no startup.
+# Falha por fail-closed (exceção) se a configuração for inválida.
+op_config = load_operational_config()
+app.state.operational_config = op_config
+logger.info(f"Modo operacional: {op_config.execution_mode.value} | live_trading_enabled={op_config.live_trading_enabled}")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://0.0.0.0:3000", "http://192.168.1.9:3010"],
@@ -127,6 +137,17 @@ app.include_router(cqrs_router)
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
+    # Auth por query param (`?token=...`): navegadores não enviam headers customizados
+    # no handshake WebSocket. Se o servidor exigir token e ele estiver ausente/inválido,
+    # rejeita o socket (fail-closed) em vez de aceitar um cliente sem autorização.
+    expected_token = op_config.api_auth_token
+    if expected_token:
+        token = websocket.query_params.get("token", "")
+        if not token or not secrets.compare_digest(token.strip(), expected_token):
+            logger.warning("WebSocket rejeitado: token ausente ou inválido.")
+            await websocket.close(code=4403)
+            return
+
     await manager.connect(websocket, watching_symbol)
 
     # Envia estado inicial para o símbolo assistido

@@ -12,7 +12,6 @@ from app.application.services.technical_analysis import (
 from app.infrastructure.services.paper_trader_executor import PaperTrader
 from app.infrastructure.services.risk_manager import RiskManager
 from app.domain.entities.personality import Personality, RiskProfile
-from app.domain.repositories.paper_trader_repository import AbstractPaperTraderRepository
 
 
 

@@ -42,6 +42,11 @@ venv.bak/
 chroma_db/
 simulator_state_*.json
 backend/simulator_state_*.json
+backend/backups/
+backend/data/app.db
+backend/crypto_bot.db
+backend/data/market_history.db
+backend/chroma_db_staging/
 
 # Node / JS / Next.js
 node_modules/

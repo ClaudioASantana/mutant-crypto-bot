@@ -1,7 +1,7 @@
 {
   "paper_trader_repository": {
-    "implementation": "JsonPaperTraderRepository",
-    "params": { "base_path": "data" }
+    "implementation": "SqlAlchemyPaperTraderRepository",
+    "params": {}
   },
   "news_filter": {
     "implementation": "NewsFilter",

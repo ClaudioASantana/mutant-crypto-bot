@@ -1,18 +1,27 @@
-import asyncio
-import sys
-import os
-sys.path.append(os.getcwd())
-from app.engines.bot_instance import BotInstance
+#!/usr/bin/env python3
+"""Aviso de descontinuação — segundo teste legado de cataloger.
 
-async def run():
-    bot = BotInstance("BTC/USDT", "", None, None)
-    await bot.client.fetch_history(60, 1000)
-    
-    print("M1 Candles loaded:", len(bot.builder_m1.closed_candles))
-    from app.engines.cataloger import calculate_win_rate
-    for req in [3, 5, 7, 9]:
-        res = calculate_win_rate(bot.builder_m1.closed_candles, req)
-        print(f"Req {req}:", res)
-    await bot.client.exchange.close()
+Este arquivo era um script ad-hoc fora da suíte principal e dependia de
+componentes removidos, especialmente `BotInstance` e `app.engines.cataloger`.
 
-asyncio.run(run())
+Ele foi preservado apenas como aviso explícito para evitar que alguém tente
+executá-lo assumindo que ainda valida o runtime atual.
+
+Para validação real, use:
+
+- testes versionados em `backend/tests/`
+- `app/application/services/cataloger.py`
+- harnesses modernos de backtest/research em `backend/scripts/`
+"""
+
+from __future__ import annotations
+
+
+def main() -> int:
+    print("Script legado descontinuado.")
+    print("Use a suíte oficial em `backend/tests/`.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

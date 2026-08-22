@@ -8,9 +8,11 @@ As rotas aqui apenas orquestram a chamada às camadas internas e formatam a resp
 import logging
 import time
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
+from app.core.operational_config import load_operational_config
+from app.core.security import require_api_key
 from app.core.state import bots, watching_symbol
 from app.api.v1.schemas.trading import (
     AdvancedBacktestRequest, OptimizeRequest, RiskSettingsRequest
@@ -25,8 +27,14 @@ router = APIRouter()
 
 @router.get("/status")
 def get_status():
+    op = load_operational_config()
     if watching_symbol not in bots:
-        return {"status": "running_swarm", "bots_active": len(bots)}
+        return {
+            "status": "running_swarm",
+            "bots_active": len(bots),
+            "execution_mode": op.execution_mode.value,
+            "live_trading_enabled": op.live_trading_enabled,
+        }
 
     b = bots[watching_symbol]
 
@@ -54,7 +62,9 @@ def get_status():
         "closed_candles_count": closed_candles_count,
         "personalities": personalities_states,
         "auto_optimize": b.auto_optimize,
-        "news_status": b.news_filter.check_safety(int(time.time()))
+        "news_status": b.news_filter.check_safety(int(time.time())),
+        "execution_mode": op.execution_mode.value,
+        "live_trading_enabled": op.live_trading_enabled,
     }
 
 @router.get("/portfolio")
@@ -128,14 +138,25 @@ def get_risk_settings():
                 "daily_stop_loss": first_trader.daily_stop_loss,
                 "daily_stop_gain": first_trader.daily_stop_gain
             }
+    op = load_operational_config()
     return {
-        "stake_initial": 10.0,
-        "daily_stop_loss": 50.0,
-        "daily_stop_gain": 50.0
+        "stake_initial": op.default_stake_initial,
+        "daily_stop_loss": op.default_daily_stop_loss,
+        "daily_stop_gain": op.default_daily_stop_gain
     }
 
 @router.post("/api/risk_settings")
-def set_risk_settings(req: RiskSettingsRequest):
+def set_risk_settings(
+    req: RiskSettingsRequest,
+    _auth: None = Depends(require_api_key),
+):
+    op = load_operational_config()
+    if not op.allow_runtime_risk_update:
+        raise HTTPException(
+            status_code=403,
+            detail="Atualização de risco em runtime desativada pela configuração operacional.",
+        )
+
     settings = {
         "stake_initial": req.stake_initial,
         "daily_stop_loss": req.daily_stop_loss,

@@ -51,6 +51,7 @@ export default function Home() {
   const [riskStopLoss, setRiskStopLoss] = useState<number>(50);
   const [riskStopGain, setRiskStopGain] = useState<number>(50);
   const [isSavingRisk, setIsSavingRisk] = useState<boolean>(false);
+  const [uiError, setUiError] = useState<string>("");
 
   const [backtestTimeframe, setBacktestTimeframe] = useState(300);
   const [backtestLimit, setBacktestLimit] = useState(1000);
@@ -60,21 +61,52 @@ export default function Home() {
   const backtestSeriesRef = useRef<any>(null);
   
   const activeSymbolRef = useRef(activeSymbol);
-  
-  // Mock AI Neural Feed polling (to simulate Celery task statuses)
+  const httpUrl = typeof window === "undefined"
+    ? ""
+    : (process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`);
+  const backendWsBaseUrl = typeof window === "undefined"
+    ? ""
+    : (process.env.NEXT_PUBLIC_BACKEND_WS_URL || `ws://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}/ws`);
+  const apiAuthToken = process.env.NEXT_PUBLIC_API_AUTH_TOKEN?.trim() || "";
+  const wsUrl = backendWsBaseUrl && apiAuthToken
+    ? `${backendWsBaseUrl}${backendWsBaseUrl.includes("?") ? "&" : "?"}token=${encodeURIComponent(apiAuthToken)}`
+    : backendWsBaseUrl;
+  const authHeaders = apiAuthToken ? { "X-API-Key": apiAuthToken } : {};
+
+  const ensureOk = async (res: Response, context: string) => {
+    if (res.ok) {
+      return res;
+    }
+
+    let detail = `${res.status} ${res.statusText}`;
+    try {
+      const payload = await res.json();
+      if (payload?.detail) {
+        detail = typeof payload.detail === "string" ? payload.detail : JSON.stringify(payload.detail);
+      }
+    } catch {
+      // mantém fallback textual quando a resposta não for JSON
+    }
+
+    throw new Error(`${context}: ${detail}`);
+  };
+
+  const reportUiError = (message: string, error?: unknown) => {
+    console.error(message, error);
+    setUiError(message);
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setAiTaskState((prev: any) => {
-        if (prev.status === "IDLE") {
-          return Math.random() > 0.8 ? { status: "PROCESSING", reason: "Calculando RAG com trades similares..." } : prev;
-        } else if (prev.status === "PROCESSING") {
-          return { status: "PROCESSING", reason: "Analisando Price Action vs EMA200..." };
-        } else {
-          return { status: "IDLE", reason: "Aguardando gatilho do mercado..." };
-        }
-      });
-    }, 3000);
-    return () => clearInterval(interval);
+    if (!apiAuthToken) {
+      setUiError("NEXT_PUBLIC_API_AUTH_TOKEN não configurado. As ações protegidas da UI ficarão bloqueadas.");
+    }
+  }, [apiAuthToken]);
+
+  useEffect(() => {
+    setAiTaskState({
+      status: "IDLE",
+      reason: "Sem telemetria real do pipeline de IA no backend. Painel informativo apenas."
+    });
   }, []);
 
   useEffect(() => {
@@ -88,16 +120,20 @@ export default function Home() {
 
   useEffect(() => {
     // Connect to WebSocket
-    const wsUrl = process.env.NEXT_PUBLIC_BACKEND_WS_URL || `ws://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}/ws`;
     ws.current = new WebSocket(wsUrl);
-    
+
     ws.current.onopen = () => {
       console.log("Connected to backend WS");
+      setUiError("");
       ws.current?.send(JSON.stringify({ command: "WATCH_SYMBOL", symbol: activeSymbolRef.current }));
     };
     
     ws.current.onmessage = (event) => {
       const msg = JSON.parse(event.data);
+      if (msg?.event === "error") {
+        reportUiError(typeof msg.data === "string" ? msg.data : "Erro recebido do WebSocket.");
+        return;
+      }
       
       // Filtra mensagens que não são do ativo selecionado (se a mensagem tiver symbol)
       if (msg.symbol && msg.symbol !== activeSymbolRef.current) {
@@ -132,55 +168,69 @@ export default function Home() {
       }
     };
 
+    ws.current.onerror = (event) => {
+      reportUiError("Falha na conexão WebSocket com o backend. Verifique token e disponibilidade do servidor.", event);
+    };
+
+    ws.current.onclose = (event) => {
+      if (event.code === 4403) {
+        reportUiError("WebSocket rejeitado por autenticação. Verifique NEXT_PUBLIC_API_AUTH_TOKEN.");
+      }
+    };
+
     return () => {
       if (ws.current) ws.current.close();
     };
-  }, []);
+  }, [wsUrl]);
 
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
-        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
         const res = await fetch(`${httpUrl}/portfolio`);
+        await ensureOk(res, "Falha ao carregar portfólio");
         const data = await res.json();
         setPortfolio(data);
-      } catch (e) {}
+      } catch (e) {
+        reportUiError("Falha ao carregar portfólio do backend.", e);
+      }
     };
     fetchPortfolio();
     const interval = setInterval(fetchPortfolio, 5000);
-    
-    // Fetch Risk Settings
+
     const fetchRisk = async () => {
       try {
-        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
         const res = await fetch(`${httpUrl}/api/risk_settings`);
+        await ensureOk(res, "Falha ao carregar parâmetros de risco");
         const data = await res.json();
         setRiskStake(data.stake_initial);
         setRiskStopLoss(data.daily_stop_loss);
         setRiskStopGain(data.daily_stop_gain);
-      } catch (e) {}
+      } catch (e) {
+        reportUiError("Falha ao carregar parâmetros de risco.", e);
+      }
     };
     fetchRisk();
 
     const fetchCqrsTrades = async () => {
       try {
-        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
-        // Para testes práticos via UI, usaremos default ou o ID real
         const res = await fetch(`${httpUrl}/api/cqrs/active_trades?identity=default`);
+        await ensureOk(res, "Falha ao carregar posições CQRS");
         const data = await res.json();
         if (data.status === "success") {
           setCqrsTrades(data.trades);
         }
-      } catch (e) {}
+      } catch (e) {
+        reportUiError("Falha ao carregar posições CQRS.", e);
+      }
     };
     fetchCqrsTrades();
     const cqrsInterval = setInterval(fetchCqrsTrades, 3000);
-    
+
     return () => {
       clearInterval(interval);
       clearInterval(cqrsInterval);
     };
-  }, []);
+  }, [httpUrl]);
 
   useEffect(() => {
     if (currentView !== 'dashboard' || !chartContainerRef.current) return;
@@ -235,14 +285,14 @@ export default function Home() {
 
     const fetchHistory = async () => {
       try {
-        const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
         const res = await fetch(`${httpUrl}/api/chart_history?symbol=${activeSymbol}&limit=200`);
+        await ensureOk(res, "Falha ao carregar histórico do gráfico");
         const result = await res.json();
         if (chartSeriesRef.current && typeof chartSeriesRef.current.setData === 'function' && result.data) {
           chartSeriesRef.current.setData(result.data);
         }
       } catch (e) {
-        console.error("Failed to fetch chart history", e);
+        reportUiError("Falha ao carregar histórico do gráfico.", e);
       }
     };
 
@@ -358,63 +408,86 @@ export default function Home() {
     setIsBacktesting(true);
     setBacktestResults(null);
     try {
-      const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
       const res = await fetch(`${httpUrl}/api/backtest_advanced`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          symbol: activeSymbol, 
-          timeframe: backtestTimeframe, 
-          limit: backtestLimit, 
-          strategy: backtestStrategy 
+        body: JSON.stringify({
+          symbol: activeSymbol,
+          timeframe: backtestTimeframe,
+          limit: backtestLimit,
+          strategy: backtestStrategy
         })
       });
+      await ensureOk(res, "Falha ao executar backtest");
       const data = await res.json();
       setBacktestResults(data);
+      setUiError("");
     } catch (err) {
-      console.error(err);
+      reportUiError("Falha ao executar backtest avançado.", err);
     }
     setIsBacktesting(false);
   };
 
   const saveRiskSettings = async () => {
+    if (!apiAuthToken) {
+      reportUiError("Token ausente na UI. Configure NEXT_PUBLIC_API_AUTH_TOKEN para salvar risco.");
+      return;
+    }
+
     setIsSavingRisk(true);
     try {
-      const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
-      await fetch(`${httpUrl}/api/risk_settings`, {
+      const res = await fetch(`${httpUrl}/api/risk_settings`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...authHeaders },
         body: JSON.stringify({
           stake_initial: riskStake,
           daily_stop_loss: riskStopLoss,
           daily_stop_gain: riskStopGain
         })
       });
-      // Optionally show a success toast here
+      await ensureOk(res, "Falha ao salvar parâmetros de risco");
+      setUiError("");
     } catch (e) {
-      console.error("Erro ao salvar configurações de risco.");
+      reportUiError("Erro ao salvar configurações de risco.", e);
     }
     setIsSavingRisk(false);
   };
 
   const handleManualTrade = async (direction: string) => {
+    if (!apiAuthToken) {
+      reportUiError("Token ausente na UI. Configure NEXT_PUBLIC_API_AUTH_TOKEN para executar trade manual.");
+      return;
+    }
+
+    const atr = Number(tradePreview?.atr);
+    if (!Number.isFinite(atr) || atr <= 0) {
+      reportUiError("Trade manual bloqueado: ATR real indisponível para o ativo atual.");
+      return;
+    }
+
+    if (!Number.isFinite(Number(liveData.quote)) || Number(liveData.quote) <= 0) {
+      reportUiError("Trade manual bloqueado: preço atual indisponível.");
+      return;
+    }
+
     setExecutingTrade(true);
     try {
-      const httpUrl = process.env.NEXT_PUBLIC_BACKEND_HTTP_URL || `http://${window.location.hostname}:${process.env.NEXT_PUBLIC_API_PORT || 8000}`;
-      await fetch(`${httpUrl}/api/cqrs/execute_trade?identity=default`, {
+      const res = await fetch(`${httpUrl}/api/cqrs/execute_trade?identity=default`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...authHeaders },
         body: JSON.stringify({
           symbol: activeSymbol,
           direction: direction,
           timeframe: activeConfig?.timeframe || 300,
           strategy: "Manual UI",
           entry_price: liveData.quote,
-          atr: 50.0 // mock ATR
+          atr
         })
       });
+      await ensureOk(res, "Falha ao executar trade manual");
+      setUiError("");
     } catch (e) {
-      console.error("Erro ao executar trade manual", e);
+      reportUiError("Erro ao executar trade manual.", e);
     }
     setExecutingTrade(false);
   };
@@ -595,6 +668,19 @@ export default function Home() {
             <header>
               <h1>Cockpit de Decisão</h1>
               <p style={{ opacity: 0.6 }}>Análise Quantitativa + IA</p>
+              {uiError && (
+                <div style={{
+                  marginTop: "12px",
+                  padding: "10px 12px",
+                  borderRadius: "8px",
+                  background: "rgba(239,68,68,0.15)",
+                  border: "1px solid rgba(239,68,68,0.35)",
+                  color: "#fecaca",
+                  fontSize: "0.85rem"
+                }}>
+                  {uiError}
+                </div>
+              )}
             </header>
 
         {/* Seletor de Ativo */}
@@ -918,17 +1004,19 @@ export default function Home() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
               <h3 style={{ margin: 0 }}>📋 Posições Abertas (SQLite DB)</h3>
               <div style={{ display: "flex", gap: "8px" }}>
-                <button 
-                  onClick={() => handleManualTrade("CALL")} 
-                  disabled={executingTrade}
-                  style={{ background: "rgba(16,185,129,0.2)", color: "var(--success)", border: "1px solid var(--success)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.75rem", cursor: "pointer" }}
+                <button
+                  onClick={() => handleManualTrade("CALL")}
+                  disabled={executingTrade || !apiAuthToken || !Number.isFinite(Number(tradePreview?.atr)) || Number(tradePreview?.atr) <= 0}
+                  style={{ background: "rgba(16,185,129,0.2)", color: "var(--success)", border: "1px solid var(--success)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.75rem", cursor: executingTrade ? "wait" : "pointer", opacity: (!apiAuthToken || !Number.isFinite(Number(tradePreview?.atr)) || Number(tradePreview?.atr) <= 0) ? 0.5 : 1 }}
+                  title={!apiAuthToken ? "Configure NEXT_PUBLIC_API_AUTH_TOKEN para habilitar." : (!Number.isFinite(Number(tradePreview?.atr)) || Number(tradePreview?.atr) <= 0 ? "ATR real indisponível para este ativo." : "")}
                 >
                   {executingTrade ? "..." : "+ CALL (CQRS)"}
                 </button>
-                <button 
-                  onClick={() => handleManualTrade("PUT")} 
-                  disabled={executingTrade}
-                  style={{ background: "rgba(239,68,68,0.2)", color: "var(--danger)", border: "1px solid var(--danger)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.75rem", cursor: "pointer" }}
+                <button
+                  onClick={() => handleManualTrade("PUT")}
+                  disabled={executingTrade || !apiAuthToken || !Number.isFinite(Number(tradePreview?.atr)) || Number(tradePreview?.atr) <= 0}
+                  style={{ background: "rgba(239,68,68,0.2)", color: "var(--danger)", border: "1px solid var(--danger)", padding: "4px 8px", borderRadius: "4px", fontSize: "0.75rem", cursor: executingTrade ? "wait" : "pointer", opacity: (!apiAuthToken || !Number.isFinite(Number(tradePreview?.atr)) || Number(tradePreview?.atr) <= 0) ? 0.5 : 1 }}
+                  title={!apiAuthToken ? "Configure NEXT_PUBLIC_API_AUTH_TOKEN para habilitar." : (!Number.isFinite(Number(tradePreview?.atr)) || Number(tradePreview?.atr) <= 0 ? "ATR real indisponível para este ativo." : "")}
                 >
                   {executingTrade ? "..." : "+ PUT (CQRS)"}
                 </button>
@@ -958,10 +1046,10 @@ export default function Home() {
             
             <div>
               <strong style={{ fontSize: "0.85rem", opacity: 0.7 }}>HISTÓRICO</strong>
-              {simulatorState.history.length === 0 ? (
+              {(simulatorState.history || []).length === 0 ? (
                 <p style={{ opacity: 0.5, fontSize: "0.85rem" }}>Nenhuma operação finalizada ainda.</p>
               ) : (
-                simulatorState.history.map((t: any) => (
+                (simulatorState.history || []).map((t: any) => (
                   <div key={t.id} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
                     <span style={{ color: t.status === "WIN" ? "var(--success)" : (t.status === "LOSS" ? "var(--danger)" : "white") }}>
                       {t.status === "WIN" ? "📈" : (t.status === "LOSS" ? "📉" : "⚖️")} {t.direction} <span style={{fontSize:'0.7rem', opacity:0.5}}>[{t.strategy_info || "N/A"}]</span>
@@ -1019,12 +1107,15 @@ export default function Home() {
         {/* AI Neural Feed Sidebar */}
         <div className="glass" style={{ marginTop: "24px", padding: "16px", display: "flex", flexDirection: "column", gap: "12px" }}>
           <h4 style={{ margin: 0, color: "var(--accent)", display: "flex", alignItems: "center", gap: "8px" }}>
-            <span className={aiTaskState.status === "PROCESSING" ? "live-indicator" : ""} style={{ 
+            <span className={aiTaskState.status === "PROCESSING" ? "live-indicator" : ""} style={{
               background: aiTaskState.status === "PROCESSING" ? "var(--accent)" : "rgba(255,255,255,0.2)",
               animation: aiTaskState.status === "PROCESSING" ? "blink 1s infinite" : "none"
             }}></span>
             AI Neural Feed
           </h4>
+          <div style={{ fontSize: "0.75rem", opacity: 0.6 }}>
+            Telemetria ilustrativa: o backend ainda não expõe estado operacional real do pipeline de IA.
+          </div>
           <div style={{ 
             background: "rgba(0,0,0,0.4)", 
             border: "1px solid rgba(255,255,255,0.05)", 

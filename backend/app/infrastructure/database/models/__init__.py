@@ -1,0 +1,1 @@
+"""Modelos SQLAlchemy do storage canônico (Base declarativa + entidades)."""

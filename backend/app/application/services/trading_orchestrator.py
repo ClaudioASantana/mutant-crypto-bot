@@ -20,7 +20,6 @@ from app.domain.services.news_filter_interface import AbstractNewsFilter
 from app.domain.services.ia_filter_interface import AbstractAIFilter
 from app.domain.services.trade_executor_interface import AbstractTradeExecutor
 from app.domain.services.risk_manager_interface import AbstractRiskManager
-from app.application.services.journal import TradeJournal
 
 logger = logging.getLogger(__name__)
 
@@ -75,8 +74,11 @@ class TradingOrchestrator:
             self.paper_traders[personality.name] = trader
 
         self.ai_filter = ai_filter
-        self.journal = TradeJournal()
         self.live_qty = 0
+        # Trava lógica: no máximo um trade ativo por personalidade. A
+        # persistência do lifecycle do trade (abertura/fechamento) já
+        # acontece dentro do próprio `trader` (tabela `trades` canônica);
+        # isto aqui não é mais um journal, é só um guard-rail em memória.
         self.active_trade_ids = {}  # Track active trade IDs per personality
 
         # --- Dynamic Personality Selector ---
@@ -182,7 +184,8 @@ class TradingOrchestrator:
                     # Update journal and broadcast state for the specific personality
                     for trade in finished_trades:
                         if p_name in self.active_trade_ids and self.active_trade_ids[p_name] == trade["id"]:
-                            self.journal.log_exit(trade["id"], trade["exit_epoch"], trade["exit_price"], trade["pnl"], trade["status"])
+                            # O fechamento já foi persistido na tabela `trades`
+                            # canônica dentro de `trader.check_positions(...)`.
 
                             # Atualizar metricas de performance da personalidade
                             perf_tracker = self.performance_trackers[p_name]
@@ -260,19 +263,18 @@ class TradingOrchestrator:
                         sl_price=decision.sl_price,
                         tp_price=decision.tp_price,
                         atr=decision.atr,
-                        personality=personality
+                        personality=personality,
+                        strategy=decision.strategy_info,
+                        ai_reason=decision.reason,
+                        ai_confidence=decision.ai_confidence,
+                        ai_context=decision.ai_context,
                     )
 
-                    # Registrar trade e atualizar estado
+                    # Trava lógica em memória: a abertura em si já foi
+                    # persistida na tabela `trades` canônica dentro de
+                    # `trader.open_trade(...)`.
                     t_id = trader.open_positions[-1]["id"]
                     self.active_trade_ids[p_name] = t_id
-                    self.journal.log_entry(
-                        t_id, self.symbol, decision.direction.value,
-                        decision.strategy_info, decision.reason,
-                        decision.ai_confidence, decision.ai_context,
-                        tick.epoch, decision.entry_price, decision.atr,
-                        50.0, trader.get_current_margin_usdt(), trader.leverage
-                    )
                     await self.manager.broadcast({
                         "event": "trade_opened",
                         "symbol": self.symbol,

@@ -1,0 +1,1 @@
+"""Pacote de testes de integração para scripts operacionais e de migração."""

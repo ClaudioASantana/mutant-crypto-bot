@@ -1,25 +1,25 @@
 from typing import List, Dict, Any
 
 from app.application.queries.get_active_trades_query import GetActiveTradesQuery
-from app.domain.repositories.paper_trader_repository import AbstractPaperTraderRepository
+from app.domain.repositories.trade_repository import AbstractTradeRepository
+
 
 class GetActiveTradesHandler:
     """
     Handler para resolver a consulta GetActiveTradesQuery.
-    No CQRS puro, handlers de consulta não disparam regras de negócio ou mutações.
-    Eles apenas lêem os dados do repositório da forma mais eficiente possível para leitura.
+
+    No CQRS puro, handlers de consulta não disparam regras de negócio nem
+    mutações. Eles apenas projetam o read model mais conveniente para leitura.
     """
-    def __init__(self, paper_trader_repo: AbstractPaperTraderRepository):
-        self.paper_trader_repo = paper_trader_repo
+
+    def __init__(self, trade_repo: AbstractTradeRepository):
+        self.trade_repo = trade_repo
 
     def handle(self, query: GetActiveTradesQuery) -> List[Dict[str, Any]]:
-        state = self.paper_trader_repo.load(query.identity)
-        if not state or "active_trades" not in state:
-            return []
-            
-        trades = state["active_trades"]
-        
-        if query.symbol:
-            trades = [t for t in trades if t.get("symbol") == query.symbol]
-            
-        return trades
+        trades = self.trade_repo.list_active(query.identity, symbol=query.symbol)
+        result = []
+        for trade in trades:
+            payload = trade.to_runtime_dict()
+            payload["symbol"] = trade.symbol
+            result.append(payload)
+        return result

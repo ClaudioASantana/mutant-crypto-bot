@@ -2,28 +2,15 @@
 Testes unitários para o PaperTrader (TradeExecutor concreto).
 
 Garante que o executor de trades de papel abre, fecha e persiste
-estado corretamente através de um repositório em memória mock.
+estado corretamente através do repositório composto em memória.
 """
 
 import pytest
 
 from app.infrastructure.services.paper_trader_executor import PaperTrader
-from app.domain.repositories.paper_trader_repository import AbstractPaperTraderRepository
+from app.infrastructure.repositories.in_memory_paper_trader_repository import InMemoryPaperTraderRepository
 from app.domain.entities.personality import Personality, RiskProfile
-from app.domain.services.risk_manager_interface import AbstractRiskManager
 from tests.unit.mock_risk_manager import MockRiskManager # Importar o mock
-
-class InMemoryPaperTraderRepository(AbstractPaperTraderRepository):
-    """Repositório em memória para uso em testes."""
-
-    def __init__(self):
-        self._store = {}
-
-    def load(self, identity: str):
-        return self._store.get(identity)
-
-    def save(self, identity: str, state: dict) -> None:
-        self._store[identity] = state
 
 
 @pytest.fixture
@@ -81,6 +68,15 @@ def test_paper_trader_open_trade(paper_trader, sample_personality):
     assert len(state["pending"]) == 1
     assert state["pending"][0]["direction"] == "CALL"
 
+    # Persistiu como Trade canônico na tabela `trades` (aqui, o composto em memória)
+    active = repository_trades_for(paper_trader)
+    assert len(active) == 1
+    assert active[0].status.value == "OPEN"
+
+
+def repository_trades_for(paper_trader):
+    return paper_trader.repository.list_active(paper_trader.identity)
+
 
 def test_paper_trader_winning_trade(repository, sample_personality):
     """Deve fechar uma posição vencedora e atualizar o saldo."""
@@ -117,6 +113,12 @@ def test_paper_trader_winning_trade(repository, sample_personality):
     assert finished[0]["status"] == "WIN"
     assert paper_trader.balance > 1000.0
 
+    # O fechamento foi persistido como Trade canônico com outcome=WIN
+    history = repository.list_history("BTCUSDT_win")
+    assert len(history) == 1
+    assert history[0].outcome.value == "WIN"
+    assert history[0].status.value == "CLOSED"
+
 
 def test_paper_trader_losing_trade(repository, sample_personality):
     """Deve fechar uma posição perdedora e atualizar o saldo."""
@@ -152,6 +154,10 @@ def test_paper_trader_losing_trade(repository, sample_personality):
     assert len(finished) == 1
     assert finished[0]["status"] == "LOSS"
     assert paper_trader.balance < 1000.0
+
+    history = repository.list_history("BTCUSDT_loss")
+    assert len(history) == 1
+    assert history[0].outcome.value == "LOSS"
 
 
 def test_paper_trader_persists_state(repository, sample_personality):

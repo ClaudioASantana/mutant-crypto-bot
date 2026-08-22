@@ -1,12 +1,26 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
 
 class AbstractTradeExecutor(ABC):
     """Abstração para executores de trades."""
 
     @abstractmethod
-    def open_trade(self, direction: str, tf: int, current_epoch: int, current_price: float, sl_price: float, tp_price: float, atr: float = 0.0, personality: Any = None) -> None:
+    def open_trade(
+        self,
+        direction: str,
+        tf: int,
+        current_epoch: int,
+        current_price: float,
+        sl_price: float,
+        tp_price: float,
+        atr: float = 0.0,
+        personality: Any = None,
+        strategy: Optional[str] = None,
+        ai_reason: Optional[str] = None,
+        ai_confidence: Optional[float] = None,
+        ai_context: Optional[str] = None,
+    ) -> None:
         """Abre uma nova posição."""
         pass
 
