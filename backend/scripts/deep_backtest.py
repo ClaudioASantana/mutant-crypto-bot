@@ -20,8 +20,12 @@ from datetime import datetime, timezone, timedelta
 # Adicionar o backend ao path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from app.application.services.backtest_metrics import (
+    TradingCostConfig,
+    calculate_backtest_metrics,
+)
 from app.application.services.technical_analysis import (
-    apply_indicators, eval_ema_macd, eval_bollinger, eval_vwap, eval_smc,
+    apply_indicators, eval_ema_macd, eval_bollinger, eval_vwap, eval_vwap_zscore, eval_smc,
     check_rsi_filter, check_volume_filter, check_trend_filter, check_mtf_alignment,
     eval_wyckoff_bollinger, eval_wyckoff_smc
 )
@@ -30,6 +34,7 @@ STRATEGIES = {
     "EMA+MACD": eval_ema_macd,
     "Bollinger": eval_bollinger,
     "VWAP":     eval_vwap,
+    "VWAP Z-Score": eval_vwap_zscore,
     "SMC":      eval_smc,
     "Wyckoff_Bbands": eval_wyckoff_bollinger,
     "Wyckoff_SMC":    eval_wyckoff_smc,
@@ -49,6 +54,8 @@ TP_MULTIPLIER = 3.0
 SL_MULTIPLIER = 1.5
 STAKE_USD     = 100.0
 LEVERAGE      = 10
+FEE_RATE      = 0.0004  # 0.04% por ponta (Binance Futures taker)
+SLIPPAGE_BPS  = 1.0     # slippage por ponta, em basis points
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Data Download
@@ -109,9 +116,8 @@ def run_backtest(df: pd.DataFrame, strategy_name: str) -> dict:
     df_ind = apply_indicators(df.copy())
 
     signals_generated = 0
-    wins   = 0
-    losses = 0
-    pnl    = 0.0
+    trades = []
+    notional = STAKE_USD * LEVERAGE
 
     start_idx = 50  # Aguardar indicadores estabilizarem
 
@@ -180,22 +186,31 @@ def run_backtest(df: pd.DataFrame, strategy_name: str) -> dict:
                     break
 
         if trade_closed:
-            pct_tp = (atr_val * TP_MULTIPLIER) / entry
-            pct_sl = (atr_val * SL_MULTIPLIER) / entry
-            if trade_won:
-                wins += 1
-                pnl  += STAKE_USD * LEVERAGE * pct_tp
-            else:
-                losses += 1
-                pnl    -= STAKE_USD * LEVERAGE * pct_sl
+            exit_price = tp_price if trade_won else sl_price
+            trades.append({
+                "direction": signal,
+                "entry_price": entry,
+                "exit_price": exit_price,
+                "qty": notional / entry,
+            })
 
-    win_rate = round((wins / (wins + losses)) * 100, 2) if (wins + losses) > 0 else 0.0
+    metrics = calculate_backtest_metrics(
+        trades,
+        starting_equity=1000.0,
+        cost=TradingCostConfig(fee_rate=FEE_RATE, slippage_bps=SLIPPAGE_BPS),
+    )
     return {
         "signals": signals_generated,
-        "wins":    wins,
-        "losses":  losses,
-        "win_rate": win_rate,
-        "pnl_usdt": round(pnl, 2),
+        "wins":    metrics["wins"],
+        "losses":  metrics["losses"],
+        "win_rate": round(metrics["win_rate"], 2),
+        "pnl_usdt": round(metrics["net_pnl_usdt"], 2),
+        "gross_pnl_usdt": round(metrics["gross_pnl_usdt"], 2),
+        "total_cost_usdt": round(metrics["total_cost_usdt"], 2),
+        "profit_factor": round(metrics["profit_factor"], 2),
+        "max_drawdown_pct": round(metrics["max_drawdown_pct"], 2),
+        "expectancy_usd": round(metrics["expectancy_usd"], 2),
+        "trades": metrics["trades"],
     }
 
 
@@ -213,13 +228,14 @@ def format_report(results: dict) -> str:
 
     for tf_name, tf_data in results.items():
         lines.append(f"\n  TIMEFRAME: {tf_name}")
-        lines.append(f"  {'Estrategia':<15} {'Sinais':>8} {'Wins':>6} {'Losses':>8} {'Win Rate':>10} {'PnL (USD)':>12}")
-        lines.append(f"  {'-'*65}")
+        lines.append(f"  {'Estrategia':<15} {'Sinais':>8} {'Wins':>6} {'Losses':>8} {'Win Rate':>10} {'PnL (USD)':>12} {'PF':>7} {'MaxDD':>8} {'Exp':>8}")
+        lines.append(f"  {'-'*85}")
         for strat_name, stats in tf_data.items():
             pnl_str = f"+${stats['pnl_usdt']:.2f}" if stats['pnl_usdt'] >= 0 else f"-${abs(stats['pnl_usdt']):.2f}"
             lines.append(
                 f"  {strat_name:<15} {stats['signals']:>8} {stats['wins']:>6} "
-                f"{stats['losses']:>8} {stats['win_rate']:>9.2f}% {pnl_str:>12}"
+                f"{stats['losses']:>8} {stats['win_rate']:>9.2f}% {pnl_str:>12} "
+                f"{stats['profit_factor']:>7.2f} {stats['max_drawdown_pct']:>7.1f}% {stats['expectancy_usd']:>8.2f}"
             )
 
     # Ranking geral por PnL
@@ -236,7 +252,7 @@ def format_report(results: dict) -> str:
     for rank, (tf, strat, stats) in enumerate(flat, 1):
         medal = "1." if rank == 1 else (f"2." if rank == 2 else (f"3." if rank == 3 else f"{rank}."))
         pnl_str = f"+${stats['pnl_usdt']:.2f}" if stats['pnl_usdt'] >= 0 else f"-${abs(stats['pnl_usdt']):.2f}"
-        lines.append(f"  {medal}  {strat} ({tf}): {pnl_str}  |  WR: {stats['win_rate']}%  |  Trades: {stats['wins']+stats['losses']}")
+        lines.append(f"  {medal}  {strat} ({tf}): {pnl_str}  |  WR: {stats['win_rate']}%  |  Trades: {stats['wins']+stats['losses']}  |  PF: {stats['profit_factor']:.2f}")
 
     best = flat[0]
     lines.append(f"\n  ESTRATEGIA RECOMENDADA: {best[1]} no {best[0]}")

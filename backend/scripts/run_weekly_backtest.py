@@ -19,11 +19,16 @@ from datetime import datetime, timezone, timedelta
 # Adicionar o backend ao path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from app.application.services.backtest_metrics import (
+    TradingCostConfig,
+    calculate_backtest_metrics,
+)
 from app.application.services.technical_analysis import (
     apply_indicators,
     eval_ema_macd,
     eval_bollinger,
     eval_vwap,
+    eval_vwap_zscore,
     eval_smc,
     eval_supertrend,
     eval_wyckoff_bollinger,
@@ -45,6 +50,7 @@ STRATEGIES = {
     "Bollinger": eval_bollinger,
     "EMA+MACD": eval_ema_macd,
     "VWAP": eval_vwap,
+    "VWAP Z-Score": eval_vwap_zscore,
     "SuperTrend": eval_supertrend,
     "Wyckoff_SMC": eval_wyckoff_smc,
     "Wyckoff_Bbands": eval_wyckoff_bollinger,
@@ -70,6 +76,7 @@ SL_MULTIPLIER = 1.5
 STAKE_USD     = 100.0
 LEVERAGE      = 10
 FEE_RATE      = 0.0004  # 0.04% por ponta (Binance Futures taker)
+SLIPPAGE_BPS  = 1.0     # slippage por ponta, em basis points
 
 
 def fetch_klines(symbol: str, interval: str, days: int) -> pd.DataFrame:
@@ -140,7 +147,7 @@ def run_strategy_backtest(df_ind: pd.DataFrame, strategy_name: str, strategy_fun
     pos_entry_time = None
 
     notional = STAKE_USD * LEVERAGE
-    total_fee_per_trade = notional * FEE_RATE * 2  # Abertura + Fechamento
+    cost_config = TradingCostConfig(fee_rate=FEE_RATE, slippage_bps=SLIPPAGE_BPS)
 
     # Para MTF no M1: mapear timestamps M1 para M5 de forma indexada
     m5_signal_map = {}
@@ -194,19 +201,13 @@ def run_strategy_backtest(df_ind: pd.DataFrame, strategy_name: str, strategy_fun
                     win = exit_price < pos_entry
 
             if closed:
-                raw_pct = (exit_price - pos_entry) / pos_entry if pos_direction == "CALL" else (pos_entry - exit_price) / pos_entry
-                gross_pnl = notional * raw_pct
-                net_pnl = gross_pnl - total_fee_per_trade
-
                 trades.append({
                     "entry_time": str(pos_entry_time),
                     "exit_time": str(curr_time),
                     "direction": pos_direction,
                     "entry_price": pos_entry,
                     "exit_price": exit_price,
-                    "win": win,
-                    "gross_pnl": gross_pnl,
-                    "net_pnl": net_pnl,
+                    "qty": notional / pos_entry,
                 })
                 in_position = False
 
@@ -254,46 +255,29 @@ def run_strategy_backtest(df_ind: pd.DataFrame, strategy_name: str, strategy_fun
                     pos_entry_idx = i
                     pos_entry_time = curr_time
 
-    # Cálculos finais de métricas
-    n_trades = len(trades)
-    wins = sum(1 for t in trades if t["win"])
-    losses = n_trades - wins
-    win_rate = (wins / n_trades * 100) if n_trades > 0 else 0.0
-
-    net_pnl_total = sum(t["net_pnl"] for t in trades)
-    gross_wins = sum(t["gross_pnl"] for t in trades if t["gross_pnl"] > 0)
-    gross_losses = abs(sum(t["gross_pnl"] for t in trades if t["gross_pnl"] < 0))
-    profit_factor = (gross_wins / gross_losses) if gross_losses > 0 else (99.0 if gross_wins > 0 else 0.0)
-
-    # Max Drawdown
-    equity_curve = []
-    running_eq = 1000.0  # banca base $1000
-    peak = running_eq
-    max_dd_pct = 0.0
-    for t in trades:
-        running_eq += t["net_pnl"]
-        if running_eq > peak:
-            peak = running_eq
-        dd = (peak - running_eq) / peak * 100
-        if dd > max_dd_pct:
-            max_dd_pct = dd
-        equity_curve.append(running_eq)
-
-    expectancy = (net_pnl_total / n_trades) if n_trades > 0 else 0.0
+    # Métricas centralizadas: custo (fee + slippage) e agregação vêm do módulo.
+    metrics = calculate_backtest_metrics(
+        trades, starting_equity=1000.0, cost=cost_config
+    )
 
     return {
         "strategy": strategy_name,
         "timeframe": tf_name,
         "signals": signals_count,
-        "trades": n_trades,
-        "wins": wins,
-        "losses": losses,
-        "win_rate": round(win_rate, 2),
-        "net_pnl": round(net_pnl_total, 2),
-        "profit_factor": round(profit_factor, 2),
-        "max_drawdown_pct": round(max_dd_pct, 2),
-        "expectancy_usd": round(expectancy, 2),
-        "trade_samples": trades[:5]
+        "trades": metrics["total_trades"],
+        "wins": metrics["wins"],
+        "losses": metrics["losses"],
+        "win_rate": round(metrics["win_rate"], 2),
+        "net_pnl": round(metrics["net_pnl_usdt"], 2),
+        "gross_pnl": round(metrics["gross_pnl_usdt"], 2),
+        "total_cost": round(metrics["total_cost_usdt"], 2),
+        "profit_factor": round(metrics["profit_factor"], 2),
+        "max_drawdown_pct": round(metrics["max_drawdown_pct"], 2),
+        "expectancy_usd": round(metrics["expectancy_usd"], 2),
+        "payoff_ratio": round(metrics["payoff_ratio"], 2),
+        "sharpe": round(metrics["sharpe"], 2),
+        "sortino": round(metrics["sortino"], 2),
+        "trade_samples": metrics["trades"][:5],
     }
 
 

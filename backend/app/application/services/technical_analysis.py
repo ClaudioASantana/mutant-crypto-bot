@@ -48,6 +48,12 @@ def apply_indicators(df: pd.DataFrame):
         
     # SMC (Donchian - manter para retrocompatibilidade)
     df.ta.donchian(lower_length=20, upper_length=20, append=True)
+
+    # Donchian 55 — base do breakout de regime (P2/H2)
+    try:
+        df.ta.donchian(lower_length=55, upper_length=55, append=True)
+    except Exception:
+        pass
     
     # SuperTrend
     df.ta.supertrend(length=10, multiplier=4.0, append=True)
@@ -59,7 +65,13 @@ def apply_indicators(df: pd.DataFrame):
     # EMA(200) — referência de tendência macro
     if len(df) >= 200:
         df.ta.ema(length=200, append=True)
-    
+
+    # ADX(14) — força de tendência, usado por filter_regime_adx (P2/H1)
+    try:
+        df.ta.adx(length=14, append=True)
+    except Exception:
+        pass
+
     return df
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -137,6 +149,81 @@ def check_mtf_alignment(df_m5: pd.DataFrame, direction: str) -> bool:
     if direction == "PUT" and macd_h > 0:
         return False  # M5 ainda bullish
     return True
+
+def filter_session_utc(df: pd.DataFrame, direction: str, sessions: list = None) -> bool:
+    """
+    Filtro de sessão (H1/P2): só aceita sinal DENTRO das janelas de alta
+    liquidez configuradas em UTC.
+
+    `sessions` é uma lista de tuplas (hora_inicio, hora_fim) em UTC,
+    com `inicio <= hora < fim`. Default: overlap Londres/NY (12h–17h UTC).
+    O índice do df é UTC por construção (epoch ou tz-aware).
+
+    Se o df não tiver índice datável, deixa passar (fail-open de forma).
+    """
+    if df is None or df.empty:
+        return True
+    last_ts = df.index[-1]
+    if not hasattr(last_ts, "hour"):
+        return True
+
+    if sessions is None:
+        sessions = [(12, 17)]
+
+    hour = last_ts.hour
+    for start, end in sessions:
+        if start <= hour < end:
+            return True
+    return False
+
+
+def filter_atr_percentile(
+    df: pd.DataFrame,
+    direction: str,
+    percentile_min: float = 0.40,
+    percentile_max: float = 0.90,
+    lookback: int = 100,
+) -> bool:
+    """
+    Filtro de volatilidade (H1/P2): exige que o ATR do candle de sinal esteja
+    no percentil empírico [min, max] dos últimos `lookback` candles.
+
+    Evita entrar com volatilidade comprimida demais (movimento improvável)
+    ou esticada demais (saída ruim). Sem dados suficientes, deixa passar.
+    """
+    if df is None or df.empty or len(df) < 30:
+        return True
+    if "ATRr_14" not in df.columns:
+        return True
+
+    atr = df["ATRr_14"]
+    last = atr.iloc[-1]
+    if pd.isna(last):
+        return True
+
+    window = atr.iloc[-lookback:].dropna()
+    if len(window) < 20:
+        return True
+
+    pct = float((window < last).mean())
+    return bool(percentile_min <= pct <= percentile_max)
+
+
+def filter_regime_adx(df: pd.DataFrame, direction: str, threshold: float = 25.0) -> bool:
+    """
+    Filtro de regime de tendência (H1/P2): exige ADX(14) >= `threshold`
+    no candle de sinal. Sem ADX disponível (coluna ausente/NaN), deixa passar.
+    """
+    if df is None or df.empty:
+        return True
+    if "ADX_14" not in df.columns:
+        return True
+
+    adx = df["ADX_14"].iloc[-1]
+    if pd.isna(adx):
+        return True
+    return bool(adx >= threshold)
+
 
 def check_signal_quality(df_m1: pd.DataFrame, df_m5: pd.DataFrame, direction: str) -> tuple[bool, str]:
     """
@@ -218,10 +305,74 @@ def eval_vwap(df: pd.DataFrame) -> str:
         vwap_col = ["EMA_50"]
     last_vwap = df.iloc[-1].get(vwap_col[0], 0)
     prev_vwap = df.iloc[-2].get(vwap_col[0], 0)
-    
+
     close, p_close = df.iloc[-1]["close"], df.iloc[-2]["close"]
     if p_close <= prev_vwap and close > last_vwap: return "CALL"
     if p_close >= prev_vwap and close < last_vwap: return "PUT"
+    return "NONE"
+
+@register_strategy("VWAP Z-Score")
+def eval_vwap_zscore(df: pd.DataFrame) -> str:
+    """
+    Mean reversion em torno da VWAP com gatilho por z-score.
+
+    CALL:
+    - candle anterior estava muito abaixo da VWAP (z <= -1.5)
+    - candle atual mostra reversão (z subindo e close > close anterior)
+    - evita compra contra tendência macro quando EMA200 estiver descendente
+
+    PUT:
+    - candle anterior estava muito acima da VWAP (z >= +1.5)
+    - candle atual mostra reversão (z caindo e close < close anterior)
+    - evita venda contra tendência macro quando EMA200 estiver ascendente
+    """
+    if df.empty or len(df) < 30:
+        return "NONE"
+
+    vwap_col = next((c for c in df.columns if "VWAP" in c), None)
+    if vwap_col is None:
+        return "NONE"
+
+    window = 20
+    closes = df["close"]
+    distance = closes - df[vwap_col]
+    distance_std = distance.rolling(window=window).std(ddof=0)
+    zscore = distance / distance_std.replace(0, pd.NA)
+
+    if len(zscore.dropna()) < 2:
+        return "NONE"
+
+    last = df.iloc[-1]
+    prev = df.iloc[-2]
+    last_z = zscore.iloc[-1]
+    prev_z = zscore.iloc[-2]
+
+    if pd.isna(last_z) or pd.isna(prev_z):
+        return "NONE"
+
+    ema200_last = last.get("EMA_200")
+    ema200_prev = prev.get("EMA_200")
+    ema200_up = (
+        ema200_last is not None and ema200_prev is not None
+        and not pd.isna(ema200_last) and not pd.isna(ema200_prev)
+        and ema200_last >= ema200_prev
+    )
+    ema200_down = (
+        ema200_last is not None and ema200_prev is not None
+        and not pd.isna(ema200_last) and not pd.isna(ema200_prev)
+        and ema200_last <= ema200_prev
+    )
+
+    if prev_z <= -1.5 and last_z > prev_z and last["close"] > prev["close"]:
+        if ema200_last is not None and not pd.isna(ema200_last) and not ema200_up:
+            return "NONE"
+        return "CALL"
+
+    if prev_z >= 1.5 and last_z < prev_z and last["close"] < prev["close"]:
+        if ema200_last is not None and not pd.isna(ema200_last) and not ema200_down:
+            return "NONE"
+        return "PUT"
+
     return "NONE"
 
 @register_strategy("SuperTrend")
@@ -880,6 +1031,108 @@ def eval_abcd(df: pd.DataFrame) -> str:
         return "PUT"
 
     return "NONE"
+
+def eval_regime_breakout(df: pd.DataFrame, donchian_len: int = 55, adx_threshold: float = 25.0,
+                         atr_pct_min: float = 0.40, atr_pct_max: float = 0.90,
+                         atr_lookback: int = 100) -> str:
+    """H2 — Breakout de regime (Donchian longa + ADX + banda de ATR, M15/H1).
+
+    Sinais de continuação de tendência em vez de reversão:
+    - CALL: vela atual fecha acima do canal Donchian de `donchian_len` velas,
+      com regime de tendência (ADX_14 >= threshold) e ATR no percentil
+      [atr_pct_min, atr_pct_max] da janela (nem morto, nem louco).
+    - PUT: simétrico para fechamento abaixo do canal inferior.
+
+    Alvo/saída por ATR e time stop ficam a cargo do harness (mesma régua das
+    rodadas P1), para comparabilidade. Função pura — não toca o executor.
+    """
+    if df is None or df.empty or len(df) < donchian_len:
+        return "NONE"
+
+    upper_col = f"DCU_{donchian_len}_{donchian_len}"
+    lower_col = f"DCL_{donchian_len}_{donchian_len}"
+    if upper_col not in df.columns or lower_col not in df.columns:
+        return "NONE"
+
+    last = df.iloc[-1]
+    prev = df.iloc[-2]
+    close = last["close"]
+
+    if "ADX_14" not in df.columns:
+        return "NONE"
+    adx = last["ADX_14"]
+    if pd.isna(adx) or adx < adx_threshold:
+        return "NONE"
+
+    band = filter_atr_percentile(df, "CALL", percentile_min=atr_pct_min,
+                                 percentile_max=atr_pct_max, lookback=atr_lookback)
+    if not band:
+        return "NONE"
+
+    # Canal calculado ATÉ A VELA ANTERIOR (exclui a vela de sinal do próprio
+    # cálculo) — usar o canal da vela atual seria trapaça: o high/low da
+    # própria vela de rompimento alargaria o canal para sempre "contê-la".
+    upper = prev[upper_col]
+    lower = prev[lower_col]
+    prev_prev_close = df.iloc[-3]["close"] if len(df) >= 3 else prev["close"]
+
+    if pd.isna(upper) or pd.isna(lower):
+        return "NONE"
+
+    if close > upper > 0 and prev_prev_close <= upper:
+        return "CALL"
+    if close < lower and prev_prev_close >= lower:
+        return "PUT"
+
+    return "NONE"
+
+def funding_state_at(funding_df, ts):
+    """Último evento de funding conhecido em `ts` (sem lookahead).
+
+    Retorna `{"rate": float, "rising": bool}` ou None se não há evento <= ts.
+    Sem lookahead: só considera a série de funding já realizada naquele
+    instante — eventos futuros não entram.
+    """
+    if funding_df is None or funding_df.empty or ts is None:
+        return None
+    try:
+        pos = funding_df.index.searchsorted(ts, side="right") - 1
+    except Exception:
+        return None
+    if pos < 0:
+        return None
+    rate = funding_df["fundingRate"].iloc[pos]
+    prev_rate = funding_df["fundingRate"].iloc[pos - 1] if pos >= 1 else rate
+    return {"rate": float(rate), "rising": bool(rate > prev_rate)}
+
+
+def funding_direction_filter(df, direction, funding_state=None, neutral_eps: float = 1e-5) -> bool:
+    """H3 — funding rate como filtro direcional (microestrutura, P3).
+
+    - short (PUT): funding **positivo e crescendo** — posição long sobrecarregada;
+    - long  (CALL): funding **negativo** ou **neutro decrescente**;
+    - fail-open sem estado de funding (mesmo padrão dos demais filtros).
+
+    Função pura — o estado causal é computado por `funding_state_at`, que fica
+    a cargo de quem chama. Não toca o executor.
+    """
+    if not funding_state or "rate" not in funding_state:
+        return True
+    rate = float(funding_state["rate"])
+    rising = bool(funding_state.get("rising", False))
+
+    if direction == "PUT":
+        return bool(rate > 0 and rising)
+    if direction == "CALL":
+        neutral = abs(rate) <= neutral_eps
+        return bool(rate < 0 or (neutral and not rising))
+    return True
+
+
+@register_strategy("Regime Breakout")
+def eval_regime_breakout_(df: pd.DataFrame) -> str:
+    """Wrapper registrado no registry para o simulador."""
+    return eval_regime_breakout(df)
 
 
 

@@ -7,6 +7,7 @@ estado corretamente através do repositório composto em memória.
 
 import pytest
 
+from app.application.services.backtest_metrics import TradingCostConfig
 from app.infrastructure.services.paper_trader_executor import PaperTrader
 from app.infrastructure.repositories.in_memory_paper_trader_repository import InMemoryPaperTraderRepository
 from app.domain.entities.personality import Personality, RiskProfile
@@ -195,3 +196,74 @@ def test_paper_trader_persists_state(repository, sample_personality):
     )
 
     assert len(paper_trader_2.open_positions) == 1
+
+
+def test_paper_trader_zero_cost_realizes_pure_pnl(repository, sample_personality):
+    """Com custo zero, o PnL realizado deve ser o preço puro (sem fricção)."""
+    mock_risk_manager = MockRiskManager()
+    paper_trader = PaperTrader(
+        symbol="BTC/USDT",
+        identity="BTCUSDT_zero_cost",
+        repository=repository,
+        risk_manager=mock_risk_manager,
+        initial_balance=1000.0,
+        leverage=10,
+        position_sizing_mode="fixed",
+        cost_config=TradingCostConfig.zero(),
+    )
+    paper_trader.open_trade(
+        direction="CALL",
+        tf=300,
+        current_epoch=1234567890,
+        current_price=50000.0,
+        sl_price=49000.0,
+        tp_price=52000.0,
+        atr=100.0,
+        personality=sample_personality,
+    )
+
+    paper_trader.check_positions(
+        current_epoch=1234567890 + 300,
+        current_price=52000.0,
+        personality=sample_personality,
+    )
+
+    # MockRiskManager: margin = 1000*0.02 = 20; qty = 20*10/50000 = 0.004.
+    # gross CALL = (52000 - 50000) * 0.004 = 8.0, sem custo.
+    assert paper_trader.balance == pytest.approx(1008.0, abs=0.01)
+
+
+def test_paper_trader_fee_charged_on_both_legs(repository, sample_personality):
+    """O custo deve ser cobrado sobre o notional de entrada E saída."""
+    mock_risk_manager = MockRiskManager()
+    paper_trader = PaperTrader(
+        symbol="BTC/USDT",
+        identity="BTCUSDT_fee_legs",
+        repository=repository,
+        risk_manager=mock_risk_manager,
+        initial_balance=1000.0,
+        leverage=10,
+        position_sizing_mode="fixed",
+        cost_config=TradingCostConfig(fee_rate=0.001, slippage_bps=0.0),
+    )
+    paper_trader.open_trade(
+        direction="CALL",
+        tf=300,
+        current_epoch=1234567890,
+        current_price=50000.0,
+        sl_price=49000.0,
+        tp_price=52000.0,
+        atr=100.0,
+        personality=sample_personality,
+    )
+
+    paper_trader.check_positions(
+        current_epoch=1234567890 + 300,
+        current_price=52000.0,
+        personality=sample_personality,
+    )
+
+    # entry_notional = 200, exit_notional = 208; fees = 408 * 0.001 = 0.408.
+    # net = 8.0 - 0.408 = 7.592.
+    assert paper_trader.balance == pytest.approx(1007.592, abs=0.01)
+

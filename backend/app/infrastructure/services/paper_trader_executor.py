@@ -1,6 +1,7 @@
 import logging
 from typing import Optional, Protocol
 
+from app.application.services.backtest_metrics import TradingCostConfig, apply_costs
 from app.domain.entities.paper_trader_state import PaperTraderState, RiskSettings
 from app.domain.entities.personality import Personality
 from app.domain.entities.trade import Trade
@@ -37,13 +38,14 @@ class PaperTraderRepository(Protocol):
 
 
 class PaperTrader(AbstractTradeExecutor):
-    def __init__(self, symbol: str, identity: str, repository: PaperTraderRepository, risk_manager: AbstractRiskManager, initial_balance: float = 200.0, leverage: int = 10, position_sizing_mode: str = "fixed", max_history_trades: int = 50):
+    def __init__(self, symbol: str, identity: str, repository: PaperTraderRepository, risk_manager: AbstractRiskManager, initial_balance: float = 200.0, leverage: int = 10, position_sizing_mode: str = "fixed", max_history_trades: int = 50, cost_config: Optional[TradingCostConfig] = None):
         self.symbol = symbol.replace("/", "_")
         self.market_symbol = symbol
         self.identity = identity
         self.repository = repository
         self.risk_manager = risk_manager
         self.max_history_trades = max_history_trades
+        self._cost_config = cost_config or TradingCostConfig()
 
         self.initial_balance = initial_balance
         self.leverage = leverage
@@ -269,7 +271,6 @@ class PaperTrader(AbstractTradeExecutor):
             # TODO: Passar a personalidade correta aqui quando possível
             # Calcula PnL flutuante
             if trade["direction"] == "CALL": # LONG
-                price_diff = current_price - trade["entry_price"]
                 if current_price > trade.get("highest_reached", current_price):
                     trade["highest_reached"] = current_price
 
@@ -285,7 +286,6 @@ class PaperTrader(AbstractTradeExecutor):
                             logger.info(f"📈 [CryptoSimulator - {self.symbol}] Trailing Stop movido para ${new_sl:.2f} (COMPRA)")
 
             else: # SHORT
-                price_diff = trade["entry_price"] - current_price
                 if current_price < trade.get("lowest_reached", current_price):
                     trade["lowest_reached"] = current_price
 
@@ -300,13 +300,11 @@ class PaperTrader(AbstractTradeExecutor):
                             trade["sl"] = new_sl
                             logger.info(f"📉 [CryptoSimulator - {self.symbol}] Trailing Stop movido para ${new_sl:.2f} (VENDA)")
 
-            floating_pnl = price_diff * trade["qty"]
-
-            # Desconto das taxas (0.1% sobre o volume total da posição alavancada)
-            position_size_usd = trade["qty"] * trade["entry_price"]
-            fee_usdt = position_size_usd * 0.001
-
-            trade["pnl"] = round(floating_pnl - fee_usdt, 2)
+            # Custo centralizado: fee (por ponta) + slippage sobre o notional de
+            # entrada e saída. Reusa o mesmo `TradingCostConfig` dos backtests,
+            # mantendo paper e research com a mesma régua de fricção.
+            enriched = apply_costs({**trade, "exit_price": current_price}, self._cost_config)
+            trade["pnl"] = round(enriched["net_pnl"], 2)
 
             # Check TP / SL hit
             hit_tp = (trade["direction"] == "CALL" and current_price >= trade["tp"]) or (trade["direction"] == "PUT" and current_price <= trade["tp"])

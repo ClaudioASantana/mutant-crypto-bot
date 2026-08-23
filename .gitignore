@@ -48,6 +48,14 @@ backend/crypto_bot.db
 backend/data/market_history.db
 backend/chroma_db_staging/
 
+# Downloaded market datasets / caches (reproducible)
+backend/data/derivatives/binance_vision/
+
+# Reproducible backtest reports
+backend/scripts/backtest_report_*.txt
+backend/scripts/weekly_backtest_report_*.txt
+backend/scripts/weekly_backtest_result_*.json
+
 # Node / JS / Next.js
 node_modules/
 .pnp
