@@ -178,7 +178,7 @@ Não significa promoção para paper/live.
 ## 11. Entregáveis da Q15
 
 1. `backend/scripts/experiment_q15_oi_divergence.py`
-2. `docs/estrategias/validacao-q15-oi-divergence-20260822.md`
+2. `docs/estrategias/validacao/validacao-q15-oi-divergence-20260822.md`
 3. eventual atualização do `mapa-decisoes-trilha-quant-20260822.md`
 
 ## 12. Consequência prática da coleta já configurada

@@ -13,6 +13,7 @@ import sys
 import os
 import time
 import requests
+import argparse
 import pandas as pd
 import pandas_ta as ta
 from datetime import datetime, timezone, timedelta
@@ -27,7 +28,7 @@ from app.application.services.backtest_metrics import (
 from app.application.services.technical_analysis import (
     apply_indicators, eval_ema_macd, eval_bollinger, eval_vwap, eval_vwap_zscore, eval_smc,
     check_rsi_filter, check_volume_filter, check_trend_filter, check_mtf_alignment,
-    eval_wyckoff_bollinger, eval_wyckoff_smc
+    eval_wyckoff_bollinger, eval_wyckoff_smc, eval_volatility_squeeze, eval_regime_switch
 )
 
 STRATEGIES = {
@@ -38,12 +39,14 @@ STRATEGIES = {
     "SMC":      eval_smc,
     "Wyckoff_Bbands": eval_wyckoff_bollinger,
     "Wyckoff_SMC":    eval_wyckoff_smc,
+    "Volatility Squeeze": eval_volatility_squeeze,
+    "Regime Switch": eval_regime_switch,
 }
 
 TIMEFRAMES = {
-    "M1":  ("1m",  60),
     "M5":  ("5m",  300),
     "M15": ("15m", 900),
+    "H1":  ("1h",  3600),
 }
 
 SYMBOL = "BTCUSDT"
@@ -61,16 +64,14 @@ SLIPPAGE_BPS  = 1.0     # slippage por ponta, em basis points
 # Data Download
 # ─────────────────────────────────────────────────────────────────────────────
 
-def fetch_klines(symbol: str, interval: str, days: int) -> pd.DataFrame:
-    """Baixa os dados históricos paginando até cobrir `days` dias."""
-    end_ms   = int(datetime.now(timezone.utc).timestamp() * 1000)
-    start_ms = int((datetime.now(timezone.utc) - timedelta(days=days)).timestamp() * 1000)
+def fetch_klines(symbol: str, interval: str, start_ms: int, end_ms: int) -> pd.DataFrame:
+    """Baixa os dados históricos paginando no período especificado."""
     url      = "https://api.binance.com/api/v3/klines"
 
     all_rows = []
     current  = start_ms
 
-    print(f"\n⏬  Baixando {interval} | {symbol} | últimos {days} dias...")
+    print(f"\n⏬  Baixando {interval} | {symbol} | de {datetime.fromtimestamp(start_ms/1000, tz=timezone.utc).strftime('%d/%m/%Y')} a {datetime.fromtimestamp(end_ms/1000, tz=timezone.utc).strftime('%d/%m/%Y')}...")
     while current < end_ms:
         params = {
             "symbol":    symbol,
@@ -157,18 +158,25 @@ def run_backtest(df: pd.DataFrame, strategy_name: str) -> dict:
         if signal == "CALL":
             tp_price = entry + atr_val * TP_MULTIPLIER
             sl_price = entry - atr_val * SL_MULTIPLIER
+            breakeven_trigger = entry + atr_val * (TP_MULTIPLIER / 2.0)
         else:
             tp_price = entry - atr_val * TP_MULTIPLIER
             sl_price = entry + atr_val * SL_MULTIPLIER
+            breakeven_trigger = entry - atr_val * (TP_MULTIPLIER / 2.0)
 
         trade_won    = False
         trade_closed = False
+        breakeven_activated = False
 
         for j in range(i + 1, len(df_ind)):
             h  = df_ind.iloc[j]["high"]
             lo = df_ind.iloc[j]["low"]
 
             if signal == "CALL":
+                if not breakeven_activated and h >= breakeven_trigger:
+                    sl_price = entry
+                    breakeven_activated = True
+
                 if lo <= sl_price:
                     trade_closed = True
                     break
@@ -177,6 +185,10 @@ def run_backtest(df: pd.DataFrame, strategy_name: str) -> dict:
                     trade_closed = True
                     break
             else:
+                if not breakeven_activated and lo <= breakeven_trigger:
+                    sl_price = entry
+                    breakeven_activated = True
+
                 if h >= sl_price:
                     trade_closed = True
                     break
@@ -266,13 +278,35 @@ def format_report(results: dict) -> str:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def main():
-    print("\nMutant Crypto Bot -- Deep Backtest Engine iniciado!")
-    print(f"   Simbolo: {SYMBOL} | Periodo: {DAYS} dias | Risco 1:2 com ATR dinamico\n")
+    parser = argparse.ArgumentParser(description="Deep Backtest - Mutant Crypto Bot")
+    parser.add_argument("--start", type=str, help="Data de início (YYYY-MM-DD)", default=None)
+    parser.add_argument("--end", type=str, help="Data de fim (YYYY-MM-DD)", default=None)
+    parser.add_argument("--days", type=int, help="Últimos X dias", default=30)
+    args = parser.parse_args()
+
+    if args.start and args.end:
+        start_dt = datetime.strptime(args.start, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        end_dt = datetime.strptime(args.end, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        start_ms = int(start_dt.timestamp() * 1000)
+        end_ms = int(end_dt.timestamp() * 1000)
+        period_str = f"de {args.start} a {args.end}"
+    else:
+        end_dt = datetime.now(timezone.utc)
+        start_dt = end_dt - timedelta(days=args.days)
+        start_ms = int(start_dt.timestamp() * 1000)
+        end_ms = int(end_dt.timestamp() * 1000)
+        period_str = f"Últimos {args.days} dias"
+
+    global DAYS
+    DAYS = (end_dt - start_dt).days
+
+    print(f"\nMutant Crypto Bot -- Deep Backtest Engine iniciado!")
+    print(f"   Simbolo: {SYMBOL} | Periodo: {period_str} | Risco 1:2 com ATR dinamico\n")
 
     results = {}
 
     for tf_name, (interval, _seconds) in TIMEFRAMES.items():
-        df = fetch_klines(SYMBOL, interval, DAYS)
+        df = fetch_klines(SYMBOL, interval, start_ms, end_ms)
         results[tf_name] = {}
 
         for strat_name in STRATEGIES:

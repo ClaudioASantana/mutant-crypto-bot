@@ -409,7 +409,7 @@ venv/bin/python scripts/migrate_legacy_paper_trader_data.py
 Depois que o cutover estiver validado em ambiente real/sandbox operacional, os próximos passos naturais são:
 
 1. ~~aposentar o `journal.py` legado do caminho principal~~ — feito: `backend/app/application/services/journal.py` virou shim fail-fast;
-2. aposentar a trilha legada de scripts/research que ainda dependia de `app.engines.*`, `app.models.*` e `app.services.*` — feito; ver `docs/proximos_passos_e_pendencias.md` §3.1.2;
+2. aposentar a trilha legada de scripts/research que ainda dependia de `app.engines.*`, `app.models.*` e `app.services.*` — feito; ver `docs/research/proximos_passos_e_pendencias.md` §3.1.2;
 3. ~~documentar um procedimento oficial de bootstrap de banco novo~~ — feito: seção 5.1 deste guia;
 4. ~~adicionar smoke check automatizado para detectar o caso “alembic head sem tabelas canônicas”~~ — feito: `tests/integration/test_canonical_schema_smoke.py`;
 5. ~~revisar se o banco local atual (`backend/data/app.db`) precisa ser recriado/limpo~~ — resolvido: o `app.db` local foi recriado e revalidado durante o cutover; o estado inconsistente original (stamped head sem tabelas) está preservado em `backups/app.db.prestamped-20260821-233413`.

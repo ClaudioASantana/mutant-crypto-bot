@@ -37,6 +37,12 @@ def apply_indicators(df: pd.DataFrame):
     # Bollinger
     df.ta.bbands(length=20, std=2, append=True)
     
+    # Keltner Channels (for Volatility Squeeze)
+    try:
+        df.ta.kc(length=20, scalar=1.5, append=True)
+    except Exception:
+        pass
+    
     # VWAP
     try:
         df.ta.vwap(append=True)
@@ -269,6 +275,87 @@ def eval_bollinger(df: pd.DataFrame) -> str:
     if upper > 0 and close >= upper: return "PUT"
     if lower > 0 and close <= lower: return "CALL"
     return "NONE"
+
+@register_strategy("Volatility Squeeze")
+def eval_volatility_squeeze(df: pd.DataFrame) -> str:
+    """
+    Squeeze Breakout:
+    - Squeeze occurs when Bollinger Bands are completely inside Keltner Channels.
+    - Release (breakout) occurs when BB expands outside KC.
+    - We look for a breakout with volume and MACD alignment.
+    """
+    if df.empty or len(df) < 25: return "NONE"
+    
+    # Check if we have the necessary columns
+    bbu = df.columns.intersection(["BBU_20_2.0_2.0"]).empty == False
+    kcu = df.columns.intersection(["KCUe_20_1.5"]).empty == False
+    
+    if not bbu or not kcu:
+        return "NONE"
+
+    # A squeeze is ON when BB is inside KC (BB upper < KC upper AND BB lower > KC lower)
+    # We define squeeze_on series
+    bb_up = df["BBU_20_2.0_2.0"]
+    bb_low = df["BBL_20_2.0_2.0"]
+    kc_up = df["KCUe_20_1.5"]
+    kc_low = df["KCLe_20_1.5"]
+    
+    squeeze_on = (bb_up < kc_up) & (bb_low > kc_low)
+    
+    # We want a recent squeeze that just fired (squeeze turned OFF)
+    last = df.iloc[-1]
+    prev = df.iloc[-2]
+    
+    # Was it squeezing recently? (e.g., in the last 5 candles before the current one)
+    recent_squeeze = squeeze_on.iloc[-5:-1].any()
+    currently_squeezing = squeeze_on.iloc[-1]
+    
+    if recent_squeeze and not currently_squeezing:
+        # Breakout occurred! Check direction
+        macd = last.get("MACDh_12_26_9", 0)
+        close = last["close"]
+        
+        # Volume spike check (last volume > 1.5x average)
+        vol_avg = df["volume"].iloc[-21:-1].mean()
+        vol_spike = last["volume"] > (vol_avg * 1.5)
+        
+        # CALL: Price breaks above upper KC and MACD is positive
+        if close > kc_up.iloc[-1] and macd > 0 and vol_spike:
+            return "CALL"
+            
+        # PUT: Price breaks below lower KC and MACD is negative
+        if close < kc_low.iloc[-1] and macd < 0 and vol_spike:
+            return "PUT"
+
+    return "NONE"
+
+@register_strategy("Regime Switch")
+def eval_regime_switch(df: pd.DataFrame) -> str:
+    """
+    Regime-Switching Strategy using ADX(14).
+    - If ADX > 25 (Trending): uses Volatility Squeeze (Breakout) or EMA+MACD.
+    - If ADX < 25 (Ranging): uses Bollinger (Mean Reversion).
+    """
+    if df.empty or len(df) < 30: return "NONE"
+    
+    adx_col = next((c for c in df.columns if "ADX" in c), None)
+    if not adx_col:
+        # Fallback se não tiver ADX
+        return eval_ema_macd(df)
+        
+    adx_val = df.iloc[-1][adx_col]
+    if pd.isna(adx_val):
+        return "NONE"
+        
+    if adx_val > 25:
+        # Mercado em Tendência
+        sig = eval_volatility_squeeze(df)
+        if sig == "NONE":
+            sig = eval_ema_macd(df)
+        return sig
+    else:
+        # Mercado Lateral / Range
+        return eval_bollinger(df)
 
 @register_strategy("Momentum Breakout")
 def eval_momentum_breakout(df: pd.DataFrame) -> str:

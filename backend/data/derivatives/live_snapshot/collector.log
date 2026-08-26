@@ -427,3 +427,3266 @@
          taker_buy_sell_ratio: 0.9885
                 taker_buy_vol: 314.967
                taker_sell_vol: 318.619
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T03:48:03Z
+                open_interest: 106305.379
+                   mark_price: 76940.43493087
+                  index_price: 76936.39630435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9988
+         top_long_short_ratio: 1.0747
+         taker_buy_sell_ratio: 0.653
+                taker_buy_vol: 506.49
+               taker_sell_vol: 775.682
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T04:03:03Z
+                open_interest: 106406.54
+                   mark_price: 76905.56047101
+                  index_price: 76899.58673913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0028
+         top_long_short_ratio: 1.0786
+         taker_buy_sell_ratio: 2.0645
+                taker_buy_vol: 657.812
+               taker_sell_vol: 318.623
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T04:18:03Z
+                open_interest: 106651.008
+                   mark_price: 76942.10798351
+                  index_price: 76945.71391304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.008
+         top_long_short_ratio: 1.0846
+         taker_buy_sell_ratio: 0.8247
+                taker_buy_vol: 1153.324
+               taker_sell_vol: 1398.485
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T04:33:04Z
+                open_interest: 106620.628
+                   mark_price: 76898.94080723
+                  index_price: 76895.62521739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0109
+         top_long_short_ratio: 1.0877
+         taker_buy_sell_ratio: 1.1762
+                taker_buy_vol: 443.662
+               taker_sell_vol: 377.198
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T04:48:03Z
+                open_interest: 106590.298
+                   mark_price: 76713.15736957
+                  index_price: 76716.5526087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0105
+         top_long_short_ratio: 1.0872
+         taker_buy_sell_ratio: 0.8071
+                taker_buy_vol: 280.856
+               taker_sell_vol: 348.001
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T05:03:03Z
+                open_interest: 106716.786
+                   mark_price: 76513.1
+                  index_price: 76519.64021739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9968
+         top_long_short_ratio: 1.0794
+         taker_buy_sell_ratio: 0.6694
+                taker_buy_vol: 1798.214
+               taker_sell_vol: 2686.324
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T05:18:04Z
+                open_interest: 106924.144
+                   mark_price: 75738.52345652
+                  index_price: 75747.00086957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9566
+         top_long_short_ratio: 1.0559
+         taker_buy_sell_ratio: 0.6694
+                taker_buy_vol: 1798.214
+               taker_sell_vol: 2686.324
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T05:33:03Z
+                open_interest: 107176.814
+                   mark_price: 76300.0
+                  index_price: 76296.48521739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9712
+         top_long_short_ratio: 1.0816
+         taker_buy_sell_ratio: 0.8242
+                taker_buy_vol: 4906.167
+               taker_sell_vol: 5952.474
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T05:48:03Z
+                open_interest: 107058.71
+                   mark_price: 76149.8
+                  index_price: 76143.59130435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9677
+         top_long_short_ratio: 1.0786
+         taker_buy_sell_ratio: 0.7895
+                taker_buy_vol: 1066.69
+               taker_sell_vol: 1351.171
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T06:03:03Z
+                open_interest: 107100.994
+                   mark_price: 76103.85764493
+                  index_price: 76087.17173913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.965
+         top_long_short_ratio: 1.0786
+         taker_buy_sell_ratio: 0.9573
+                taker_buy_vol: 553.262
+               taker_sell_vol: 577.947
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T06:18:03Z
+                open_interest: 107004.58
+                   mark_price: 76197.86678986
+                  index_price: 76180.61565217
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9677
+         top_long_short_ratio: 1.0842
+         taker_buy_sell_ratio: 0.8013
+                taker_buy_vol: 1133.497
+               taker_sell_vol: 1414.569
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T06:33:03Z
+                open_interest: 107225.748
+                   mark_price: 76338.3
+                  index_price: 76329.38608696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9767
+         top_long_short_ratio: 1.0907
+         taker_buy_sell_ratio: 1.778
+                taker_buy_vol: 1112.306
+               taker_sell_vol: 625.606
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T06:48:03Z
+                open_interest: 107333.779
+                   mark_price: 76256.82596702
+                  index_price: 76253.88782609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9833
+         top_long_short_ratio: 1.0964
+         taker_buy_sell_ratio: 1.8754
+                taker_buy_vol: 852.285
+               taker_sell_vol: 454.463
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T07:03:03Z
+                open_interest: 107124.34
+                   mark_price: 76071.0
+                  index_price: 76061.8173913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9802
+         top_long_short_ratio: 1.0942
+         taker_buy_sell_ratio: 0.5787
+                taker_buy_vol: 357.816
+               taker_sell_vol: 618.305
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T07:18:04Z
+                open_interest: 107171.363
+                   mark_price: 76340.71576812
+                  index_price: 76325.04304348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9845
+         top_long_short_ratio: 1.0986
+         taker_buy_sell_ratio: 1.1687
+                taker_buy_vol: 532.464
+               taker_sell_vol: 455.589
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T07:33:03Z
+                open_interest: 107277.524
+                   mark_price: 76194.34397839
+                  index_price: 76193.91565217
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9857
+         top_long_short_ratio: 1.0991
+         taker_buy_sell_ratio: 0.7837
+                taker_buy_vol: 314.418
+               taker_sell_vol: 401.177
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T07:48:03Z
+                open_interest: 107396.326
+                   mark_price: 76070.1
+                  index_price: 76064.0973913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9912
+         top_long_short_ratio: 1.1048
+         taker_buy_sell_ratio: 0.9612
+                taker_buy_vol: 401.24
+               taker_sell_vol: 417.449
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T08:03:03Z
+                open_interest: 107378.759
+                   mark_price: 76026.1
+                  index_price: 76013.27108696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9928
+         top_long_short_ratio: 1.1075
+         taker_buy_sell_ratio: 0.7519
+                taker_buy_vol: 717.325
+               taker_sell_vol: 954.058
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T08:18:03Z
+                open_interest: 107355.412
+                   mark_price: 76300.2
+                  index_price: 76285.17173913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.996
+         top_long_short_ratio: 1.1093
+         taker_buy_sell_ratio: 1.3687
+                taker_buy_vol: 1177.103
+               taker_sell_vol: 860.006
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T08:33:03Z
+                open_interest: 107264.584
+                   mark_price: 76298.53364493
+                  index_price: 76280.37869565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.994
+         top_long_short_ratio: 1.1079
+         taker_buy_sell_ratio: 0.7282
+                taker_buy_vol: 482.275
+               taker_sell_vol: 662.316
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T08:48:03Z
+                open_interest: 107347.436
+                   mark_price: 76524.74813043
+                  index_price: 76517.0226087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0088
+         top_long_short_ratio: 1.1155
+         taker_buy_sell_ratio: 1.9426
+                taker_buy_vol: 1923.076
+               taker_sell_vol: 989.943
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T09:03:04Z
+                open_interest: 107312.723
+                   mark_price: 76596.5
+                  index_price: 76564.44608696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.006
+         top_long_short_ratio: 1.1133
+         taker_buy_sell_ratio: 0.7843
+                taker_buy_vol: 559.97
+               taker_sell_vol: 713.988
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T09:18:03Z
+                open_interest: 107317.625
+                   mark_price: 76547.37499275
+                  index_price: 76550.29
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0092
+         top_long_short_ratio: 1.1155
+         taker_buy_sell_ratio: 1.2074
+                taker_buy_vol: 546.553
+               taker_sell_vol: 452.651
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T09:33:03Z
+                open_interest: 107297.152
+                   mark_price: 76500.85380944
+                  index_price: 76494.68695652
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0056
+         top_long_short_ratio: 1.1119
+         taker_buy_sell_ratio: 0.5613
+                taker_buy_vol: 219.246
+               taker_sell_vol: 390.615
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T09:48:03Z
+                open_interest: 107311.835
+                   mark_price: 76560.63031159
+                  index_price: 76549.50630435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0028
+         top_long_short_ratio: 1.1088
+         taker_buy_sell_ratio: 0.8199
+                taker_buy_vol: 233.176
+               taker_sell_vol: 284.391
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T10:03:03Z
+                open_interest: 107303.203
+                   mark_price: 76592.69422789
+                  index_price: 76590.70847826
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0064
+         top_long_short_ratio: 1.1115
+         taker_buy_sell_ratio: 0.7044
+                taker_buy_vol: 244.865
+               taker_sell_vol: 347.606
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T10:18:04Z
+                open_interest: 107211.729
+                   mark_price: 76650.51073913
+                  index_price: 76656.11913043
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0125
+         top_long_short_ratio: 1.1169
+         taker_buy_sell_ratio: 1.5792
+                taker_buy_vol: 866.939
+               taker_sell_vol: 548.958
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T10:33:03Z
+                open_interest: 106850.816
+                   mark_price: 76813.50332609
+                  index_price: 76797.82217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0214
+         top_long_short_ratio: 1.1227
+         taker_buy_sell_ratio: 2.0096
+                taker_buy_vol: 1977.902
+               taker_sell_vol: 984.204
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T10:48:03Z
+                open_interest: 106849.621
+                   mark_price: 76839.31994203
+                  index_price: 76842.08717391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0202
+         top_long_short_ratio: 1.1204
+         taker_buy_sell_ratio: 1.0821
+                taker_buy_vol: 540.052
+               taker_sell_vol: 499.08
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T11:03:03Z
+                open_interest: 106862.714
+                   mark_price: 76810.16023238
+                  index_price: 76809.49282609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0173
+         top_long_short_ratio: 1.1169
+         taker_buy_sell_ratio: 0.82
+                taker_buy_vol: 226.621
+               taker_sell_vol: 276.361
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T11:18:03Z
+                open_interest: 106948.159
+                   mark_price: 76865.6752768
+                  index_price: 76861.16021739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.019
+         top_long_short_ratio: 1.1169
+         taker_buy_sell_ratio: 1.1504
+                taker_buy_vol: 358.095
+               taker_sell_vol: 311.285
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T11:33:03Z
+                open_interest: 106622.005
+                   mark_price: 77205.0
+                  index_price: 77203.49217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0408
+         top_long_short_ratio: 1.134
+         taker_buy_sell_ratio: 1.5767
+                taker_buy_vol: 2592.617
+               taker_sell_vol: 1644.319
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T11:48:03Z
+                open_interest: 106511.986
+                   mark_price: 77211.47735507
+                  index_price: 77233.28543478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0504
+         top_long_short_ratio: 1.139
+         taker_buy_sell_ratio: 1.1419
+                taker_buy_vol: 1122.119
+               taker_sell_vol: 982.713
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T12:03:03Z
+                open_interest: 106745.794
+                   mark_price: 77245.79748876
+                  index_price: 77253.26804348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0454
+         top_long_short_ratio: 1.1349
+         taker_buy_sell_ratio: 1.6006
+                taker_buy_vol: 1013.621
+               taker_sell_vol: 633.267
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T12:18:03Z
+                open_interest: 106893.468
+                   mark_price: 77093.51857066
+                  index_price: 77089.95369565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0379
+         top_long_short_ratio: 1.1313
+         taker_buy_sell_ratio: 0.527
+                taker_buy_vol: 601.894
+               taker_sell_vol: 1142.05
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T12:33:04Z
+                open_interest: 106947.85
+                   mark_price: 77072.05757971
+                  index_price: 77071.54826087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0396
+         top_long_short_ratio: 1.1327
+         taker_buy_sell_ratio: 0.9497
+                taker_buy_vol: 320.241
+               taker_sell_vol: 337.219
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T12:48:03Z
+                open_interest: 106943.391
+                   mark_price: 77234.10045414
+                  index_price: 77231.01175
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0425
+         top_long_short_ratio: 1.1358
+         taker_buy_sell_ratio: 1.8081
+                taker_buy_vol: 402.317
+               taker_sell_vol: 222.508
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T13:03:03Z
+                open_interest: 106954.164
+                   mark_price: 77220.0
+                  index_price: 77220.15586957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0483
+         top_long_short_ratio: 1.1436
+         taker_buy_sell_ratio: 0.7972
+                taker_buy_vol: 185.828
+               taker_sell_vol: 233.097
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T13:18:03Z
+                open_interest: 106960.316
+                   mark_price: 77400.5487971
+                  index_price: 77401.41021739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0538
+         top_long_short_ratio: 1.1473
+         taker_buy_sell_ratio: 1.3867
+                taker_buy_vol: 326.644
+               taker_sell_vol: 235.561
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T13:33:03Z
+                open_interest: 106207.782
+                   mark_price: 77406.5326087
+                  index_price: 77415.34282609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0773
+         top_long_short_ratio: 1.1664
+         taker_buy_sell_ratio: 1.6267
+                taker_buy_vol: 3445.142
+               taker_sell_vol: 2117.882
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T13:48:03Z
+                open_interest: 106213.56
+                   mark_price: 77543.13218116
+                  index_price: 77553.14978261
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0743
+         top_long_short_ratio: 1.1626
+         taker_buy_sell_ratio: 1.1108
+                taker_buy_vol: 784.684
+               taker_sell_vol: 706.442
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T14:03:03Z
+                open_interest: 106263.532
+                   mark_price: 77572.68726087
+                  index_price: 77580.26043478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0721
+         top_long_short_ratio: 1.1608
+         taker_buy_sell_ratio: 0.9204
+                taker_buy_vol: 370.87
+               taker_sell_vol: 402.966
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T14:18:03Z
+                open_interest: 106314.178
+                   mark_price: 77559.0
+                  index_price: 77572.80543478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0704
+         top_long_short_ratio: 1.1584
+         taker_buy_sell_ratio: 0.9309
+                taker_buy_vol: 742.315
+               taker_sell_vol: 797.435
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T14:33:03Z
+                open_interest: 106246.517
+                   mark_price: 77406.31382609
+                  index_price: 77422.95934783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0721
+         top_long_short_ratio: 1.1584
+         taker_buy_sell_ratio: 1.0482
+                taker_buy_vol: 580.329
+               taker_sell_vol: 553.617
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T14:48:03Z
+                open_interest: 105973.236
+                   mark_price: 77092.1
+                  index_price: 77096.76717391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0513
+         top_long_short_ratio: 1.1459
+         taker_buy_sell_ratio: 0.5852
+                taker_buy_vol: 1967.14
+               taker_sell_vol: 3361.315
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T15:03:03Z
+                open_interest: 105766.53
+                   mark_price: 77173.3
+                  index_price: 77192.9476087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0538
+         top_long_short_ratio: 1.1482
+         taker_buy_sell_ratio: 1.2419
+                taker_buy_vol: 1541.389
+               taker_sell_vol: 1241.181
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T15:18:03Z
+                open_interest: 105787.065
+                   mark_price: 77092.65943478
+                  index_price: 77115.7276087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0525
+         top_long_short_ratio: 1.1473
+         taker_buy_sell_ratio: 0.9579
+                taker_buy_vol: 677.584
+               taker_sell_vol: 707.366
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T15:33:03Z
+                open_interest: 105742.658
+                   mark_price: 77141.7812069
+                  index_price: 77174.53673913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0492
+         top_long_short_ratio: 1.1432
+         taker_buy_sell_ratio: 0.7895
+                taker_buy_vol: 664.08
+               taker_sell_vol: 841.112
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T15:48:03Z
+                open_interest: 105831.11
+                   mark_price: 77197.6
+                  index_price: 77228.53630435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0504
+         top_long_short_ratio: 1.1445
+         taker_buy_sell_ratio: 0.9018
+                taker_buy_vol: 372.571
+               taker_sell_vol: 413.148
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T16:03:03Z
+                open_interest: 105875.641
+                   mark_price: 77197.9
+                  index_price: 77214.28021739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0483
+         top_long_short_ratio: 1.1427
+         taker_buy_sell_ratio: 0.5066
+                taker_buy_vol: 177.987
+               taker_sell_vol: 351.306
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T16:18:03Z
+                open_interest: 105849.809
+                   mark_price: 77235.06682159
+                  index_price: 77273.55630435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0488
+         top_long_short_ratio: 1.1432
+         taker_buy_sell_ratio: 0.8702
+                taker_buy_vol: 182.023
+               taker_sell_vol: 209.171
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T16:33:03Z
+                open_interest: 105797.705
+                   mark_price: 77348.3
+                  index_price: 77365.12869565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.05
+         top_long_short_ratio: 1.1436
+         taker_buy_sell_ratio: 1.3504
+                taker_buy_vol: 294.148
+               taker_sell_vol: 217.825
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T16:48:03Z
+                open_interest: 105698.343
+                   mark_price: 77387.5
+                  index_price: 77412.61391304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0563
+         top_long_short_ratio: 1.1473
+         taker_buy_sell_ratio: 1.1582
+                taker_buy_vol: 517.953
+               taker_sell_vol: 447.195
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T17:03:03Z
+                open_interest: 105652.597
+                   mark_price: 77269.2
+                  index_price: 77307.95891304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0576
+         top_long_short_ratio: 1.1482
+         taker_buy_sell_ratio: 1.3527
+                taker_buy_vol: 330.575
+               taker_sell_vol: 244.378
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T17:18:03Z
+                open_interest: 105640.252
+                   mark_price: 77288.9
+                  index_price: 77306.39217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.053
+         top_long_short_ratio: 1.145
+         taker_buy_sell_ratio: 0.7042
+                taker_buy_vol: 411.037
+               taker_sell_vol: 583.727
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T17:33:03Z
+                open_interest: 105636.753
+                   mark_price: 77217.2
+                  index_price: 77229.0723913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0513
+         top_long_short_ratio: 1.1445
+         taker_buy_sell_ratio: 0.9387
+                taker_buy_vol: 265.814
+               taker_sell_vol: 283.173
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T17:48:03Z
+                open_interest: 105658.886
+                   mark_price: 77210.20386232
+                  index_price: 77242.36021739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0504
+         top_long_short_ratio: 1.1445
+         taker_buy_sell_ratio: 0.8648
+                taker_buy_vol: 206.95
+               taker_sell_vol: 239.31
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T18:03:03Z
+                open_interest: 105767.451
+                   mark_price: 77164.97704348
+                  index_price: 77186.93608696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0513
+         top_long_short_ratio: 1.1464
+         taker_buy_sell_ratio: 0.7749
+                taker_buy_vol: 164.81
+               taker_sell_vol: 212.688
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T18:18:03Z
+                open_interest: 105956.897
+                   mark_price: 77338.16723913
+                  index_price: 77360.43217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0513
+         top_long_short_ratio: 1.1455
+         taker_buy_sell_ratio: 0.5271
+                taker_buy_vol: 468.128
+               taker_sell_vol: 888.155
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T18:33:03Z
+                open_interest: 105924.488
+                   mark_price: 77282.2
+                  index_price: 77310.93282609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0425
+         top_long_short_ratio: 1.1363
+         taker_buy_sell_ratio: 0.8523
+                taker_buy_vol: 237.509
+               taker_sell_vol: 278.665
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T18:48:03Z
+                open_interest: 105955.794
+                   mark_price: 77239.1
+                  index_price: 77271.58521739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0433
+         top_long_short_ratio: 1.1363
+         taker_buy_sell_ratio: 0.6206
+                taker_buy_vol: 123.343
+               taker_sell_vol: 198.749
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T19:03:03Z
+                open_interest: 105937.21
+                   mark_price: 77300.4
+                  index_price: 77342.43391304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0429
+         top_long_short_ratio: 1.1363
+         taker_buy_sell_ratio: 0.7396
+                taker_buy_vol: 202.013
+               taker_sell_vol: 273.134
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T19:18:03Z
+                open_interest: 105937.765
+                   mark_price: 77333.66272464
+                  index_price: 77353.29369565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0421
+         top_long_short_ratio: 1.1363
+         taker_buy_sell_ratio: 0.8263
+                taker_buy_vol: 237.631
+               taker_sell_vol: 287.59
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T19:33:03Z
+                open_interest: 105958.405
+                   mark_price: 77278.64648551
+                  index_price: 77314.41456522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0416
+         top_long_short_ratio: 1.1363
+         taker_buy_sell_ratio: 1.0971
+                taker_buy_vol: 134.415
+               taker_sell_vol: 122.516
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T19:48:03Z
+                open_interest: 105894.08
+                   mark_price: 77381.2
+                  index_price: 77402.92630435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0421
+         top_long_short_ratio: 1.1363
+         taker_buy_sell_ratio: 1.1939
+                taker_buy_vol: 200.643
+               taker_sell_vol: 168.052
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T20:03:03Z
+                open_interest: 105906.581
+                   mark_price: 77203.3
+                  index_price: 77244.2673913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0437
+         top_long_short_ratio: 1.1363
+         taker_buy_sell_ratio: 0.9881
+                taker_buy_vol: 210.092
+               taker_sell_vol: 212.618
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T20:18:03Z
+                open_interest: 105894.622
+                   mark_price: 77271.21307971
+                  index_price: 77295.56608696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0429
+         top_long_short_ratio: 1.1358
+         taker_buy_sell_ratio: 0.9461
+                taker_buy_vol: 234.502
+               taker_sell_vol: 247.863
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T20:33:03Z
+                open_interest: 105911.277
+                   mark_price: 77394.2
+                  index_price: 77411.93456522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0425
+         top_long_short_ratio: 1.1368
+         taker_buy_sell_ratio: 2.1256
+                taker_buy_vol: 216.53
+               taker_sell_vol: 101.868
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T20:48:03Z
+                open_interest: 105899.173
+                   mark_price: 77405.4
+                  index_price: 77427.82956522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0429
+         top_long_short_ratio: 1.1368
+         taker_buy_sell_ratio: 1.0773
+                taker_buy_vol: 125.937
+               taker_sell_vol: 116.905
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T21:03:04Z
+                open_interest: 105855.701
+                   mark_price: 77535.4
+                  index_price: 77549.43695652
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0416
+         top_long_short_ratio: 1.1358
+         taker_buy_sell_ratio: 0.6372
+                taker_buy_vol: 78.481
+               taker_sell_vol: 123.175
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T21:18:03Z
+                open_interest: 105467.722
+                   mark_price: 77878.3802971
+                  index_price: 77900.99
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0568
+         top_long_short_ratio: 1.1478
+         taker_buy_sell_ratio: 2.0094
+                taker_buy_vol: 1209.315
+               taker_sell_vol: 601.838
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T21:33:03Z
+                open_interest: 105134.598
+                   mark_price: 77982.68715942
+                  index_price: 78009.59391304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0803
+         top_long_short_ratio: 1.1631
+         taker_buy_sell_ratio: 1.549
+                taker_buy_vol: 2158.561
+               taker_sell_vol: 1393.502
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T21:48:03Z
+                open_interest: 105074.127
+                   mark_price: 77682.93375562
+                  index_price: 77711.02043478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0768
+         top_long_short_ratio: 1.1626
+         taker_buy_sell_ratio: 0.7911
+                taker_buy_vol: 888.112
+               taker_sell_vol: 1122.613
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T22:03:04Z
+                open_interest: 105123.394
+                   mark_price: 77707.67926087
+                  index_price: 77735.16521739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0781
+         top_long_short_ratio: 1.1617
+         taker_buy_sell_ratio: 1.2621
+                taker_buy_vol: 532.432
+               taker_sell_vol: 421.859
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T22:18:03Z
+                open_interest: 105150.51
+                   mark_price: 77625.4
+                  index_price: 77654.69782609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0777
+         top_long_short_ratio: 1.1608
+         taker_buy_sell_ratio: 1.1764
+                taker_buy_vol: 984.131
+               taker_sell_vol: 836.581
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T22:33:03Z
+                open_interest: 105210.741
+                   mark_price: 77630.5
+                  index_price: 77671.23782609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0773
+         top_long_short_ratio: 1.1608
+         taker_buy_sell_ratio: 0.8177
+                taker_buy_vol: 317.261
+               taker_sell_vol: 387.999
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T22:48:03Z
+                open_interest: 105156.147
+                   mark_price: 77625.0
+                  index_price: 77637.94847826
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0751
+         top_long_short_ratio: 1.1598
+         taker_buy_sell_ratio: 0.8413
+                taker_buy_vol: 284.162
+               taker_sell_vol: 337.753
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T23:03:03Z
+                open_interest: 105191.48
+                   mark_price: 77474.20911594
+                  index_price: 77505.70326087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0743
+         top_long_short_ratio: 1.158
+         taker_buy_sell_ratio: 0.7578
+                taker_buy_vol: 219.647
+               taker_sell_vol: 289.835
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T23:18:04Z
+                open_interest: 105293.638
+                   mark_price: 77484.9
+                  index_price: 77513.16804348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0687
+         top_long_short_ratio: 1.1556
+         taker_buy_sell_ratio: 0.5557
+                taker_buy_vol: 469.024
+               taker_sell_vol: 844.082
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T23:33:03Z
+                open_interest: 105345.816
+                   mark_price: 77727.0
+                  index_price: 77762.29630435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.07
+         top_long_short_ratio: 1.1566
+         taker_buy_sell_ratio: 1.8763
+                taker_buy_vol: 620.873
+               taker_sell_vol: 330.9
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-23T23:48:03Z
+                open_interest: 105259.587
+                   mark_price: 77533.4
+                  index_price: 77551.32673913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0713
+         top_long_short_ratio: 1.1575
+         taker_buy_sell_ratio: 0.9144
+                taker_buy_vol: 533.84
+               taker_sell_vol: 583.815
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T00:03:04Z
+                open_interest: 105552.425
+                   mark_price: 77674.8
+                  index_price: 77688.25782609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.07
+         top_long_short_ratio: 1.1561
+         taker_buy_sell_ratio: 2.4959
+                taker_buy_vol: 776.828
+               taker_sell_vol: 311.241
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T00:18:03Z
+                open_interest: 105580.058
+                   mark_price: 77504.32388406
+                  index_price: 77529.91173913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0691
+         top_long_short_ratio: 1.1547
+         taker_buy_sell_ratio: 0.7177
+                taker_buy_vol: 352.09
+               taker_sell_vol: 490.582
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T00:33:04Z
+                open_interest: 105531.585
+                   mark_price: 77412.1
+                  index_price: 77421.5373913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0653
+         top_long_short_ratio: 1.1519
+         taker_buy_sell_ratio: 0.6759
+                taker_buy_vol: 545.714
+               taker_sell_vol: 807.366
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T00:48:03Z
+                open_interest: 105505.53
+                   mark_price: 77213.6447971
+                  index_price: 77226.95695652
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0631
+         top_long_short_ratio: 1.1505
+         taker_buy_sell_ratio: 1.0651
+                taker_buy_vol: 687.099
+               taker_sell_vol: 645.101
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T01:03:03Z
+                open_interest: 105708.958
+                   mark_price: 77592.14207646
+                  index_price: 77604.84934783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0614
+         top_long_short_ratio: 1.1501
+         taker_buy_sell_ratio: 1.2333
+                taker_buy_vol: 1178.223
+               taker_sell_vol: 955.311
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T01:18:03Z
+                open_interest: 105741.317
+                   mark_price: 77381.44822339
+                  index_price: 77394.62934783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.058
+         top_long_short_ratio: 1.1459
+         taker_buy_sell_ratio: 0.6524
+                taker_buy_vol: 508.434
+               taker_sell_vol: 779.372
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T01:33:03Z
+                open_interest: 105943.194
+                   mark_price: 77336.64974513
+                  index_price: 77338.82326087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0568
+         top_long_short_ratio: 1.1692
+         taker_buy_sell_ratio: 1.0931
+                taker_buy_vol: 680.912
+               taker_sell_vol: 622.925
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T01:48:03Z
+                open_interest: 105868.893
+                   mark_price: 77180.7
+                  index_price: 77200.37456522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0585
+         top_long_short_ratio: 1.1692
+         taker_buy_sell_ratio: 1.0367
+                taker_buy_vol: 636.262
+               taker_sell_vol: 613.735
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T02:03:03Z
+                open_interest: 106043.426
+                   mark_price: 76933.8
+                  index_price: 76953.58934783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0496
+         top_long_short_ratio: 1.1645
+         taker_buy_sell_ratio: 0.4949
+                taker_buy_vol: 945.338
+               taker_sell_vol: 1910.3
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T02:18:03Z
+                open_interest: 106173.543
+                   mark_price: 77391.79846377
+                  index_price: 77414.62956522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0462
+         top_long_short_ratio: 1.1612
+         taker_buy_sell_ratio: 1.2386
+                taker_buy_vol: 1420.441
+               taker_sell_vol: 1146.82
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T02:33:03Z
+                open_interest: 106197.812
+                   mark_price: 77472.82496377
+                  index_price: 77487.59673913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0404
+         top_long_short_ratio: 1.1547
+         taker_buy_sell_ratio: 0.9498
+                taker_buy_vol: 632.354
+               taker_sell_vol: 665.754
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T02:48:03Z
+                open_interest: 106108.024
+                   mark_price: 77301.4
+                  index_price: 77325.84956522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0379
+         top_long_short_ratio: 1.151
+         taker_buy_sell_ratio: 0.782
+                taker_buy_vol: 414.446
+               taker_sell_vol: 529.969
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T03:03:03Z
+                open_interest: 106426.267
+                   mark_price: 77344.8
+                  index_price: 77378.55804348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0309
+         top_long_short_ratio: 1.145
+         taker_buy_sell_ratio: 1.2773
+                taker_buy_vol: 992.647
+               taker_sell_vol: 777.123
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T03:18:04Z
+                open_interest: 106517.756
+                   mark_price: 77191.14831159
+                  index_price: 77200.46304348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0317
+         top_long_short_ratio: 1.1473
+         taker_buy_sell_ratio: 0.9121
+                taker_buy_vol: 549.246
+               taker_sell_vol: 602.184
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T03:33:03Z
+                open_interest: 106465.326
+                   mark_price: 77137.3
+                  index_price: 77138.66543478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.035
+         top_long_short_ratio: 1.1501
+         taker_buy_sell_ratio: 0.671
+                taker_buy_vol: 428.985
+               taker_sell_vol: 639.355
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T03:48:02Z
+                open_interest: 106452.843
+                   mark_price: 77020.8
+                  index_price: 77023.95282609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0467
+         top_long_short_ratio: 1.1626
+         taker_buy_sell_ratio: 0.8511
+                taker_buy_vol: 632.492
+               taker_sell_vol: 743.156
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T04:03:02Z
+                open_interest: 106482.691
+                   mark_price: 77047.1
+                  index_price: 77043.75347826
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0521
+         top_long_short_ratio: 1.1673
+         taker_buy_sell_ratio: 1.6512
+                taker_buy_vol: 680.603
+               taker_sell_vol: 412.175
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T04:18:03Z
+                open_interest: 106499.395
+                   mark_price: 77170.77651449
+                  index_price: 77164.41347826
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0585
+         top_long_short_ratio: 1.173
+         taker_buy_sell_ratio: 1.2888
+                taker_buy_vol: 387.88
+               taker_sell_vol: 300.967
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T04:33:03Z
+                open_interest: 106475.601
+                   mark_price: 77189.3
+                  index_price: 77190.20173913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0602
+         top_long_short_ratio: 1.1744
+         taker_buy_sell_ratio: 1.2262
+                taker_buy_vol: 323.615
+               taker_sell_vol: 263.923
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T04:48:03Z
+                open_interest: 106657.206
+                   mark_price: 77035.14579773
+                  index_price: 77032.06478261
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0606
+         top_long_short_ratio: 1.1749
+         taker_buy_sell_ratio: 0.5094
+                taker_buy_vol: 235.409
+               taker_sell_vol: 462.115
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T05:03:02Z
+                open_interest: 106254.616
+                   mark_price: 76931.39451449
+                  index_price: 76920.30913043
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0593
+         top_long_short_ratio: 1.1791
+         taker_buy_sell_ratio: 0.4958
+                taker_buy_vol: 1356.965
+               taker_sell_vol: 2736.911
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T05:18:02Z
+                open_interest: 106041.927
+                   mark_price: 77065.64412319
+                  index_price: 77082.88586957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0606
+         top_long_short_ratio: 1.1801
+         taker_buy_sell_ratio: 1.5318
+                taker_buy_vol: 1101.515
+               taker_sell_vol: 719.08
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T05:33:02Z
+                open_interest: 106166.037
+                   mark_price: 76931.46730135
+                  index_price: 76939.85565217
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.061
+         top_long_short_ratio: 1.182
+         taker_buy_sell_ratio: 0.6262
+                taker_buy_vol: 628.214
+               taker_sell_vol: 1003.25
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T05:48:02Z
+                open_interest: 106195.404
+                   mark_price: 77093.2
+                  index_price: 77097.84369565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.058
+         top_long_short_ratio: 1.1782
+         taker_buy_sell_ratio: 0.9145
+                taker_buy_vol: 461.577
+               taker_sell_vol: 504.735
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T06:03:03Z
+                open_interest: 106198.734
+                   mark_price: 77102.18367391
+                  index_price: 77107.18608696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0392
+         top_long_short_ratio: 1.1496
+         taker_buy_sell_ratio: 1.0001
+                taker_buy_vol: 284.167
+               taker_sell_vol: 284.125
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T06:18:03Z
+                open_interest: 106564.431
+                   mark_price: 77367.20607946
+                  index_price: 77372.25391304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0383
+         top_long_short_ratio: 1.1464
+         taker_buy_sell_ratio: 1.9938
+                taker_buy_vol: 1378.015
+               taker_sell_vol: 691.153
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T06:33:03Z
+                open_interest: 106640.127
+                   mark_price: 77271.1
+                  index_price: 77294.82217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0317
+         top_long_short_ratio: 1.1381
+         taker_buy_sell_ratio: 0.896
+                taker_buy_vol: 571.363
+               taker_sell_vol: 637.693
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T06:48:02Z
+                open_interest: 106641.646
+                   mark_price: 77466.26825337
+                  index_price: 77455.34934783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0321
+         top_long_short_ratio: 1.1381
+         taker_buy_sell_ratio: 0.7366
+                taker_buy_vol: 244.095
+               taker_sell_vol: 331.373
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T07:03:03Z
+                open_interest: 106573.965
+                   mark_price: 77457.10518841
+                  index_price: 77475.41543478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0346
+         top_long_short_ratio: 1.1404
+         taker_buy_sell_ratio: 1.102
+                taker_buy_vol: 733.368
+               taker_sell_vol: 665.481
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T07:18:03Z
+                open_interest: 107397.808
+                   mark_price: 77618.6
+                  index_price: 77633.09652174
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0354
+         top_long_short_ratio: 1.1386
+         taker_buy_sell_ratio: 1.082
+                taker_buy_vol: 1413.909
+               taker_sell_vol: 1306.784
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T07:33:03Z
+                open_interest: 107379.311
+                   mark_price: 77483.32862069
+                  index_price: 77498.08608696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0305
+         top_long_short_ratio: 1.1322
+         taker_buy_sell_ratio: 0.6505
+                taker_buy_vol: 349.701
+               taker_sell_vol: 537.595
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T07:48:03Z
+                open_interest: 107314.565
+                   mark_price: 77406.93257871
+                  index_price: 77410.08478261
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0305
+         top_long_short_ratio: 1.1358
+         taker_buy_sell_ratio: 0.9067
+                taker_buy_vol: 435.959
+               taker_sell_vol: 480.843
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T08:03:03Z
+                open_interest: 107050.645
+                   mark_price: 77263.3
+                  index_price: 77263.22369565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0346
+         top_long_short_ratio: 1.1409
+         taker_buy_sell_ratio: 1.0009
+                taker_buy_vol: 495.639
+               taker_sell_vol: 495.173
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T08:18:03Z
+                open_interest: 106915.504
+                   mark_price: 77071.05219565
+                  index_price: 77087.71826087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0392
+         top_long_short_ratio: 1.1459
+         taker_buy_sell_ratio: 0.783
+                taker_buy_vol: 512.352
+               taker_sell_vol: 654.338
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T08:33:03Z
+                open_interest: 106611.576
+                   mark_price: 77025.86045652
+                  index_price: 77033.16282609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0547
+         top_long_short_ratio: 1.1664
+         taker_buy_sell_ratio: 0.9003
+                taker_buy_vol: 2048.768
+               taker_sell_vol: 2275.646
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T08:48:03Z
+                open_interest: 106657.531
+                   mark_price: 77058.4
+                  index_price: 77077.06695652
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.07
+         top_long_short_ratio: 1.1786
+         taker_buy_sell_ratio: 1.9393
+                taker_buy_vol: 714.137
+               taker_sell_vol: 368.252
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T09:03:03Z
+                open_interest: 106666.393
+                   mark_price: 77096.12337681
+                  index_price: 77096.34521739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0721
+         top_long_short_ratio: 1.1815
+         taker_buy_sell_ratio: 1.2168
+                taker_buy_vol: 445.798
+               taker_sell_vol: 366.359
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T09:18:03Z
+                open_interest: 106478.504
+                   mark_price: 77294.2
+                  index_price: 77302.14282609
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0777
+         top_long_short_ratio: 1.1853
+         taker_buy_sell_ratio: 1.6614
+                taker_buy_vol: 860.434
+               taker_sell_vol: 517.886
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T09:33:03Z
+                open_interest: 106669.736
+                   mark_price: 77436.51166667
+                  index_price: 77444.11434783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0691
+         top_long_short_ratio: 1.1772
+         taker_buy_sell_ratio: 1.3174
+                taker_buy_vol: 1044.767
+               taker_sell_vol: 793.043
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T09:48:03Z
+                open_interest: 106797.349
+                   mark_price: 77520.0
+                  index_price: 77524.51369565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0606
+         top_long_short_ratio: 1.1668
+         taker_buy_sell_ratio: 1.0123
+                taker_buy_vol: 653.897
+               taker_sell_vol: 645.927
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T10:03:03Z
+                open_interest: 106925.254
+                   mark_price: 77575.3
+                  index_price: 77591.02521739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0517
+         top_long_short_ratio: 1.1584
+         taker_buy_sell_ratio: 1.1952
+                taker_buy_vol: 625.792
+               taker_sell_vol: 523.585
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T10:18:03Z
+                open_interest: 106843.101
+                   mark_price: 77816.3
+                  index_price: 77817.78891304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0346
+         top_long_short_ratio: 1.139
+         taker_buy_sell_ratio: 1.6754
+                taker_buy_vol: 2234.335
+               taker_sell_vol: 1333.65
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T10:33:03Z
+                open_interest: 107019.361
+                   mark_price: 77984.86339855
+                  index_price: 77988.69326087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0218
+         top_long_short_ratio: 1.1259
+         taker_buy_sell_ratio: 1.1184
+                taker_buy_vol: 1504.132
+               taker_sell_vol: 1344.89
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T10:48:03Z
+                open_interest: 106932.123
+                   mark_price: 77783.64714493
+                  index_price: 77790.52630435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.004
+         top_long_short_ratio: 1.111
+         taker_buy_sell_ratio: 0.6016
+                taker_buy_vol: 1028.485
+               taker_sell_vol: 1709.454
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T11:03:03Z
+                open_interest: 106984.27
+                   mark_price: 77525.3
+                  index_price: 77530.99652174
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9956
+         top_long_short_ratio: 1.1048
+         taker_buy_sell_ratio: 0.7075
+                taker_buy_vol: 670.142
+               taker_sell_vol: 947.225
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T11:18:03Z
+                open_interest: 106893.994
+                   mark_price: 77827.22117391
+                  index_price: 77836.58652174
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0056
+         top_long_short_ratio: 1.1128
+         taker_buy_sell_ratio: 1.2343
+                taker_buy_vol: 900.646
+               taker_sell_vol: 729.654
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T11:33:03Z
+                open_interest: 107027.507
+                   mark_price: 78016.6
+                  index_price: 78023.78565217
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0072
+         top_long_short_ratio: 1.1133
+         taker_buy_sell_ratio: 0.8377
+                taker_buy_vol: 635.266
+               taker_sell_vol: 758.343
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T11:48:03Z
+                open_interest: 107105.214
+                   mark_price: 78294.0
+                  index_price: 78294.45913043
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0227
+         top_long_short_ratio: 1.1173
+         taker_buy_sell_ratio: 1.2645
+                taker_buy_vol: 5286.95
+               taker_sell_vol: 4180.97
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T12:03:03Z
+                open_interest: 107720.682
+                   mark_price: 78236.65380435
+                  index_price: 78252.4176087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0133
+         top_long_short_ratio: 1.1093
+         taker_buy_sell_ratio: 1.25
+                taker_buy_vol: 2737.176
+               taker_sell_vol: 2189.799
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T12:18:03Z
+                open_interest: 107603.95
+                   mark_price: 78101.9
+                  index_price: 78113.91413043
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0113
+         top_long_short_ratio: 1.1097
+         taker_buy_sell_ratio: 0.8068
+                taker_buy_vol: 906.822
+               taker_sell_vol: 1123.922
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T12:33:03Z
+                open_interest: 107677.812
+                   mark_price: 78555.4
+                  index_price: 78573.3573913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0109
+         top_long_short_ratio: 1.107
+         taker_buy_sell_ratio: 0.9244
+                taker_buy_vol: 1169.466
+               taker_sell_vol: 1265.162
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T12:48:03Z
+                open_interest: 107789.305
+                   mark_price: 78831.18178986
+                  index_price: 78851.72478261
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0165
+         top_long_short_ratio: 1.1048
+         taker_buy_sell_ratio: 1.2678
+                taker_buy_vol: 2897.634
+               taker_sell_vol: 2285.587
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T13:03:03Z
+                open_interest: 107752.006
+                   mark_price: 79028.7
+                  index_price: 79045.42934783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0239
+         top_long_short_ratio: 1.1035
+         taker_buy_sell_ratio: 1.6498
+                taker_buy_vol: 4944.623
+               taker_sell_vol: 2997.055
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T13:18:03Z
+                open_interest: 107432.058
+                   mark_price: 78895.2
+                  index_price: 78926.38217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.0153
+         top_long_short_ratio: 1.0925
+         taker_buy_sell_ratio: 1.0656
+                taker_buy_vol: 2638.562
+               taker_sell_vol: 2476.19
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T13:33:03Z
+                open_interest: 107646.537
+                   mark_price: 78704.11586957
+                  index_price: 78739.06434783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.998
+         top_long_short_ratio: 1.0768
+         taker_buy_sell_ratio: 0.6513
+                taker_buy_vol: 1420.041
+               taker_sell_vol: 2180.184
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T13:48:03Z
+                open_interest: 107299.322
+                   mark_price: 78238.45376812
+                  index_price: 78257.21978261
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9716
+         top_long_short_ratio: 1.0534
+         taker_buy_sell_ratio: 0.8214
+                taker_buy_vol: 4302.494
+               taker_sell_vol: 5237.884
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T14:03:03Z
+                open_interest: 107606.695
+                   mark_price: 78741.57057246
+                  index_price: 78776.51217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9904
+         top_long_short_ratio: 1.0708
+         taker_buy_sell_ratio: 1.0105
+                taker_buy_vol: 3844.607
+               taker_sell_vol: 3804.784
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T14:18:03Z
+                open_interest: 107726.463
+                   mark_price: 79265.9
+                  index_price: 79298.31826087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9802
+         top_long_short_ratio: 1.0585
+         taker_buy_sell_ratio: 1.1503
+                taker_buy_vol: 3332.202
+               taker_sell_vol: 2896.901
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T14:33:03Z
+                open_interest: 107724.262
+                   mark_price: 79481.4
+                  index_price: 79518.34891304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9681
+         top_long_short_ratio: 1.0454
+         taker_buy_sell_ratio: 1.0833
+                taker_buy_vol: 5112.824
+               taker_sell_vol: 4719.467
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T14:48:03Z
+                open_interest: 108576.536
+                   mark_price: 79586.0
+                  index_price: 79619.44
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9658
+         top_long_short_ratio: 1.0433
+         taker_buy_sell_ratio: 1.2039
+                taker_buy_vol: 4382.344
+               taker_sell_vol: 3640.045
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T15:03:03Z
+                open_interest: 108577.668
+                   mark_price: 79492.2
+                  index_price: 79508.89804348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9482
+         top_long_short_ratio: 1.0259
+         taker_buy_sell_ratio: 0.9297
+                taker_buy_vol: 2436.787
+               taker_sell_vol: 2621.071
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T15:18:04Z
+                open_interest: 108721.324
+                   mark_price: 79703.47437031
+                  index_price: 79721.14913043
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9467
+         top_long_short_ratio: 1.0231
+         taker_buy_sell_ratio: 0.8212
+                taker_buy_vol: 1055.633
+               taker_sell_vol: 1285.54
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T15:33:03Z
+                open_interest: 108783.536
+                   mark_price: 79893.45458696
+                  index_price: 79923.76326087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9581
+         top_long_short_ratio: 1.0292
+         taker_buy_sell_ratio: 1.1207
+                taker_buy_vol: 3147.898
+               taker_sell_vol: 2808.99
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T15:48:04Z
+                open_interest: 108543.317
+                   mark_price: 79416.5567971
+                  index_price: 79453.20086957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9459
+         top_long_short_ratio: 1.0231
+         taker_buy_sell_ratio: 0.6729
+                taker_buy_vol: 2936.313
+               taker_sell_vol: 4363.654
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T16:03:03Z
+                open_interest: 108225.439
+                   mark_price: 79262.13934783
+                  index_price: 79290.51086957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9459
+         top_long_short_ratio: 1.0239
+         taker_buy_sell_ratio: 0.8082
+                taker_buy_vol: 3101.647
+               taker_sell_vol: 3837.624
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T16:18:03Z
+                open_interest: 108050.849
+                   mark_price: 79680.98021014
+                  index_price: 79711.75065217
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9569
+         top_long_short_ratio: 1.0296
+         taker_buy_sell_ratio: 1.2918
+                taker_buy_vol: 2105.271
+               taker_sell_vol: 1629.732
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T16:33:03Z
+                open_interest: 108095.352
+                   mark_price: 79634.51077536
+                  index_price: 79674.89608696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9429
+         top_long_short_ratio: 1.0157
+         taker_buy_sell_ratio: 0.9508
+                taker_buy_vol: 1705.801
+               taker_sell_vol: 1793.998
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T16:48:03Z
+                open_interest: 108330.27
+                   mark_price: 79353.0
+                  index_price: 79382.41108696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9275
+         top_long_short_ratio: 1.0024
+         taker_buy_sell_ratio: 0.7127
+                taker_buy_vol: 1135.775
+               taker_sell_vol: 1593.649
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T17:03:03Z
+                open_interest: 107995.533
+                   mark_price: 78657.2
+                  index_price: 78669.7923913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9339
+         top_long_short_ratio: 1.0084
+         taker_buy_sell_ratio: 0.7872
+                taker_buy_vol: 1688.244
+               taker_sell_vol: 2144.575
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T17:18:03Z
+                open_interest: 108175.153
+                   mark_price: 79066.43288416
+                  index_price: 79059.81217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9429
+         top_long_short_ratio: 1.0186
+         taker_buy_sell_ratio: 0.9792
+                taker_buy_vol: 2733.972
+               taker_sell_vol: 2791.975
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T17:33:04Z
+                open_interest: 107965.348
+                   mark_price: 78567.8
+                  index_price: 78595.88826087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9451
+         top_long_short_ratio: 1.0247
+         taker_buy_sell_ratio: 0.7206
+                taker_buy_vol: 2216.79
+               taker_sell_vol: 3076.147
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T17:48:04Z
+                open_interest: 108150.657
+                   mark_price: 78710.1
+                  index_price: 78732.41369565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9474
+         top_long_short_ratio: 1.0263
+         taker_buy_sell_ratio: 1.0083
+                taker_buy_vol: 1367.938
+               taker_sell_vol: 1356.736
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T18:03:03Z
+                open_interest: 108213.181
+                   mark_price: 78870.77356522
+                  index_price: 78896.83652174
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9482
+         top_long_short_ratio: 1.0272
+         taker_buy_sell_ratio: 1.0428
+                taker_buy_vol: 653.586
+               taker_sell_vol: 626.735
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T18:18:03Z
+                open_interest: 108540.151
+                   mark_price: 78986.1
+                  index_price: 79013.13173913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9489
+         top_long_short_ratio: 1.0247
+         taker_buy_sell_ratio: 1.6304
+                taker_buy_vol: 1243.533
+               taker_sell_vol: 762.732
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T18:33:03Z
+                open_interest: 108606.582
+                   mark_price: 79046.0
+                  index_price: 79068.63826087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9486
+         top_long_short_ratio: 1.0231
+         taker_buy_sell_ratio: 0.8746
+                taker_buy_vol: 565.404
+               taker_sell_vol: 646.493
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T18:48:03Z
+                open_interest: 108661.142
+                   mark_price: 78938.4
+                  index_price: 78964.01586957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.941
+         top_long_short_ratio: 1.0169
+         taker_buy_sell_ratio: 0.8064
+                taker_buy_vol: 513.626
+               taker_sell_vol: 636.919
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T19:03:03Z
+                open_interest: 108798.084
+                   mark_price: 78916.9
+                  index_price: 78946.47130435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9391
+         top_long_short_ratio: 1.0153
+         taker_buy_sell_ratio: 1.0773
+                taker_buy_vol: 532.475
+               taker_sell_vol: 494.267
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T19:18:03Z
+                open_interest: 108452.067
+                   mark_price: 78871.8
+                  index_price: 78902.19413043
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9391
+         top_long_short_ratio: 1.0145
+         taker_buy_sell_ratio: 0.8229
+                taker_buy_vol: 861.921
+               taker_sell_vol: 1047.458
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T19:33:03Z
+                open_interest: 108063.191
+                   mark_price: 78883.17213768
+                  index_price: 78918.84282609
+            last_funding_rate: 9.374e-05
+      global_long_short_ratio: 0.9414
+         top_long_short_ratio: 1.0173
+         taker_buy_sell_ratio: 0.8229
+                taker_buy_vol: 861.921
+               taker_sell_vol: 1047.458
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T19:48:03Z
+                open_interest: 108082.51
+                   mark_price: 78739.76371014
+                  index_price: 78778.16434783
+            last_funding_rate: 8.452e-05
+      global_long_short_ratio: 0.9384
+         top_long_short_ratio: 1.0149
+         taker_buy_sell_ratio: 0.5071
+                taker_buy_vol: 716.374
+               taker_sell_vol: 1412.647
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T20:03:04Z
+                open_interest: 107883.356
+                   mark_price: 78569.2
+                  index_price: 78607.36717391
+            last_funding_rate: 7.802e-05
+      global_long_short_ratio: 0.9402
+         top_long_short_ratio: 1.0178
+         taker_buy_sell_ratio: 1.5344
+                taker_buy_vol: 565.139
+               taker_sell_vol: 368.303
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T20:18:03Z
+                open_interest: 107734.546
+                   mark_price: 78640.8
+                  index_price: 78671.8923913
+            last_funding_rate: 7.6e-05
+      global_long_short_ratio: 0.9406
+         top_long_short_ratio: 1.0173
+         taker_buy_sell_ratio: 0.637
+                taker_buy_vol: 598.824
+               taker_sell_vol: 940.033
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T20:33:03Z
+                open_interest: 107695.559
+                   mark_price: 78667.9
+                  index_price: 78691.04347826
+            last_funding_rate: 7.227e-05
+      global_long_short_ratio: 0.9406
+         top_long_short_ratio: 1.0178
+         taker_buy_sell_ratio: 0.9076
+                taker_buy_vol: 768.069
+               taker_sell_vol: 846.248
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T20:48:03Z
+                open_interest: 107595.878
+                   mark_price: 78875.3
+                  index_price: 78901.59565217
+            last_funding_rate: 6.966e-05
+      global_long_short_ratio: 0.9421
+         top_long_short_ratio: 1.0194
+         taker_buy_sell_ratio: 1.6637
+                taker_buy_vol: 329.541
+               taker_sell_vol: 198.075
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T21:03:03Z
+                open_interest: 107579.896
+                   mark_price: 78942.6866087
+                  index_price: 78969.45652174
+            last_funding_rate: 7e-05
+      global_long_short_ratio: 0.9421
+         top_long_short_ratio: 1.0202
+         taker_buy_sell_ratio: 1.5812
+                taker_buy_vol: 625.463
+               taker_sell_vol: 395.559
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T21:18:03Z
+                open_interest: 107551.537
+                   mark_price: 78912.77626087
+                  index_price: 78944.86326087
+            last_funding_rate: 6.996e-05
+      global_long_short_ratio: 0.9455
+         top_long_short_ratio: 1.0218
+         taker_buy_sell_ratio: 1.1715
+                taker_buy_vol: 184.368
+               taker_sell_vol: 157.378
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T21:33:04Z
+                open_interest: 107462.668
+                   mark_price: 78916.31531159
+                  index_price: 78948.40282609
+            last_funding_rate: 7.099e-05
+      global_long_short_ratio: 0.944
+         top_long_short_ratio: 1.0214
+         taker_buy_sell_ratio: 0.8711
+                taker_buy_vol: 224.592
+               taker_sell_vol: 257.818
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T21:48:03Z
+                open_interest: 107431.566
+                   mark_price: 78990.5
+                  index_price: 79012.74673913
+            last_funding_rate: 7.042e-05
+      global_long_short_ratio: 0.9448
+         top_long_short_ratio: 1.0218
+         taker_buy_sell_ratio: 0.6075
+                taker_buy_vol: 270.896
+               taker_sell_vol: 445.885
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T22:03:03Z
+                open_interest: 107361.314
+                   mark_price: 78900.1
+                  index_price: 78929.455
+            last_funding_rate: 6.847e-05
+      global_long_short_ratio: 0.9455
+         top_long_short_ratio: 1.0218
+         taker_buy_sell_ratio: 0.946
+                taker_buy_vol: 260.251
+               taker_sell_vol: 275.114
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T22:18:04Z
+                open_interest: 107406.925
+                   mark_price: 78879.5
+                  index_price: 78912.05195652
+            last_funding_rate: 6.73e-05
+      global_long_short_ratio: 0.944
+         top_long_short_ratio: 1.0202
+         taker_buy_sell_ratio: 2.5002
+                taker_buy_vol: 330.18
+               taker_sell_vol: 132.064
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T22:33:03Z
+                open_interest: 107337.624
+                   mark_price: 78778.01172464
+                  index_price: 78800.38217391
+            last_funding_rate: 6.581e-05
+      global_long_short_ratio: 0.941
+         top_long_short_ratio: 1.0186
+         taker_buy_sell_ratio: 1.0838
+                taker_buy_vol: 252.174
+               taker_sell_vol: 232.68
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T22:48:03Z
+                open_interest: 107292.48
+                   mark_price: 78763.67813043
+                  index_price: 78800.37065217
+            last_funding_rate: 6.314e-05
+      global_long_short_ratio: 0.9417
+         top_long_short_ratio: 1.0186
+         taker_buy_sell_ratio: 0.6469
+                taker_buy_vol: 197.868
+               taker_sell_vol: 305.851
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T23:03:03Z
+                open_interest: 107259.776
+                   mark_price: 78617.4
+                  index_price: 78657.04782609
+            last_funding_rate: 6.135e-05
+      global_long_short_ratio: 0.9417
+         top_long_short_ratio: 1.019
+         taker_buy_sell_ratio: 1.5897
+                taker_buy_vol: 294.984
+               taker_sell_vol: 185.561
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T23:18:03Z
+                open_interest: 107326.957
+                   mark_price: 78746.51567466
+                  index_price: 78775.08934783
+            last_funding_rate: 6.125e-05
+      global_long_short_ratio: 0.9425
+         top_long_short_ratio: 1.0194
+         taker_buy_sell_ratio: 0.7527
+                taker_buy_vol: 246.201
+               taker_sell_vol: 327.089
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T23:33:04Z
+                open_interest: 107294.093
+                   mark_price: 78939.78448551
+                  index_price: 78969.64347826
+            last_funding_rate: 6.113e-05
+      global_long_short_ratio: 0.944
+         top_long_short_ratio: 1.021
+         taker_buy_sell_ratio: 0.9626
+                taker_buy_vol: 311.752
+               taker_sell_vol: 323.86
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-24T23:48:03Z
+                open_interest: 107266.235
+                   mark_price: 78899.11044928
+                  index_price: 78934.29695652
+            last_funding_rate: 6.013e-05
+      global_long_short_ratio: 0.9459
+         top_long_short_ratio: 1.0218
+         taker_buy_sell_ratio: 1.7169
+                taker_buy_vol: 387.195
+               taker_sell_vol: 225.525
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T00:03:04Z
+                open_interest: 107227.851
+                   mark_price: 78913.6
+                  index_price: 78952.25586957
+            last_funding_rate: 5.779e-05
+      global_long_short_ratio: 0.9448
+         top_long_short_ratio: 1.021
+         taker_buy_sell_ratio: 0.7941
+                taker_buy_vol: 225.99
+               taker_sell_vol: 284.57
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T00:18:03Z
+                open_interest: 107163.47
+                   mark_price: 78732.57574638
+                  index_price: 78775.45065217
+            last_funding_rate: 5.55e-05
+      global_long_short_ratio: 0.9474
+         top_long_short_ratio: 1.0239
+         taker_buy_sell_ratio: 1.0853
+                taker_buy_vol: 299.993
+               taker_sell_vol: 276.42
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T00:33:04Z
+                open_interest: 107193.854
+                   mark_price: 78714.92019565
+                  index_price: 78754.95173913
+            last_funding_rate: 5.421e-05
+      global_long_short_ratio: 0.9482
+         top_long_short_ratio: 1.0251
+         taker_buy_sell_ratio: 0.8203
+                taker_buy_vol: 417.189
+               taker_sell_vol: 508.595
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T00:48:04Z
+                open_interest: 106942.245
+                   mark_price: 79695.63223188
+                  index_price: 79724.60108696
+            last_funding_rate: 5.633e-05
+      global_long_short_ratio: 0.9596
+         top_long_short_ratio: 1.0333
+         taker_buy_sell_ratio: 1.9652
+                taker_buy_vol: 1615.901
+               taker_sell_vol: 822.247
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T01:03:03Z
+                open_interest: 107432.98
+                   mark_price: 79900.0
+                  index_price: 79908.74108696
+            last_funding_rate: 5.697e-05
+      global_long_short_ratio: 0.9489
+         top_long_short_ratio: 1.0214
+         taker_buy_sell_ratio: 1.1763
+                taker_buy_vol: 3164.294
+               taker_sell_vol: 2689.982
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T01:18:04Z
+                open_interest: 107735.913
+                   mark_price: 79695.77041304
+                  index_price: 79724.72282609
+            last_funding_rate: 6.349e-05
+      global_long_short_ratio: 0.9369
+         top_long_short_ratio: 1.0076
+         taker_buy_sell_ratio: 1.2625
+                taker_buy_vol: 2095.103
+               taker_sell_vol: 1659.432
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T01:33:03Z
+                open_interest: 107846.609
+                   mark_price: 79712.40247826
+                  index_price: 79754.66021739
+            last_funding_rate: 6.715e-05
+      global_long_short_ratio: 0.9312
+         top_long_short_ratio: 1.0032
+         taker_buy_sell_ratio: 1.1064
+                taker_buy_vol: 1289.437
+               taker_sell_vol: 1165.484
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T01:48:03Z
+                open_interest: 107901.069
+                   mark_price: 79651.80838406
+                  index_price: 79677.16282609
+            last_funding_rate: 7.353e-05
+      global_long_short_ratio: 0.9286
+         top_long_short_ratio: 1.0052
+         taker_buy_sell_ratio: 0.9667
+                taker_buy_vol: 784.399
+               taker_sell_vol: 811.429
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T02:03:03Z
+                open_interest: 108104.061
+                   mark_price: 79879.2
+                  index_price: 79885.87326087
+            last_funding_rate: 8.243e-05
+      global_long_short_ratio: 0.9186
+         top_long_short_ratio: 0.9964
+         taker_buy_sell_ratio: 0.8583
+                taker_buy_vol: 700.582
+               taker_sell_vol: 816.202
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T02:18:02Z
+                open_interest: 108021.191
+                   mark_price: 80727.75706708
+                  index_price: 80724.41108696
+            last_funding_rate: 8.78e-05
+      global_long_short_ratio: 0.9135
+         top_long_short_ratio: 0.9912
+         taker_buy_sell_ratio: 0.9999
+                taker_buy_vol: 829.777
+               taker_sell_vol: 829.819
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T02:33:02Z
+                open_interest: 107280.86
+                   mark_price: 80820.7
+                  index_price: 80847.85326087
+            last_funding_rate: 9.837e-05
+      global_long_short_ratio: 0.8776
+         top_long_short_ratio: 0.919
+         taker_buy_sell_ratio: 1.6175
+                taker_buy_vol: 11987.153
+               taker_sell_vol: 7410.765
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T02:48:02Z
+                open_interest: 107227.248
+                   mark_price: 80786.1772971
+                  index_price: 80812.02043478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8685
+         top_long_short_ratio: 0.9066
+         taker_buy_sell_ratio: 0.9438
+                taker_buy_vol: 2902.267
+               taker_sell_vol: 3074.971
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T03:03:03Z
+                open_interest: 107108.787
+                   mark_price: 80682.7
+                  index_price: 80693.905
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8619
+         top_long_short_ratio: 0.9037
+         taker_buy_sell_ratio: 0.9374
+                taker_buy_vol: 2065.697
+               taker_sell_vol: 2203.614
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T03:18:02Z
+                open_interest: 107198.82
+                   mark_price: 80656.82517391
+                  index_price: 80692.19086957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8594
+         top_long_short_ratio: 0.8965
+         taker_buy_sell_ratio: 0.9527
+                taker_buy_vol: 1157.999
+               taker_sell_vol: 1215.496
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T03:33:03Z
+                open_interest: 107306.409
+                   mark_price: 80772.9
+                  index_price: 80790.94869565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8556
+         top_long_short_ratio: 0.8939
+         taker_buy_sell_ratio: 0.6048
+                taker_buy_vol: 766.193
+               taker_sell_vol: 1266.872
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T03:48:03Z
+                open_interest: 107520.991
+                   mark_price: 80611.1
+                  index_price: 80638.50043478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.856
+         top_long_short_ratio: 0.8939
+         taker_buy_sell_ratio: 0.9741
+                taker_buy_vol: 1105.814
+               taker_sell_vol: 1135.263
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T04:03:03Z
+                open_interest: 107585.93
+                   mark_price: 80575.9
+                  index_price: 80576.46804348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8525
+         top_long_short_ratio: 0.8932
+         taker_buy_sell_ratio: 0.9238
+                taker_buy_vol: 1506.739
+               taker_sell_vol: 1631.056
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T04:18:03Z
+                open_interest: 107672.102
+                   mark_price: 80367.80301449
+                  index_price: 80394.47717391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8536
+         top_long_short_ratio: 0.8936
+         taker_buy_sell_ratio: 0.8229
+                taker_buy_vol: 976.093
+               taker_sell_vol: 1186.129
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T04:33:03Z
+                open_interest: 107556.32
+                   mark_price: 80314.6
+                  index_price: 80328.43695652
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8556
+         top_long_short_ratio: 0.8947
+         taker_buy_sell_ratio: 1.125
+                taker_buy_vol: 986.942
+               taker_sell_vol: 877.317
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T04:48:03Z
+                open_interest: 107551.761
+                   mark_price: 80282.62033333
+                  index_price: 80305.72717391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.866
+         top_long_short_ratio: 0.9077
+         taker_buy_sell_ratio: 0.877
+                taker_buy_vol: 852.103
+               taker_sell_vol: 971.628
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T05:03:03Z
+                open_interest: 107643.669
+                   mark_price: 80418.3
+                  index_price: 80423.07673913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8699
+         top_long_short_ratio: 0.9106
+         taker_buy_sell_ratio: 1.0426
+                taker_buy_vol: 507.296
+               taker_sell_vol: 486.566
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T05:18:03Z
+                open_interest: 107475.188
+                   mark_price: 80476.95678986
+                  index_price: 80495.11521739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8836
+         top_long_short_ratio: 0.9223
+         taker_buy_sell_ratio: 1.1256
+                taker_buy_vol: 1013.611
+               taker_sell_vol: 900.5
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T05:33:03Z
+                open_interest: 107513.815
+                   mark_price: 80755.49542754
+                  index_price: 80772.86956522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8904
+         top_long_short_ratio: 0.9272
+         taker_buy_sell_ratio: 1.09
+                taker_buy_vol: 1188.502
+               taker_sell_vol: 1090.364
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T05:48:03Z
+                open_interest: 107685.767
+                   mark_price: 80661.37450725
+                  index_price: 80690.82630435
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8868
+         top_long_short_ratio: 0.9234
+         taker_buy_sell_ratio: 0.7263
+                taker_buy_vol: 957.381
+               taker_sell_vol: 1318.242
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T06:03:03Z
+                open_interest: 107790.062
+                   mark_price: 80729.0
+                  index_price: 80739.0276087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8818
+         top_long_short_ratio: 0.9186
+         taker_buy_sell_ratio: 1.1089
+                taker_buy_vol: 773.155
+               taker_sell_vol: 697.241
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T06:18:03Z
+                open_interest: 108055.445
+                   mark_price: 80815.9
+                  index_price: 80833.67934783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8776
+         top_long_short_ratio: 0.9139
+         taker_buy_sell_ratio: 1.7028
+                taker_buy_vol: 1166.497
+               taker_sell_vol: 685.042
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T06:33:03Z
+                open_interest: 108300.072
+                   mark_price: 80628.9
+                  index_price: 80635.04217391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8734
+         top_long_short_ratio: 0.9102
+         taker_buy_sell_ratio: 1.3941
+                taker_buy_vol: 908.054
+               taker_sell_vol: 651.348
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T06:48:03Z
+                open_interest: 108296.843
+                   mark_price: 80542.26603623
+                  index_price: 80559.88304348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8636
+         top_long_short_ratio: 0.9026
+         taker_buy_sell_ratio: 0.4801
+                taker_buy_vol: 544.907
+               taker_sell_vol: 1134.964
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T07:03:03Z
+                open_interest: 108522.226
+                   mark_price: 80655.6
+                  index_price: 80666.96
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.858
+         top_long_short_ratio: 0.899
+         taker_buy_sell_ratio: 0.9185
+                taker_buy_vol: 713.259
+               taker_sell_vol: 776.573
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T07:18:03Z
+                open_interest: 108567.398
+                   mark_price: 80660.38092029
+                  index_price: 80677.99847826
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8612
+         top_long_short_ratio: 0.9008
+         taker_buy_sell_ratio: 1.3043
+                taker_buy_vol: 787.648
+               taker_sell_vol: 603.903
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T07:33:04Z
+                open_interest: 108702.407
+                   mark_price: 80588.2
+                  index_price: 80620.54347826
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8598
+         top_long_short_ratio: 0.8997
+         taker_buy_sell_ratio: 0.6779
+                taker_buy_vol: 384.644
+               taker_sell_vol: 567.441
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T07:48:03Z
+                open_interest: 109073.131
+                   mark_price: 80400.0
+                  index_price: 80423.4576087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8567
+         top_long_short_ratio: 0.8975
+         taker_buy_sell_ratio: 0.6816
+                taker_buy_vol: 617.308
+               taker_sell_vol: 905.629
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T08:03:03Z
+                open_interest: 107286.051
+                   mark_price: 79720.0
+                  index_price: 79741.97934783
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8716
+         top_long_short_ratio: 0.9227
+         taker_buy_sell_ratio: 0.656
+                taker_buy_vol: 5103.34
+               taker_sell_vol: 7779.598
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T08:18:03Z
+                open_interest: 107175.959
+                   mark_price: 80022.7
+                  index_price: 80051.50586957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8857
+         top_long_short_ratio: 0.9331
+         taker_buy_sell_ratio: 1.3958
+                taker_buy_vol: 1811.917
+               taker_sell_vol: 1298.076
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T08:33:02Z
+                open_interest: 107088.631
+                   mark_price: 80141.8684058
+                  index_price: 80173.16652174
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8925
+         top_long_short_ratio: 0.9361
+         taker_buy_sell_ratio: 1.313
+                taker_buy_vol: 1654.31
+               taker_sell_vol: 1259.976
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T08:48:03Z
+                open_interest: 107063.144
+                   mark_price: 79940.7
+                  index_price: 79977.77043478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8815
+         top_long_short_ratio: 0.9272
+         taker_buy_sell_ratio: 0.7155
+                taker_buy_vol: 765.544
+               taker_sell_vol: 1069.934
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T09:03:03Z
+                open_interest: 107058.256
+                   mark_price: 79771.03387681
+                  index_price: 79815.55173913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8762
+         top_long_short_ratio: 0.9227
+         taker_buy_sell_ratio: 0.6532
+                taker_buy_vol: 593.711
+               taker_sell_vol: 908.885
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T09:18:03Z
+                open_interest: 107118.388
+                   mark_price: 79850.6
+                  index_price: 79866.75869565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8748
+         top_long_short_ratio: 0.9234
+         taker_buy_sell_ratio: 0.8096
+                taker_buy_vol: 949.479
+               taker_sell_vol: 1172.779
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T09:33:03Z
+                open_interest: 107231.497
+                   mark_price: 79837.36431159
+                  index_price: 79862.56195652
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8779
+         top_long_short_ratio: 0.9257
+         taker_buy_sell_ratio: 0.9121
+                taker_buy_vol: 533.193
+               taker_sell_vol: 584.568
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T09:48:03Z
+                open_interest: 107178.007
+                   mark_price: 79614.6
+                  index_price: 79634.14565217
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8818
+         top_long_short_ratio: 0.9283
+         taker_buy_sell_ratio: 0.9483
+                taker_buy_vol: 611.725
+               taker_sell_vol: 645.1
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T10:03:03Z
+                open_interest: 106532.998
+                   mark_price: 79007.60176812
+                  index_price: 79041.62956522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8653
+         top_long_short_ratio: 0.9201
+         taker_buy_sell_ratio: 0.6993
+                taker_buy_vol: 3505.335
+               taker_sell_vol: 5012.875
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T10:18:03Z
+                open_interest: 106481.711
+                   mark_price: 79261.20063043
+                  index_price: 79291.76369565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8811
+         top_long_short_ratio: 0.9342
+         taker_buy_sell_ratio: 1.517
+                taker_buy_vol: 1617.241
+               taker_sell_vol: 1066.081
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T10:33:02Z
+                open_interest: 106615.831
+                   mark_price: 79267.12669565
+                  index_price: 79295.97869565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8847
+         top_long_short_ratio: 0.9361
+         taker_buy_sell_ratio: 0.9415
+                taker_buy_vol: 653.717
+               taker_sell_vol: 694.326
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T10:48:03Z
+                open_interest: 106725.13
+                   mark_price: 79415.50163043
+                  index_price: 79450.41304348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8843
+         top_long_short_ratio: 0.9357
+         taker_buy_sell_ratio: 0.8461
+                taker_buy_vol: 389.799
+               taker_sell_vol: 460.691
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T11:03:02Z
+                open_interest: 106786.18
+                   mark_price: 79275.31851449
+                  index_price: 79305.54717391
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8904
+         top_long_short_ratio: 0.9417
+         taker_buy_sell_ratio: 1.5387
+                taker_buy_vol: 669.682
+               taker_sell_vol: 435.229
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T11:18:03Z
+                open_interest: 106926.54
+                   mark_price: 79150.19418841
+                  index_price: 79168.90369565
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8875
+         top_long_short_ratio: 0.9395
+         taker_buy_sell_ratio: 0.6175
+                taker_buy_vol: 550.47
+               taker_sell_vol: 891.426
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T11:33:03Z
+                open_interest: 106946.893
+                   mark_price: 79284.4
+                  index_price: 79314.67021739
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8904
+         top_long_short_ratio: 0.9417
+         taker_buy_sell_ratio: 1.0914
+                taker_buy_vol: 611.552
+               taker_sell_vol: 560.338
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T11:48:03Z
+                open_interest: 107133.073
+                   mark_price: 79130.7
+                  index_price: 79157.77456522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8972
+         top_long_short_ratio: 0.9478
+         taker_buy_sell_ratio: 0.8495
+                taker_buy_vol: 711.326
+               taker_sell_vol: 837.395
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T12:03:03Z
+                open_interest: 107247.094
+                   mark_price: 79016.9
+                  index_price: 79031.7626087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8968
+         top_long_short_ratio: 0.9489
+         taker_buy_sell_ratio: 1.2595
+                taker_buy_vol: 778.329
+               taker_sell_vol: 617.971
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T12:18:02Z
+                open_interest: 107036.324
+                   mark_price: 78955.39831884
+                  index_price: 78992.93978261
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8939
+         top_long_short_ratio: 0.9516
+         taker_buy_sell_ratio: 0.7657
+                taker_buy_vol: 2243.918
+               taker_sell_vol: 2930.577
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T12:33:02Z
+                open_interest: 106874.83
+                   mark_price: 78917.8
+                  index_price: 78936.03608696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.8936
+         top_long_short_ratio: 0.9535
+         taker_buy_sell_ratio: 0.7123
+                taker_buy_vol: 1315.852
+               taker_sell_vol: 1847.347
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T12:48:03Z
+                open_interest: 106920.203
+                   mark_price: 78991.7
+                  index_price: 79017.35043478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9008
+         top_long_short_ratio: 0.96
+         taker_buy_sell_ratio: 0.9931
+                taker_buy_vol: 687.868
+               taker_sell_vol: 692.678
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T13:03:03Z
+                open_interest: 106853.331
+                   mark_price: 78987.6
+                  index_price: 79002.29326087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9113
+         top_long_short_ratio: 0.9689
+         taker_buy_sell_ratio: 1.3499
+                taker_buy_vol: 939.435
+               taker_sell_vol: 695.946
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T13:18:03Z
+                open_interest: 107199.874
+                   mark_price: 78678.93169565
+                  index_price: 78715.43086957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.912
+         top_long_short_ratio: 0.9704
+         taker_buy_sell_ratio: 0.7121
+                taker_buy_vol: 990.65
+               taker_sell_vol: 1391.18
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T13:33:03Z
+                open_interest: 107021.491
+                   mark_price: 78790.9
+                  index_price: 78801.36065217
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9091
+         top_long_short_ratio: 0.9693
+         taker_buy_sell_ratio: 1.0785
+                taker_buy_vol: 1821.68
+               taker_sell_vol: 1689.061
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T13:48:03Z
+                open_interest: 107308.944
+                   mark_price: 78526.3
+                  index_price: 78528.65152174
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9275
+         top_long_short_ratio: 0.9849
+         taker_buy_sell_ratio: 1.2126
+                taker_buy_vol: 3083.763
+               taker_sell_vol: 2543.18
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T14:03:03Z
+                open_interest: 108059.699
+                   mark_price: 78559.46842528
+                  index_price: 78557.55413043
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9223
+         top_long_short_ratio: 0.9865
+         taker_buy_sell_ratio: 0.8171
+                taker_buy_vol: 4268.282
+               taker_sell_vol: 5223.683
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T14:18:03Z
+                open_interest: 108023.128
+                   mark_price: 78961.13908696
+                  index_price: 78989.8276087
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.955
+         top_long_short_ratio: 1.0182
+         taker_buy_sell_ratio: 1.2811
+                taker_buy_vol: 2589.706
+               taker_sell_vol: 2021.536
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T14:33:03Z
+                open_interest: 107930.309
+                   mark_price: 79283.91842029
+                  index_price: 79310.51043478
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9558
+         top_long_short_ratio: 1.0186
+         taker_buy_sell_ratio: 1.3771
+                taker_buy_vol: 2956.877
+               taker_sell_vol: 2147.125
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='fapi.binance.com', port=443): Failed to resolve 'fapi.binance.com' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='fapi.binance.com', port=443): Max retries exceeded with url: /fapi/v1/openInterest?symbol=BTCUSDT (Caused by NameResolutionError("HTTPSConnection(host='fapi.binance.com', port=443): Failed to resolve 'fapi.binance.com' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/collect_snapshot.py", line 103, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/collect_snapshot.py", line 93, in main
+    row = collect(args.symbol)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/collect_snapshot.py", line 46, in collect
+    oi = _get(f"{BASE}/fapi/v1/openInterest", {"symbol": symbol})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/collect_snapshot.py", line 33, in _get
+    r = requests.get(url, params=params, timeout=15)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='fapi.binance.com', port=443): Max retries exceeded with url: /fapi/v1/openInterest?symbol=BTCUSDT (Caused by NameResolutionError("HTTPSConnection(host='fapi.binance.com', port=443): Failed to resolve 'fapi.binance.com' ([Errno -3] Temporary failure in name resolution)"))
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1106, in _validate_conn
+    conn.connect()
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connection.py", line 759, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connection.py", line 211, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='fapi.binance.com', port=443): Failed to resolve 'fapi.binance.com' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/urllib3/util/retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='fapi.binance.com', port=443): Max retries exceeded with url: /fapi/v1/openInterest?symbol=BTCUSDT (Caused by NameResolutionError("HTTPSConnection(host='fapi.binance.com', port=443): Failed to resolve 'fapi.binance.com' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/collect_snapshot.py", line 103, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/collect_snapshot.py", line 93, in main
+    row = collect(args.symbol)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/collect_snapshot.py", line 46, in collect
+    oi = _get(f"{BASE}/fapi/v1/openInterest", {"symbol": symbol})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/collect_snapshot.py", line 33, in _get
+    r = requests.get(url, params=params, timeout=15)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/venv/lib/python3.12/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='fapi.binance.com', port=443): Max retries exceeded with url: /fapi/v1/openInterest?symbol=BTCUSDT (Caused by NameResolutionError("HTTPSConnection(host='fapi.binance.com', port=443): Failed to resolve 'fapi.binance.com' ([Errno -3] Temporary failure in name resolution)"))
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T15:18:04Z
+                open_interest: 107993.774
+                   mark_price: 79134.2
+                  index_price: 79155.56673913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9474
+         top_long_short_ratio: 1.0072
+         taker_buy_sell_ratio: 0.7393
+                taker_buy_vol: 750.597
+               taker_sell_vol: 1015.25
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T15:33:03Z
+                open_interest: 108070.251
+                   mark_price: 79185.6
+                  index_price: 79219.21152174
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9425
+         top_long_short_ratio: 1.002
+         taker_buy_sell_ratio: 0.8359
+                taker_buy_vol: 661.171
+               taker_sell_vol: 790.939
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T15:48:03Z
+                open_interest: 108109.627
+                   mark_price: 79307.50628986
+                  index_price: 79349.38586957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9493
+         top_long_short_ratio: 1.0064
+         taker_buy_sell_ratio: 1.6106
+                taker_buy_vol: 1378.799
+               taker_sell_vol: 856.052
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T16:03:04Z
+                open_interest: 107999.446
+                   mark_price: 79438.0
+                  index_price: 79467.8923913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9535
+         top_long_short_ratio: 1.0092
+         taker_buy_sell_ratio: 1.0385
+                taker_buy_vol: 788.33
+               taker_sell_vol: 759.141
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T16:18:03Z
+                open_interest: 107977.568
+                   mark_price: 79138.6
+                  index_price: 79172.45804348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9531
+         top_long_short_ratio: 1.0084
+         taker_buy_sell_ratio: 0.7535
+                taker_buy_vol: 1131.79
+               taker_sell_vol: 1502.011
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T16:33:03Z
+                open_interest: 108056.428
+                   mark_price: 79281.8
+                  index_price: 79308.46173913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9501
+         top_long_short_ratio: 1.0064
+         taker_buy_sell_ratio: 0.8661
+                taker_buy_vol: 607.723
+               taker_sell_vol: 701.672
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T16:48:03Z
+                open_interest: 108298.068
+                   mark_price: 79201.9
+                  index_price: 79245.72347826
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.952
+         top_long_short_ratio: 1.0072
+         taker_buy_sell_ratio: 1.2051
+                taker_buy_vol: 573.559
+               taker_sell_vol: 475.941
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T17:03:04Z
+                open_interest: 108357.163
+                   mark_price: 79076.28113768
+                  index_price: 79106.62717391
+            last_funding_rate: 9.965e-05
+      global_long_short_ratio: 0.9497
+         top_long_short_ratio: 1.0056
+         taker_buy_sell_ratio: 1.5703
+                taker_buy_vol: 526.647
+               taker_sell_vol: 335.386
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T17:18:03Z
+                open_interest: 108317.841
+                   mark_price: 78980.03325362
+                  index_price: 78996.54108696
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9406
+         top_long_short_ratio: 0.9996
+         taker_buy_sell_ratio: 0.8635
+                taker_buy_vol: 1217.702
+               taker_sell_vol: 1410.12
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T17:33:03Z
+                open_interest: 108140.369
+                   mark_price: 78949.7
+                  index_price: 78966.09956522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9421
+         top_long_short_ratio: 1.0016
+         taker_buy_sell_ratio: 0.7276
+                taker_buy_vol: 760.505
+               taker_sell_vol: 1045.165
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T17:48:04Z
+                open_interest: 108029.247
+                   mark_price: 79165.51382609
+                  index_price: 79193.34456522
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9467
+         top_long_short_ratio: 1.0032
+         taker_buy_sell_ratio: 1.5915
+                taker_buy_vol: 697.451
+               taker_sell_vol: 438.237
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T18:03:04Z
+                open_interest: 108045.241
+                   mark_price: 79253.5
+                  index_price: 79276.1073913
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9497
+         top_long_short_ratio: 1.006
+         taker_buy_sell_ratio: 1.5915
+                taker_buy_vol: 697.451
+               taker_sell_vol: 438.237
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T18:18:03Z
+                open_interest: 108243.731
+                   mark_price: 79254.2
+                  index_price: 79276.68304348
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9493
+         top_long_short_ratio: 1.0048
+         taker_buy_sell_ratio: 1.7361
+                taker_buy_vol: 603.48
+               taker_sell_vol: 347.599
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T18:33:03Z
+                open_interest: 108160.132
+                   mark_price: 79140.8
+                  index_price: 79168.87586957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9482
+         top_long_short_ratio: 1.004
+         taker_buy_sell_ratio: 1.4304
+                taker_buy_vol: 968.97
+               taker_sell_vol: 677.431
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T18:48:03Z
+                open_interest: 108263.418
+                   mark_price: 79202.8
+                  index_price: 79231.18086957
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9459
+         top_long_short_ratio: 1.002
+         taker_buy_sell_ratio: 0.5115
+                taker_buy_vol: 218.657
+               taker_sell_vol: 427.475
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T19:03:03Z
+                open_interest: 108085.374
+                   mark_price: 79154.6
+                  index_price: 79179.95847826
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9497
+         top_long_short_ratio: 1.0068
+         taker_buy_sell_ratio: 0.3659
+                taker_buy_vol: 148.866
+               taker_sell_vol: 406.888
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T19:18:03Z
+                open_interest: 107990.422
+                   mark_price: 79158.5
+                  index_price: 79190.555
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 0.9501
+         top_long_short_ratio: 1.0072
+         taker_buy_sell_ratio: 1.1779
+                taker_buy_vol: 574.933
+               taker_sell_vol: 488.1
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T19:33:03Z
+                open_interest: 107687.875
+                   mark_price: 78824.9
+                  index_price: 78863.06413043
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.002
+         top_long_short_ratio: 1.0717
+         taker_buy_sell_ratio: 0.8759
+                taker_buy_vol: 337.508
+               taker_sell_vol: 385.308
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T19:48:03Z
+                open_interest: 107393.816
+                   mark_price: 78748.71346377
+                  index_price: 78780.33391304
+            last_funding_rate: 0.0001
+      global_long_short_ratio: 1.002
+         top_long_short_ratio: 1.073
+         taker_buy_sell_ratio: 1.4694
+                taker_buy_vol: 831.767
+               taker_sell_vol: 566.058
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T20:03:03Z
+                open_interest: 107249.027
+                   mark_price: 78810.69866667
+                  index_price: 78852.71652174
+            last_funding_rate: 9.877e-05
+      global_long_short_ratio: 1.0064
+         top_long_short_ratio: 1.076
+         taker_buy_sell_ratio: 0.6112
+                taker_buy_vol: 637.811
+               taker_sell_vol: 1043.62
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T20:18:04Z
+                open_interest: 107055.436
+                   mark_price: 78864.9
+                  index_price: 78891.33891304
+            last_funding_rate: 9.759e-05
+      global_long_short_ratio: 1.0068
+         top_long_short_ratio: 1.0777
+         taker_buy_sell_ratio: 1.5023
+                taker_buy_vol: 605.149
+               taker_sell_vol: 402.817
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T20:33:03Z
+                open_interest: 107021.381
+                   mark_price: 78703.8
+                  index_price: 78738.24956522
+            last_funding_rate: 9.359e-05
+      global_long_short_ratio: 1.0092
+         top_long_short_ratio: 1.0799
+         taker_buy_sell_ratio: 0.4965
+                taker_buy_vol: 493.13
+               taker_sell_vol: 993.142
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T20:48:04Z
+                open_interest: 106900.697
+                   mark_price: 78209.0
+                  index_price: 78241.41043478
+            last_funding_rate: 9.017e-05
+      global_long_short_ratio: 1.0072
+         top_long_short_ratio: 1.082
+         taker_buy_sell_ratio: 0.9435
+                taker_buy_vol: 236.625
+               taker_sell_vol: 250.803
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T21:03:03Z
+                open_interest: 107403.234
+                   mark_price: 78167.3
+                  index_price: 78186.81434783
+            last_funding_rate: 9.028e-05
+      global_long_short_ratio: 1.0173
+         top_long_short_ratio: 1.096
+         taker_buy_sell_ratio: 0.6857
+                taker_buy_vol: 1022.62
+               taker_sell_vol: 1491.358
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T21:18:03Z
+                open_interest: 106837.271
+                   mark_price: 78334.9
+                  index_price: 78359.52304348
+            last_funding_rate: 9.034e-05
+      global_long_short_ratio: 1.004
+         top_long_short_ratio: 1.0899
+         taker_buy_sell_ratio: 0.664
+                taker_buy_vol: 2176.766
+               taker_sell_vol: 3278.32
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T21:33:04Z
+                open_interest: 106814.058
+                   mark_price: 78385.77791604
+                  index_price: 78426.74456522
+            last_funding_rate: 9.005e-05
+      global_long_short_ratio: 1.0105
+         top_long_short_ratio: 1.0951
+         taker_buy_sell_ratio: 0.7213
+                taker_buy_vol: 2431.943
+               taker_sell_vol: 3371.674
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T21:48:03Z
+                open_interest: 106557.141
+                   mark_price: 78557.9
+                  index_price: 78586.26173913
+            last_funding_rate: 8.681e-05
+      global_long_short_ratio: 1.0133
+         top_long_short_ratio: 1.0969
+         taker_buy_sell_ratio: 1.3539
+                taker_buy_vol: 1183.736
+               taker_sell_vol: 874.335
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T22:03:04Z
+                open_interest: 106741.178
+                   mark_price: 78642.0
+                  index_price: 78674.16478261
+            last_funding_rate: 8.681e-05
+      global_long_short_ratio: 1.0113
+         top_long_short_ratio: 1.0956
+         taker_buy_sell_ratio: 1.5019
+                taker_buy_vol: 974.616
+               taker_sell_vol: 648.934
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T22:18:03Z
+                open_interest: 106537.205
+                   mark_price: 78866.6
+                  index_price: 78891.78304348
+            last_funding_rate: 8.776e-05
+      global_long_short_ratio: 1.0121
+         top_long_short_ratio: 1.0951
+         taker_buy_sell_ratio: 1.6498
+                taker_buy_vol: 1304.296
+               taker_sell_vol: 790.587
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T22:33:04Z
+                open_interest: 106505.935
+                   mark_price: 78737.5
+                  index_price: 78759.27869565
+            last_funding_rate: 8.791e-05
+      global_long_short_ratio: 1.0088
+         top_long_short_ratio: 1.0925
+         taker_buy_sell_ratio: 0.6854
+                taker_buy_vol: 768.405
+               taker_sell_vol: 1121.049
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T22:48:03Z
+                open_interest: 106505.256
+                   mark_price: 78837.1
+                  index_price: 78863.92782609
+            last_funding_rate: 9.118e-05
+      global_long_short_ratio: 1.0101
+         top_long_short_ratio: 1.0934
+         taker_buy_sell_ratio: 1.1746
+                taker_buy_vol: 484.088
+               taker_sell_vol: 412.144
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T23:03:03Z
+                open_interest: 106495.668
+                   mark_price: 78922.3254058
+                  index_price: 78954.54108696
+            last_funding_rate: 8.976e-05
+      global_long_short_ratio: 1.0088
+         top_long_short_ratio: 1.0938
+         taker_buy_sell_ratio: 0.9794
+                taker_buy_vol: 336.847
+               taker_sell_vol: 343.934
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T23:18:04Z
+                open_interest: 106497.734
+                   mark_price: 78884.5
+                  index_price: 78920.13
+            last_funding_rate: 8.464e-05
+      global_long_short_ratio: 1.0076
+         top_long_short_ratio: 1.0921
+         taker_buy_sell_ratio: 1.4045
+                taker_buy_vol: 557.327
+               taker_sell_vol: 396.811
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T23:33:03Z
+                open_interest: 106621.175
+                   mark_price: 78670.01122464
+                  index_price: 78705.35565217
+            last_funding_rate: 8.341e-05
+      global_long_short_ratio: 1.0056
+         top_long_short_ratio: 1.0921
+         taker_buy_sell_ratio: 0.7827
+                taker_buy_vol: 602.87
+               taker_sell_vol: 770.292
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-25T23:48:03Z
+                open_interest: 106523.237
+                   mark_price: 78470.7
+                  index_price: 78499.82913043
+            last_funding_rate: 8.009e-05
+      global_long_short_ratio: 1.0024
+         top_long_short_ratio: 1.0894
+         taker_buy_sell_ratio: 1.2151
+                taker_buy_vol: 651.895
+               taker_sell_vol: 536.498
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T00:03:03Z
+                open_interest: 106697.891
+                   mark_price: 78462.4
+                  index_price: 78501.2723913
+            last_funding_rate: 7.618e-05
+      global_long_short_ratio: 1.0008
+         top_long_short_ratio: 1.089
+         taker_buy_sell_ratio: 0.9945
+                taker_buy_vol: 692.78
+               taker_sell_vol: 696.629
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T00:18:04Z
+                open_interest: 106918.01
+                   mark_price: 78452.8
+                  index_price: 78482.11086957
+            last_funding_rate: 7.237e-05
+      global_long_short_ratio: 1.0008
+         top_long_short_ratio: 1.0872
+         taker_buy_sell_ratio: 0.6938
+                taker_buy_vol: 900.46
+               taker_sell_vol: 1297.82
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T00:33:04Z
+                open_interest: 106986.722
+                   mark_price: 78566.0
+                  index_price: 78602.17695652
+            last_funding_rate: 7.374e-05
+      global_long_short_ratio: 1.0064
+         top_long_short_ratio: 1.0925
+         taker_buy_sell_ratio: 1.0263
+                taker_buy_vol: 377.392
+               taker_sell_vol: 367.723
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T00:48:03Z
+                open_interest: 106969.493
+                   mark_price: 78377.40669565
+                  index_price: 78407.52521739
+            last_funding_rate: 7.008e-05
+      global_long_short_ratio: 1.0072
+         top_long_short_ratio: 1.0938
+         taker_buy_sell_ratio: 1.079
+                taker_buy_vol: 540.285
+               taker_sell_vol: 500.708
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T01:03:03Z
+                open_interest: 106932.478
+                   mark_price: 78691.26681884
+                  index_price: 78724.0073913
+            last_funding_rate: 7.154e-05
+      global_long_short_ratio: 1.0113
+         top_long_short_ratio: 1.096
+         taker_buy_sell_ratio: 1.2876
+                taker_buy_vol: 610.291
+               taker_sell_vol: 473.964
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T01:18:03Z
+                open_interest: 106703.635
+                   mark_price: 78815.2
+                  index_price: 78848.34434783
+            last_funding_rate: 7.082e-05
+      global_long_short_ratio: 1.0169
+         top_long_short_ratio: 1.1004
+         taker_buy_sell_ratio: 1.0563
+                taker_buy_vol: 779.969
+               taker_sell_vol: 738.387
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T01:33:03Z
+                open_interest: 106708.764
+                   mark_price: 78839.57373913
+                  index_price: 78874.09304348
+            last_funding_rate: 6.876e-05
+      global_long_short_ratio: 1.0157
+         top_long_short_ratio: 1.0991
+         taker_buy_sell_ratio: 0.9666
+                taker_buy_vol: 462.356
+               taker_sell_vol: 478.325
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T01:48:03Z
+                open_interest: 106681.43
+                   mark_price: 78787.3
+                  index_price: 78821.3823913
+            last_funding_rate: 6.763e-05
+      global_long_short_ratio: 1.0161
+         top_long_short_ratio: 1.0614
+         taker_buy_sell_ratio: 1.3766
+                taker_buy_vol: 463.034
+               taker_sell_vol: 336.358
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T02:03:04Z
+                open_interest: 106673.454
+                   mark_price: 78808.14677536
+                  index_price: 78844.77326087
+            last_funding_rate: 6.736e-05
+      global_long_short_ratio: 1.0141
+         top_long_short_ratio: 1.0597
+         taker_buy_sell_ratio: 0.9283
+                taker_buy_vol: 269.986
+               taker_sell_vol: 290.838
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T02:18:03Z
+                open_interest: 106603.968
+                   mark_price: 78888.72666667
+                  index_price: 78914.24086957
+            last_funding_rate: 6.499e-05
+      global_long_short_ratio: 1.0125
+         top_long_short_ratio: 1.058
+         taker_buy_sell_ratio: 0.8854
+                taker_buy_vol: 206.766
+               taker_sell_vol: 233.526
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T02:33:03Z
+                open_interest: 106114.34
+                   mark_price: 79150.9
+                  index_price: 79185.71847826
+            last_funding_rate: 6.498e-05
+      global_long_short_ratio: 1.0333
+         top_long_short_ratio: 1.0734
+         taker_buy_sell_ratio: 1.7753
+                taker_buy_vol: 1717.065
+               taker_sell_vol: 967.207
+📸 snapshot BTCUSDT gravado em /home/mcmoriam/repos/claudio-a-santana/mutant-crypto-bot/backend/scripts/../data/derivatives/live_snapshot/oi_funding_ratios.csv
+                       ts_utc: 2026-08-26T02:48:03Z
+                open_interest: 106126.49
+                   mark_price: 79090.1
+                  index_price: 79122.61891304
+            last_funding_rate: 6.181e-05
+      global_long_short_ratio: 1.0247
+         top_long_short_ratio: 1.0657
+         taker_buy_sell_ratio: 0.8816
+                taker_buy_vol: 612.715
+               taker_sell_vol: 695.039

@@ -48,9 +48,9 @@ SELECTOR_RESET_AFTER_SECONDS     = 4 * 3600
 
 # Personalidades simuladas (definidas a mao, para teste)
 PERSONALITIES = [
-    {"name": "Cirurgiao",   "strategy": "Wyckoff_SMC", "timeframe": 900,
-     "risk_config": {"sl_multiplier": 1.5, "tp_multiplier": 8.0}},
-    {"name": "Trabalhador", "strategy": "SMC",          "timeframe": 300,
+    {"name": "Mestre (Regime)",   "strategy": "Regime Switch", "timeframe": 3600,
+     "risk_config": {"sl_multiplier": 1.5, "tp_multiplier": 3.0}},
+    {"name": "Explosivo (Squeeze)","strategy": "Volatility Squeeze", "timeframe": 900,
      "risk_config": {"sl_multiplier": 1.5, "tp_multiplier": 3.0}},
 ]
 
@@ -72,12 +72,12 @@ class TradeAccount:
         self.history = []       # trades fechados
         self.equity_curve = []  # (epoch, equity)
 
-    def open_trade(self, direction: str, tf: int, epoch: int, entry: float, sl: float, tp: float, name: str):
+    def open_trade(self, direction: str, tf: int, epoch: int, entry: float, sl: float, tp: float, breakeven_trigger: float, name: str):
         if len(self.positions) > 0:
             return  # apenas 1 posicao por vez (espelha active_trade_ids)
         self.positions.append({
             "id": self.trades, "direction": direction, "tf": tf, "name": name,
-            "entry": entry, "sl": sl, "tp": tp
+            "entry": entry, "sl": sl, "tp": tp, "breakeven_trigger": breakeven_trigger, "breakeven_activated": False
         })
         # Incrementa o contador de sinais que resultaram em trades APENAS se o trade foi aberto
         self.signals += 1
@@ -87,11 +87,19 @@ class TradeAccount:
         closed = []
         for pos in list(self.positions):
             if pos["direction"] == "CALL":
+                if not pos["breakeven_activated"] and high >= pos["breakeven_trigger"]:
+                    pos["sl"] = pos["entry"]
+                    pos["breakeven_activated"] = True
+                
                 if low <= pos["sl"]:
                     closed.append(self._close(pos, epoch, pos["sl"], False))
                 elif high >= pos["tp"]:
                     closed.append(self._close(pos, epoch, pos["tp"], True))
             else:
+                if not pos["breakeven_activated"] and low <= pos["breakeven_trigger"]:
+                    pos["sl"] = pos["entry"]
+                    pos["breakeven_activated"] = True
+
                 if high >= pos["sl"]:
                     closed.append(self._close(pos, epoch, pos["sl"], False))
                 elif low <= pos["tp"]:
@@ -141,9 +149,10 @@ def build_signal(df_sub, strategy_name, debug_enabled=False):
 def compute_sl_tp(entry, atr, direction, risk_cfg):
     sl_mult = risk_cfg.get("sl_multiplier", 1.5)
     tp_mult = risk_cfg.get("tp_multiplier", 8.0)
+    be_mult = tp_mult / 2.0  # trigger breakeven at half TP
     if direction == "CALL":
-        return entry - atr * sl_mult, entry + atr * tp_mult
-    return entry + atr * sl_mult, entry - atr * tp_mult
+        return entry - atr * sl_mult, entry + atr * tp_mult, entry + atr * be_mult
+    return entry + atr * sl_mult, entry - atr * tp_mult, entry - atr * be_mult
 
 def build_epoch_index(frame) -> np.ndarray:
     """Converte o index (datetime) em array de epoch seconds (UTC)."""
@@ -248,8 +257,8 @@ def simulate_static(personality, frames, m5_index, m5_epochs, debug=False):
         atr = last.get("ATRr_14", entry * 0.005)
         if atr != atr or atr == 0:
             atr = entry * 0.005
-        sl, tp = compute_sl_tp(entry, float(atr), sig, personality["risk_config"])
-        acct.open_trade(sig, tf, epoch, entry, sl, tp, personality["name"])
+        sl, tp, be = compute_sl_tp(entry, float(atr), sig, personality["risk_config"])
+        acct.open_trade(sig, tf, epoch, entry, sl, tp, be, personality["name"])
 
     acct.signals = signals_generated
     return acct
@@ -339,9 +348,9 @@ def simulate_dynamic(personalities, frames, m5_index, m5_epochs, debug=False):
                 atr = last.get("ATRr_14", entry * 0.005)
                 if atr != atr or atr == 0:
                     atr = entry * 0.005
-                sl, tp = compute_sl_tp(entry, float(atr), sig, personality["risk_config"])
+                sl, tp, be = compute_sl_tp(entry, float(atr), sig, personality["risk_config"])
                 # Passar o nome da personalidade para identificar o dono do trade
-                acct.open_trade(sig, tf, epoch, entry, sl, tp, p_name)
+                acct.open_trade(sig, tf, epoch, entry, sl, tp, be, p_name)
 
     # Agregação final para relatorio
     total_dynamic_account = TradeAccount("Dynamic Aggregated")
@@ -373,9 +382,9 @@ def main():
     print(f"\n🧬 Mutant Crypto Bot -- Fitness Backtest Engine")
     print(f"   Simbolo: {SYMBOL} | Periodo: {DAYS} dias | Setup: {', '.join(p['name'] for p in PERSONALITIES)}\n")
 
-    # Baixar dados M5 e M15
+    # Baixar dados
     frames = {}
-    for tf_name, (interval, tf_sec) in [("M5", ("5m", 300)), ("M15", ("15m", 900))]:
+    for tf_name, (interval, tf_sec) in [("M5", ("5m", 300)), ("M15", ("15m", 900)), ("H1", ("1h", 3600))]:
         df = fetch_klines(SYMBOL, interval, DAYS)
         frames[tf_sec] = apply_indicators(df)
         print(f"   {tf_name}: {len(df)} velas (ATR calculado)")
